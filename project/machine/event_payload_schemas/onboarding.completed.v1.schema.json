@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/onboarding.completed.v1.schema.json",
+  "title": "onboarding.completed v1 payload",
+  "type": "object",
+  "required": [
+    "user_id",
+    "session_id",
+    "completed_steps",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "session_id": {
+      "type": "string"
+    },
+    "completed_steps": {
+      "type": "array"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

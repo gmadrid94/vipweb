@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/admin.panel.viewed.v1.schema.json",
+  "title": "admin.panel.viewed v1 payload",
+  "type": "object",
+  "required": [
+    "admin_id",
+    "section",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "admin_id": {
+      "type": "string"
+    },
+    "section": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

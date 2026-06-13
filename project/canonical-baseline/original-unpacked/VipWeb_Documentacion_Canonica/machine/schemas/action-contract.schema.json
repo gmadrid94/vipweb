@@ -1,0 +1,419 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "module",
+      "route",
+      "method",
+      "permission",
+      "allowed_roles",
+      "mutable",
+      "mutation_scope",
+      "runtime_approval_required",
+      "approval_record_required",
+      "audit_required",
+      "ai_allowed",
+      "ai_roles",
+      "ai_level_max",
+      "request_contract",
+      "response_contract",
+      "error_codes",
+      "preconditions",
+      "postconditions",
+      "idempotency",
+      "ux_states",
+      "emits_events",
+      "writes_entities",
+      "rollback",
+      "source_doc"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[A-Z0-9_]+$"
+      },
+      "module": {
+        "type": "string",
+        "minLength": 1
+      },
+      "route": {
+        "type": "string",
+        "pattern": "^/"
+      },
+      "method": {
+        "enum": [
+          "GET",
+          "POST",
+          "PUT",
+          "PATCH",
+          "DELETE"
+        ]
+      },
+      "permission": {
+        "type": "string",
+        "minLength": 1
+      },
+      "allowed_roles": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "mutable": {
+        "type": "boolean"
+      },
+      "mutation_scope": {
+        "type": "string",
+        "minLength": 1
+      },
+      "runtime_approval_required": {
+        "type": "boolean"
+      },
+      "approval_record_required": {
+        "type": "boolean"
+      },
+      "audit_required": {
+        "type": "boolean"
+      },
+      "ai_allowed": {
+        "type": "boolean"
+      },
+      "ai_level_max": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          "AI-0",
+          "AI-1",
+          "AI-2",
+          "AI-3",
+          null
+        ]
+      },
+      "request_contract": {
+        "type": "object",
+        "required": [
+          "path_params_schema_ref",
+          "query_schema_ref",
+          "body_schema_ref"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path_params_schema_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "query_schema_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "body_schema_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "response_contract": {
+        "type": "object",
+        "required": [
+          "success_schema_ref",
+          "error_schema_ref"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "success_schema_ref": {
+            "type": "string"
+          },
+          "error_schema_ref": {
+            "type": "string"
+          }
+        }
+      },
+      "error_codes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1
+      },
+      "preconditions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1
+      },
+      "postconditions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1
+      },
+      "idempotency": {
+        "type": "object",
+        "required": [
+          "required",
+          "key_source"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "required": {
+            "type": "boolean"
+          },
+          "key_source": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "ux_states": {
+        "type": "object",
+        "required": [
+          "on_success",
+          "on_validation_error",
+          "on_permission_error",
+          "on_conflict"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "on_success": {
+            "type": "string"
+          },
+          "on_validation_error": {
+            "type": "string"
+          },
+          "on_permission_error": {
+            "type": "string"
+          },
+          "on_conflict": {
+            "type": "string"
+          }
+        }
+      },
+      "emits_events": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "writes_entities": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "rollback": {
+        "type": "string",
+        "minLength": 1
+      },
+      "source_doc": {
+        "type": "string",
+        "minLength": 1
+      },
+      "delegated_write_entities": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "entity",
+            "owner_module",
+            "contract_ref",
+            "mode",
+            "required",
+            "rollback_owner",
+            "rollback"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "entity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "owner_module": {
+              "type": "string",
+              "minLength": 1
+            },
+            "contract_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "mode": {
+              "enum": [
+                "public_contract"
+              ]
+            },
+            "required": {
+              "type": "boolean"
+            },
+            "rollback_owner": {
+              "type": "string",
+              "minLength": 1
+            },
+            "rollback": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "uniqueItems": true
+      },
+      "implementation_status": {
+        "enum": [
+          "foundation_ready",
+          "mvp_ready",
+          "restricted_mvp",
+          "future_prepared",
+          "not_implemented"
+        ]
+      },
+      "activation_status": {
+        "enum": [
+          "active_by_default",
+          "disabled_by_default",
+          "owner_enabled_only",
+          "not_assignable"
+        ]
+      },
+      "ai_roles": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      }
+    },
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "ai_allowed": {
+              "const": true
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "audit_required": {
+              "const": true
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "ai_allowed": {
+              "const": false
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "ai_level_max": {
+              "type": "null"
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "ai_level_max": {
+              "enum": [
+                "AI-2",
+                "AI-3"
+              ]
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "runtime_approval_required": {
+              "const": true
+            },
+            "approval_record_required": {
+              "const": true
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "runtime_approval_required": {
+              "const": true
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "approval_record_required": {
+              "const": true
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "ai_allowed": {
+              "const": true
+            }
+          },
+          "required": [
+            "ai_allowed"
+          ]
+        },
+        "then": {
+          "properties": {
+            "ai_roles": {
+              "minItems": 1
+            }
+          },
+          "required": [
+            "ai_roles"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "ai_allowed": {
+              "const": false
+            }
+          },
+          "required": [
+            "ai_allowed"
+          ]
+        },
+        "then": {
+          "properties": {
+            "ai_roles": {
+              "maxItems": 0
+            }
+          },
+          "required": [
+            "ai_roles"
+          ]
+        }
+      }
+    ]
+  }
+}

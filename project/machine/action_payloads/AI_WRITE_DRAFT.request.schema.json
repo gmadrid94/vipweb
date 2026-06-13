@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/AI_WRITE_DRAFT.request.schema.json",
+  "title": "AI_WRITE_DRAFT request body",
+  "type": "object",
+  "required": [
+    "request_id",
+    "csrf_token",
+    "payload",
+    "approval_id",
+    "idempotency_key"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 120
+    },
+    "csrf_token": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "target_doc",
+        "draft_type",
+        "instructions",
+        "files_read",
+        "risk_level"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "target_doc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "draft_type": {
+          "enum": [
+            "documentation_patch",
+            "schema_patch",
+            "backlog_patch",
+            "decision_note",
+            "review_note"
+          ]
+        },
+        "instructions": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 8000
+        },
+        "files_read": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "risk_level": {
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        }
+      }
+    },
+    "approval_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    }
+  }
+}

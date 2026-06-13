@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/user.registered.v1.schema.json",
+  "title": "user.registered v1 payload",
+  "type": "object",
+  "required": [
+    "user_id",
+    "source",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "seed",
+        "owner_provisioned",
+        "admin_provisioned",
+        "invitation_accepted",
+        "self_signup_future"
+      ],
+      "description": "En MVP solo están activos seed y owner_provisioned; admin_provisioned, invitation_accepted y self_signup_future quedan reservados."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "mvp_allowed_sources": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "seed",
+          "owner_provisioned"
+        ]
+      },
+      "description": "Campo documental opcional; la validación runtime debe comprobar source contra esta política cuando aplique."
+    }
+  }
+}

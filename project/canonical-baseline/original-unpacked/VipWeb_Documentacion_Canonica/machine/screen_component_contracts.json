@@ -1,0 +1,777 @@
+[
+  {
+    "screen_id": "public_entry",
+    "route_ref": "/",
+    "module_ref": "core.identity",
+    "layout_type": "public_landing",
+    "components": [
+      "AppShell",
+      "ScreenHeader",
+      "Button",
+      "ContextualHelpPanel",
+      "StateFeedback"
+    ],
+    "data_sources": [],
+    "primary_actions": [
+      "NAVIGATE_LOGIN"
+    ],
+    "secondary_actions": [],
+    "events_emitted": [],
+    "empty_state_component": "StateFeedback",
+    "loading_state_component": "LoadingState",
+    "error_state_component": "ErrorState",
+    "permission_fallback": "public_content_visible",
+    "copy_refs": [
+      "public_entry.ready",
+      "public_entry.error"
+    ],
+    "responsive_behavior_ref": "public_entry",
+    "analytics_refs": [
+      "public_entry.viewed"
+    ],
+    "gamification_refs": [],
+    "ai_helper_refs": [],
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "status": "canonical",
+    "accessibility_contract": {
+      "keyboard_navigation": "required",
+      "initial_focus": "main_heading",
+      "focus_after_error": "error_summary",
+      "focus_after_success": "success_message_or_next_primary_action",
+      "aria_live_regions": [
+        "loading",
+        "error",
+        "success"
+      ],
+      "landmarks": [
+        "main"
+      ],
+      "label_control_mapping": "required_for_interactive_controls",
+      "error_message_association": "required",
+      "reduced_motion_behavior": "respect_prefers_reduced_motion",
+      "color_contrast_level": "WCAG_AA",
+      "empty_state_announcement": "required_when_dynamic",
+      "loading_state_announcement": "required_when_async",
+      "table_or_list_semantics": "not_applicable",
+      "manual_review_ref": "ACCESSIBILITY_MANUAL_REVIEW_REQUIRED_BEFORE_VISIBLE_UI"
+    }
+  },
+  {
+    "screen_id": "login",
+    "route_ref": "/login",
+    "module_ref": "core.identity",
+    "layout_type": "auth_centered",
+    "components": [
+      "AppShell",
+      "ScreenHeader",
+      "AuthForm",
+      "Button",
+      "StateFeedback"
+    ],
+    "data_sources": [
+      "AuthAttempt",
+      "User"
+    ],
+    "primary_actions": [
+      "AUTH_LOGIN_SUBMIT"
+    ],
+    "secondary_actions": [
+      "NAVIGATE_PUBLIC_ENTRY"
+    ],
+    "events_emitted": [
+      "user.logged_in"
+    ],
+    "empty_state_component": "AuthForm",
+    "loading_state_component": "LoadingState",
+    "error_state_component": "ErrorState",
+    "permission_fallback": "auth_required_or_invalid_credentials",
+    "copy_refs": [
+      "login.empty",
+      "login.error",
+      "login.success"
+    ],
+    "responsive_behavior_ref": "login",
+    "analytics_refs": [
+      "auth.login_attempt"
+    ],
+    "gamification_refs": [],
+    "ai_helper_refs": [],
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "status": "canonical",
+    "accessibility_contract": {
+      "keyboard_navigation": "required",
+      "initial_focus": "first_form_field",
+      "focus_after_error": "first_invalid_field",
+      "focus_after_success": "success_message_or_next_primary_action",
+      "aria_live_regions": [
+        "loading",
+        "error",
+        "success"
+      ],
+      "landmarks": [
+        "main"
+      ],
+      "label_control_mapping": "required",
+      "error_message_association": "required",
+      "reduced_motion_behavior": "respect_prefers_reduced_motion",
+      "color_contrast_level": "WCAG_AA",
+      "empty_state_announcement": "required_when_dynamic",
+      "loading_state_announcement": "required_when_async",
+      "table_or_list_semantics": "not_applicable",
+      "manual_review_ref": "ACCESSIBILITY_MANUAL_REVIEW_REQUIRED_BEFORE_VISIBLE_UI"
+    }
+  },
+  {
+    "screen_id": "onboarding",
+    "route_ref": "/onboarding",
+    "module_ref": "onboarding",
+    "layout_type": "guided_flow",
+    "components": [
+      "AppShell",
+      "ScreenHeader",
+      "ProgressSummary",
+      "Button",
+      "ContextualHelpPanel",
+      "StateFeedback"
+    ],
+    "data_sources": [
+      "OnboardingSession",
+      "UserContext"
+    ],
+    "primary_actions": [
+      "ONBOARDING_START",
+      "ONBOARDING_COMPLETE"
+    ],
+    "secondary_actions": [
+      "NAVIGATE_DASHBOARD"
+    ],
+    "events_emitted": [
+      "onboarding.started",
+      "onboarding.completed"
+    ],
+    "empty_state_component": "StateFeedback",
+    "loading_state_component": "LoadingState",
+    "error_state_component": "ErrorState",
+    "permission_fallback": "PermissionGate.denied",
+    "copy_refs": [
+      "onboarding.empty",
+      "onboarding.in_progress",
+      "onboarding.completed",
+      "onboarding.error"
+    ],
+    "responsive_behavior_ref": "onboarding",
+    "analytics_refs": [
+      "onboarding.step_viewed"
+    ],
+    "gamification_refs": [
+      "progress.updated derived from onboarding.completed"
+    ],
+    "ai_helper_refs": [],
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "status": "canonical",
+    "accessibility_contract": {
+      "keyboard_navigation": "required",
+      "initial_focus": "main_heading",
+      "focus_after_error": "error_summary",
+      "focus_after_success": "success_message_or_next_primary_action",
+      "aria_live_regions": [
+        "loading",
+        "error",
+        "success"
+      ],
+      "landmarks": [
+        "main",
+        "nav"
+      ],
+      "label_control_mapping": "required_for_interactive_controls",
+      "error_message_association": "required",
+      "reduced_motion_behavior": "respect_prefers_reduced_motion",
+      "color_contrast_level": "WCAG_AA",
+      "empty_state_announcement": "required_when_dynamic",
+      "loading_state_announcement": "required_when_async",
+      "table_or_list_semantics": "not_applicable",
+      "manual_review_ref": "ACCESSIBILITY_MANUAL_REVIEW_REQUIRED_BEFORE_VISIBLE_UI"
+    }
+  },
+  {
+    "screen_id": "dashboard",
+    "route_ref": "/dashboard",
+    "module_ref": "dashboard",
+    "layout_type": "continuity_hub",
+    "components": [
+      "AppShell",
+      "ScreenHeader",
+      "ModuleCard",
+      "NextStepCard",
+      "ProgressSummary",
+      "AIHelperPanel",
+      "EvidenceStatus",
+      "StateFeedback"
+    ],
+    "data_sources": [
+      "Module",
+      "ProgressRecord",
+      "Notification",
+      "DomainEvent",
+      "AIActionLog"
+    ],
+    "primary_actions": [
+      "MODULE_USE_TRACK",
+      "NAVIGATE_ONBOARDING",
+      "NAVIGATE_MODULES"
+    ],
+    "secondary_actions": [
+      "NAVIGATE_PROGRESS",
+      "NAVIGATE_NOTIFICATIONS",
+      "NAVIGATE_AI_WORKSPACE"
+    ],
+    "events_emitted": [
+      "dashboard.viewed",
+      "dashboard.first_viewed",
+      "module.used"
+    ],
+    "empty_state_component": "NextStepCard",
+    "loading_state_component": "LoadingState",
+    "error_state_component": "ErrorState",
+    "permission_fallback": "PermissionGate.denied",
+    "copy_refs": [
+      "dashboard.empty",
+      "dashboard.ready",
+      "dashboard.blocked",
+      "dashboard.error"
+    ],
+    "responsive_behavior_ref": "dashboard",
+    "analytics_refs": [
+      "dashboard.viewed",
+      "dashboard.first_viewed"
+    ],
+    "gamification_refs": [
+      "ProgressRecord",
+      "ProgressSummary"
+    ],
+    "ai_helper_refs": [
+      "AIHelperPanel.blocked",
+      "AIHelperPanel.suggestion"
+    ],
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "status": "canonical",
+    "accessibility_contract": {
+      "keyboard_navigation": "required",
+      "initial_focus": "main_heading",
+      "focus_after_error": "error_summary",
+      "focus_after_success": "success_message_or_next_primary_action",
+      "aria_live_regions": [
+        "loading",
+        "error",
+        "success"
+      ],
+      "landmarks": [
+        "main",
+        "nav"
+      ],
+      "label_control_mapping": "required_for_interactive_controls",
+      "error_message_association": "required",
+      "reduced_motion_behavior": "respect_prefers_reduced_motion",
+      "color_contrast_level": "WCAG_AA",
+      "empty_state_announcement": "required_when_dynamic",
+      "loading_state_announcement": "required_when_async",
+      "table_or_list_semantics": "not_applicable",
+      "manual_review_ref": "ACCESSIBILITY_MANUAL_REVIEW_REQUIRED_BEFORE_VISIBLE_UI"
+    }
+  },
+  {
+    "screen_id": "profile",
+    "route_ref": "/profile",
+    "module_ref": "profile",
+    "layout_type": "profile_panel",
+    "components": [
+      "AppShell",
+      "ScreenHeader",
+      "ProfileForm",
+      "PermissionGate",
+      "Button",
+      "StateFeedback"
+    ],
+    "data_sources": [
+      "UserContext",
+      "User"
+    ],
+    "primary_actions": [
+      "PROFILE_UPDATE"
+    ],
+    "secondary_actions": [
+      "NAVIGATE_DASHBOARD"
+    ],
+    "events_emitted": [
+      "profile.updated"
+    ],
+    "empty_state_component": "StateFeedback",
+    "loading_state_component": "LoadingState",
+    "error_state_component": "ErrorState",
+    "permission_fallback": "PermissionGate.denied",
+    "copy_refs": [
+      "profile.view",
+      "profile.edit",
+      "profile.saved",
+      "profile.error"
+    ],
+    "responsive_behavior_ref": "profile",
+    "analytics_refs": [
+      "profile.viewed",
+      "profile.updated"
+    ],
+    "gamification_refs": [
+      "progress.updated derived from profile.updated"
+    ],
+    "ai_helper_refs": [],
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "status": "canonical",
+    "accessibility_contract": {
+      "keyboard_navigation": "required",
+      "initial_focus": "first_form_field",
+      "focus_after_error": "first_invalid_field",
+      "focus_after_success": "success_message_or_next_primary_action",
+      "aria_live_regions": [
+        "loading",
+        "error",
+        "success"
+      ],
+      "landmarks": [
+        "main",
+        "nav"
+      ],
+      "label_control_mapping": "required",
+      "error_message_association": "required",
+      "reduced_motion_behavior": "respect_prefers_reduced_motion",
+      "color_contrast_level": "WCAG_AA",
+      "empty_state_announcement": "required_when_dynamic",
+      "loading_state_announcement": "required_when_async",
+      "table_or_list_semantics": "not_applicable",
+      "manual_review_ref": "ACCESSIBILITY_MANUAL_REVIEW_REQUIRED_BEFORE_VISIBLE_UI"
+    }
+  },
+  {
+    "screen_id": "notifications",
+    "route_ref": "/notifications",
+    "module_ref": "notifications",
+    "layout_type": "list_panel",
+    "components": [
+      "AppShell",
+      "ScreenHeader",
+      "NotificationList",
+      "PermissionGate",
+      "StateFeedback"
+    ],
+    "data_sources": [
+      "Notification"
+    ],
+    "primary_actions": [
+      "NOTIFICATION_MARK_READ"
+    ],
+    "secondary_actions": [
+      "NAVIGATE_DASHBOARD"
+    ],
+    "events_emitted": [
+      "notification.read"
+    ],
+    "empty_state_component": "StateFeedback",
+    "loading_state_component": "LoadingState",
+    "error_state_component": "ErrorState",
+    "permission_fallback": "PermissionGate.denied",
+    "copy_refs": [
+      "notifications.empty",
+      "notifications.unread",
+      "notifications.read",
+      "notifications.error"
+    ],
+    "responsive_behavior_ref": "notifications",
+    "analytics_refs": [
+      "notifications.viewed"
+    ],
+    "gamification_refs": [],
+    "ai_helper_refs": [],
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "status": "canonical",
+    "accessibility_contract": {
+      "keyboard_navigation": "required",
+      "initial_focus": "main_heading",
+      "focus_after_error": "error_summary",
+      "focus_after_success": "success_message_or_next_primary_action",
+      "aria_live_regions": [
+        "loading",
+        "error",
+        "success"
+      ],
+      "landmarks": [
+        "main",
+        "nav"
+      ],
+      "label_control_mapping": "required_for_interactive_controls",
+      "error_message_association": "required",
+      "reduced_motion_behavior": "respect_prefers_reduced_motion",
+      "color_contrast_level": "WCAG_AA",
+      "empty_state_announcement": "required_when_dynamic",
+      "loading_state_announcement": "required_when_async",
+      "table_or_list_semantics": "required",
+      "manual_review_ref": "ACCESSIBILITY_MANUAL_REVIEW_REQUIRED_BEFORE_VISIBLE_UI"
+    }
+  },
+  {
+    "screen_id": "admin",
+    "route_ref": "/admin",
+    "module_ref": "admin",
+    "layout_type": "admin_readonly",
+    "components": [
+      "AppShell",
+      "ScreenHeader",
+      "AdminReadOnlyTable",
+      "EvidenceStatus",
+      "PermissionGate",
+      "StateFeedback"
+    ],
+    "data_sources": [
+      "AuditLog",
+      "DomainEvent",
+      "Module",
+      "SystemSetting"
+    ],
+    "primary_actions": [
+      "DOCTOR_RUN_READONLY",
+      "NAVIGATE_EVIDENCE"
+    ],
+    "secondary_actions": [
+      "NAVIGATE_AUDIT",
+      "NAVIGATE_CONFIG"
+    ],
+    "events_emitted": [
+      "admin.panel.viewed",
+      "system.doctor.executed"
+    ],
+    "empty_state_component": "StateFeedback",
+    "loading_state_component": "LoadingState",
+    "error_state_component": "ErrorState",
+    "permission_fallback": "PermissionGate.denied",
+    "copy_refs": [
+      "admin.read_only",
+      "admin.blocked",
+      "admin.no_permission",
+      "admin.error"
+    ],
+    "responsive_behavior_ref": "admin",
+    "analytics_refs": [
+      "admin.panel.viewed"
+    ],
+    "gamification_refs": [],
+    "ai_helper_refs": [],
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "status": "canonical",
+    "accessibility_contract": {
+      "keyboard_navigation": "required",
+      "initial_focus": "main_heading",
+      "focus_after_error": "error_summary",
+      "focus_after_success": "success_message_or_next_primary_action",
+      "aria_live_regions": [
+        "loading",
+        "error",
+        "success"
+      ],
+      "landmarks": [
+        "main",
+        "nav"
+      ],
+      "label_control_mapping": "required_for_interactive_controls",
+      "error_message_association": "required",
+      "reduced_motion_behavior": "respect_prefers_reduced_motion",
+      "color_contrast_level": "WCAG_AA",
+      "empty_state_announcement": "required_when_dynamic",
+      "loading_state_announcement": "required_when_async",
+      "table_or_list_semantics": "required",
+      "manual_review_ref": "ACCESSIBILITY_MANUAL_REVIEW_REQUIRED_BEFORE_VISIBLE_UI"
+    }
+  },
+  {
+    "screen_id": "doctor_evidence",
+    "route_ref": "/admin/evidence",
+    "module_ref": "core.doctor",
+    "layout_type": "evidence_readonly",
+    "components": [
+      "AppShell",
+      "ScreenHeader",
+      "EvidenceStatus",
+      "AdminReadOnlyTable",
+      "PermissionGate",
+      "StateFeedback"
+    ],
+    "data_sources": [
+      "Evidence",
+      "DomainEvent",
+      "AuditLog"
+    ],
+    "primary_actions": [
+      "DOCTOR_RUN_READONLY"
+    ],
+    "secondary_actions": [
+      "NAVIGATE_ADMIN"
+    ],
+    "events_emitted": [
+      "system.doctor.executed"
+    ],
+    "empty_state_component": "StateFeedback",
+    "loading_state_component": "LoadingState",
+    "error_state_component": "ErrorState",
+    "permission_fallback": "PermissionGate.denied",
+    "copy_refs": [
+      "doctor_evidence.empty",
+      "doctor_evidence.passed",
+      "doctor_evidence.warning",
+      "doctor_evidence.failed"
+    ],
+    "responsive_behavior_ref": "doctor_evidence",
+    "analytics_refs": [
+      "doctor.evidence.viewed"
+    ],
+    "gamification_refs": [],
+    "ai_helper_refs": [],
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "status": "canonical",
+    "accessibility_contract": {
+      "keyboard_navigation": "required",
+      "initial_focus": "main_heading",
+      "focus_after_error": "error_summary",
+      "focus_after_success": "success_message_or_next_primary_action",
+      "aria_live_regions": [
+        "loading",
+        "error",
+        "success"
+      ],
+      "landmarks": [
+        "main",
+        "nav"
+      ],
+      "label_control_mapping": "required_for_interactive_controls",
+      "error_message_association": "required",
+      "reduced_motion_behavior": "respect_prefers_reduced_motion",
+      "color_contrast_level": "WCAG_AA",
+      "empty_state_announcement": "required_when_dynamic",
+      "loading_state_announcement": "required_when_async",
+      "table_or_list_semantics": "required",
+      "manual_review_ref": "ACCESSIBILITY_MANUAL_REVIEW_REQUIRED_BEFORE_VISIBLE_UI"
+    }
+  },
+  {
+    "screen_id": "modules_catalog",
+    "route_ref": "/modules",
+    "module_ref": "core.modules",
+    "layout_type": "catalog_grid",
+    "components": [
+      "AppShell",
+      "ScreenHeader",
+      "ModuleCatalogGrid",
+      "ModuleCard",
+      "PermissionGate",
+      "StateFeedback"
+    ],
+    "data_sources": [
+      "Module",
+      "ModuleManifest"
+    ],
+    "primary_actions": [
+      "MODULE_USE_TRACK"
+    ],
+    "secondary_actions": [
+      "NAVIGATE_DASHBOARD"
+    ],
+    "events_emitted": [
+      "module.used"
+    ],
+    "empty_state_component": "StateFeedback",
+    "loading_state_component": "LoadingState",
+    "error_state_component": "ErrorState",
+    "permission_fallback": "PermissionGate.denied",
+    "copy_refs": [
+      "modules_catalog.empty",
+      "modules_catalog.ready",
+      "modules_catalog.blocked",
+      "modules_catalog.error"
+    ],
+    "responsive_behavior_ref": "modules_catalog",
+    "analytics_refs": [
+      "modules_catalog.viewed",
+      "module.used"
+    ],
+    "gamification_refs": [
+      "first_module_used"
+    ],
+    "ai_helper_refs": [],
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "status": "canonical",
+    "accessibility_contract": {
+      "keyboard_navigation": "required",
+      "initial_focus": "main_heading",
+      "focus_after_error": "error_summary",
+      "focus_after_success": "success_message_or_next_primary_action",
+      "aria_live_regions": [
+        "loading",
+        "error",
+        "success"
+      ],
+      "landmarks": [
+        "main",
+        "nav"
+      ],
+      "label_control_mapping": "required_for_interactive_controls",
+      "error_message_association": "required",
+      "reduced_motion_behavior": "respect_prefers_reduced_motion",
+      "color_contrast_level": "WCAG_AA",
+      "empty_state_announcement": "required_when_dynamic",
+      "loading_state_announcement": "required_when_async",
+      "table_or_list_semantics": "not_applicable",
+      "manual_review_ref": "ACCESSIBILITY_MANUAL_REVIEW_REQUIRED_BEFORE_VISIBLE_UI"
+    }
+  },
+  {
+    "screen_id": "progress",
+    "route_ref": "/progress",
+    "module_ref": "gamification",
+    "layout_type": "progress_panel",
+    "components": [
+      "AppShell",
+      "ScreenHeader",
+      "ProgressSummary",
+      "ProgressTimeline",
+      "EmptyState",
+      "PermissionGate",
+      "StateFeedback"
+    ],
+    "data_sources": [
+      "ProgressRecord",
+      "UserAchievement"
+    ],
+    "primary_actions": [
+      "NAVIGATE_DASHBOARD"
+    ],
+    "secondary_actions": [
+      "NAVIGATE_MODULES"
+    ],
+    "events_emitted": [],
+    "empty_state_component": "EmptyState",
+    "loading_state_component": "LoadingState",
+    "error_state_component": "ErrorState",
+    "permission_fallback": "PermissionGate.denied",
+    "copy_refs": [
+      "progress.empty",
+      "progress.ready",
+      "progress.blocked",
+      "progress.error"
+    ],
+    "responsive_behavior_ref": "progress",
+    "analytics_refs": [
+      "progress.viewed"
+    ],
+    "gamification_refs": [
+      "ProgressRecord",
+      "UserAchievement",
+      "achievement.unlocked"
+    ],
+    "ai_helper_refs": [],
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "status": "canonical",
+    "accessibility_contract": {
+      "keyboard_navigation": "required",
+      "initial_focus": "main_heading",
+      "focus_after_error": "error_summary",
+      "focus_after_success": "success_message_or_next_primary_action",
+      "aria_live_regions": [
+        "loading",
+        "error",
+        "success"
+      ],
+      "landmarks": [
+        "main",
+        "nav"
+      ],
+      "label_control_mapping": "required_for_interactive_controls",
+      "error_message_association": "required",
+      "reduced_motion_behavior": "respect_prefers_reduced_motion",
+      "color_contrast_level": "WCAG_AA",
+      "empty_state_announcement": "required_when_dynamic",
+      "loading_state_announcement": "required_when_async",
+      "table_or_list_semantics": "required",
+      "manual_review_ref": "ACCESSIBILITY_MANUAL_REVIEW_REQUIRED_BEFORE_VISIBLE_UI"
+    }
+  },
+  {
+    "screen_id": "ai_workspace",
+    "route_ref": "/ai",
+    "module_ref": "ai_assistant",
+    "layout_type": "ai_readonly_workspace",
+    "components": [
+      "AppShell",
+      "ScreenHeader",
+      "AIHelperPanel",
+      "PermissionGate",
+      "EvidenceStatus",
+      "StateFeedback"
+    ],
+    "data_sources": [
+      "AIActionLog",
+      "AIDraft",
+      "ApprovalRecord"
+    ],
+    "primary_actions": [
+      "AI_WRITE_DRAFT",
+      "DOCTOR_RUN_READONLY"
+    ],
+    "secondary_actions": [
+      "NAVIGATE_DASHBOARD"
+    ],
+    "events_emitted": [
+      "ai.suggestion.created",
+      "system.doctor.executed"
+    ],
+    "empty_state_component": "StateFeedback",
+    "loading_state_component": "LoadingState",
+    "error_state_component": "ErrorState",
+    "permission_fallback": "PermissionGate.denied",
+    "copy_refs": [
+      "ai_workspace.read_only",
+      "ai_workspace.draft_available",
+      "ai_workspace.blocked",
+      "ai_workspace.no_permission"
+    ],
+    "responsive_behavior_ref": "ai_workspace",
+    "analytics_refs": [
+      "ai.workspace.viewed"
+    ],
+    "gamification_refs": [],
+    "ai_helper_refs": [
+      "AI_CONTEXT_TRUST_POLICY",
+      "AIHelperPanel.approval-required"
+    ],
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "status": "canonical",
+    "accessibility_contract": {
+      "keyboard_navigation": "required",
+      "initial_focus": "main_heading",
+      "focus_after_error": "error_summary",
+      "focus_after_success": "success_message_or_next_primary_action",
+      "aria_live_regions": [
+        "loading",
+        "error",
+        "success"
+      ],
+      "landmarks": [
+        "main",
+        "nav"
+      ],
+      "label_control_mapping": "required_for_interactive_controls",
+      "error_message_association": "required",
+      "reduced_motion_behavior": "respect_prefers_reduced_motion",
+      "color_contrast_level": "WCAG_AA",
+      "empty_state_announcement": "required_when_dynamic",
+      "loading_state_announcement": "required_when_async",
+      "table_or_list_semantics": "not_applicable",
+      "manual_review_ref": "ACCESSIBILITY_MANUAL_REVIEW_REQUIRED_BEFORE_VISIBLE_UI"
+    }
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "FixtureEntity",
+    "table": "fixture_entities",
+    "module": "core.data",
+    "owner_module": "core.data",
+    "phase": "foundation",
+    "sensitivity": "system",
+    "retention_policy": "fixture_only",
+    "delete_policy": "none",
+    "exportable": false,
+    "audit_required": false,
+    "events_related": [],
+    "migration_ref": "database/migrations/999_fixture_entities.sql",
+    "source_doc": "docs/06-technical/06-testing.md",
+    "validated_by": "POSITIVE_SCHEMA_FIXTURES_PASS",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "migration_order": 999,
+    "fields_minimum": [
+      "id"
+    ],
+    "constraints_minimum": [
+      "id required"
+    ],
+    "indexes_minimum": []
+  }
+]

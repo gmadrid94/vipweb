@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/notification.read.v1.schema.json",
+  "title": "notification.read v1 payload",
+  "type": "object",
+  "required": [
+    "notification_id",
+    "user_id",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "notification_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

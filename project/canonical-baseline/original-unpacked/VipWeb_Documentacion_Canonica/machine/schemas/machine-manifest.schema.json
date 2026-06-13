@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "file",
+      "schema",
+      "status",
+      "owner",
+      "purpose",
+      "markdown_docs",
+      "owner_type",
+      "owner_ref"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "file": {
+        "type": "string",
+        "pattern": "^machine/.+\\.json$"
+      },
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "status": {
+        "enum": [
+          "canonical",
+          "derived_matrix",
+          "derived_alias",
+          "schema",
+          "support"
+        ]
+      },
+      "canonical_source": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "owner": {
+        "type": "string",
+        "minLength": 1
+      },
+      "purpose": {
+        "type": "string",
+        "minLength": 1
+      },
+      "markdown_docs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "owner_type": {
+        "enum": [
+          "module",
+          "area",
+          "human_role",
+          "system",
+          "document_group"
+        ]
+      },
+      "owner_ref": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

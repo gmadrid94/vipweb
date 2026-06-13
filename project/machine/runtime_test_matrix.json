@@ -1,0 +1,1320 @@
+[
+  {
+    "action_id": "AUTH_LOGIN_SUBMIT",
+    "module": "core.identity",
+    "criticality": "high",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission"
+    ],
+    "positive_tests": [
+      "AUTH_LOGIN_SUBMIT.happy_path_contract_valid",
+      "AUTH_LOGIN_SUBMIT.audit_log_created",
+      "AUTH_LOGIN_SUBMIT.emits_declared_events"
+    ],
+    "negative_tests": [
+      "AUTH_LOGIN_SUBMIT.permission_denied",
+      "AUTH_LOGIN_SUBMIT.payload_schema_invalid",
+      "AUTH_LOGIN_SUBMIT.csrf_invalid"
+    ],
+    "permission_tests": [
+      "AUTH_LOGIN_SUBMIT.permission_allowed_roles",
+      "AUTH_LOGIN_SUBMIT.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "AUTH_LOGIN_SUBMIT.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "AUTH_LOGIN_SUBMIT.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "AUTH_LOGIN_SUBMIT.request_schema_strict",
+      "AUTH_LOGIN_SUBMIT.response_schema_strict"
+    ],
+    "approval_record_tests": [],
+    "idempotency_tests": [],
+    "audit_log_tests": [
+      "AUTH_LOGIN_SUBMIT.audit_log_created"
+    ],
+    "event_tests": [
+      "AUTH_LOGIN_SUBMIT.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "AUTH_LOGIN_SUBMIT.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "AUTH_LOGIN_SUBMIT.security_error_codes_present",
+      "AUTH_LOGIN_SUBMIT.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/AUTH_LOGIN_SUBMIT.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:AUTH_LOGIN_SUBMIT",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "AUTH_LOGOUT",
+    "module": "core.identity",
+    "criticality": "high",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission"
+    ],
+    "positive_tests": [
+      "AUTH_LOGOUT.happy_path_contract_valid",
+      "AUTH_LOGOUT.audit_log_created",
+      "AUTH_LOGOUT.emits_declared_events"
+    ],
+    "negative_tests": [
+      "AUTH_LOGOUT.permission_denied",
+      "AUTH_LOGOUT.payload_schema_invalid",
+      "AUTH_LOGOUT.csrf_invalid"
+    ],
+    "permission_tests": [
+      "AUTH_LOGOUT.permission_allowed_roles",
+      "AUTH_LOGOUT.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "AUTH_LOGOUT.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "AUTH_LOGOUT.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "AUTH_LOGOUT.request_schema_strict",
+      "AUTH_LOGOUT.response_schema_strict"
+    ],
+    "approval_record_tests": [],
+    "idempotency_tests": [],
+    "audit_log_tests": [
+      "AUTH_LOGOUT.audit_log_created"
+    ],
+    "event_tests": [
+      "AUTH_LOGOUT.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "AUTH_LOGOUT.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "AUTH_LOGOUT.security_error_codes_present",
+      "AUTH_LOGOUT.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/AUTH_LOGOUT.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:AUTH_LOGOUT",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "ONBOARDING_START",
+    "module": "onboarding",
+    "criticality": "high",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission"
+    ],
+    "positive_tests": [
+      "ONBOARDING_START.happy_path_contract_valid",
+      "ONBOARDING_START.audit_log_created",
+      "ONBOARDING_START.emits_declared_events"
+    ],
+    "negative_tests": [
+      "ONBOARDING_START.permission_denied",
+      "ONBOARDING_START.payload_schema_invalid",
+      "ONBOARDING_START.csrf_invalid"
+    ],
+    "permission_tests": [
+      "ONBOARDING_START.permission_allowed_roles",
+      "ONBOARDING_START.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "ONBOARDING_START.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "ONBOARDING_START.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "ONBOARDING_START.request_schema_strict",
+      "ONBOARDING_START.response_schema_strict"
+    ],
+    "approval_record_tests": [],
+    "idempotency_tests": [],
+    "audit_log_tests": [
+      "ONBOARDING_START.audit_log_created"
+    ],
+    "event_tests": [
+      "ONBOARDING_START.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "ONBOARDING_START.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "ONBOARDING_START.security_error_codes_present",
+      "ONBOARDING_START.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/ONBOARDING_START.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:ONBOARDING_START",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "ONBOARDING_COMPLETE",
+    "module": "onboarding",
+    "criticality": "high",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission"
+    ],
+    "positive_tests": [
+      "ONBOARDING_COMPLETE.happy_path_contract_valid",
+      "ONBOARDING_COMPLETE.audit_log_created",
+      "ONBOARDING_COMPLETE.emits_declared_events"
+    ],
+    "negative_tests": [
+      "ONBOARDING_COMPLETE.permission_denied",
+      "ONBOARDING_COMPLETE.payload_schema_invalid",
+      "ONBOARDING_COMPLETE.csrf_invalid"
+    ],
+    "permission_tests": [
+      "ONBOARDING_COMPLETE.permission_allowed_roles",
+      "ONBOARDING_COMPLETE.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "ONBOARDING_COMPLETE.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "ONBOARDING_COMPLETE.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "ONBOARDING_COMPLETE.request_schema_strict",
+      "ONBOARDING_COMPLETE.response_schema_strict"
+    ],
+    "approval_record_tests": [],
+    "idempotency_tests": [],
+    "audit_log_tests": [
+      "ONBOARDING_COMPLETE.audit_log_created"
+    ],
+    "event_tests": [
+      "ONBOARDING_COMPLETE.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "ONBOARDING_COMPLETE.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "ONBOARDING_COMPLETE.security_error_codes_present",
+      "ONBOARDING_COMPLETE.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/ONBOARDING_COMPLETE.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:ONBOARDING_COMPLETE",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "PROFILE_UPDATE",
+    "module": "profile",
+    "criticality": "high",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission"
+    ],
+    "positive_tests": [
+      "PROFILE_UPDATE.happy_path_contract_valid",
+      "PROFILE_UPDATE.audit_log_created",
+      "PROFILE_UPDATE.emits_declared_events"
+    ],
+    "negative_tests": [
+      "PROFILE_UPDATE.permission_denied",
+      "PROFILE_UPDATE.payload_schema_invalid",
+      "PROFILE_UPDATE.csrf_invalid"
+    ],
+    "permission_tests": [
+      "PROFILE_UPDATE.permission_allowed_roles",
+      "PROFILE_UPDATE.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "PROFILE_UPDATE.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "PROFILE_UPDATE.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "PROFILE_UPDATE.request_schema_strict",
+      "PROFILE_UPDATE.response_schema_strict"
+    ],
+    "approval_record_tests": [],
+    "idempotency_tests": [],
+    "audit_log_tests": [
+      "PROFILE_UPDATE.audit_log_created"
+    ],
+    "event_tests": [
+      "PROFILE_UPDATE.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "PROFILE_UPDATE.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "PROFILE_UPDATE.security_error_codes_present",
+      "PROFILE_UPDATE.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/PROFILE_UPDATE.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:PROFILE_UPDATE",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "NOTIFICATION_MARK_READ",
+    "module": "notifications",
+    "criticality": "high",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission"
+    ],
+    "positive_tests": [
+      "NOTIFICATION_MARK_READ.happy_path_contract_valid",
+      "NOTIFICATION_MARK_READ.audit_log_created",
+      "NOTIFICATION_MARK_READ.emits_declared_events"
+    ],
+    "negative_tests": [
+      "NOTIFICATION_MARK_READ.permission_denied",
+      "NOTIFICATION_MARK_READ.payload_schema_invalid",
+      "NOTIFICATION_MARK_READ.csrf_invalid"
+    ],
+    "permission_tests": [
+      "NOTIFICATION_MARK_READ.permission_allowed_roles",
+      "NOTIFICATION_MARK_READ.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "NOTIFICATION_MARK_READ.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "NOTIFICATION_MARK_READ.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "NOTIFICATION_MARK_READ.request_schema_strict",
+      "NOTIFICATION_MARK_READ.response_schema_strict"
+    ],
+    "approval_record_tests": [],
+    "idempotency_tests": [],
+    "audit_log_tests": [
+      "NOTIFICATION_MARK_READ.audit_log_created"
+    ],
+    "event_tests": [
+      "NOTIFICATION_MARK_READ.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "NOTIFICATION_MARK_READ.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "NOTIFICATION_MARK_READ.security_error_codes_present",
+      "NOTIFICATION_MARK_READ.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/NOTIFICATION_MARK_READ.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:NOTIFICATION_MARK_READ",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "MODULE_ACTIVATE",
+    "module": "core.modules",
+    "criticality": "critical",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission",
+      "idempotency",
+      "approval_record"
+    ],
+    "positive_tests": [
+      "MODULE_ACTIVATE.happy_path_contract_valid",
+      "MODULE_ACTIVATE.audit_log_created",
+      "MODULE_ACTIVATE.emits_declared_events"
+    ],
+    "negative_tests": [
+      "MODULE_ACTIVATE.permission_denied",
+      "MODULE_ACTIVATE.payload_schema_invalid",
+      "MODULE_ACTIVATE.csrf_invalid",
+      "MODULE_ACTIVATE.idempotency_conflict",
+      "MODULE_ACTIVATE.approval_missing",
+      "MODULE_ACTIVATE.approval_expired",
+      "MODULE_ACTIVATE.approval_already_consumed",
+      "MODULE_ACTIVATE.approval_scope_hash_mismatch",
+      "MODULE_ACTIVATE.approval_actor_mismatch"
+    ],
+    "permission_tests": [
+      "MODULE_ACTIVATE.permission_allowed_roles",
+      "MODULE_ACTIVATE.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "MODULE_ACTIVATE.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "MODULE_ACTIVATE.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "MODULE_ACTIVATE.request_schema_strict",
+      "MODULE_ACTIVATE.response_schema_strict"
+    ],
+    "approval_record_tests": [
+      "MODULE_ACTIVATE.approval_required",
+      "MODULE_ACTIVATE.approval_expired",
+      "MODULE_ACTIVATE.approval_already_consumed",
+      "MODULE_ACTIVATE.approval_scope_hash_mismatch",
+      "MODULE_ACTIVATE.approval_consumed_atomically"
+    ],
+    "idempotency_tests": [
+      "MODULE_ACTIVATE.idempotency_key_required",
+      "MODULE_ACTIVATE.idempotency_conflict"
+    ],
+    "audit_log_tests": [
+      "MODULE_ACTIVATE.audit_log_created"
+    ],
+    "event_tests": [
+      "MODULE_ACTIVATE.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "MODULE_ACTIVATE.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "MODULE_ACTIVATE.security_error_codes_present",
+      "MODULE_ACTIVATE.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/MODULE_ACTIVATE.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:MODULE_ACTIVATE",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS",
+      "APPROVAL_ACTIONS_HAVE_NEGATIVE_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "MODULE_CONFIGURE",
+    "module": "core.modules",
+    "criticality": "critical",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission",
+      "idempotency",
+      "approval_record"
+    ],
+    "positive_tests": [
+      "MODULE_CONFIGURE.happy_path_contract_valid",
+      "MODULE_CONFIGURE.audit_log_created",
+      "MODULE_CONFIGURE.emits_declared_events"
+    ],
+    "negative_tests": [
+      "MODULE_CONFIGURE.permission_denied",
+      "MODULE_CONFIGURE.payload_schema_invalid",
+      "MODULE_CONFIGURE.csrf_invalid",
+      "MODULE_CONFIGURE.idempotency_conflict",
+      "MODULE_CONFIGURE.approval_missing",
+      "MODULE_CONFIGURE.approval_expired",
+      "MODULE_CONFIGURE.approval_already_consumed",
+      "MODULE_CONFIGURE.approval_scope_hash_mismatch",
+      "MODULE_CONFIGURE.approval_actor_mismatch"
+    ],
+    "permission_tests": [
+      "MODULE_CONFIGURE.permission_allowed_roles",
+      "MODULE_CONFIGURE.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "MODULE_CONFIGURE.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "MODULE_CONFIGURE.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "MODULE_CONFIGURE.request_schema_strict",
+      "MODULE_CONFIGURE.response_schema_strict"
+    ],
+    "approval_record_tests": [
+      "MODULE_CONFIGURE.approval_required",
+      "MODULE_CONFIGURE.approval_expired",
+      "MODULE_CONFIGURE.approval_already_consumed",
+      "MODULE_CONFIGURE.approval_scope_hash_mismatch",
+      "MODULE_CONFIGURE.approval_consumed_atomically"
+    ],
+    "idempotency_tests": [
+      "MODULE_CONFIGURE.idempotency_key_required",
+      "MODULE_CONFIGURE.idempotency_conflict"
+    ],
+    "audit_log_tests": [
+      "MODULE_CONFIGURE.audit_log_created"
+    ],
+    "event_tests": [
+      "MODULE_CONFIGURE.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "MODULE_CONFIGURE.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "MODULE_CONFIGURE.security_error_codes_present",
+      "MODULE_CONFIGURE.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/MODULE_CONFIGURE.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:MODULE_CONFIGURE",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS",
+      "APPROVAL_ACTIONS_HAVE_NEGATIVE_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "INTEGRATION_CONFIGURE_STUB",
+    "module": "integrations",
+    "criticality": "critical",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission",
+      "idempotency",
+      "approval_record"
+    ],
+    "positive_tests": [
+      "INTEGRATION_CONFIGURE_STUB.happy_path_contract_valid",
+      "INTEGRATION_CONFIGURE_STUB.audit_log_created",
+      "INTEGRATION_CONFIGURE_STUB.emits_declared_events"
+    ],
+    "negative_tests": [
+      "INTEGRATION_CONFIGURE_STUB.permission_denied",
+      "INTEGRATION_CONFIGURE_STUB.payload_schema_invalid",
+      "INTEGRATION_CONFIGURE_STUB.csrf_invalid",
+      "INTEGRATION_CONFIGURE_STUB.idempotency_conflict",
+      "INTEGRATION_CONFIGURE_STUB.approval_missing",
+      "INTEGRATION_CONFIGURE_STUB.approval_expired",
+      "INTEGRATION_CONFIGURE_STUB.approval_already_consumed",
+      "INTEGRATION_CONFIGURE_STUB.approval_scope_hash_mismatch",
+      "INTEGRATION_CONFIGURE_STUB.approval_actor_mismatch"
+    ],
+    "permission_tests": [
+      "INTEGRATION_CONFIGURE_STUB.permission_allowed_roles",
+      "INTEGRATION_CONFIGURE_STUB.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "INTEGRATION_CONFIGURE_STUB.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "INTEGRATION_CONFIGURE_STUB.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "INTEGRATION_CONFIGURE_STUB.request_schema_strict",
+      "INTEGRATION_CONFIGURE_STUB.response_schema_strict"
+    ],
+    "approval_record_tests": [
+      "INTEGRATION_CONFIGURE_STUB.approval_required",
+      "INTEGRATION_CONFIGURE_STUB.approval_expired",
+      "INTEGRATION_CONFIGURE_STUB.approval_already_consumed",
+      "INTEGRATION_CONFIGURE_STUB.approval_scope_hash_mismatch",
+      "INTEGRATION_CONFIGURE_STUB.approval_consumed_atomically"
+    ],
+    "idempotency_tests": [
+      "INTEGRATION_CONFIGURE_STUB.idempotency_key_required",
+      "INTEGRATION_CONFIGURE_STUB.idempotency_conflict"
+    ],
+    "audit_log_tests": [
+      "INTEGRATION_CONFIGURE_STUB.audit_log_created"
+    ],
+    "event_tests": [
+      "INTEGRATION_CONFIGURE_STUB.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "INTEGRATION_CONFIGURE_STUB.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "INTEGRATION_CONFIGURE_STUB.security_error_codes_present",
+      "INTEGRATION_CONFIGURE_STUB.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/INTEGRATION_CONFIGURE_STUB.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:INTEGRATION_CONFIGURE_STUB",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS",
+      "APPROVAL_ACTIONS_HAVE_NEGATIVE_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "DOCTOR_RUN_READONLY",
+    "module": "core.doctor",
+    "criticality": "high",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "audit_log",
+      "event_emission",
+      "ai_guardrail",
+      "ai_role_contract"
+    ],
+    "positive_tests": [
+      "DOCTOR_RUN_READONLY.happy_path_contract_valid",
+      "DOCTOR_RUN_READONLY.audit_log_created",
+      "DOCTOR_RUN_READONLY.emits_declared_events"
+    ],
+    "negative_tests": [
+      "DOCTOR_RUN_READONLY.permission_denied",
+      "DOCTOR_RUN_READONLY.payload_schema_invalid",
+      "DOCTOR_RUN_READONLY.ai_level_exceeded",
+      "DOCTOR_RUN_READONLY.untrusted_context_attempts_instruction_override",
+      "DOCTOR_RUN_READONLY.ai_forbidden_direct_write_blocked"
+    ],
+    "permission_tests": [
+      "DOCTOR_RUN_READONLY.permission_allowed_roles",
+      "DOCTOR_RUN_READONLY.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "DOCTOR_RUN_READONLY.allowed_roles_match_route_matrix",
+      "DOCTOR_RUN_READONLY.ai_roles_match_route_matrix",
+      "DOCTOR_RUN_READONLY.ai_roles_allowed_by_action_contract"
+    ],
+    "csrf_tests": [],
+    "payload_validation_tests": [
+      "DOCTOR_RUN_READONLY.request_schema_strict",
+      "DOCTOR_RUN_READONLY.response_schema_strict"
+    ],
+    "approval_record_tests": [],
+    "idempotency_tests": [],
+    "audit_log_tests": [
+      "DOCTOR_RUN_READONLY.audit_log_created"
+    ],
+    "event_tests": [
+      "DOCTOR_RUN_READONLY.events_emitted_match_contract"
+    ],
+    "rollback_tests": [],
+    "error_contract_tests": [
+      "DOCTOR_RUN_READONLY.security_error_codes_present",
+      "DOCTOR_RUN_READONLY.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/ai_behavior_fixtures.json",
+      "machine/action_payloads/DOCTOR_RUN_READONLY.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:DOCTOR_RUN_READONLY",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS",
+      "AI_ACTIONS_HAVE_GUARDRAIL_TESTS",
+      "ACTION_AI_ROLES_DECLARED_AND_VALID",
+      "ACTION_AI_ROLES_MATCH_ROUTE_AI_ROLES"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "EVIDENCE_WRITE",
+    "module": "core.doctor",
+    "criticality": "critical",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission",
+      "idempotency",
+      "approval_record",
+      "ai_guardrail",
+      "ai_role_contract"
+    ],
+    "positive_tests": [
+      "EVIDENCE_WRITE.happy_path_contract_valid",
+      "EVIDENCE_WRITE.audit_log_created",
+      "EVIDENCE_WRITE.emits_declared_events"
+    ],
+    "negative_tests": [
+      "EVIDENCE_WRITE.permission_denied",
+      "EVIDENCE_WRITE.payload_schema_invalid",
+      "EVIDENCE_WRITE.csrf_invalid",
+      "EVIDENCE_WRITE.idempotency_conflict",
+      "EVIDENCE_WRITE.approval_missing",
+      "EVIDENCE_WRITE.approval_expired",
+      "EVIDENCE_WRITE.approval_already_consumed",
+      "EVIDENCE_WRITE.approval_scope_hash_mismatch",
+      "EVIDENCE_WRITE.approval_actor_mismatch",
+      "EVIDENCE_WRITE.ai_level_exceeded",
+      "EVIDENCE_WRITE.untrusted_context_attempts_instruction_override",
+      "EVIDENCE_WRITE.ai_forbidden_direct_write_blocked"
+    ],
+    "permission_tests": [
+      "EVIDENCE_WRITE.permission_allowed_roles",
+      "EVIDENCE_WRITE.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "EVIDENCE_WRITE.allowed_roles_match_route_matrix",
+      "EVIDENCE_WRITE.ai_roles_match_route_matrix",
+      "EVIDENCE_WRITE.ai_roles_allowed_by_action_contract"
+    ],
+    "csrf_tests": [
+      "EVIDENCE_WRITE.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "EVIDENCE_WRITE.request_schema_strict",
+      "EVIDENCE_WRITE.response_schema_strict"
+    ],
+    "approval_record_tests": [
+      "EVIDENCE_WRITE.approval_required",
+      "EVIDENCE_WRITE.approval_expired",
+      "EVIDENCE_WRITE.approval_already_consumed",
+      "EVIDENCE_WRITE.approval_scope_hash_mismatch",
+      "EVIDENCE_WRITE.approval_consumed_atomically"
+    ],
+    "idempotency_tests": [
+      "EVIDENCE_WRITE.idempotency_key_required",
+      "EVIDENCE_WRITE.idempotency_conflict"
+    ],
+    "audit_log_tests": [
+      "EVIDENCE_WRITE.audit_log_created"
+    ],
+    "event_tests": [
+      "EVIDENCE_WRITE.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "EVIDENCE_WRITE.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "EVIDENCE_WRITE.security_error_codes_present",
+      "EVIDENCE_WRITE.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/ai_behavior_fixtures.json",
+      "machine/action_payloads/EVIDENCE_WRITE.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:EVIDENCE_WRITE",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS",
+      "APPROVAL_ACTIONS_HAVE_NEGATIVE_TESTS",
+      "AI_ACTIONS_HAVE_GUARDRAIL_TESTS",
+      "ACTION_AI_ROLES_DECLARED_AND_VALID",
+      "ACTION_AI_ROLES_MATCH_ROUTE_AI_ROLES"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "DOCTOR_STATUS_VALIDATE",
+    "module": "core.doctor",
+    "criticality": "critical",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission",
+      "idempotency",
+      "approval_record"
+    ],
+    "positive_tests": [
+      "DOCTOR_STATUS_VALIDATE.happy_path_contract_valid",
+      "DOCTOR_STATUS_VALIDATE.audit_log_created",
+      "DOCTOR_STATUS_VALIDATE.emits_declared_events"
+    ],
+    "negative_tests": [
+      "DOCTOR_STATUS_VALIDATE.permission_denied",
+      "DOCTOR_STATUS_VALIDATE.payload_schema_invalid",
+      "DOCTOR_STATUS_VALIDATE.csrf_invalid",
+      "DOCTOR_STATUS_VALIDATE.idempotency_conflict",
+      "DOCTOR_STATUS_VALIDATE.approval_missing",
+      "DOCTOR_STATUS_VALIDATE.approval_expired",
+      "DOCTOR_STATUS_VALIDATE.approval_already_consumed",
+      "DOCTOR_STATUS_VALIDATE.approval_scope_hash_mismatch",
+      "DOCTOR_STATUS_VALIDATE.approval_actor_mismatch"
+    ],
+    "permission_tests": [
+      "DOCTOR_STATUS_VALIDATE.permission_allowed_roles",
+      "DOCTOR_STATUS_VALIDATE.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "DOCTOR_STATUS_VALIDATE.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "DOCTOR_STATUS_VALIDATE.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "DOCTOR_STATUS_VALIDATE.request_schema_strict",
+      "DOCTOR_STATUS_VALIDATE.response_schema_strict"
+    ],
+    "approval_record_tests": [
+      "DOCTOR_STATUS_VALIDATE.approval_required",
+      "DOCTOR_STATUS_VALIDATE.approval_expired",
+      "DOCTOR_STATUS_VALIDATE.approval_already_consumed",
+      "DOCTOR_STATUS_VALIDATE.approval_scope_hash_mismatch",
+      "DOCTOR_STATUS_VALIDATE.approval_consumed_atomically"
+    ],
+    "idempotency_tests": [
+      "DOCTOR_STATUS_VALIDATE.idempotency_key_required",
+      "DOCTOR_STATUS_VALIDATE.idempotency_conflict"
+    ],
+    "audit_log_tests": [
+      "DOCTOR_STATUS_VALIDATE.audit_log_created"
+    ],
+    "event_tests": [
+      "DOCTOR_STATUS_VALIDATE.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "DOCTOR_STATUS_VALIDATE.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "DOCTOR_STATUS_VALIDATE.security_error_codes_present",
+      "DOCTOR_STATUS_VALIDATE.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/DOCTOR_STATUS_VALIDATE.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:DOCTOR_STATUS_VALIDATE",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS",
+      "APPROVAL_ACTIONS_HAVE_NEGATIVE_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "AI_WRITE_DRAFT",
+    "module": "ai_assistant",
+    "criticality": "critical",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission",
+      "idempotency",
+      "approval_record",
+      "ai_guardrail",
+      "ai_role_contract"
+    ],
+    "positive_tests": [
+      "AI_WRITE_DRAFT.happy_path_contract_valid",
+      "AI_WRITE_DRAFT.audit_log_created",
+      "AI_WRITE_DRAFT.emits_declared_events"
+    ],
+    "negative_tests": [
+      "AI_WRITE_DRAFT.permission_denied",
+      "AI_WRITE_DRAFT.payload_schema_invalid",
+      "AI_WRITE_DRAFT.csrf_invalid",
+      "AI_WRITE_DRAFT.idempotency_conflict",
+      "AI_WRITE_DRAFT.approval_missing",
+      "AI_WRITE_DRAFT.approval_expired",
+      "AI_WRITE_DRAFT.approval_already_consumed",
+      "AI_WRITE_DRAFT.approval_scope_hash_mismatch",
+      "AI_WRITE_DRAFT.approval_actor_mismatch",
+      "AI_WRITE_DRAFT.ai_level_exceeded",
+      "AI_WRITE_DRAFT.untrusted_context_attempts_instruction_override",
+      "AI_WRITE_DRAFT.ai_forbidden_direct_write_blocked"
+    ],
+    "permission_tests": [
+      "AI_WRITE_DRAFT.permission_allowed_roles",
+      "AI_WRITE_DRAFT.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "AI_WRITE_DRAFT.allowed_roles_match_route_matrix",
+      "AI_WRITE_DRAFT.ai_roles_match_route_matrix",
+      "AI_WRITE_DRAFT.ai_roles_allowed_by_action_contract"
+    ],
+    "csrf_tests": [
+      "AI_WRITE_DRAFT.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "AI_WRITE_DRAFT.request_schema_strict",
+      "AI_WRITE_DRAFT.response_schema_strict"
+    ],
+    "approval_record_tests": [
+      "AI_WRITE_DRAFT.approval_required",
+      "AI_WRITE_DRAFT.approval_expired",
+      "AI_WRITE_DRAFT.approval_already_consumed",
+      "AI_WRITE_DRAFT.approval_scope_hash_mismatch",
+      "AI_WRITE_DRAFT.approval_consumed_atomically"
+    ],
+    "idempotency_tests": [
+      "AI_WRITE_DRAFT.idempotency_key_required",
+      "AI_WRITE_DRAFT.idempotency_conflict"
+    ],
+    "audit_log_tests": [
+      "AI_WRITE_DRAFT.audit_log_created"
+    ],
+    "event_tests": [
+      "AI_WRITE_DRAFT.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "AI_WRITE_DRAFT.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "AI_WRITE_DRAFT.security_error_codes_present",
+      "AI_WRITE_DRAFT.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/ai_behavior_fixtures.json",
+      "machine/action_payloads/AI_WRITE_DRAFT.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:AI_WRITE_DRAFT",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS",
+      "APPROVAL_ACTIONS_HAVE_NEGATIVE_TESTS",
+      "AI_ACTIONS_HAVE_GUARDRAIL_TESTS",
+      "ACTION_AI_ROLES_DECLARED_AND_VALID",
+      "ACTION_AI_ROLES_MATCH_ROUTE_AI_ROLES"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "MODULE_USE_TRACK",
+    "module": "core.modules",
+    "criticality": "high",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission",
+      "idempotency"
+    ],
+    "positive_tests": [
+      "MODULE_USE_TRACK.happy_path_contract_valid",
+      "MODULE_USE_TRACK.audit_log_created",
+      "MODULE_USE_TRACK.emits_declared_events"
+    ],
+    "negative_tests": [
+      "MODULE_USE_TRACK.permission_denied",
+      "MODULE_USE_TRACK.payload_schema_invalid",
+      "MODULE_USE_TRACK.csrf_invalid",
+      "MODULE_USE_TRACK.idempotency_conflict"
+    ],
+    "permission_tests": [
+      "MODULE_USE_TRACK.permission_allowed_roles",
+      "MODULE_USE_TRACK.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "MODULE_USE_TRACK.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "MODULE_USE_TRACK.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "MODULE_USE_TRACK.request_schema_strict",
+      "MODULE_USE_TRACK.response_schema_strict"
+    ],
+    "approval_record_tests": [],
+    "idempotency_tests": [
+      "MODULE_USE_TRACK.idempotency_key_required",
+      "MODULE_USE_TRACK.idempotency_conflict"
+    ],
+    "audit_log_tests": [
+      "MODULE_USE_TRACK.audit_log_created"
+    ],
+    "event_tests": [
+      "MODULE_USE_TRACK.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "MODULE_USE_TRACK.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "MODULE_USE_TRACK.security_error_codes_present",
+      "MODULE_USE_TRACK.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/MODULE_USE_TRACK.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:MODULE_USE_TRACK",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "USER_PROVISION_CONTROLLED",
+    "module": "core.identity",
+    "criticality": "critical",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission",
+      "idempotency",
+      "approval_record"
+    ],
+    "positive_tests": [
+      "USER_PROVISION_CONTROLLED.happy_path_contract_valid",
+      "USER_PROVISION_CONTROLLED.audit_log_created",
+      "USER_PROVISION_CONTROLLED.emits_declared_events"
+    ],
+    "negative_tests": [
+      "USER_PROVISION_CONTROLLED.permission_denied",
+      "USER_PROVISION_CONTROLLED.payload_schema_invalid",
+      "USER_PROVISION_CONTROLLED.csrf_invalid",
+      "USER_PROVISION_CONTROLLED.idempotency_conflict",
+      "USER_PROVISION_CONTROLLED.approval_missing",
+      "USER_PROVISION_CONTROLLED.approval_expired",
+      "USER_PROVISION_CONTROLLED.approval_already_consumed",
+      "USER_PROVISION_CONTROLLED.approval_scope_hash_mismatch",
+      "USER_PROVISION_CONTROLLED.approval_actor_mismatch"
+    ],
+    "permission_tests": [
+      "USER_PROVISION_CONTROLLED.permission_allowed_roles",
+      "USER_PROVISION_CONTROLLED.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "USER_PROVISION_CONTROLLED.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "USER_PROVISION_CONTROLLED.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "USER_PROVISION_CONTROLLED.request_schema_strict",
+      "USER_PROVISION_CONTROLLED.response_schema_strict"
+    ],
+    "approval_record_tests": [
+      "USER_PROVISION_CONTROLLED.approval_required",
+      "USER_PROVISION_CONTROLLED.approval_expired",
+      "USER_PROVISION_CONTROLLED.approval_already_consumed",
+      "USER_PROVISION_CONTROLLED.approval_scope_hash_mismatch",
+      "USER_PROVISION_CONTROLLED.approval_consumed_atomically"
+    ],
+    "idempotency_tests": [
+      "USER_PROVISION_CONTROLLED.idempotency_key_required",
+      "USER_PROVISION_CONTROLLED.idempotency_conflict"
+    ],
+    "audit_log_tests": [
+      "USER_PROVISION_CONTROLLED.audit_log_created"
+    ],
+    "event_tests": [
+      "USER_PROVISION_CONTROLLED.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "USER_PROVISION_CONTROLLED.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "USER_PROVISION_CONTROLLED.security_error_codes_present",
+      "USER_PROVISION_CONTROLLED.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/USER_PROVISION_CONTROLLED.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:USER_PROVISION_CONTROLLED",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS",
+      "APPROVAL_ACTIONS_HAVE_NEGATIVE_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "DASHBOARD_VIEW_TRACK",
+    "module": "dashboard",
+    "criticality": "high",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission",
+      "idempotency"
+    ],
+    "positive_tests": [
+      "DASHBOARD_VIEW_TRACK.happy_path_contract_valid",
+      "DASHBOARD_VIEW_TRACK.audit_log_created",
+      "DASHBOARD_VIEW_TRACK.emits_declared_events"
+    ],
+    "negative_tests": [
+      "DASHBOARD_VIEW_TRACK.permission_denied",
+      "DASHBOARD_VIEW_TRACK.payload_schema_invalid",
+      "DASHBOARD_VIEW_TRACK.csrf_invalid",
+      "DASHBOARD_VIEW_TRACK.idempotency_conflict"
+    ],
+    "permission_tests": [
+      "DASHBOARD_VIEW_TRACK.permission_allowed_roles",
+      "DASHBOARD_VIEW_TRACK.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "DASHBOARD_VIEW_TRACK.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "DASHBOARD_VIEW_TRACK.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "DASHBOARD_VIEW_TRACK.request_schema_strict",
+      "DASHBOARD_VIEW_TRACK.response_schema_strict"
+    ],
+    "approval_record_tests": [],
+    "idempotency_tests": [
+      "DASHBOARD_VIEW_TRACK.idempotency_key_required",
+      "DASHBOARD_VIEW_TRACK.idempotency_conflict"
+    ],
+    "audit_log_tests": [
+      "DASHBOARD_VIEW_TRACK.audit_log_created"
+    ],
+    "event_tests": [
+      "DASHBOARD_VIEW_TRACK.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "DASHBOARD_VIEW_TRACK.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "DASHBOARD_VIEW_TRACK.security_error_codes_present",
+      "DASHBOARD_VIEW_TRACK.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/DASHBOARD_VIEW_TRACK.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:DASHBOARD_VIEW_TRACK",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "action_id": "ADMIN_PANEL_VIEW_TRACK",
+    "module": "admin",
+    "criticality": "high",
+    "required_test_groups": [
+      "route_contract",
+      "permission",
+      "role",
+      "payload_schema",
+      "response_schema",
+      "error_contract",
+      "csrf",
+      "rollback",
+      "audit_log",
+      "event_emission"
+    ],
+    "positive_tests": [
+      "ADMIN_PANEL_VIEW_TRACK.happy_path_contract_valid",
+      "ADMIN_PANEL_VIEW_TRACK.audit_log_created",
+      "ADMIN_PANEL_VIEW_TRACK.emits_declared_events"
+    ],
+    "negative_tests": [
+      "ADMIN_PANEL_VIEW_TRACK.permission_denied",
+      "ADMIN_PANEL_VIEW_TRACK.payload_schema_invalid",
+      "ADMIN_PANEL_VIEW_TRACK.csrf_invalid"
+    ],
+    "permission_tests": [
+      "ADMIN_PANEL_VIEW_TRACK.permission_allowed_roles",
+      "ADMIN_PANEL_VIEW_TRACK.permission_denied_unallowed_roles"
+    ],
+    "role_tests": [
+      "ADMIN_PANEL_VIEW_TRACK.allowed_roles_match_route_matrix"
+    ],
+    "csrf_tests": [
+      "ADMIN_PANEL_VIEW_TRACK.csrf_required_and_invalid_blocked"
+    ],
+    "payload_validation_tests": [
+      "ADMIN_PANEL_VIEW_TRACK.request_schema_strict",
+      "ADMIN_PANEL_VIEW_TRACK.response_schema_strict"
+    ],
+    "approval_record_tests": [],
+    "idempotency_tests": [],
+    "audit_log_tests": [
+      "ADMIN_PANEL_VIEW_TRACK.audit_log_created"
+    ],
+    "event_tests": [
+      "ADMIN_PANEL_VIEW_TRACK.events_emitted_match_contract"
+    ],
+    "rollback_tests": [
+      "ADMIN_PANEL_VIEW_TRACK.rollback_path_declared_and_safe"
+    ],
+    "error_contract_tests": [
+      "ADMIN_PANEL_VIEW_TRACK.security_error_codes_present",
+      "ADMIN_PANEL_VIEW_TRACK.api_error_schema_used"
+    ],
+    "fixtures_required": [
+      "machine/action_payloads/ADMIN_PANEL_VIEW_TRACK.request.schema.json"
+    ],
+    "evidence_required": [
+      "test-report:ADMIN_PANEL_VIEW_TRACK",
+      "doctor:runtime-test-matrix"
+    ],
+    "doctor_check_refs": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS"
+    ],
+    "source_doc": "docs/06-technical/06-testing.md"
+  }
+]

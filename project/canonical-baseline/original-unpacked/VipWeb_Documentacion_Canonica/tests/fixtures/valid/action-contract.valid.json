@@ -1,0 +1,52 @@
+[
+  {
+    "id": "FIXTURE_ACTION",
+    "module": "core.foundation",
+    "route": "/fixture",
+    "method": "GET",
+    "permission": "public.view",
+    "allowed_roles": [
+      "anonymous"
+    ],
+    "mutable": false,
+    "mutation_scope": "none",
+    "runtime_approval_required": false,
+    "approval_record_required": false,
+    "audit_required": false,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "request_contract": {
+      "path_params_schema_ref": null,
+      "query_schema_ref": null,
+      "body_schema_ref": null
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/schemas/api-response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "forbidden"
+    ],
+    "preconditions": [
+      "fixture only"
+    ],
+    "postconditions": [
+      "no mutation"
+    ],
+    "idempotency": {
+      "required": false,
+      "key_source": null
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "emits_events": [],
+    "writes_entities": [],
+    "rollback": "none",
+    "source_doc": "docs/06-technical/06-testing.md",
+    "ai_roles": []
+  }
+]

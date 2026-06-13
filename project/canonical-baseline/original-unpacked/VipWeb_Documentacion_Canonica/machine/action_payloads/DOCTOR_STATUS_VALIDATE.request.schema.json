@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/DOCTOR_STATUS_VALIDATE.request.schema.json",
+  "title": "DOCTOR_STATUS_VALIDATE request body",
+  "type": "object",
+  "required": [
+    "request_id",
+    "csrf_token",
+    "payload",
+    "approval_id",
+    "idempotency_key"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 120
+    },
+    "csrf_token": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "evidence_id",
+        "decision_id",
+        "status",
+        "human_review_notes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "decision_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "status": {
+          "enum": [
+            "accepted",
+            "rejected",
+            "needs_changes"
+          ]
+        },
+        "human_review_notes": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 4000
+        }
+      }
+    },
+    "approval_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    }
+  }
+}

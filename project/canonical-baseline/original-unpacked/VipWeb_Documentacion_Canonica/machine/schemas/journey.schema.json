@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "name",
+      "actor",
+      "entry",
+      "steps",
+      "success_event",
+      "success_metric",
+      "modules"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^J-[0-9]{3}$"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1
+      },
+      "actor": {
+        "enum": [
+          "registered_user",
+          "admin",
+          "ai_assistant"
+        ]
+      },
+      "entry": {
+        "type": "string",
+        "minLength": 1
+      },
+      "steps": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "success_event": {
+        "type": "string",
+        "minLength": 1
+      },
+      "success_metric": {
+        "type": "string",
+        "minLength": 1
+      },
+      "modules": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "registration_policy": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

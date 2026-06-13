@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/permission.changed.v1.schema.json",
+  "title": "permission.changed v1 payload",
+  "type": "object",
+  "required": [
+    "permission_id",
+    "role_id",
+    "actor_id",
+    "change_type",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "permission_id": {
+      "type": "string"
+    },
+    "role_id": {
+      "type": "string"
+    },
+    "actor_id": {
+      "type": "string"
+    },
+    "change_type": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

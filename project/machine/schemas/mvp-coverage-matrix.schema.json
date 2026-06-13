@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "module",
+      "mvp_included",
+      "feature_ids",
+      "backlog_ids",
+      "screen_ids",
+      "route",
+      "permission",
+      "events",
+      "status",
+      "ui_coverage_kind",
+      "subview_ids",
+      "coverage_exemption_reason"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "module": {
+        "type": "string",
+        "minLength": 1
+      },
+      "mvp_included": {
+        "type": "boolean"
+      },
+      "feature_ids": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "backlog_ids": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "screen_ids": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "route": {
+        "type": "string",
+        "pattern": "^/"
+      },
+      "permission": {
+        "type": "string",
+        "minLength": 1
+      },
+      "events": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "status": {
+        "enum": [
+          "covered",
+          "covered_by_stub",
+          "deferred_with_reason",
+          "missing"
+        ]
+      },
+      "ui_coverage_kind": {
+        "enum": [
+          "screen",
+          "subview",
+          "screen_and_subview",
+          "stub_subview",
+          "internal_api",
+          "none"
+        ]
+      },
+      "subview_ids": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "coverage_exemption_reason": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  }
+}

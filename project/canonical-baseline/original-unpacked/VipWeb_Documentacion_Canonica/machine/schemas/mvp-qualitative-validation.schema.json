@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "version",
+    "id",
+    "status",
+    "source_doc",
+    "sample",
+    "observable_tasks",
+    "post_session_questions",
+    "success_criteria",
+    "failure_criteria",
+    "linked_metrics",
+    "linked_journeys",
+    "decision_policy"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "const": "MVP_QUALITATIVE_VALIDATION_PROTOCOL"
+    },
+    "status": {
+      "const": "canonical"
+    },
+    "observable_tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "task",
+          "observes"
+        ],
+        "additionalProperties": true
+      },
+      "minItems": 1
+    },
+    "post_session_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "linked_metrics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "linked_journeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    }
+  }
+}

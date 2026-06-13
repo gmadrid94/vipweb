@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "version",
+    "canonical_statement",
+    "human_approval_required_for",
+    "approval_record_fields",
+    "forbidden_even_with_approval",
+    "audit_entity",
+    "readonly_without_approval",
+    "permission_level_map",
+    "separation_rule",
+    "approval_entity",
+    "version_control_gate",
+    "protected_file_application_requires_version_control"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "human_approval_required_for": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "protected_file_application_requires_version_control": {
+      "const": true
+    },
+    "version_control_gate": {
+      "type": "object",
+      "required": [
+        "id",
+        "enabled",
+        "trigger_decision",
+        "applies_when_origin",
+        "applies_to_file_categories",
+        "not_triggered_by",
+        "required_before_real_file_application",
+        "human_owner_required",
+        "ai_may_activate_this_gate"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "const": "AI_PROTECTED_FILE_APPLICATION_VERSION_CONTROL_GATE"
+        },
+        "enabled": {
+          "const": true
+        },
+        "trigger_decision": {
+          "const": "ADR-026"
+        },
+        "human_owner_required": {
+          "const": true
+        },
+        "ai_may_activate_this_gate": {
+          "const": false
+        },
+        "applies_when_origin": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "applies_to_file_categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "not_triggered_by": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "required_before_real_file_application": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}

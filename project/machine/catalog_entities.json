@@ -1,0 +1,1157 @@
+[
+  {
+    "id": "User",
+    "table": "users",
+    "module": "core.identity",
+    "owner_module": "core.identity",
+    "phase": "foundation",
+    "sensitivity": "personal",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "logical",
+    "exportable": true,
+    "audit_required": true,
+    "events_related": [
+      "user.registered",
+      "user.logged_in"
+    ],
+    "migration_ref": "database/migrations/001_create_users.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 1,
+    "fields_minimum": [
+      "id",
+      "email",
+      "password_hash",
+      "display_name",
+      "status",
+      "created_at",
+      "updated_at",
+      "deleted_at"
+    ],
+    "constraints_minimum": [
+      "status in active|disabled|deleted",
+      "unique(email)"
+    ],
+    "indexes_minimum": [
+      "email",
+      "id",
+      "status"
+    ]
+  },
+  {
+    "id": "AuthAttempt",
+    "table": "auth_attempts",
+    "module": "core.identity",
+    "owner_module": "core.identity",
+    "phase": "foundation",
+    "sensitivity": "audit",
+    "retention_policy": "security_window_90_days",
+    "delete_policy": "append_only",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "user.logged_in"
+    ],
+    "migration_ref": "database/migrations/002_create_auth_attempts.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "COLUMN_CONTRACTS_EXIST",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 2,
+    "fields_minimum": [
+      "id",
+      "email_hash",
+      "ip_hash",
+      "user_id",
+      "result",
+      "reason",
+      "created_at"
+    ],
+    "constraints_minimum": [
+      "result in success|failed|throttled",
+      "reason in invalid_credentials|disabled_user|csrf_invalid|rate_limited|success",
+      "fk(user_id) references users.id nullable"
+    ],
+    "indexes_minimum": [
+      "email_hash",
+      "ip_hash",
+      "user_id",
+      "created_at"
+    ]
+  },
+  {
+    "id": "Role",
+    "table": "roles",
+    "module": "core.permissions",
+    "owner_module": "core.permissions",
+    "phase": "foundation",
+    "sensitivity": "system",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "logical",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "permission.changed"
+    ],
+    "migration_ref": "database/migrations/003_create_roles.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "ENTITIES_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 3,
+    "fields_minimum": [
+      "id",
+      "code",
+      "label",
+      "role_type",
+      "risk_level",
+      "created_at",
+      "updated_at"
+    ],
+    "constraints_minimum": [
+      "unique(code)"
+    ],
+    "indexes_minimum": [
+      "id",
+      "code"
+    ]
+  },
+  {
+    "id": "Permission",
+    "table": "permissions",
+    "module": "core.permissions",
+    "owner_module": "core.permissions",
+    "phase": "foundation",
+    "sensitivity": "system",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "logical",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "permission.changed"
+    ],
+    "migration_ref": "database/migrations/004_create_permissions.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "ENTITIES_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 4,
+    "fields_minimum": [
+      "id",
+      "code",
+      "resource",
+      "action",
+      "risk_level",
+      "grant_requires_approval",
+      "created_at",
+      "updated_at"
+    ],
+    "constraints_minimum": [
+      "unique(code)",
+      "grant_requires_approval boolean"
+    ],
+    "indexes_minimum": [
+      "id",
+      "code"
+    ]
+  },
+  {
+    "id": "RolePermission",
+    "table": "role_permissions",
+    "module": "core.permissions",
+    "owner_module": "core.permissions",
+    "phase": "foundation",
+    "sensitivity": "system",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "physical",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "permission.changed"
+    ],
+    "migration_ref": "database/migrations/005_create_role_permissions.sql",
+    "source_doc": "docs/05-domain-data/02-relationships.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 5,
+    "fields_minimum": [
+      "role_id",
+      "permission_id",
+      "created_at"
+    ],
+    "constraints_minimum": [
+      "delete behavior logical_cascade",
+      "fk(permission_id) references permissions(id)",
+      "fk(permission_id)->permissions.id",
+      "fk(role_id) references roles(id)",
+      "fk(role_id)->roles.id",
+      "primary(role_id, permission_id)",
+      "unique(role_id, permission_id)"
+    ],
+    "indexes_minimum": [
+      "id",
+      "permission_id",
+      "role_id"
+    ]
+  },
+  {
+    "id": "UserRole",
+    "table": "user_roles",
+    "module": "core.permissions",
+    "owner_module": "core.permissions",
+    "phase": "foundation",
+    "sensitivity": "system",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "physical",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "permission.changed"
+    ],
+    "migration_ref": "database/migrations/006_create_user_roles.sql",
+    "source_doc": "docs/05-domain-data/02-relationships.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 6,
+    "fields_minimum": [
+      "user_id",
+      "role_id",
+      "created_at"
+    ],
+    "constraints_minimum": [
+      "delete behavior logical_cascade",
+      "fk(role_id) references roles(id)",
+      "fk(role_id)->roles.id",
+      "fk(user_id) references users(id)",
+      "fk(user_id)->users.id",
+      "primary(user_id, role_id)",
+      "unique(user_id, role_id)"
+    ],
+    "indexes_minimum": [
+      "id",
+      "role_id",
+      "user_id"
+    ]
+  },
+  {
+    "id": "Module",
+    "table": "modules",
+    "module": "core.modules",
+    "owner_module": "core.modules",
+    "phase": "foundation",
+    "sensitivity": "system",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "logical",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "module.activated",
+      "module.configured"
+    ],
+    "migration_ref": "database/migrations/007_create_modules.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "ENTITIES_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 7,
+    "fields_minimum": [
+      "id",
+      "code",
+      "name",
+      "module_type",
+      "phase",
+      "lifecycle_status",
+      "enabled",
+      "created_at",
+      "updated_at"
+    ],
+    "constraints_minimum": [
+      "unique(code)",
+      "lifecycle_status in planned|active|disabled|stub|deprecated"
+    ],
+    "indexes_minimum": [
+      "id",
+      "code"
+    ]
+  },
+  {
+    "id": "ModuleManifest",
+    "table": "module_manifests",
+    "module": "core.modules",
+    "owner_module": "core.modules",
+    "phase": "foundation",
+    "sensitivity": "system",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "versioned",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "module.configured"
+    ],
+    "migration_ref": "database/migrations/008_create_module_manifests.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 8,
+    "fields_minimum": [
+      "id",
+      "module_id",
+      "manifest_version",
+      "manifest_json",
+      "checksum",
+      "status",
+      "created_at"
+    ],
+    "constraints_minimum": [
+      "checksum required",
+      "delete behavior versioned",
+      "fk(module_id) references modules(id)",
+      "fk(module_id)->modules.id",
+      "unique(module_id, manifest_version)",
+      "version required"
+    ],
+    "indexes_minimum": [
+      "id",
+      "module_id",
+      "version"
+    ]
+  },
+  {
+    "id": "DomainEvent",
+    "table": "domain_events",
+    "module": "core.events",
+    "owner_module": "core.events",
+    "phase": "foundation",
+    "sensitivity": "audit",
+    "retention_policy": "minimum_24_months",
+    "delete_policy": "append_only",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "domain.event.recorded"
+    ],
+    "migration_ref": "database/migrations/009_create_domain_events.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "ENTITIES_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 9,
+    "fields_minimum": [
+      "id",
+      "event_id",
+      "event_version",
+      "producer_module",
+      "payload_json",
+      "privacy_level",
+      "created_at"
+    ],
+    "constraints_minimum": [
+      "event_id must exist in machine/events.json",
+      "append_only"
+    ],
+    "indexes_minimum": [
+      "id"
+    ]
+  },
+  {
+    "id": "AuditLog",
+    "table": "audit_logs",
+    "module": "core.audit",
+    "owner_module": "core.audit",
+    "phase": "foundation",
+    "sensitivity": "audit",
+    "retention_policy": "minimum_24_months",
+    "delete_policy": "append_only",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "audit.recorded"
+    ],
+    "migration_ref": "database/migrations/010_create_audit_logs.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 10,
+    "fields_minimum": [
+      "id",
+      "actor_type",
+      "actor_id",
+      "action",
+      "target_type",
+      "target_id",
+      "risk_level",
+      "created_at"
+    ],
+    "constraints_minimum": [
+      "actor_type in user|system|ai|external_service",
+      "append_only",
+      "target_id required",
+      "target_type required"
+    ],
+    "indexes_minimum": [
+      "actor_id",
+      "actor_type",
+      "created_at",
+      "id",
+      "target_id",
+      "target_type"
+    ]
+  },
+  {
+    "id": "ApprovalRecord",
+    "table": "approval_records",
+    "module": "core.audit",
+    "owner_module": "core.audit",
+    "phase": "foundation",
+    "sensitivity": "audit",
+    "retention_policy": "minimum_24_months",
+    "delete_policy": "append_only",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "ai.action.approved",
+      "audit.recorded"
+    ],
+    "migration_ref": "database/migrations/011_create_approval_records.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 11,
+    "fields_minimum": [
+      "id",
+      "requested_by",
+      "approved_by",
+      "action_type",
+      "permission_requested",
+      "scope",
+      "risk_level",
+      "files_affected",
+      "rollback_plan",
+      "status",
+      "expires_at",
+      "evidence_ref",
+      "created_at",
+      "approved_at",
+      "consumed_at",
+      "scope_hash",
+      "idempotency_key",
+      "consumed_by_action_id"
+    ],
+    "constraints_minimum": [
+      "append_only",
+      "status in requested|approved|rejected|expired|consumed",
+      "approved_by required when status in approved|consumed",
+      "approved_by must reference human actor for critical actions",
+      "expires_at required",
+      "rollback_plan required for write actions",
+      "consumed_at required when status = consumed",
+      "scope_hash required for runtime approval matching",
+      "idempotency_key required for mutating approved actions",
+      "consumed_by_action_id required when status = consumed",
+      "intention fields immutable after request; transition fields mutable only via ApprovalService",
+      "approved_at required when status in approved|consumed",
+      "approved_by nullable while status = requested",
+      "expires_at physically required for all approval statuses",
+      "consumed_at and consumed_by_action_id required when status = consumed",
+      "ApprovalRecord lifecycle must be validated against machine/ai_approval_policy.json::approval_record_lifecycle"
+    ],
+    "indexes_minimum": [
+      "id",
+      "action_type",
+      "permission_requested",
+      "status",
+      "created_at",
+      "expires_at",
+      "approved_by",
+      "scope_hash",
+      "idempotency_key",
+      "consumed_by_action_id"
+    ]
+  },
+  {
+    "id": "SystemSetting",
+    "table": "system_settings",
+    "module": "core.config",
+    "owner_module": "core.config",
+    "phase": "foundation",
+    "sensitivity": "system",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "versioned",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "system.configured"
+    ],
+    "migration_ref": "database/migrations/012_create_system_settings.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "ENTITIES_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 12,
+    "fields_minimum": [
+      "id",
+      "key",
+      "value_json",
+      "scope",
+      "is_secret",
+      "created_at",
+      "updated_at"
+    ],
+    "constraints_minimum": [
+      "unique(key)",
+      "is_secret=false in documentation package"
+    ],
+    "indexes_minimum": [
+      "id"
+    ]
+  },
+  {
+    "id": "EvidenceReport",
+    "table": "evidence_reports",
+    "module": "core.doctor",
+    "owner_module": "core.doctor",
+    "phase": "foundation",
+    "sensitivity": "audit",
+    "retention_policy": "minimum_24_months",
+    "delete_policy": "versioned",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "evidence.recorded",
+      "system.doctor.executed"
+    ],
+    "migration_ref": "database/migrations/013_create_evidence_reports.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 13,
+    "fields_minimum": [
+      "id",
+      "kind",
+      "status",
+      "payload_json",
+      "checksum",
+      "created_at"
+    ],
+    "constraints_minimum": [
+      "append/versioned, no destructive update",
+      "checksum required",
+      "kind in doctor|backup|migration|seed|manual_review",
+      "status in passed|warning|failed"
+    ],
+    "indexes_minimum": [
+      "created_at",
+      "id",
+      "kind",
+      "status"
+    ]
+  },
+  {
+    "id": "BackupRecord",
+    "table": "backup_records",
+    "module": "core.config",
+    "owner_module": "core.config",
+    "phase": "foundation",
+    "sensitivity": "audit",
+    "retention_policy": "minimum_12_months",
+    "delete_policy": "append_only",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "backup.created"
+    ],
+    "migration_ref": "database/migrations/014_create_backup_records.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "ENTITIES_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 14,
+    "fields_minimum": [
+      "id",
+      "path",
+      "reason",
+      "created_by",
+      "created_at"
+    ],
+    "constraints_minimum": [],
+    "indexes_minimum": [
+      "id"
+    ]
+  },
+  {
+    "id": "DecisionRecord",
+    "table": "decision_records",
+    "module": "core.events",
+    "owner_module": "core.events",
+    "phase": "foundation",
+    "sensitivity": "system",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "versioned",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "decision.recorded"
+    ],
+    "migration_ref": "database/migrations/015_create_decision_records.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "ENTITIES_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 15,
+    "fields_minimum": [
+      "id",
+      "adr",
+      "decision_id",
+      "status",
+      "payload_json",
+      "created_at",
+      "updated_at"
+    ],
+    "constraints_minimum": [],
+    "indexes_minimum": [
+      "id"
+    ]
+  },
+  {
+    "id": "UserContext",
+    "table": "user_contexts",
+    "module": "profile",
+    "owner_module": "profile",
+    "phase": "mvp",
+    "sensitivity": "personal",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "logical",
+    "exportable": true,
+    "audit_required": true,
+    "events_related": [
+      "profile.updated"
+    ],
+    "migration_ref": "database/migrations/016_create_user_contexts.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": false,
+    "migration_order": 16,
+    "fields_minimum": [
+      "id",
+      "user_id",
+      "context_json",
+      "onboarding_state",
+      "created_at",
+      "updated_at"
+    ],
+    "constraints_minimum": [
+      "delete behavior logical_cascade",
+      "fk(user_id) references users(id)",
+      "unique(user_id)",
+      "user_id NOT NULL",
+      "requires authenticated provisioned user in MVP",
+      "anonymous persistent context out of scope before dedicated ADR"
+    ],
+    "indexes_minimum": [
+      "id",
+      "user_id"
+    ]
+  },
+  {
+    "id": "OnboardingSession",
+    "table": "onboarding_sessions",
+    "module": "onboarding",
+    "owner_module": "onboarding",
+    "phase": "mvp",
+    "sensitivity": "personal",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "logical",
+    "exportable": true,
+    "audit_required": true,
+    "events_related": [
+      "onboarding.started",
+      "onboarding.completed"
+    ],
+    "migration_ref": "database/migrations/017_create_onboarding_sessions.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": false,
+    "migration_order": 17,
+    "fields_minimum": [
+      "id",
+      "user_id",
+      "status",
+      "current_step",
+      "started_at",
+      "completed_at",
+      "updated_at"
+    ],
+    "constraints_minimum": [
+      "delete behavior logical_cascade",
+      "fk(user_id) references users(id)",
+      "status in started|completed|abandoned",
+      "user_id NOT NULL",
+      "requires authenticated provisioned user in MVP",
+      "anonymous persistent onboarding out of scope before dedicated ADR"
+    ],
+    "indexes_minimum": [
+      "id",
+      "status",
+      "user_id"
+    ]
+  },
+  {
+    "id": "Notification",
+    "table": "notifications",
+    "module": "notifications",
+    "owner_module": "notifications",
+    "phase": "mvp",
+    "sensitivity": "personal",
+    "retention_policy": "minimum_12_months",
+    "delete_policy": "logical",
+    "exportable": true,
+    "audit_required": true,
+    "events_related": [
+      "notification.created"
+    ],
+    "migration_ref": "database/migrations/018_create_notifications.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": false,
+    "migration_order": 18,
+    "fields_minimum": [
+      "id",
+      "user_id",
+      "type",
+      "title",
+      "body",
+      "read_at",
+      "created_at"
+    ],
+    "constraints_minimum": [
+      "delete behavior logical_cascade",
+      "fk(user_id) references users(id)",
+      "read_at nullable=true",
+      "type required"
+    ],
+    "indexes_minimum": [
+      "created_at",
+      "id",
+      "read_at",
+      "user_id"
+    ]
+  },
+  {
+    "id": "Achievement",
+    "table": "achievements",
+    "module": "gamification",
+    "owner_module": "gamification",
+    "phase": "mvp",
+    "sensitivity": "system",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "versioned",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "achievement.unlocked"
+    ],
+    "migration_ref": "database/migrations/019_create_achievements.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": false,
+    "migration_order": 19,
+    "fields_minimum": [
+      "id",
+      "code",
+      "label",
+      "description",
+      "condition_json",
+      "achievement_type",
+      "active",
+      "created_at",
+      "updated_at"
+    ],
+    "constraints_minimum": [
+      "unique(code)",
+      "condition_json references machine/gamification_rules.json achievements",
+      "delete behavior versioned"
+    ],
+    "indexes_minimum": [
+      "id",
+      "code",
+      "achievement_type",
+      "active"
+    ]
+  },
+  {
+    "id": "UserAchievement",
+    "table": "user_achievements",
+    "module": "gamification",
+    "owner_module": "gamification",
+    "phase": "mvp",
+    "sensitivity": "personal",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "logical",
+    "exportable": true,
+    "audit_required": true,
+    "events_related": [
+      "achievement.unlocked"
+    ],
+    "migration_ref": "database/migrations/020_create_user_achievements.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "GAMIFICATION_PERSISTENT_USER_ID_NOT_NULL",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": false,
+    "migration_order": 20,
+    "fields_minimum": [
+      "id",
+      "user_id",
+      "achievement_id",
+      "source_event_id",
+      "source_rule_id",
+      "unlocked_at",
+      "created_at"
+    ],
+    "constraints_minimum": [
+      "fk(user_id) references users(id)",
+      "fk(achievement_id) references achievements(id)",
+      "fk(source_event_id) references domain_events(id)",
+      "unique(user_id, achievement_id)",
+      "user_id required for persistent gamification runtime"
+    ],
+    "indexes_minimum": [
+      "id",
+      "user_id",
+      "achievement_id",
+      "source_event_id",
+      "unlocked_at"
+    ]
+  },
+  {
+    "id": "GamificationRuleState",
+    "table": "gamification_rule_states",
+    "module": "gamification",
+    "owner_module": "gamification",
+    "phase": "mvp",
+    "sensitivity": "personal",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "logical",
+    "exportable": true,
+    "audit_required": true,
+    "events_related": [
+      "progress.updated",
+      "achievement.unlocked"
+    ],
+    "migration_ref": "database/migrations/021_create_gamification_rule_states.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "GAMIFICATION_PERSISTENT_USER_ID_NOT_NULL",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": false,
+    "migration_order": 21,
+    "fields_minimum": [
+      "id",
+      "user_id",
+      "rule_id",
+      "cooldown_type",
+      "cooldown_scope_key",
+      "window_start",
+      "window_end",
+      "last_source_event_id",
+      "created_at",
+      "updated_at"
+    ],
+    "constraints_minimum": [
+      "fk(user_id) references users(id)",
+      "fk(last_source_event_id) references domain_events(id)",
+      "unique(user_id, rule_id, cooldown_scope_key, window_start)",
+      "user_id required for persistent gamification runtime",
+      "events without non-null user_id do not create persistent gamification state"
+    ],
+    "indexes_minimum": [
+      "id",
+      "user_id",
+      "rule_id",
+      "cooldown_scope_key",
+      "window_start",
+      "window_end"
+    ]
+  },
+  {
+    "id": "ProgressRecord",
+    "table": "progress_records",
+    "module": "gamification",
+    "owner_module": "gamification",
+    "phase": "mvp",
+    "sensitivity": "personal",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "logical",
+    "exportable": true,
+    "audit_required": true,
+    "events_related": [
+      "progress.updated"
+    ],
+    "migration_ref": "database/migrations/022_create_progress_records.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "GAMIFICATION_PERSISTENT_USER_ID_NOT_NULL",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": false,
+    "migration_order": 22,
+    "fields_minimum": [
+      "id",
+      "user_id",
+      "source_event_id",
+      "rule_id",
+      "effect",
+      "points",
+      "cooldown_type",
+      "cooldown_scope_key",
+      "reason",
+      "created_at"
+    ],
+    "constraints_minimum": [
+      "fk(user_id) references users(id)",
+      "fk(source_event_id) references domain_events(id)",
+      "points >= 0",
+      "points integer",
+      "rule_id required for automatic gamification",
+      "unique(user_id, source_event_id, rule_id)",
+      "cooldown_scope_key required when cooldown_type != none",
+      "source_event_id required in MVP; manual/admin adjustments are post_mvp until action contract exists",
+      "user_id required for persistent gamification runtime",
+      "events without non-null user_id do not create persistent gamification state"
+    ],
+    "indexes_minimum": [
+      "id",
+      "user_id",
+      "source_event_id",
+      "rule_id",
+      "effect",
+      "created_at"
+    ]
+  },
+  {
+    "id": "AIActionLog",
+    "table": "ai_action_logs",
+    "module": "ai_assistant",
+    "owner_module": "ai_assistant",
+    "phase": "mvp",
+    "sensitivity": "audit",
+    "retention_policy": "minimum_24_months",
+    "delete_policy": "append_only",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "ai.suggestion.created",
+      "ai.action.approved",
+      "ai.action.executed"
+    ],
+    "migration_ref": "database/migrations/023_create_ai_action_logs.sql",
+    "source_doc": "docs/09-ai-operations/06-ai-audit-log.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": false,
+    "migration_order": 23,
+    "fields_minimum": [
+      "id",
+      "actor_type",
+      "actor_id",
+      "ai_level",
+      "action_type",
+      "permission_used",
+      "target_type",
+      "target_id",
+      "scope",
+      "files_read",
+      "files_changed",
+      "approval_id",
+      "evidence_ref",
+      "risk_level",
+      "status",
+      "result",
+      "error_summary",
+      "created_at"
+    ],
+    "constraints_minimum": [
+      "ai_level in AI-0|AI-1|AI-2|AI-3|AI-4",
+      "files_changed must be [] for AI-0/AI-1",
+      "approval_id required for AI-2+ write scopes",
+      "fk(approval_id) references approval_records(id)",
+      "unique nullable approval_id to prevent approval reuse",
+      "evidence_ref required when action_type is evidence.write",
+      "files_changed required when action_type is draft|execution|evidence.write",
+      "doctor.status.validate forbidden for actor_type=ai"
+    ],
+    "indexes_minimum": [
+      "actor_id",
+      "actor_type",
+      "ai_level",
+      "approval_id",
+      "created_at",
+      "id",
+      "status",
+      "action_type",
+      "permission_used"
+    ]
+  },
+  {
+    "id": "Integration",
+    "table": "integrations",
+    "module": "integrations",
+    "owner_module": "integrations",
+    "phase": "mvp",
+    "sensitivity": "system",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "logical",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "integration.configured"
+    ],
+    "migration_ref": "database/migrations/024_create_integrations.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": false,
+    "migration_order": 24,
+    "fields_minimum": [
+      "id",
+      "module_id",
+      "code",
+      "provider",
+      "status",
+      "config_json",
+      "created_at",
+      "updated_at"
+    ],
+    "constraints_minimum": [
+      "delete behavior logical_cascade",
+      "fk(module_id) references modules(id)",
+      "provider required",
+      "status in stub|configured|disabled"
+    ],
+    "indexes_minimum": [
+      "code",
+      "id",
+      "module_id",
+      "status"
+    ]
+  },
+  {
+    "id": "AIDraft",
+    "table": "ai_drafts",
+    "module": "ai_assistant",
+    "owner_module": "ai_assistant",
+    "phase": "mvp",
+    "sensitivity": "audit",
+    "retention_policy": "minimum_24_months",
+    "delete_policy": "append_only",
+    "exportable": false,
+    "audit_required": true,
+    "events_related": [
+      "ai.suggestion.created"
+    ],
+    "migration_ref": "database/migrations/025_create_ai_drafts.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "AI_DRAFTS_REQUIRE_APPROVAL_RECORD",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": false,
+    "migration_order": 25,
+    "fields_minimum": [
+      "id",
+      "approval_id",
+      "ai_action_log_id",
+      "target_doc",
+      "draft_type",
+      "instructions_summary",
+      "content_markdown",
+      "files_read_json",
+      "proposed_files_changed_json",
+      "risk_level",
+      "status",
+      "created_at",
+      "reviewed_at",
+      "discarded_at",
+      "approved_for_manual_apply_at",
+      "applied_at",
+      "applied_by"
+    ],
+    "constraints_minimum": [
+      "append_only",
+      "status in draft_created|human_review_pending|discarded|approved_for_manual_apply|applied_by_human|expired",
+      "fk(approval_id) references approval_records(id)",
+      "fk(ai_action_log_id) references ai_action_logs(id)",
+      "unique(approval_id)",
+      "unique(ai_action_log_id)",
+      "applied_by required when status = applied_by_human",
+      "applied_by must reference human actor",
+      "content_markdown is draft artifact only",
+      "AI_WRITE_DRAFT must not mutate target_doc or proposed_files_changed_json paths",
+      "AIActionLog.files_changed remains [] until manual application"
+    ],
+    "indexes_minimum": [
+      "id",
+      "approval_id",
+      "ai_action_log_id",
+      "status",
+      "target_doc",
+      "created_at"
+    ]
+  }
+]

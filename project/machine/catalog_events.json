@@ -1,0 +1,806 @@
+[
+  {
+    "id": "user.registered",
+    "version": 1,
+    "producer_module": "core.identity",
+    "consumers": [
+      "core.audit",
+      "core.permissions",
+      "dashboard",
+      "gamification",
+      "onboarding",
+      "profile"
+    ],
+    "phase": "foundation",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": true,
+    "payload_summary": {
+      "user_id": "string",
+      "source": "seed|owner_provisioned|admin_provisioned_reserved|invitation_accepted_future|self_signup_future",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/user.registered.v1.schema.json",
+    "description": "Cuenta provisionada o activada en el ecosistema; en MVP solo seed y owner_provisioned están activos, sin auto-registro público.",
+    "registration_policy": "controlled_provisioning_mvp_no_public_signup"
+  },
+  {
+    "id": "user.logged_in",
+    "version": 1,
+    "producer_module": "core.identity",
+    "consumers": [
+      "core.audit",
+      "dashboard"
+    ],
+    "phase": "foundation",
+    "privacy_level": "system",
+    "audit_required": false,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "user_id": "string",
+      "ip_hash": "string",
+      "request_id": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/user.logged_in.v1.schema.json"
+  },
+  {
+    "id": "onboarding.started",
+    "version": 1,
+    "producer_module": "onboarding",
+    "consumers": [
+      "dashboard",
+      "gamification"
+    ],
+    "phase": "mvp",
+    "privacy_level": "system",
+    "audit_required": false,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "user_id": "string",
+      "session_id": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/onboarding.started.v1.schema.json"
+  },
+  {
+    "id": "onboarding.completed",
+    "version": 1,
+    "producer_module": "onboarding",
+    "consumers": [
+      "dashboard",
+      "gamification",
+      "notifications"
+    ],
+    "phase": "mvp",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [
+      "user.onboarded"
+    ],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "user_id": "string",
+      "session_id": "string",
+      "completed_steps": "array",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/onboarding.completed.v1.schema.json"
+  },
+  {
+    "id": "profile.updated",
+    "version": 1,
+    "producer_module": "profile",
+    "consumers": [
+      "core.audit",
+      "dashboard",
+      "gamification"
+    ],
+    "phase": "mvp",
+    "privacy_level": "system",
+    "audit_required": false,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "user_id": "string",
+      "fields_changed": "array",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/profile.updated.v1.schema.json"
+  },
+  {
+    "id": "module.activated",
+    "version": 1,
+    "producer_module": "core.modules",
+    "consumers": [
+      "admin",
+      "core.audit",
+      "dashboard",
+      "gamification",
+      "integrations"
+    ],
+    "phase": "foundation",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [
+      "module.enabled"
+    ],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": true,
+    "payload_summary": {
+      "module_id": "string",
+      "actor_type": "string",
+      "actor_id": "string|null",
+      "user_id": "string|null",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/module.activated.v1.schema.json"
+  },
+  {
+    "id": "module.configured",
+    "version": 1,
+    "producer_module": "core.modules",
+    "consumers": [
+      "core.audit",
+      "dashboard"
+    ],
+    "phase": "foundation",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": true,
+    "payload_summary": {
+      "module_id": "string",
+      "config_keys": "array",
+      "actor_id": "string|null",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/module.configured.v1.schema.json"
+  },
+  {
+    "id": "permission.changed",
+    "version": 1,
+    "producer_module": "core.permissions",
+    "consumers": [
+      "admin",
+      "core.audit"
+    ],
+    "phase": "foundation",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": true,
+    "payload_summary": {
+      "permission_id": "string",
+      "role_id": "string",
+      "actor_id": "string",
+      "change_type": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/permission.changed.v1.schema.json"
+  },
+  {
+    "id": "domain.event.recorded",
+    "version": 1,
+    "producer_module": "core.events",
+    "consumers": [
+      "core.audit",
+      "core.doctor"
+    ],
+    "phase": "foundation",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": true,
+    "payload_summary": {
+      "event_id": "string",
+      "event_type": "string",
+      "producer": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/domain.event.recorded.v1.schema.json"
+  },
+  {
+    "id": "audit.recorded",
+    "version": 1,
+    "producer_module": "core.audit",
+    "consumers": [
+      "admin",
+      "core.doctor"
+    ],
+    "phase": "foundation",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": true,
+    "payload_summary": {
+      "audit_id": "string",
+      "actor_id": "string|null",
+      "action": "string",
+      "risk_level": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/audit.recorded.v1.schema.json"
+  },
+  {
+    "id": "system.configured",
+    "version": 1,
+    "producer_module": "core.config",
+    "consumers": [
+      "core.audit",
+      "core.doctor"
+    ],
+    "phase": "foundation",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": true,
+    "payload_summary": {
+      "config_key": "string",
+      "actor_id": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/system.configured.v1.schema.json"
+  },
+  {
+    "id": "backup.created",
+    "version": 1,
+    "producer_module": "core.config",
+    "consumers": [
+      "admin",
+      "core.doctor"
+    ],
+    "phase": "foundation",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": true,
+    "payload_summary": {
+      "backup_id": "string",
+      "scope": "string",
+      "path": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/backup.created.v1.schema.json"
+  },
+  {
+    "id": "system.doctor.executed",
+    "version": 1,
+    "producer_module": "core.doctor",
+    "consumers": [
+      "admin",
+      "ai_assistant",
+      "core.audit",
+      "gamification"
+    ],
+    "phase": "foundation",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": true,
+    "payload_summary": {
+      "run_id": "string",
+      "status": "string",
+      "checks_total": "integer",
+      "actor_type": "string",
+      "actor_id": "string|null",
+      "triggered_by_user_id": "string|null",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/system.doctor.executed.v1.schema.json"
+  },
+  {
+    "id": "evidence.recorded",
+    "version": 1,
+    "producer_module": "core.doctor",
+    "consumers": [
+      "admin",
+      "ai_assistant",
+      "core.audit"
+    ],
+    "phase": "foundation",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": true,
+    "payload_summary": {
+      "evidence_id": "string",
+      "result": "string",
+      "scope": "array",
+      "timestamp": "datetime",
+      "evidence_path": "string",
+      "checksum": "sha256_lowercase_64_hex",
+      "checksum_algorithm": "sha256",
+      "integrity_manifest_ref": "evidence/sprint-0-local-execution.md"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/evidence.recorded.v1.schema.json"
+  },
+  {
+    "id": "doctor.check.failed",
+    "version": 1,
+    "producer_module": "core.doctor",
+    "consumers": [
+      "admin",
+      "ai_assistant",
+      "notifications"
+    ],
+    "phase": "foundation",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": true,
+    "payload_summary": {
+      "check_id": "string",
+      "severity": "string",
+      "observed": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/doctor.check.failed.v1.schema.json"
+  },
+  {
+    "id": "decision.recorded",
+    "version": 1,
+    "producer_module": "core.events",
+    "consumers": [
+      "ai_assistant",
+      "core.doctor"
+    ],
+    "phase": "foundation",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": true,
+    "payload_summary": {
+      "decision_id": "string",
+      "adr": "string|null",
+      "status": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/decision.recorded.v1.schema.json"
+  },
+  {
+    "id": "dashboard.viewed",
+    "version": 1,
+    "producer_module": "dashboard",
+    "consumers": [
+      "core.audit"
+    ],
+    "phase": "mvp",
+    "privacy_level": "system",
+    "audit_required": false,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "user_id": "string",
+      "context": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/dashboard.viewed.v1.schema.json"
+  },
+  {
+    "id": "dashboard.first_viewed",
+    "version": 1,
+    "producer_module": "dashboard",
+    "consumers": [
+      "gamification",
+      "onboarding"
+    ],
+    "phase": "mvp",
+    "privacy_level": "system",
+    "audit_required": false,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "user_id": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/dashboard.first_viewed.v1.schema.json"
+  },
+  {
+    "id": "task.completed",
+    "version": 1,
+    "producer_module": "dashboard",
+    "consumers": [
+      "gamification",
+      "notifications"
+    ],
+    "phase": "mvp",
+    "privacy_level": "system",
+    "audit_required": false,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "task_key": "string",
+      "module_id": "string",
+      "user_id": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/task.completed.v1.schema.json"
+  },
+  {
+    "id": "progress.updated",
+    "version": 1,
+    "producer_module": "gamification",
+    "consumers": [
+      "dashboard"
+    ],
+    "phase": "mvp",
+    "privacy_level": "system",
+    "audit_required": false,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "user_id": "string",
+      "source_event": "string",
+      "delta": "integer",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/progress.updated.v1.schema.json"
+  },
+  {
+    "id": "achievement.unlocked",
+    "version": 1,
+    "producer_module": "gamification",
+    "consumers": [
+      "dashboard",
+      "notifications"
+    ],
+    "phase": "mvp",
+    "privacy_level": "system",
+    "audit_required": false,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "achievement_key": "string",
+      "user_id": "string",
+      "source_event": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/achievement.unlocked.v1.schema.json"
+  },
+  {
+    "id": "notification.created",
+    "version": 1,
+    "producer_module": "notifications",
+    "consumers": [
+      "dashboard"
+    ],
+    "phase": "mvp",
+    "privacy_level": "system",
+    "audit_required": false,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "notification_id": "string",
+      "user_id": "string",
+      "type": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/notification.created.v1.schema.json"
+  },
+  {
+    "id": "ai.suggestion.created",
+    "version": 1,
+    "producer_module": "ai_assistant",
+    "consumers": [
+      "admin",
+      "core.audit",
+      "gamification"
+    ],
+    "phase": "mvp",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [
+      "ai.proposal.created"
+    ],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "suggestion_id": "string",
+      "ai_level": "string",
+      "docs_read": "array",
+      "risk_level": "string",
+      "requested_by_user_id": "string|null",
+      "target_user_id": "string|null",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/ai.suggestion.created.v1.schema.json"
+  },
+  {
+    "id": "ai.action.approved",
+    "version": 1,
+    "producer_module": "ai_assistant",
+    "consumers": [
+      "admin",
+      "core.audit"
+    ],
+    "phase": "mvp",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "action_id": "string",
+      "approval_ref": "string",
+      "approver_id": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/ai.action.approved.v1.schema.json"
+  },
+  {
+    "id": "ai.action.executed",
+    "version": 1,
+    "producer_module": "ai_assistant",
+    "consumers": [
+      "core.audit",
+      "core.doctor"
+    ],
+    "phase": "mvp",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "action_id": "string",
+      "approval_ref": "string",
+      "files_changed": "array",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/ai.action.executed.v1.schema.json"
+  },
+  {
+    "id": "admin.panel.viewed",
+    "version": 1,
+    "producer_module": "admin",
+    "consumers": [
+      "core.audit"
+    ],
+    "phase": "mvp",
+    "privacy_level": "system",
+    "audit_required": false,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "admin_id": "string",
+      "section": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/admin.panel.viewed.v1.schema.json"
+  },
+  {
+    "id": "integration.configured",
+    "version": 1,
+    "producer_module": "integrations",
+    "consumers": [
+      "core.audit",
+      "dashboard"
+    ],
+    "phase": "mvp",
+    "privacy_level": "system",
+    "audit_required": false,
+    "deprecated_aliases": [
+      "service.connected"
+    ],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "integration_id": "string",
+      "mode": "stub",
+      "actor_id": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/integration.configured.v1.schema.json"
+  },
+  {
+    "id": "user.logged_out",
+    "version": 1,
+    "producer_module": "core.identity",
+    "consumers": [
+      "core.audit"
+    ],
+    "phase": "foundation",
+    "privacy_level": "audit",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": true,
+    "payload_summary": {
+      "user_id": "string",
+      "session_id": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/user.logged_out.v1.schema.json"
+  },
+  {
+    "id": "notification.read",
+    "version": 1,
+    "producer_module": "notifications",
+    "consumers": [
+      "core.audit",
+      "dashboard",
+      "gamification"
+    ],
+    "phase": "mvp",
+    "privacy_level": "internal",
+    "audit_required": true,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "notification_id": "string",
+      "user_id": "string",
+      "timestamp": "datetime"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/notification.read.v1.schema.json"
+  },
+  {
+    "id": "module.used",
+    "version": 1,
+    "producer_module": "core.modules",
+    "consumers": [
+      "dashboard",
+      "gamification"
+    ],
+    "phase": "mvp",
+    "privacy_level": "system",
+    "audit_required": false,
+    "deprecated_aliases": [],
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "blocking": false,
+    "payload_summary": {
+      "user_id": "string",
+      "module_id": "string",
+      "used_at": "datetime",
+      "source_route": "string"
+    },
+    "payload_schema_ref": "machine/event_payload_schemas/module.used.v1.schema.json",
+    "description": "Uso real de un módulo por usuario provisionado activo, separado de activación/configuración administrativa."
+  }
+]

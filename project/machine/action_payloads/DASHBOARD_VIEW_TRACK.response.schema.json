@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "ok",
+    "data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "tracked",
+        "event_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "tracked": {
+          "type": "boolean"
+        },
+        "event_id": {
+          "type": "string"
+        },
+        "deduplicated": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

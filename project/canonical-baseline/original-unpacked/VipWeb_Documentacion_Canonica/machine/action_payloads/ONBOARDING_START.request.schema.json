@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/ONBOARDING_START.request.schema.json",
+  "title": "ONBOARDING_START request body",
+  "type": "object",
+  "required": [
+    "request_id",
+    "csrf_token",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 120
+    },
+    "csrf_token": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "entry_point"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "entry_point": {
+          "enum": [
+            "first_login",
+            "dashboard_cta",
+            "profile_cta",
+            "resume_prompt",
+            "manual"
+          ]
+        },
+        "initial_step": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 80
+        }
+      }
+    }
+  }
+}

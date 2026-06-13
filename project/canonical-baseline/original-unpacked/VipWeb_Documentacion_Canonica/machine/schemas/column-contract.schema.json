@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "entity",
+      "table",
+      "module",
+      "migration_ref",
+      "migration_order",
+      "id_strategy",
+      "columns",
+      "table_constraints",
+      "indexes",
+      "delete_policy",
+      "timestamp_policy",
+      "json_validation_required",
+      "source_doc"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "entity": {
+        "type": "string",
+        "minLength": 1
+      },
+      "table": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      },
+      "module": {
+        "type": "string",
+        "minLength": 1
+      },
+      "migration_ref": {
+        "type": "string",
+        "pattern": "^database/migrations/.+\\.sql$"
+      },
+      "migration_order": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "minimum": 1
+      },
+      "id_strategy": {
+        "enum": [
+          "uuid_v4_char36",
+          "composite_or_join_keys"
+        ]
+      },
+      "columns": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "required": [
+            "name",
+            "logical_type",
+            "wamp_sql_type",
+            "nullable",
+            "sensitive",
+            "exportable",
+            "user_exportable",
+            "ai_readable",
+            "evidence_allowed",
+            "requires_redaction",
+            "redaction_strategy",
+            "non_export_reason"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            },
+            "logical_type": {
+              "enum": [
+                "bool",
+                "checksum",
+                "datetime",
+                "email",
+                "enum",
+                "hash",
+                "id",
+                "int",
+                "json",
+                "label",
+                "password_hash",
+                "path",
+                "short_code",
+                "string",
+                "text"
+              ]
+            },
+            "wamp_sql_type": {
+              "type": "string",
+              "minLength": 1
+            },
+            "nullable": {
+              "type": "boolean"
+            },
+            "sensitive": {
+              "type": "boolean"
+            },
+            "exportable": {
+              "type": "boolean"
+            },
+            "user_exportable": {
+              "type": "boolean"
+            },
+            "ai_readable": {
+              "type": "boolean"
+            },
+            "evidence_allowed": {
+              "type": "boolean"
+            },
+            "requires_redaction": {
+              "type": "boolean"
+            },
+            "redaction_strategy": {
+              "enum": [
+                "none",
+                "mask_email",
+                "hash_only",
+                "summary_only",
+                "schema_filtered",
+                "paths_only_or_summary",
+                "aggregate_only",
+                "exclude"
+              ]
+            },
+            "non_export_reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "index": {
+              "enum": [
+                "primary",
+                "secondary",
+                "foreign_key_or_lookup"
+              ]
+            },
+            "allowed_values_source": {
+              "const": "documented_enum_or_application_check"
+            },
+            "primary_key": {
+              "type": "boolean"
+            },
+            "default": {
+              "type": "string"
+            },
+            "validation": {
+              "const": "application_json_schema_required"
+            },
+            "allowed_values": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      },
+      "table_constraints": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "kind",
+            "expression"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "minimum_constraint"
+              ]
+            },
+            "expression": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      },
+      "indexes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "name",
+            "columns",
+            "unique"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "pattern": "^(idx|ux)_[a-z0-9_]+$"
+            },
+            "columns": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "unique": {
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "delete_policy": {
+        "enum": [
+          "append_only",
+          "logical",
+          "physical",
+          "versioned"
+        ]
+      },
+      "timestamp_policy": {
+        "enum": [
+          "created_at_plus_review_lifecycle_timestamps",
+          "created_only",
+          "created_updated",
+          "created_updated_deleted"
+        ]
+      },
+      "json_validation_required": {
+        "type": "boolean"
+      },
+      "source_doc": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

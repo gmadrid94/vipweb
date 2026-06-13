@@ -1,0 +1,55 @@
+{
+  "id": "ACTION_ID",
+  "module": "module.id",
+  "route": "/route",
+  "method": "POST",
+  "permission": "permission.id",
+  "allowed_roles": [
+    "registered_user"
+  ],
+  "mutable": true,
+  "mutation_scope": "scope",
+  "runtime_approval_required": false,
+  "approval_record_required": false,
+  "audit_required": true,
+  "ai_allowed": false,
+  "ai_roles": [],
+  "ai_level_max": null,
+  "request_contract": {
+    "path_params_schema_ref": null,
+    "query_schema_ref": null,
+    "body_schema_ref": "machine/action_payloads/ACTION_ID.request.schema.json"
+  },
+  "response_contract": {
+    "success_schema_ref": "machine/action_payloads/ACTION_ID.response.schema.json",
+    "error_schema_ref": "machine/schemas/api-error.schema.json"
+  },
+  "error_codes": [
+    "AUTH_REQUIRED",
+    "PERMISSION_DENIED",
+    "VALIDATION_FAILED",
+    "INTERNAL_ERROR"
+  ],
+  "preconditions": [
+    "route_exists",
+    "permission_granted",
+    "payload_valid"
+  ],
+  "postconditions": [
+    "audit_record_created"
+  ],
+  "idempotency": {
+    "required": false,
+    "key_source": null
+  },
+  "ux_states": {
+    "on_success": "success",
+    "on_validation_error": "error",
+    "on_permission_error": "blocked",
+    "on_conflict": "warning"
+  },
+  "emits_events": [],
+  "writes_entities": [],
+  "rollback": "Describe rollback local seguro.",
+  "source_doc": "docs/03-functional/07-action-contracts.md"
+}

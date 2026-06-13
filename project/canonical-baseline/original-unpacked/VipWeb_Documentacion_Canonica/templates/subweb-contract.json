@@ -1,0 +1,26 @@
+{
+  "id": "subweb.example",
+  "name": "Example Subweb",
+  "owner_module": "core.modules",
+  "entry_route": "/example",
+  "uses_app_shell": true,
+  "required_permissions": [],
+  "owned_modules": [],
+  "shared_modules": [],
+  "data_access": {
+    "owned_entities": [],
+    "read_entities": [],
+    "forbidden_entities": []
+  },
+  "events": {
+    "emitted": [],
+    "consumed": []
+  },
+  "integration_type": "internal_subweb",
+  "rollback": {
+    "strategy": "disable_subweb",
+    "config_key": "subweb.example.enabled"
+  },
+  "phase": "future",
+  "lifecycle_status": "planned"
+}

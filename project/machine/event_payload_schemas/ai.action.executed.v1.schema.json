@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/ai.action.executed.v1.schema.json",
+  "title": "ai.action.executed v1 payload",
+  "type": "object",
+  "required": [
+    "action_id",
+    "approval_ref",
+    "files_changed",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "type": "string"
+    },
+    "approval_ref": {
+      "type": "string"
+    },
+    "files_changed": {
+      "type": "array"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

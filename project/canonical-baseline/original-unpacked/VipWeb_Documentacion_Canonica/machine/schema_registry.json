@@ -1,0 +1,1889 @@
+{
+  "schema_registry": [
+    {
+      "id": "action-contract.schema",
+      "file": "machine/schemas/action-contract.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "machine/action_contracts.json"
+      ],
+      "validates": "machine/action_contracts.json",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "ai-action-log.schema",
+      "file": "machine/schemas/ai-action-log.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": null,
+      "owner": "core.doctor",
+      "status": "support",
+      "used_by": [],
+      "validates": null,
+      "human_document": "docs/09-ai-operations/07-machine-readable-docs.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "ai-approval-policy.schema",
+      "file": "machine/schemas/ai-approval-policy.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/ai_approval_policy.json",
+      "owner": "ai_assistant",
+      "status": "canonical",
+      "used_by": [
+        "machine/ai_approval_policy.json"
+      ],
+      "validates": "machine/ai_approval_policy.json",
+      "human_document": "docs/09-ai-operations/00-ai-operating-model.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "ai-runbook.schema",
+      "file": "machine/schemas/ai-runbook.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/ai_runbooks.json",
+      "owner": "ai_assistant",
+      "status": "canonical",
+      "used_by": [
+        "machine/ai_runbooks.json"
+      ],
+      "validates": "machine/ai_runbooks.json",
+      "human_document": "docs/09-ai-operations/04-ai-runbooks.md",
+      "last_reviewed": "2026-06-01",
+      "doctor_check_id": "AI_RUNBOOKS_SCHEMA_VALID"
+    },
+    {
+      "id": "ai-behavior-fixture.schema",
+      "file": "machine/schemas/ai-behavior-fixture.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/ai_behavior_fixtures.json",
+      "owner": "ai_assistant",
+      "status": "canonical",
+      "used_by": [
+        "machine/ai_behavior_fixtures.json"
+      ],
+      "validates": "machine/ai_behavior_fixtures.json",
+      "human_document": "docs/09-ai-operations/09-ai-behavior-fixtures.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "ai-context-trust-policy.schema",
+      "file": "machine/schemas/ai-context-trust-policy.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/ai_context_trust_policy.json",
+      "owner": "ai_assistant",
+      "status": "canonical",
+      "used_by": [
+        "machine/ai_context_trust_policy.json"
+      ],
+      "validates": "machine/ai_context_trust_policy.json",
+      "human_document": "docs/09-ai-operations/03-ai-guardrails.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "api-error.schema",
+      "file": "machine/schemas/api-error.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": null,
+      "owner": "core.doctor",
+      "status": "support",
+      "used_by": [],
+      "validates": null,
+      "human_document": "docs/09-ai-operations/07-machine-readable-docs.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "api-response.schema",
+      "file": "machine/schemas/api-response.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": null,
+      "owner": "core.doctor",
+      "status": "support",
+      "used_by": [],
+      "validates": null,
+      "human_document": "docs/09-ai-operations/07-machine-readable-docs.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "approval-record.schema",
+      "file": "machine/schemas/approval-record.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": null,
+      "owner": "core.doctor",
+      "status": "support",
+      "used_by": [],
+      "validates": null,
+      "human_document": "docs/09-ai-operations/07-machine-readable-docs.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "backlog-item.schema",
+      "file": "machine/schemas/backlog-item.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/backlog_items.json",
+      "owner": "core.doctor",
+      "status": "canonical",
+      "used_by": [
+        "machine/backlog_items.json"
+      ],
+      "validates": "machine/backlog_items.json",
+      "human_document": "docs/11-backlog/00-backlog-overview.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "column-contract.schema",
+      "file": "machine/schemas/column-contract.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/column_contracts.json",
+      "owner": "core.data",
+      "status": "canonical",
+      "used_by": [
+        "machine/column_contracts.json"
+      ],
+      "validates": "machine/column_contracts.json",
+      "human_document": "docs/05-domain-data/01-entities.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "critical-decision.schema",
+      "file": "machine/schemas/critical-decision.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/critical_decisions.json",
+      "owner": "core.doctor",
+      "status": "canonical",
+      "used_by": [
+        "machine/critical_decisions.json"
+      ],
+      "validates": "machine/critical_decisions.json",
+      "human_document": "docs/12-decisions/01-critical-decisions.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "decision-dependency-matrix.schema",
+      "file": "machine/schemas/decision-dependency-matrix.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/decision_dependency_matrix.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "machine/decision_dependency_matrix.json"
+      ],
+      "validates": "machine/decision_dependency_matrix.json",
+      "human_document": "docs/12-decisions/01-critical-decisions.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "decision-id-map.schema",
+      "file": "machine/schemas/decision-id-map.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/decision_id_map.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "machine/decision_id_map.json"
+      ],
+      "validates": "machine/decision_id_map.json",
+      "human_document": "docs/12-decisions/06-decision-id-map.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "decision.schema",
+      "file": "machine/schemas/decision.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/decisions.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "machine/decisions.json"
+      ],
+      "validates": "machine/decisions.json",
+      "human_document": "docs/12-decisions/00-decision-log.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "design-token.schema",
+      "file": "machine/schemas/design-token.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/design_tokens.json",
+      "owner": "design.ux",
+      "status": "canonical",
+      "used_by": [
+        "machine/design_tokens.json"
+      ],
+      "validates": "machine/design_tokens.json",
+      "human_document": "docs/07-design-ux/10-design-tokens.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "doctor-check.schema",
+      "file": "machine/schemas/doctor-check.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/doctor_checks.json",
+      "owner": "core.doctor",
+      "status": "canonical",
+      "used_by": [
+        "machine/doctor_checks.json"
+      ],
+      "validates": "machine/doctor_checks.json",
+      "human_document": "docs/13-quality/06-doctor-checks.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "domain-constraints-enforcement-matrix.schema",
+      "file": "machine/schemas/domain-constraints-enforcement-matrix.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/domain_constraints_enforcement_matrix.json",
+      "owner": "core.data",
+      "status": "canonical",
+      "used_by": [
+        "machine/domain_constraints_enforcement_matrix.json"
+      ],
+      "validates": "machine/domain_constraints_enforcement_matrix.json",
+      "human_document": "docs/05-domain-data/04-data-strategy.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "domain-event-envelope.schema",
+      "file": "machine/schemas/domain-event-envelope.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": null,
+      "owner": "core.doctor",
+      "status": "support",
+      "used_by": [],
+      "validates": null,
+      "human_document": "docs/09-ai-operations/07-machine-readable-docs.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "entity.schema",
+      "file": "machine/schemas/entity.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/catalog_entities.json",
+      "owner": "core.data",
+      "status": "canonical",
+      "used_by": [
+        "machine/catalog_entities.json"
+      ],
+      "validates": "machine/catalog_entities.json",
+      "human_document": "docs/05-domain-data/01-entities.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "event.schema",
+      "file": "machine/schemas/event.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/catalog_events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "machine/catalog_events.json"
+      ],
+      "validates": "machine/catalog_events.json",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "evidence-manifest.schema",
+      "file": "machine/schemas/evidence-manifest.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": null,
+      "owner": "core.doctor",
+      "status": "support",
+      "used_by": [],
+      "validates": null,
+      "human_document": "docs/09-ai-operations/07-machine-readable-docs.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "evidence.schema",
+      "file": "machine/schemas/evidence.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": null,
+      "owner": "core.doctor",
+      "status": "support",
+      "used_by": [],
+      "validates": null,
+      "human_document": "docs/09-ai-operations/07-machine-readable-docs.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "feature.schema",
+      "file": "machine/schemas/feature.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/features.json",
+      "owner": "producto",
+      "status": "canonical",
+      "used_by": [
+        "machine/features.json"
+      ],
+      "validates": "machine/features.json",
+      "human_document": "docs/02-product/05-feature-classification.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "gamification-rules.schema",
+      "file": "machine/schemas/gamification-rules.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/gamification_rules.json",
+      "owner": "gamification",
+      "status": "canonical",
+      "used_by": [
+        "machine/gamification_rules.json"
+      ],
+      "validates": "machine/gamification_rules.json",
+      "human_document": "docs/08-gamification/00-gamification-overview.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "integration-contract.schema",
+      "file": "machine/schemas/integration-contract.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/integration_contracts.json",
+      "owner": "integrations",
+      "status": "canonical",
+      "used_by": [
+        "machine/integration_contracts.json"
+      ],
+      "validates": "machine/integration_contracts.json",
+      "human_document": "docs/04-architecture/04-integration-architecture.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "journey.schema",
+      "file": "machine/schemas/journey.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/journeys.json",
+      "owner": "producto",
+      "status": "canonical",
+      "used_by": [
+        "machine/journeys.json"
+      ],
+      "validates": "machine/journeys.json",
+      "human_document": "docs/02-product/02-user-journeys.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "machine-manifest.schema",
+      "file": "machine/schemas/machine-manifest.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/machine_manifest.json",
+      "owner": "core.doctor",
+      "status": "canonical",
+      "used_by": [
+        "machine/machine_manifest.json"
+      ],
+      "validates": "machine/machine_manifest.json",
+      "human_document": "docs/09-ai-operations/07-machine-readable-docs.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "metric.schema",
+      "file": "machine/schemas/metric.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/metrics.json",
+      "owner": "negocio",
+      "status": "canonical",
+      "used_by": [
+        "machine/metrics.json"
+      ],
+      "validates": "machine/metrics.json",
+      "human_document": "docs/01-business/05-success-metrics.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "migration-contract.schema",
+      "file": "machine/schemas/migration-contract.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/migration_contracts.json",
+      "owner": "core.data",
+      "status": "canonical",
+      "used_by": [
+        "machine/migration_contracts.json"
+      ],
+      "validates": "machine/migration_contracts.json",
+      "human_document": "docs/06-technical/03-conventions.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "module.schema",
+      "file": "machine/schemas/module.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/catalog_modules.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "machine/catalog_modules.json"
+      ],
+      "validates": "machine/catalog_modules.json",
+      "human_document": "docs/04-architecture/02-modules.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "mvp-coverage-matrix.schema",
+      "file": "machine/schemas/mvp-coverage-matrix.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/mvp_coverage_matrix.json",
+      "owner": "core.doctor",
+      "status": "canonical",
+      "used_by": [
+        "machine/mvp_coverage_matrix.json"
+      ],
+      "validates": "machine/mvp_coverage_matrix.json",
+      "human_document": "docs/13-quality/07-mvp-coverage-matrix.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "mvp-qualitative-validation.schema",
+      "file": "machine/schemas/mvp-qualitative-validation.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/mvp_qualitative_validation.json",
+      "owner": "producto",
+      "status": "canonical",
+      "used_by": [
+        "machine/mvp_qualitative_validation.json"
+      ],
+      "validates": "machine/mvp_qualitative_validation.json",
+      "human_document": "docs/01-business/05-success-metrics.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "permission.schema",
+      "file": "machine/schemas/permission.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/permissions.json",
+      "owner": "core.permissions",
+      "status": "canonical",
+      "used_by": [
+        "machine/permissions.json"
+      ],
+      "validates": "machine/permissions.json",
+      "human_document": "docs/06-technical/05-security.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "physical-constraints-matrix.schema",
+      "file": "machine/schemas/physical-constraints-matrix.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/physical_constraints_matrix.json",
+      "owner": "core.data",
+      "status": "canonical",
+      "used_by": [
+        "machine/physical_constraints_matrix.json"
+      ],
+      "validates": "machine/physical_constraints_matrix.json",
+      "human_document": "docs/05-domain-data/02-relationships.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "product-mvp.schema",
+      "file": "machine/schemas/product-mvp.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/product_mvp.json",
+      "owner": "producto",
+      "status": "canonical",
+      "used_by": [
+        "machine/product_mvp.json"
+      ],
+      "validates": "machine/product_mvp.json",
+      "human_document": "docs/02-product/00-product-map.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "proposed-decision.schema",
+      "file": "machine/schemas/proposed-decision.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/proposed_decisions.json",
+      "owner": "core.doctor",
+      "status": "canonical",
+      "used_by": [
+        "machine/proposed_decisions.json"
+      ],
+      "validates": "machine/proposed_decisions.json",
+      "human_document": "docs/12-decisions/00-decision-log.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "relationship.schema",
+      "file": "machine/schemas/relationship.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/relationships.json",
+      "owner": "core.data",
+      "status": "canonical",
+      "used_by": [
+        "machine/relationships.json"
+      ],
+      "validates": "machine/relationships.json",
+      "human_document": "docs/05-domain-data/02-relationships.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "risk-register.schema",
+      "file": "machine/schemas/risk-register.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/risk_register.json",
+      "owner": "core.doctor",
+      "status": "canonical",
+      "used_by": [
+        "machine/risk_register.json"
+      ],
+      "validates": "machine/risk_register.json",
+      "human_document": "docs/04-architecture/07-architecture-risks.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "risk.schema",
+      "file": "machine/schemas/risk.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/risks.json",
+      "owner": "core.doctor",
+      "status": "canonical",
+      "used_by": [
+        "machine/risks.json"
+      ],
+      "validates": "machine/risks.json",
+      "human_document": "docs/01-business/06-business-risks.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "roadmap-gate.schema",
+      "file": "machine/schemas/roadmap-gate.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/roadmap_gates.json",
+      "owner": "core.doctor",
+      "status": "canonical",
+      "used_by": [
+        "machine/roadmap_gates.json"
+      ],
+      "validates": "machine/roadmap_gates.json",
+      "human_document": "docs/10-roadmap/00-roadmap-overview.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "role.schema",
+      "file": "machine/schemas/role.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/roles.json",
+      "owner": "core.permissions",
+      "status": "canonical",
+      "used_by": [
+        "machine/roles.json"
+      ],
+      "validates": "machine/roles.json",
+      "human_document": "docs/01-business/02-target-users.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "roles-permissions-matrix.schema",
+      "file": "machine/schemas/roles-permissions-matrix.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/roles_permissions_matrix.json",
+      "owner": "core.permissions",
+      "status": "canonical",
+      "used_by": [
+        "machine/roles_permissions_matrix.json"
+      ],
+      "validates": "machine/roles_permissions_matrix.json",
+      "human_document": "docs/06-technical/05-security.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "route-permission-matrix.schema",
+      "file": "machine/schemas/route-permission-matrix.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/route_permission_matrix.json",
+      "owner": "core.permissions",
+      "status": "canonical",
+      "used_by": [
+        "machine/route_permission_matrix.json"
+      ],
+      "validates": "machine/route_permission_matrix.json",
+      "human_document": "docs/06-technical/05-security.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "runtime-test-matrix.schema",
+      "file": "machine/schemas/runtime-test-matrix.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/runtime_test_matrix.json",
+      "owner": "core.doctor",
+      "status": "canonical",
+      "used_by": [
+        "machine/runtime_test_matrix.json"
+      ],
+      "validates": "machine/runtime_test_matrix.json",
+      "human_document": "docs/06-technical/06-testing.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "schema-registry.schema",
+      "file": "machine/schemas/schema-registry.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/schema_registry.json",
+      "owner": "core.doctor",
+      "status": "canonical",
+      "used_by": [
+        "machine/schema_registry.json"
+      ],
+      "validates": "machine/schema_registry.json",
+      "human_document": "docs/09-ai-operations/07-machine-readable-docs.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "screen-component-contract.schema",
+      "file": "machine/schemas/screen-component-contract.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/screen_component_contracts.json",
+      "owner": "design.ux",
+      "status": "canonical",
+      "used_by": [
+        "machine/screen_component_contracts.json"
+      ],
+      "validates": "machine/screen_component_contracts.json",
+      "human_document": "docs/07-design-ux/03-screens.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "screen-responsive-behavior.schema",
+      "file": "machine/schemas/screen-responsive-behavior.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/screen_responsive_behavior.json",
+      "owner": "design.ux",
+      "status": "canonical",
+      "used_by": [
+        "machine/screen_responsive_behavior.json"
+      ],
+      "validates": "machine/screen_responsive_behavior.json",
+      "human_document": "docs/07-design-ux/07-responsive.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "sprint0-task.schema",
+      "file": "machine/schemas/sprint0-task.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/sprint0_tasks.json",
+      "owner": "core.doctor",
+      "status": "canonical",
+      "used_by": [
+        "machine/sprint0_tasks.json"
+      ],
+      "validates": "machine/sprint0_tasks.json",
+      "human_document": "docs/11-backlog/06-sprint-0-ejecutable.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "subweb-contract.schema",
+      "file": "machine/schemas/subweb-contract.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/subweb_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "machine/subweb_contracts.json"
+      ],
+      "validates": "machine/subweb_contracts.json",
+      "human_document": "docs/04-architecture/08-subweb-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "traceability.schema",
+      "file": "machine/schemas/traceability.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/traceability_matrix.json",
+      "owner": "core.doctor",
+      "status": "canonical",
+      "used_by": [
+        "machine/traceability_matrix.json"
+      ],
+      "validates": "machine/traceability_matrix.json",
+      "human_document": "docs/13-quality/05-traceability-matrix.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "ui-screen.schema",
+      "file": "machine/schemas/ui-screen.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/ui_screens.json",
+      "owner": "design.ux",
+      "status": "canonical",
+      "used_by": [
+        "machine/ui_screens.json"
+      ],
+      "validates": "machine/ui_screens.json",
+      "human_document": "docs/07-design-ux/03-screens.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "ui-state-copy.schema",
+      "file": "machine/schemas/ui-state-copy.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/ui_state_copy.json",
+      "owner": "design.ux",
+      "status": "canonical",
+      "used_by": [
+        "machine/ui_state_copy.json"
+      ],
+      "validates": "machine/ui_state_copy.json",
+      "human_document": "docs/07-design-ux/09-screen-state-copy.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    },
+    {
+      "id": "analytics-event.schema",
+      "file": "machine/schemas/analytics-event.schema.json",
+      "schema_type": "machine_catalog_schema",
+      "parent_contract": "machine/analytics_events.json",
+      "owner": "design.ux",
+      "status": "canonical",
+      "used_by": [
+        "machine/analytics_events.json"
+      ],
+      "validates": "machine/analytics_events.json",
+      "human_document": "docs/07-design-ux/08-screen-component-contracts.md",
+      "last_reviewed": "2026-06-01",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS"
+    }
+  ],
+  "action_payload_schema_registry": [
+    {
+      "id": "AI_WRITE_DRAFT.request.schema",
+      "file": "machine/action_payloads/AI_WRITE_DRAFT.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:AI_WRITE_DRAFT",
+        "payload:request"
+      ],
+      "validates": "AI_WRITE_DRAFT.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "AI_WRITE_DRAFT.response.schema",
+      "file": "machine/action_payloads/AI_WRITE_DRAFT.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:AI_WRITE_DRAFT",
+        "payload:response"
+      ],
+      "validates": "AI_WRITE_DRAFT.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "AUTH_LOGIN_SUBMIT.request.schema",
+      "file": "machine/action_payloads/AUTH_LOGIN_SUBMIT.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:AUTH_LOGIN_SUBMIT",
+        "payload:request"
+      ],
+      "validates": "AUTH_LOGIN_SUBMIT.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "AUTH_LOGIN_SUBMIT.response.schema",
+      "file": "machine/action_payloads/AUTH_LOGIN_SUBMIT.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:AUTH_LOGIN_SUBMIT",
+        "payload:response"
+      ],
+      "validates": "AUTH_LOGIN_SUBMIT.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "AUTH_LOGOUT.request.schema",
+      "file": "machine/action_payloads/AUTH_LOGOUT.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:AUTH_LOGOUT",
+        "payload:request"
+      ],
+      "validates": "AUTH_LOGOUT.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "AUTH_LOGOUT.response.schema",
+      "file": "machine/action_payloads/AUTH_LOGOUT.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:AUTH_LOGOUT",
+        "payload:response"
+      ],
+      "validates": "AUTH_LOGOUT.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "DOCTOR_RUN_READONLY.request.schema",
+      "file": "machine/action_payloads/DOCTOR_RUN_READONLY.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:DOCTOR_RUN_READONLY",
+        "payload:request"
+      ],
+      "validates": "DOCTOR_RUN_READONLY.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "DOCTOR_RUN_READONLY.response.schema",
+      "file": "machine/action_payloads/DOCTOR_RUN_READONLY.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:DOCTOR_RUN_READONLY",
+        "payload:response"
+      ],
+      "validates": "DOCTOR_RUN_READONLY.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "DOCTOR_STATUS_VALIDATE.request.schema",
+      "file": "machine/action_payloads/DOCTOR_STATUS_VALIDATE.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:DOCTOR_STATUS_VALIDATE",
+        "payload:request"
+      ],
+      "validates": "DOCTOR_STATUS_VALIDATE.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "DOCTOR_STATUS_VALIDATE.response.schema",
+      "file": "machine/action_payloads/DOCTOR_STATUS_VALIDATE.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:DOCTOR_STATUS_VALIDATE",
+        "payload:response"
+      ],
+      "validates": "DOCTOR_STATUS_VALIDATE.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "EVIDENCE_WRITE.request.schema",
+      "file": "machine/action_payloads/EVIDENCE_WRITE.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:EVIDENCE_WRITE",
+        "payload:request"
+      ],
+      "validates": "EVIDENCE_WRITE.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "EVIDENCE_WRITE.response.schema",
+      "file": "machine/action_payloads/EVIDENCE_WRITE.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:EVIDENCE_WRITE",
+        "payload:response"
+      ],
+      "validates": "EVIDENCE_WRITE.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "INTEGRATION_CONFIGURE_STUB.path.schema",
+      "file": "machine/action_payloads/INTEGRATION_CONFIGURE_STUB.path.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:INTEGRATION_CONFIGURE_STUB",
+        "payload:path"
+      ],
+      "validates": "INTEGRATION_CONFIGURE_STUB.path",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "INTEGRATION_CONFIGURE_STUB.request.schema",
+      "file": "machine/action_payloads/INTEGRATION_CONFIGURE_STUB.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:INTEGRATION_CONFIGURE_STUB",
+        "payload:request"
+      ],
+      "validates": "INTEGRATION_CONFIGURE_STUB.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "INTEGRATION_CONFIGURE_STUB.response.schema",
+      "file": "machine/action_payloads/INTEGRATION_CONFIGURE_STUB.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:INTEGRATION_CONFIGURE_STUB",
+        "payload:response"
+      ],
+      "validates": "INTEGRATION_CONFIGURE_STUB.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "MODULE_ACTIVATE.path.schema",
+      "file": "machine/action_payloads/MODULE_ACTIVATE.path.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:MODULE_ACTIVATE",
+        "payload:path"
+      ],
+      "validates": "MODULE_ACTIVATE.path",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "MODULE_ACTIVATE.request.schema",
+      "file": "machine/action_payloads/MODULE_ACTIVATE.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:MODULE_ACTIVATE",
+        "payload:request"
+      ],
+      "validates": "MODULE_ACTIVATE.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "MODULE_ACTIVATE.response.schema",
+      "file": "machine/action_payloads/MODULE_ACTIVATE.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:MODULE_ACTIVATE",
+        "payload:response"
+      ],
+      "validates": "MODULE_ACTIVATE.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "MODULE_CONFIGURE.path.schema",
+      "file": "machine/action_payloads/MODULE_CONFIGURE.path.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:MODULE_CONFIGURE",
+        "payload:path"
+      ],
+      "validates": "MODULE_CONFIGURE.path",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "MODULE_CONFIGURE.request.schema",
+      "file": "machine/action_payloads/MODULE_CONFIGURE.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:MODULE_CONFIGURE",
+        "payload:request"
+      ],
+      "validates": "MODULE_CONFIGURE.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "MODULE_CONFIGURE.response.schema",
+      "file": "machine/action_payloads/MODULE_CONFIGURE.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:MODULE_CONFIGURE",
+        "payload:response"
+      ],
+      "validates": "MODULE_CONFIGURE.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "MODULE_USE_TRACK.path.schema",
+      "file": "machine/action_payloads/MODULE_USE_TRACK.path.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:MODULE_USE_TRACK",
+        "payload:path"
+      ],
+      "validates": "MODULE_USE_TRACK.path",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "MODULE_USE_TRACK.request.schema",
+      "file": "machine/action_payloads/MODULE_USE_TRACK.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:MODULE_USE_TRACK",
+        "payload:request"
+      ],
+      "validates": "MODULE_USE_TRACK.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "MODULE_USE_TRACK.response.schema",
+      "file": "machine/action_payloads/MODULE_USE_TRACK.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:MODULE_USE_TRACK",
+        "payload:response"
+      ],
+      "validates": "MODULE_USE_TRACK.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "NOTIFICATION_MARK_READ.path.schema",
+      "file": "machine/action_payloads/NOTIFICATION_MARK_READ.path.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:NOTIFICATION_MARK_READ",
+        "payload:path"
+      ],
+      "validates": "NOTIFICATION_MARK_READ.path",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "NOTIFICATION_MARK_READ.request.schema",
+      "file": "machine/action_payloads/NOTIFICATION_MARK_READ.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:NOTIFICATION_MARK_READ",
+        "payload:request"
+      ],
+      "validates": "NOTIFICATION_MARK_READ.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "NOTIFICATION_MARK_READ.response.schema",
+      "file": "machine/action_payloads/NOTIFICATION_MARK_READ.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:NOTIFICATION_MARK_READ",
+        "payload:response"
+      ],
+      "validates": "NOTIFICATION_MARK_READ.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "ONBOARDING_COMPLETE.request.schema",
+      "file": "machine/action_payloads/ONBOARDING_COMPLETE.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:ONBOARDING_COMPLETE",
+        "payload:request"
+      ],
+      "validates": "ONBOARDING_COMPLETE.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "ONBOARDING_COMPLETE.response.schema",
+      "file": "machine/action_payloads/ONBOARDING_COMPLETE.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:ONBOARDING_COMPLETE",
+        "payload:response"
+      ],
+      "validates": "ONBOARDING_COMPLETE.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "ONBOARDING_START.request.schema",
+      "file": "machine/action_payloads/ONBOARDING_START.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:ONBOARDING_START",
+        "payload:request"
+      ],
+      "validates": "ONBOARDING_START.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "ONBOARDING_START.response.schema",
+      "file": "machine/action_payloads/ONBOARDING_START.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:ONBOARDING_START",
+        "payload:response"
+      ],
+      "validates": "ONBOARDING_START.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "PROFILE_UPDATE.request.schema",
+      "file": "machine/action_payloads/PROFILE_UPDATE.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:PROFILE_UPDATE",
+        "payload:request"
+      ],
+      "validates": "PROFILE_UPDATE.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "PROFILE_UPDATE.response.schema",
+      "file": "machine/action_payloads/PROFILE_UPDATE.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:PROFILE_UPDATE",
+        "payload:response"
+      ],
+      "validates": "PROFILE_UPDATE.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "USER_PROVISION_CONTROLLED.request.schema",
+      "file": "machine/action_payloads/USER_PROVISION_CONTROLLED.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:USER_PROVISION_CONTROLLED",
+        "payload:request"
+      ],
+      "validates": "USER_PROVISION_CONTROLLED.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "USER_PROVISION_CONTROLLED.response.schema",
+      "file": "machine/action_payloads/USER_PROVISION_CONTROLLED.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:USER_PROVISION_CONTROLLED",
+        "payload:response"
+      ],
+      "validates": "USER_PROVISION_CONTROLLED.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "DASHBOARD_VIEW_TRACK.request.schema",
+      "file": "machine/action_payloads/DASHBOARD_VIEW_TRACK.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:DASHBOARD_VIEW_TRACK",
+        "payload:request"
+      ],
+      "validates": "DASHBOARD_VIEW_TRACK.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-06-01",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "DASHBOARD_VIEW_TRACK.response.schema",
+      "file": "machine/action_payloads/DASHBOARD_VIEW_TRACK.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:DASHBOARD_VIEW_TRACK",
+        "payload:response"
+      ],
+      "validates": "DASHBOARD_VIEW_TRACK.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-06-01",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "ADMIN_PANEL_VIEW_TRACK.request.schema",
+      "file": "machine/action_payloads/ADMIN_PANEL_VIEW_TRACK.request.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:ADMIN_PANEL_VIEW_TRACK",
+        "payload:request"
+      ],
+      "validates": "ADMIN_PANEL_VIEW_TRACK.request",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-06-01",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "ADMIN_PANEL_VIEW_TRACK.response.schema",
+      "file": "machine/action_payloads/ADMIN_PANEL_VIEW_TRACK.response.schema.json",
+      "schema_type": "action_payload_schema",
+      "parent_contract": "machine/action_contracts.json",
+      "owner": "core.modules",
+      "status": "canonical",
+      "used_by": [
+        "action:ADMIN_PANEL_VIEW_TRACK",
+        "payload:response"
+      ],
+      "validates": "ADMIN_PANEL_VIEW_TRACK.response",
+      "human_document": "docs/03-functional/07-action-contracts.md",
+      "last_reviewed": "2026-06-01",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS"
+    }
+  ],
+  "event_payload_schema_registry": [
+    {
+      "id": "achievement.unlocked.v1.schema",
+      "file": "machine/event_payload_schemas/achievement.unlocked.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:achievement.unlocked.v1"
+      ],
+      "validates": "achievement.unlocked.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "admin.panel.viewed.v1.schema",
+      "file": "machine/event_payload_schemas/admin.panel.viewed.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:admin.panel.viewed.v1"
+      ],
+      "validates": "admin.panel.viewed.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "ai.action.approved.v1.schema",
+      "file": "machine/event_payload_schemas/ai.action.approved.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:ai.action.approved.v1"
+      ],
+      "validates": "ai.action.approved.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "ai.action.executed.v1.schema",
+      "file": "machine/event_payload_schemas/ai.action.executed.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:ai.action.executed.v1"
+      ],
+      "validates": "ai.action.executed.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "ai.suggestion.created.v1.schema",
+      "file": "machine/event_payload_schemas/ai.suggestion.created.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:ai.suggestion.created.v1"
+      ],
+      "validates": "ai.suggestion.created.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "audit.recorded.v1.schema",
+      "file": "machine/event_payload_schemas/audit.recorded.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:audit.recorded.v1"
+      ],
+      "validates": "audit.recorded.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "backup.created.v1.schema",
+      "file": "machine/event_payload_schemas/backup.created.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:backup.created.v1"
+      ],
+      "validates": "backup.created.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "dashboard.first_viewed.v1.schema",
+      "file": "machine/event_payload_schemas/dashboard.first_viewed.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:dashboard.first_viewed.v1"
+      ],
+      "validates": "dashboard.first_viewed.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "dashboard.viewed.v1.schema",
+      "file": "machine/event_payload_schemas/dashboard.viewed.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:dashboard.viewed.v1"
+      ],
+      "validates": "dashboard.viewed.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "decision.recorded.v1.schema",
+      "file": "machine/event_payload_schemas/decision.recorded.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:decision.recorded.v1"
+      ],
+      "validates": "decision.recorded.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "doctor.check.failed.v1.schema",
+      "file": "machine/event_payload_schemas/doctor.check.failed.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:doctor.check.failed.v1"
+      ],
+      "validates": "doctor.check.failed.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "domain.event.recorded.v1.schema",
+      "file": "machine/event_payload_schemas/domain.event.recorded.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:domain.event.recorded.v1"
+      ],
+      "validates": "domain.event.recorded.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "evidence.recorded.v1.schema",
+      "file": "machine/event_payload_schemas/evidence.recorded.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:evidence.recorded.v1"
+      ],
+      "validates": "evidence.recorded.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "integration.configured.v1.schema",
+      "file": "machine/event_payload_schemas/integration.configured.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:integration.configured.v1"
+      ],
+      "validates": "integration.configured.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "module.activated.v1.schema",
+      "file": "machine/event_payload_schemas/module.activated.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:module.activated.v1"
+      ],
+      "validates": "module.activated.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "module.configured.v1.schema",
+      "file": "machine/event_payload_schemas/module.configured.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:module.configured.v1"
+      ],
+      "validates": "module.configured.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "module.used.v1.schema",
+      "file": "machine/event_payload_schemas/module.used.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:module.used.v1"
+      ],
+      "validates": "module.used.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "notification.created.v1.schema",
+      "file": "machine/event_payload_schemas/notification.created.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:notification.created.v1"
+      ],
+      "validates": "notification.created.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "notification.read.v1.schema",
+      "file": "machine/event_payload_schemas/notification.read.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:notification.read.v1"
+      ],
+      "validates": "notification.read.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "onboarding.completed.v1.schema",
+      "file": "machine/event_payload_schemas/onboarding.completed.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:onboarding.completed.v1"
+      ],
+      "validates": "onboarding.completed.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "onboarding.started.v1.schema",
+      "file": "machine/event_payload_schemas/onboarding.started.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:onboarding.started.v1"
+      ],
+      "validates": "onboarding.started.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "permission.changed.v1.schema",
+      "file": "machine/event_payload_schemas/permission.changed.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:permission.changed.v1"
+      ],
+      "validates": "permission.changed.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "profile.updated.v1.schema",
+      "file": "machine/event_payload_schemas/profile.updated.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:profile.updated.v1"
+      ],
+      "validates": "profile.updated.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "progress.updated.v1.schema",
+      "file": "machine/event_payload_schemas/progress.updated.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:progress.updated.v1"
+      ],
+      "validates": "progress.updated.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "system.configured.v1.schema",
+      "file": "machine/event_payload_schemas/system.configured.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:system.configured.v1"
+      ],
+      "validates": "system.configured.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "system.doctor.executed.v1.schema",
+      "file": "machine/event_payload_schemas/system.doctor.executed.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:system.doctor.executed.v1"
+      ],
+      "validates": "system.doctor.executed.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "task.completed.v1.schema",
+      "file": "machine/event_payload_schemas/task.completed.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:task.completed.v1"
+      ],
+      "validates": "task.completed.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "user.logged_in.v1.schema",
+      "file": "machine/event_payload_schemas/user.logged_in.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:user.logged_in.v1"
+      ],
+      "validates": "user.logged_in.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "user.logged_out.v1.schema",
+      "file": "machine/event_payload_schemas/user.logged_out.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:user.logged_out.v1"
+      ],
+      "validates": "user.logged_out.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    },
+    {
+      "id": "user.registered.v1.schema",
+      "file": "machine/event_payload_schemas/user.registered.v1.schema.json",
+      "schema_type": "event_payload_schema",
+      "parent_contract": "machine/events.json",
+      "owner": "core.events",
+      "status": "canonical",
+      "used_by": [
+        "event:user.registered.v1"
+      ],
+      "validates": "user.registered.v1",
+      "human_document": "docs/05-domain-data/03-domain-events.md",
+      "last_reviewed": "2026-05-31",
+      "doctor_check_id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS"
+    }
+  ],
+  "generation_policy": {
+    "source_of_truth": [
+      "machine/machine_manifest.json",
+      "machine/schemas/*.json",
+      "machine/action_payloads/*.json",
+      "machine/event_payload_schemas/*.json"
+    ],
+    "purpose": "Índice machine-readable de schemas auxiliares para descubrimiento seguro por IA, Doctor y auditorías automáticas.",
+    "does_not_replace_contracts": true,
+    "last_reviewed": "2026-05-31"
+  }
+}

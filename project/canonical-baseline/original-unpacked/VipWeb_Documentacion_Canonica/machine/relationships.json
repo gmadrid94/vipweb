@@ -1,0 +1,224 @@
+{
+  "migration_order": [
+    "User",
+    "AuthAttempt",
+    "Role",
+    "Permission",
+    "RolePermission",
+    "UserRole",
+    "Module",
+    "ModuleManifest",
+    "DomainEvent",
+    "AuditLog",
+    "ApprovalRecord",
+    "SystemSetting",
+    "EvidenceReport",
+    "BackupRecord",
+    "DecisionRecord",
+    "UserContext",
+    "OnboardingSession",
+    "Notification",
+    "Achievement",
+    "UserAchievement",
+    "GamificationRuleState",
+    "ProgressRecord",
+    "AIActionLog",
+    "Integration",
+    "AIDraft"
+  ],
+  "relationships": [
+    {
+      "id": "REL-001",
+      "from": "User",
+      "to": "UserRole",
+      "type": "one_to_many",
+      "foreign_key": "user_roles.user_id",
+      "required": true
+    },
+    {
+      "id": "REL-002",
+      "from": "Role",
+      "to": "UserRole",
+      "type": "one_to_many",
+      "foreign_key": "user_roles.role_id",
+      "required": true
+    },
+    {
+      "id": "REL-003",
+      "from": "Role",
+      "to": "RolePermission",
+      "type": "one_to_many",
+      "foreign_key": "role_permissions.role_id",
+      "required": true
+    },
+    {
+      "id": "REL-004",
+      "from": "Permission",
+      "to": "RolePermission",
+      "type": "one_to_many",
+      "foreign_key": "role_permissions.permission_id",
+      "required": true
+    },
+    {
+      "id": "REL-005",
+      "from": "Module",
+      "to": "ModuleManifest",
+      "type": "one_to_many_versioned",
+      "foreign_key": "module_manifests.module_id",
+      "required": true
+    },
+    {
+      "id": "REL-006",
+      "from": "User",
+      "to": "UserContext",
+      "type": "one_to_one",
+      "foreign_key": "user_contexts.user_id",
+      "required": false,
+      "parent_requires_child": false,
+      "child_requires_parent": true,
+      "fk_nullable": false,
+      "anonymous_allowed": false,
+      "requires_authenticated_user": true,
+      "db_enforced": true,
+      "semantic_note": "En MVP el contexto persistente requiere usuario autenticado/provisionado; el usuario puede existir sin contexto creado todavía."
+    },
+    {
+      "id": "REL-007",
+      "from": "User",
+      "to": "OnboardingSession",
+      "type": "one_to_many",
+      "foreign_key": "onboarding_sessions.user_id",
+      "required": false,
+      "parent_requires_child": false,
+      "child_requires_parent": true,
+      "fk_nullable": false,
+      "anonymous_allowed": false,
+      "requires_authenticated_user": true,
+      "db_enforced": true,
+      "semantic_note": "En MVP la sesión de onboarding persistente requiere usuario autenticado/provisionado; el usuario puede existir sin sesión iniciada todavía."
+    },
+    {
+      "id": "REL-008",
+      "from": "User",
+      "to": "Notification",
+      "type": "one_to_many",
+      "foreign_key": "notifications.user_id",
+      "required": false
+    },
+    {
+      "id": "REL-009",
+      "from": "User",
+      "to": "ProgressRecord",
+      "type": "one_to_many",
+      "foreign_key": "progress_records.user_id",
+      "required": true
+    },
+    {
+      "id": "REL-010",
+      "from": "DomainEvent",
+      "to": "AuditLog",
+      "type": "one_to_many",
+      "foreign_key": "audit_logs.target_id",
+      "required": true
+    },
+    {
+      "id": "REL-011",
+      "from": "DomainEvent",
+      "to": "ProgressRecord",
+      "type": "one_to_many",
+      "foreign_key": "progress_records.source_event_id",
+      "required": true,
+      "fk_nullable": false,
+      "db_enforced": true,
+      "semantic_note": "En MVP todo ProgressRecord debe derivar de un DomainEvent canónico; ajustes manuales/admin quedan post_mvp hasta contrato específico."
+    },
+    {
+      "id": "REL-012",
+      "from": "AIActionLog",
+      "to": "AuditLog",
+      "type": "one_to_many",
+      "foreign_key": "audit_logs.target_id",
+      "required": true
+    },
+    {
+      "id": "REL-013",
+      "from": "Module",
+      "to": "Integration",
+      "type": "one_to_many",
+      "foreign_key": "integrations.module_id",
+      "required": true
+    },
+    {
+      "id": "REL-014",
+      "from": "ApprovalRecord",
+      "to": "AIActionLog",
+      "type": "one_to_many_optional",
+      "foreign_key": "ai_action_logs.approval_id",
+      "required": false
+    },
+    {
+      "id": "REL-015",
+      "from": "User",
+      "to": "UserAchievement",
+      "type": "one_to_many",
+      "foreign_key": "user_achievements.user_id",
+      "required": true
+    },
+    {
+      "id": "REL-016",
+      "from": "Achievement",
+      "to": "UserAchievement",
+      "type": "one_to_many",
+      "foreign_key": "user_achievements.achievement_id",
+      "required": true
+    },
+    {
+      "id": "REL-017",
+      "from": "DomainEvent",
+      "to": "UserAchievement",
+      "type": "one_to_many",
+      "foreign_key": "user_achievements.source_event_id",
+      "required": false
+    },
+    {
+      "id": "REL-018",
+      "from": "User",
+      "to": "GamificationRuleState",
+      "type": "one_to_many",
+      "foreign_key": "gamification_rule_states.user_id",
+      "required": true
+    },
+    {
+      "id": "REL-019",
+      "from": "DomainEvent",
+      "to": "GamificationRuleState",
+      "type": "one_to_many",
+      "foreign_key": "gamification_rule_states.last_source_event_id",
+      "required": false
+    },
+    {
+      "id": "REL-020",
+      "from": "User",
+      "to": "AuthAttempt",
+      "type": "one_to_many_optional",
+      "foreign_key": "auth_attempts.user_id",
+      "required": false
+    },
+    {
+      "id": "REL-021",
+      "from": "ApprovalRecord",
+      "to": "AIDraft",
+      "type": "one_to_many_unique",
+      "foreign_key": "ai_drafts.approval_id",
+      "required": true
+    },
+    {
+      "id": "REL-022",
+      "from": "AIActionLog",
+      "to": "AIDraft",
+      "type": "one_to_one",
+      "foreign_key": "ai_drafts.ai_action_log_id",
+      "required": true
+    }
+  ]
+}

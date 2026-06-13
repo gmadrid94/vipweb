@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/module.used.v1.schema.json",
+  "title": "module.used v1 payload",
+  "type": "object",
+  "required": [
+    "user_id",
+    "module_id",
+    "used_at",
+    "source_route"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "module_id": {
+      "type": "string"
+    },
+    "used_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_route": {
+      "type": "string"
+    }
+  }
+}

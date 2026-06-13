@@ -1,0 +1,705 @@
+[
+  {
+    "id": "S0-000",
+    "title": "Verificar entorno WAMP/PHP/MySQL local",
+    "priority": "P0",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Registrar versiones reales de PHP, Apache/WAMP y MySQL/MariaDB antes de escribir código runtime.",
+    "actions": [
+      "Ejecutar php -v",
+      "Registrar versión Apache/WAMP local desde panel o CLI disponible",
+      "Ejecutar mysql --version o consultar versión MySQL/MariaDB desde WAMP/phpMyAdmin",
+      "Registrar versiones en evidencia fechada",
+      "Actualizar runtime_verified_php_version y runtime_verified_database_version",
+      "Confirmar si se permite sintaxis PHP 8.4; si no, bloquear sintaxis no compatible"
+    ],
+    "files_affected": [
+      "evidence/sprint-0-local-execution.md"
+    ],
+    "dependencies": [],
+    "acceptance_criteria": [
+      "php -v registrado en evidencia",
+      "Apache/WAMP registrado en evidencia",
+      "MySQL/MariaDB registrado en evidencia",
+      "runtime_verified_php_version definido",
+      "runtime_verified_database_version definido",
+      "Doctor valida que la versión mínima no contradice ADR-003",
+      "No se usa sintaxis PHP 8.4 hasta verificar compatibilidad local"
+    ],
+    "doctor_check": "SPRINT0_ENVIRONMENT_CHECK_COVERS_WAMP_STACK",
+    "expected_evidence": "wamp-runtime-version-report",
+    "risk": "Código runtime o SQL incompatible con el WAMP/MySQL local real",
+    "local_rollback": "Volver al mínimo verificado y ajustar sintaxis/dependencias",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/06-technical/01-stack.md"
+  },
+  {
+    "id": "S0-000A",
+    "priority": "P0",
+    "phase": "Sprint 0",
+    "title": "Evaluar activación de ADR-026 antes de cambios protegidos preparados por IA",
+    "dependencies": [
+      "S0-000",
+      "S0-001",
+      "S0-003"
+    ],
+    "acceptance_criteria": [
+      "Se identifican archivos afectados por el primer bloque de cambios",
+      "Se clasifica si el cambio es protegido o no protegido",
+      "Se identifica si el origen del cambio es humano, ai_generated o ai_prepared",
+      "Se determina si requiere ApprovalRecord, approval_id, scope_hash, rollback y evidencia",
+      "Si el trigger ADR-026 aplica, existe Git local mínimo, baseline commit y working tree limpio antes de aplicar cambios protegidos",
+      "Si el trigger no aplica, queda registrada la razón de no activación",
+      "Ningún cambio protegido preparado por IA se aplica antes de cerrar este preflight",
+      "Se declara development_mode: human_manual_only, ai_audit_only o ai_prepared_changes_enabled",
+      "Si development_mode=ai_prepared_changes_enabled, ADR-026 queda activada por owner humano antes de aplicar cambios protegidos preparados por IA",
+      "Si ADR-026 se activa, machine/proposed_decisions.json contiene activation_contract válido y activation_record completo",
+      "La activación ADR-026 referencia ApprovalRecord humano, baseline commit, scope, evidencia y Doctor check ref"
+    ],
+    "status": "pending",
+    "description": "Preflight condicional para convertir ADR-026 en gate operativo antes de aplicar cambios protegidos preparados por IA sobre archivos reales, clasificando origen, autoridad, alcance, ApprovalRecord, scope_hash y rollback.",
+    "actions": [
+      "Leer docs/12-decisions/proposed/adr-026-introduccion-de-git-local-y-control-de-versiones-minimo.md",
+      "Leer machine/ai_approval_policy.json y version_control_gate",
+      "Inventariar archivos protegidos afectados por el cambio previsto",
+      "Determinar origen del cambio: humano, ai_generated o ai_prepared",
+      "Determinar si requiere ApprovalRecord, approval_id, scope_hash, rollback y evidencia",
+      "Si aplica trigger, activar ADR-026 mediante decisión humana owner y ejecutar git init + commit baseline + working tree limpio antes de cambios protegidos",
+      "Registrar evidencia del preflight en evidence/sprint-0-local-execution.md y evidencia local",
+      "Registrar development_mode en el preflight S0-000A antes de tocar archivos protegidos",
+      "Si development_mode=ai_prepared_changes_enabled, exigir ADR-026 aceptada/activada, baseline Git y working tree limpio antes de aplicación real",
+      "Verificar machine/proposed_decisions.json::ADR-026.activation_contract antes de declarar ADR-026 activa",
+      "Si ADR-026 se activa, registrar activation_record con activated_by, activated_at, approval_record_id, baseline_commit, scope, evidence_ref y doctor_check_ref"
+    ],
+    "files_affected": [
+      "evidence/sprint-0-local-execution.md",
+      "machine/ai_approval_policy.json",
+      "machine/proposed_decisions.json"
+    ],
+    "doctor_check": "SPRINT0_ADR026_PREFLIGHT_TASK_EXISTS",
+    "expected_evidence": "adr026-preflight-report + registro operativo-local-entry + baseline-reference-if-applicable",
+    "risk": "R-WAMP-001",
+    "local_rollback": "Si se activó Git por error, conservar backup previo; si aún no hubo cambios, eliminar .git solo tras registrar la reversión y conservar backup.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/06-sprint-0-ejecutable.md"
+  },
+  {
+    "id": "S0-001",
+    "title": "Crear backup local inicial",
+    "priority": "P0",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Crear copia completa de la carpeta actual antes de cualquier cambio.",
+    "actions": [
+      "Crear C:/wamp64/www/vipweb_backups si no existe",
+      "Copiar C:/wamp64/www/vipweb a una carpeta con fecha y motivo",
+      "Registrar ruta del backup"
+    ],
+    "files_affected": [
+      "C:/wamp64/www/vipweb_backups",
+      "evidence/sprint-0-local-execution.md"
+    ],
+    "dependencies": [],
+    "acceptance_criteria": [
+      "Existe carpeta de backup",
+      "La ruta queda registrada",
+      "No se ha modificado el proyecto antes del backup"
+    ],
+    "doctor_check": "LOCAL_BACKUP_DECLARED",
+    "expected_evidence": "Entrada en evidence/sprint-0-local-execution.md",
+    "risk": "Pérdida de trabajo si se omite",
+    "local_rollback": "Restaurar carpeta copiada como vipweb",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/06-technical/10-wamp-local-workflow.md"
+  },
+  {
+    "id": "S0-002",
+    "title": "Exportar SQL inicial si existe base de datos",
+    "priority": "P0",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Exportar la base de datos actual desde phpMyAdmin si el proyecto ya tiene una.",
+    "actions": [
+      "Abrir phpMyAdmin",
+      "Seleccionar base de datos VipWeb si existe",
+      "Exportar como SQL",
+      "Guardar SQL en carpeta de backup",
+      "Verificar que el archivo no está vacío"
+    ],
+    "files_affected": [
+      "C:/wamp64/www/vipweb_backups/*/database/*.sql",
+      "evidence/sprint-0-local-execution.md"
+    ],
+    "dependencies": [
+      "S0-001"
+    ],
+    "acceptance_criteria": [
+      "SQL exportado o justificación de que no existe base previa",
+      "Nombre registrado en registro operativo"
+    ],
+    "doctor_check": "SQL_BACKUP_DECLARED_IF_DB_EXISTS",
+    "expected_evidence": "Archivo SQL o nota no-db",
+    "risk": "Imposibilidad de restaurar datos",
+    "local_rollback": "Importar SQL desde phpMyAdmin",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "templates/sql-export-checklist.md"
+  },
+  {
+    "id": "S0-003",
+    "title": "Crear o actualizar evidence/sprint-0-local-execution.md",
+    "priority": "P0",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Asegurar registro manual de cambios mientras no haya Git.",
+    "actions": [
+      "Crear evidence/sprint-0-local-execution.md si no existe",
+      "Añadir entrada de punto de partida",
+      "Registrar backup y SQL inicial"
+    ],
+    "files_affected": [
+      "evidence/sprint-0-local-execution.md"
+    ],
+    "dependencies": [
+      "S0-001"
+    ],
+    "acceptance_criteria": [
+      "El registro operativo existe",
+      "Contiene punto de partida",
+      "Contiene regla de uso local"
+    ],
+    "doctor_check": "LOCAL_EXECUTION_RECORD_EXISTS",
+    "expected_evidence": "evidence/sprint-0-local-execution.md",
+    "risk": "Cambios no auditables",
+    "local_rollback": "Usar backup y entrada previa",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/06-technical/10-wamp-local-workflow.md"
+  },
+  {
+    "id": "S0-004",
+    "title": "Crear estructura base de carpetas",
+    "priority": "P0",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Crear esqueleto del proyecto alineado con arquitectura modular.",
+    "actions": [
+      "Crear /app",
+      "Crear /public",
+      "Crear /config",
+      "Crear /database",
+      "Crear /scripts",
+      "Crear /docs",
+      "Crear /machine",
+      "Crear /templates",
+      "Crear /evidence"
+    ],
+    "files_affected": [
+      "/app",
+      "/public",
+      "/config",
+      "/database",
+      "/scripts",
+      "/docs",
+      "/machine",
+      "/templates",
+      "/evidence"
+    ],
+    "dependencies": [
+      "S0-001",
+      "S0-003",
+      "S0-000A"
+    ],
+    "acceptance_criteria": [
+      "Todas las carpetas existen",
+      "Doctor PROJECT_STRUCTURE_EXISTS pasa"
+    ],
+    "doctor_check": "PROJECT_STRUCTURE_EXISTS",
+    "expected_evidence": "evidence/sprint-0-local-execution.md",
+    "risk": "Desarrollo desordenado",
+    "local_rollback": "Restaurar backup S0-001",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/06-sprint-0-ejecutable.md"
+  },
+  {
+    "id": "S0-005",
+    "title": "Registrar ADRs aceptadas vigentes",
+    "priority": "P0",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Asegurar que todas las decisiones aceptadas existen en Markdown y JSON.",
+    "actions": [
+      "Revisar docs/12-decisions/adr",
+      "Revisar 00-decision-log.md",
+      "Sincronizar machine/decisions.json"
+    ],
+    "files_affected": [
+      "docs/12-decisions/00-decision-log.md",
+      "docs/12-decisions/adr/*.md",
+      "machine/decisions.json"
+    ],
+    "dependencies": [
+      "S0-004"
+    ],
+    "acceptance_criteria": [
+      "Existen 27 ADRs aceptadas: ADR-001 a ADR-025, ADR-027 y ADR-028",
+      "ADR-026 permanece como propuesta condicional fuera de docs/12-decisions/adr/",
+      "Todas las ADRs aceptadas están sincronizadas entre Markdown y JSON",
+      "No hay decisiones fundacionales pendientes"
+    ],
+    "doctor_check": "ADR_ACCEPTED_COUNT_AND_PROPOSED_ADR026_ALIGNED",
+    "expected_evidence": "evidence/sprint-0-local-execution.md",
+    "risk": "Decisiones perdidas o contradictorias",
+    "local_rollback": "Restaurar docs/12-decisions desde backup",
+    "blocking": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/12-decisions/00-decision-log.md"
+  },
+  {
+    "id": "S0-006",
+    "title": "Crear catálogos JSON vigentes",
+    "priority": "P0",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Preparar catálogos machine-readable para IA y scripts.",
+    "actions": [
+      "Crear modules.json",
+      "Crear entities.json",
+      "Crear events.json",
+      "Crear permissions.json",
+      "Crear decisions.json",
+      "Crear risks.json",
+      "Validar JSON"
+    ],
+    "files_affected": [
+      "machine/modules.json",
+      "machine/entities.json",
+      "machine/events.json",
+      "machine/permissions.json",
+      "machine/decisions.json",
+      "machine/risks.json"
+    ],
+    "dependencies": [
+      "S0-005"
+    ],
+    "acceptance_criteria": [
+      "Todos los JSON son válidos",
+      "Contienen source_doc y evidence_required cuando aplica"
+    ],
+    "doctor_check": "MACHINE_JSON_VALID",
+    "expected_evidence": "machine-json-report",
+    "risk": "IA o scripts sin contexto fiable",
+    "local_rollback": "Restaurar machine/*.json desde backup",
+    "blocking": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/09-ai-operations/07-machine-readable-docs.md"
+  },
+  {
+    "id": "S0-007",
+    "title": "Mantener script de validación documental canónico",
+    "priority": "P0",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Conservar `scripts/update_script.py` como único validador documental ejecutable de esta baseline. Doctor queda definido como contrato runtime futuro mediante `machine/doctor_checks.json`.",
+    "actions": [
+      "Conservar scripts/update_script.py como único validador documental ejecutable actual",
+      "Verificar que scripts/update_script.py no modifica archivos ni genera evidencia",
+      "Validar JSON, schemas machine-readable, referencias internas, identidad VipWeb, checksums SQL y readiness",
+      "Mantener Doctor como contrato runtime futuro definido en machine/doctor_checks.json"
+    ],
+    "files_affected": [
+      "scripts/update_script.py",
+      "scripts/README.md",
+      "machine/doctor_checks.json",
+      "docs/13-quality/06-doctor-checks.md"
+    ],
+    "dependencies": [
+      "S0-004",
+      "S0-006"
+    ],
+    "acceptance_criteria": [
+      "Existe scripts/update_script.py y es ejecutable con python scripts/update_script.py",
+      "El script no ejecuta cambios destructivos ni modifica archivos",
+      "Los checks emitidos por scripts/update_script.py están catalogados en machine/doctor_checks.json",
+      "La documentación distingue validador documental actual de Doctor runtime futuro"
+    ],
+    "doctor_check": "SCRIPTS_BASE_EXIST",
+    "expected_evidence": "stdout de python scripts/update_script.py y registro manual en evidence/sprint-0-local-execution.md",
+    "risk": "Confundir contratos Doctor futuros con scripts ejecutables actuales o asumir generación automática de evidencia inexistente",
+    "local_rollback": "Restaurar scripts/update_script.py desde backup canónico si se modifica indebidamente",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "S0-008",
+    "title": "Crear configuración WAMP sin secretos reales",
+    "priority": "P0",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Preparar archivos de configuración para entorno local WAMP.",
+    "actions": [
+      "Crear .env.example",
+      "Crear config/app.php",
+      "Crear config/database.php",
+      "Crear config/modules.php",
+      "Crear config/permissions.php",
+      "No incluir contraseñas reales"
+    ],
+    "files_affected": [
+      ".env.example",
+      "config/app.php",
+      "config/database.php",
+      "config/modules.php",
+      "config/permissions.php"
+    ],
+    "dependencies": [
+      "S0-004"
+    ],
+    "acceptance_criteria": [
+      "Configuración existe",
+      "No contiene secretos reales",
+      "Es compatible con WAMP"
+    ],
+    "doctor_check": "WAMP_CONFIG_EXISTS",
+    "expected_evidence": "config-check-report",
+    "risk": "Errores de conexión o secretos expuestos",
+    "local_rollback": "Restaurar config desde backup",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/06-technical/10-wamp-local-workflow.md"
+  },
+  {
+    "id": "S0-009",
+    "title": "Validar migraciones SQL base existentes",
+    "priority": "P1",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Validar que las migraciones SQL físicas base ya presentes coinciden con los contratos machine-readable antes de ejecutarlas en WAMP local.",
+    "actions": [
+      "Comprobar que database/migrations/*.sql existe y cubre las tablas core y MVP base",
+      "Comprobar que database/rollbacks/*.sql existe para cada migración",
+      "Validar migraciones SQL de identidad contra machine/entities.json y machine/column_contracts.json",
+      "Validar migraciones SQL de módulos, eventos, auditoría, IA, evidencias, UX, gamificación e integraciones contra contratos machine-readable",
+      "Verificar que user_contexts.user_id y onboarding_sessions.user_id son NOT NULL y coinciden con DCE-009/DCE-010",
+      "Validar que las FKs se declaran dentro de la migración de la tabla que contiene cada FK",
+      "Verificar que no existen migraciones PHP ni ficheros *_relation.sql en Sprint 0",
+      "Registrar hashes técnicos SHA-256 en database/manifest.json",
+      "No recrear ni sobrescribir SQL existente salvo regeneración aprobada mediante ApprovalRecord si aplica"
+    ],
+    "files_affected": [
+      "database/migrations/*.sql",
+      "database/rollbacks/*.sql",
+      "database/manifest.json",
+      "machine/migration_contracts.json",
+      "docs/05-domain-data/06-approval-records.md",
+      "machine/domain_constraints_enforcement_matrix.json",
+      "machine/physical_constraints_matrix.json",
+      "machine/column_contracts.json"
+    ],
+    "dependencies": [
+      "S0-008"
+    ],
+    "acceptance_criteria": [
+      "Migraciones SQL físicas existen en database/migrations/*.sql",
+      "Rollbacks SQL físicos existen en database/rollbacks/*.sql",
+      "Las migraciones siguen el orden canónico de machine/relationships.json::migration_order",
+      "Coinciden con modelo de dominio, column_contracts y physical_constraints_matrix",
+      "user_contexts.user_id y onboarding_sessions.user_id son NOT NULL en SQL, column_contracts y physical_constraints_matrix",
+      "No existen migraciones PHP ni *_relation.sql en Sprint 0",
+      "approval_records permite estado requested sin approved_by ni approved_at",
+      "approval_records.expires_at es NOT NULL desde la solicitud",
+      "Cada migración tiene rollback SQL separado",
+      "database/manifest.json registra checksum SHA-256 para cada migración y rollback",
+      "Las migraciones derivan de machine/entities.json, machine/column_contracts.json y machine/physical_constraints_matrix.json",
+      "No existen tablas ni columnas no documentadas"
+    ],
+    "doctor_check": "MIGRATION_SQL_FILES_EXIST_FOR_CONTRACTS",
+    "expected_evidence": "migration-sql-validation-report",
+    "risk": "Ejecutar o regenerar una base de datos que no coincide con los contratos canónicos",
+    "local_rollback": "Restaurar carpeta database y SQL backup",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/05-domain-data/00-domain-model.md"
+  },
+  {
+    "id": "S0-009A",
+    "priority": "P1",
+    "phase": "Sprint 0",
+    "title": "Validar ledger local de migraciones schema_migrations",
+    "dependencies": [
+      "S0-009"
+    ],
+    "acceptance_criteria": [
+      "Existe database/migrations/000_create_schema_migrations.sql",
+      "Existe database/rollbacks/000_rollback_create_schema_migrations.sql",
+      "machine/migration_contracts.json declara MIG-000 antes de MIG-001",
+      "database/manifest.json registra checksum SHA-256 de migración y rollback del ledger",
+      "schema_migrations incluye migration_id, up_ref, checksum, checksum_algorithm, applied_at, applied_by, status y evidence_ref",
+      "Doctor valida SCHEMA_MIGRATIONS_LEDGER_EXISTS_AND_MATCHES_CONTRACT"
+    ],
+    "status": "pending",
+    "description": "Cerrar el ledger físico local que registra migraciones aplicadas antes de ejecutar el resto de SQL en WAMP.",
+    "actions": [
+      "Revisar database/migrations/000_create_schema_migrations.sql",
+      "Revisar database/rollbacks/000_rollback_create_schema_migrations.sql",
+      "Confirmar que MIG-000 precede a MIG-001 en machine/migration_contracts.json",
+      "Confirmar hashes técnicos en database/manifest.json",
+      "Ejecutar Doctor readonly para validar el contrato del ledger"
+    ],
+    "files_affected": [
+      "database/migrations/000_create_schema_migrations.sql",
+      "database/rollbacks/000_rollback_create_schema_migrations.sql",
+      "machine/migration_contracts.json",
+      "database/manifest.json"
+    ],
+    "doctor_check": "SCHEMA_MIGRATIONS_LEDGER_EXISTS_AND_MATCHES_CONTRACT",
+    "expected_evidence": "schema-migrations-ledger-validation-report",
+    "risk": "Migraciones aplicadas sin trazabilidad ni estado reproducible",
+    "local_rollback": "Restaurar database desde backup local antes de aplicar migraciones",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/06-sprint-0-ejecutable.md"
+  },
+  {
+    "id": "S0-009B",
+    "priority": "P1",
+    "phase": "Sprint 0",
+    "title": "Ejecutar migraciones SQL en WAMP local y registrar ledger",
+    "dependencies": [
+      "S0-009A"
+    ],
+    "acceptance_criteria": [
+      "Las migraciones se ejecutan en orden desde 000 hasta 025",
+      "schema_migrations registra cada migración aplicada con checksum sha256 y status applied",
+      "No hay errores SQL pendientes tras la ejecución",
+      "Existe evidencia migration-sql-apply-report",
+      "No se editan migraciones aplicadas sin activar rollback o ADR posterior"
+    ],
+    "status": "pending",
+    "description": "Ejecutar el SQL previamente validado y diferenciar aplicación real de validación documental.",
+    "actions": [
+      "Crear backup/export SQL previo si existe base local",
+      "Ejecutar 000_create_schema_migrations.sql",
+      "Ejecutar migraciones 001-025 en orden canónico",
+      "Registrar cada aplicación en schema_migrations con checksum y evidencia",
+      "Guardar reporte de ejecución local"
+    ],
+    "files_affected": [
+      "database/migrations/*.sql",
+      "database/manifest.json",
+      "evidence/sprint-0-local-execution.md"
+    ],
+    "doctor_check": "SPRINT0_SQL_EXECUTION_TASKS_DECLARED",
+    "expected_evidence": "migration-sql-apply-report",
+    "risk": "Base local no coincide con los contratos aunque los archivos SQL sean válidos",
+    "local_rollback": "Restaurar export SQL previo o ejecutar rollbacks antes de datos reales",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/06-sprint-0-ejecutable.md"
+  },
+  {
+    "id": "S0-010",
+    "title": "Validar seeds SQL iniciales",
+    "priority": "P1",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Validar que los seeds SQL físicos base ya presentes son mínimos, reproducibles y seguros antes de ejecutarlos localmente.",
+    "actions": [
+      "Comprobar que database/seeds/*.sql existe",
+      "Validar seeds SQL de roles, permisos y role_permissions contra machine/roles.json y machine/permissions.json",
+      "Validar seeds SQL de módulos y module_manifests contra machine/modules.json",
+      "Validar seeds SQL de configuración mínima sin secretos reales",
+      "Validar seed template de owner local con guard de placeholder para hash de contraseña",
+      "Validar que ai_admin queda disabled_by_default y no se asigna por defecto",
+      "Registrar hashes técnicos SHA-256 de seeds en database/manifest.json",
+      "No usar seeders PHP en Sprint 0"
+    ],
+    "files_affected": [
+      "database/seeds/*.sql",
+      "database/manifest.json"
+    ],
+    "dependencies": [
+      "S0-009B"
+    ],
+    "acceptance_criteria": [
+      "Seeds SQL existen en database/seeds/*.sql",
+      "No existe dependencia de seeders PHP",
+      "Roles canónicos existen en seed",
+      "Permisos canónicos existen en seed",
+      "RolePermission cubre mappings de permissions.json",
+      "Módulos MVP/core existen en seed con lifecycle_status documentado",
+      "El owner local no puede ejecutarse con hash placeholder",
+      "ai_admin no se asigna por defecto",
+      "database/manifest.json registra checksum SHA-256 para cada seed"
+    ],
+    "doctor_check": "SEED_SQL_FILES_EXIST_FOR_CORE_RUNTIME",
+    "expected_evidence": "core-seed-sql-validation-report",
+    "risk": "RBAC, módulos, permisos o owner local no verificables si los seeds no son reproducibles",
+    "local_rollback": "Restaurar base de datos desde SQL",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "machine/modules.json"
+  },
+  {
+    "id": "S0-010B",
+    "priority": "P1",
+    "phase": "Sprint 0",
+    "title": "Ejecutar seeds SQL iniciales en WAMP local",
+    "dependencies": [
+      "S0-010"
+    ],
+    "acceptance_criteria": [
+      "Los seeds 001 y 002 se ejecutan sin secretos reales",
+      "El seed owner falla si conserva placeholders",
+      "El seed owner solo se ejecuta sobre copia local con email/hash sustituidos",
+      "Existe evidencia core-seed-sql-apply-report",
+      "ai_admin permanece disabled_by_default y no asignado por defecto"
+    ],
+    "status": "pending",
+    "description": "Ejecutar seeds después de validar migraciones aplicadas y protección fail-closed del owner local.",
+    "actions": [
+      "Ejecutar seeds 001 y 002 sobre base local migrada",
+      "Verificar fallo esperado de 003_seed_local_owner_template.sql sin sustituir placeholders",
+      "Crear copia local no versionada con email/hash owner reales si se necesita owner local",
+      "Ejecutar seed owner local solo desde copia preparada",
+      "Registrar reporte de aplicación de seeds"
+    ],
+    "files_affected": [
+      "database/seeds/*.sql",
+      "evidence/sprint-0-local-execution.md"
+    ],
+    "doctor_check": "OWNER_SEED_FAILS_CLOSED_ON_PLACEHOLDERS",
+    "expected_evidence": "core-seed-sql-apply-report",
+    "risk": "RBAC, módulos o owner local quedan sin aplicación real o con credenciales placeholder",
+    "local_rollback": "Restaurar export SQL previo o limpiar registros seed antes de datos reales",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/06-sprint-0-ejecutable.md"
+  },
+  {
+    "id": "S0-011",
+    "title": "Ejecutar validación documental readonly",
+    "priority": "P1",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Ejecutar scripts/update_script.py como validador documental readonly. Esta ejecución no modifica archivos ni genera evidencia canónica automática.",
+    "actions": [
+      "Ejecutar python scripts/update_script.py",
+      "Revisar salida stdout o JSON impreso",
+      "Registrar manualmente el resultado relevante en evidence/sprint-0-local-execution.md"
+    ],
+    "files_affected": [
+      "evidence/sprint-0-local-execution.md"
+    ],
+    "dependencies": [
+      "S0-007",
+      "S0-008",
+      "S0-010B"
+    ],
+    "acceptance_criteria": [
+      "python scripts/update_script.py finaliza con status passed",
+      "La ejecución no modifica archivos del paquete",
+      "El resultado relevante queda registrado manualmente si se está cerrando Sprint 0",
+      "No hay failed críticos en la salida"
+    ],
+    "doctor_check": "DOCTOR_READONLY_TASK_DOES_NOT_WRITE_EVIDENCE",
+    "expected_evidence": "stdout de update_script.py incorporado manualmente a evidence/sprint-0-local-execution.md",
+    "risk": "Confundir ejecución readonly con escritura de evidencia",
+    "local_rollback": "Corregir errores o restaurar backup",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "S0-012",
+    "title": "Completar evidencia inicial canónica manualmente",
+    "priority": "P1",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Completar evidence/sprint-0-local-execution.md con evidencia local real de Sprint 0. scripts/update_script.py solo valida y no genera ni actualiza evidencia.",
+    "actions": [
+      "Ejecutar python scripts/update_script.py como validación readonly previa o posterior",
+      "Registrar manualmente versiones, migraciones, seeds, owner seed, incidencias y salida relevante del validador",
+      "Actualizar evidence/sprint-0-local-execution.md solo mediante edición humana controlada",
+      "Confirmar que la evidencia describe estado real y no declara ejecución no realizada"
+    ],
+    "files_affected": [
+      "evidence/sprint-0-local-execution.md"
+    ],
+    "dependencies": [
+      "S0-011"
+    ],
+    "acceptance_criteria": [
+      "Existe evidence/sprint-0-local-execution.md con entrada local real o pendiente explícito",
+      "La evidencia se completa manualmente y no por scripts/update_script.py",
+      "La salida de scripts/update_script.py se cita o resume manualmente si forma parte del cierre",
+      "La evidencia no declara migraciones, seeds ni owner seed como ejecutados sin verificación local"
+    ],
+    "doctor_check": "EVIDENCE_WRITE_TASK_IS_SEPARATE_FROM_DOCTOR_RUN",
+    "expected_evidence": "evidence/sprint-0-local-execution.md completado manualmente con ejecución local real",
+    "risk": "Estados no demostrables o falsa creencia de que el validador genera evidencia",
+    "local_rollback": "Restaurar evidence/sprint-0-local-execution.md desde backup y rehacer la entrada manual con datos reales",
+    "blocking": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "S0-013",
+    "title": "Validar matriz de trazabilidad y cerrar Sprint 0",
+    "priority": "P1",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Asegurar que ADR, módulos, entidades, permisos, eventos, tareas y evidencias están conectados.",
+    "actions": [
+      "Revisar docs/13-quality/05-traceability-matrix.md",
+      "Validar machine/traceability_matrix.json",
+      "Completar huecos",
+      "Verificar que todas las tareas C1 dependen explícitamente de S0-013."
+    ],
+    "files_affected": [
+      "docs/13-quality/05-traceability-matrix.md",
+      "machine/traceability_matrix.json"
+    ],
+    "dependencies": [
+      "S0-006",
+      "S0-012"
+    ],
+    "acceptance_criteria": [
+      "Matriz existe",
+      "Cada ADR bloqueante tiene trazabilidad mínima",
+      "No hay tareas sin criterio de aceptación",
+      "Sprint 0 queda cerrado como gate antes de iniciar tareas C1."
+    ],
+    "doctor_check": "SPRINT0_TRACEABILITY_GATE_IS_BLOCKING",
+    "expected_evidence": "traceability-check",
+    "risk": "Cambios sin relación con decisiones",
+    "local_rollback": "Restaurar matriz desde backup",
+    "blocking": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/13-quality/05-traceability-matrix.md"
+  }
+]

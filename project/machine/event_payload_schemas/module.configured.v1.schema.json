@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/module.configured.v1.schema.json",
+  "title": "module.configured v1 payload",
+  "type": "object",
+  "required": [
+    "module_id",
+    "config_keys",
+    "actor_id",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "module_id": {
+      "type": "string"
+    },
+    "config_keys": {
+      "type": "array"
+    },
+    "actor_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

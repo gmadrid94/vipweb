@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/AI_WRITE_DRAFT.response.schema.json",
+  "title": "AI_WRITE_DRAFT success response",
+  "type": "object",
+  "required": [
+    "ok",
+    "data",
+    "error",
+    "meta"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "draft_id",
+        "status",
+        "files_changed"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "draft_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "status": {
+          "const": "draft_created"
+        },
+        "files_changed": {
+          "type": "array",
+          "maxItems": 0,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "error": {
+      "type": "null"
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "request_id",
+        "action_id",
+        "emitted_events"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "action_id": {
+          "const": "AI_WRITE_DRAFT"
+        },
+        "emitted_events": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

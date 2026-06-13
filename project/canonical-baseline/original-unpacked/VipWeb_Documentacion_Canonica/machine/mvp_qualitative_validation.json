@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "id": "MVP_QUALITATIVE_VALIDATION_PROTOCOL",
+  "status": "canonical",
+  "source_doc": "docs/01-business/07-mvp-qualitative-validation.md",
+  "assumption": "El primer piloto puede incluir owner individual, equipo pequeño o ambos; el protocolo es compatible con ambos perfiles.",
+  "sample": {
+    "minimum_sessions": 3,
+    "target_sessions": 5,
+    "participants": [
+      "owner_operador_ecosistema_web_modular",
+      "equipo_pequeno_provisionado"
+    ],
+    "account_policy": "controlled_provisioning_mvp_no_public_signup"
+  },
+  "observable_tasks": [
+    {
+      "id": "QV-001",
+      "task": "Acceder con cuenta provisionada",
+      "observes": "comprensión de login y entrada"
+    },
+    {
+      "id": "QV-002",
+      "task": "Completar onboarding mínimo",
+      "observes": "fricción y necesidad de explicación externa"
+    },
+    {
+      "id": "QV-003",
+      "task": "Interpretar dashboard",
+      "observes": "comprensión de continuidad, módulos y próximo paso"
+    },
+    {
+      "id": "QV-004",
+      "task": "Identificar siguiente acción",
+      "observes": "claridad de next step"
+    },
+    {
+      "id": "QV-005",
+      "task": "Entender progreso",
+      "observes": "orientación vs decoración"
+    },
+    {
+      "id": "QV-006",
+      "task": "Volver tras cerrar sesión",
+      "observes": "continuidad"
+    },
+    {
+      "id": "QV-007",
+      "task": "Entender ayuda contextual IA si aparece",
+      "observes": "límites de IA"
+    }
+  ],
+  "post_session_questions": [
+    "¿Qué crees que debes hacer ahora?",
+    "¿Qué parte te acompañó mejor?",
+    "¿Dónde dudaste?",
+    "¿Qué esperabas encontrar y no encontraste?",
+    "¿Volverías? ¿Para qué?",
+    "¿El progreso te orientó o te pareció decorativo?",
+    "¿La ayuda contextual fue clara sobre sus límites?"
+  ],
+  "success_criteria": [
+    "majority_identifies_next_step_without_help",
+    "dashboard_understood_as_continuity_point",
+    "onboarding_requires_no_external_explanation",
+    "progress_seen_as_orientation_not_decoration",
+    "no_critical_confusion_about_permissions_ai_or_modules"
+  ],
+  "failure_criteria": [
+    "ecosystem_not_understood",
+    "dashboard_perceived_as_technical_panel",
+    "user_does_not_know_why_to_return",
+    "onboarding_requires_constant_external_explanation",
+    "gamification_perceived_as_decoration_or_pressure",
+    "ai_perceived_as_autonomous_when_it_is_not"
+  ],
+  "linked_metrics": [
+    "activation_rate",
+    "dashboard_return_rate",
+    "onboarding_completion_time",
+    "module_usage_count",
+    "ai_suggestion_acceptance_rate"
+  ],
+  "linked_journeys": [
+    "J-001",
+    "J-002",
+    "J-004"
+  ],
+  "decision_policy": [
+    "continue",
+    "iterate_copy_or_layout",
+    "block_visible_expansion",
+    "reopen_product_assumption"
+  ],
+  "small_sample_policy": {
+    "status": "canonical",
+    "applies_before_metric_minimum_sample": true,
+    "quantitative_metrics_role": "baseline_not_conclusive",
+    "decision_precedence": [
+      "critical qualitative failure blocks visible expansion",
+      "qualitative success can allow continuation when quantitative sample is insufficient",
+      "quantitative metrics become conclusive only after their minimum_sample is reached"
+    ]
+  }
+}

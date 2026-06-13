@@ -1,0 +1,521 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "name",
+      "module_type",
+      "phase",
+      "lifecycle_status",
+      "owner",
+      "purpose",
+      "depends_on",
+      "dependency_contracts",
+      "requires_manifest",
+      "mvp_included",
+      "external_dependency",
+      "implementation_type",
+      "integration_runtime",
+      "provides",
+      "data",
+      "forbidden",
+      "validation",
+      "rollback",
+      "source_doc",
+      "contract_doc",
+      "commercial_tier_candidate",
+      "commercial_surface"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 3
+      },
+      "name": {
+        "type": "string",
+        "minLength": 3
+      },
+      "module_classification": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "module_type": {
+        "enum": [
+          "core",
+          "feature",
+          "adapter",
+          "ai",
+          "admin",
+          "system"
+        ]
+      },
+      "phase": {
+        "enum": [
+          "foundation",
+          "mvp",
+          "post_mvp",
+          "future"
+        ]
+      },
+      "lifecycle_status": {
+        "enum": [
+          "planned",
+          "active",
+          "disabled",
+          "stub",
+          "deprecated"
+        ]
+      },
+      "owner": {
+        "type": "string"
+      },
+      "purpose": {
+        "type": "string",
+        "minLength": 10
+      },
+      "depends_on": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "requires_manifest": {
+        "type": "boolean"
+      },
+      "mvp_included": {
+        "type": "boolean"
+      },
+      "external_dependency": {
+        "type": "boolean"
+      },
+      "implementation_type": {
+        "type": "string"
+      },
+      "integration_runtime": {
+        "type": "string"
+      },
+      "provides": {
+        "type": "object",
+        "required": [
+          "routes",
+          "permissions",
+          "events_emitted",
+          "events_consumed",
+          "ui_slots",
+          "config_keys"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "routes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "path",
+                "method",
+                "permission",
+                "mutable"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "pattern": "^/"
+                },
+                "method": {
+                  "enum": [
+                    "GET",
+                    "POST",
+                    "PUT",
+                    "PATCH",
+                    "DELETE"
+                  ]
+                },
+                "permission": {
+                  "type": "string"
+                },
+                "mutable": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "events_emitted": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "events_consumed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "ui_slots": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "config_keys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        }
+      },
+      "data": {
+        "type": "object",
+        "required": [
+          "owned_entities",
+          "read_entities",
+          "forbidden_entities"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "owned_entities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "read_entities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "forbidden_entities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        }
+      },
+      "forbidden": {
+        "type": "object",
+        "required": [
+          "direct_imports_from",
+          "direct_db_access_to",
+          "mutates_core"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "direct_imports_from": {
+            "type": "object",
+            "required": [
+              "mode",
+              "allowed_access"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "mode": {
+                "const": "deny_all_module_internals"
+              },
+              "allowed_access": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "public_contracts",
+                    "events",
+                    "permissions",
+                    "module_manifest"
+                  ]
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              }
+            }
+          },
+          "direct_db_access_to": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mutates_core": {
+            "type": "boolean"
+          }
+        }
+      },
+      "validation": {
+        "type": "object",
+        "required": [
+          "contract_tests",
+          "doctor_checks",
+          "required_evidence"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "contract_tests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "doctor_checks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "required_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        }
+      },
+      "rollback": {
+        "type": "object",
+        "required": [
+          "strategy",
+          "config_key"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "strategy": {
+            "enum": [
+              "disable_module",
+              "restore_backup",
+              "revert_manifest",
+              "rollback_migration",
+              "manual_review"
+            ]
+          },
+          "config_key": {
+            "type": "string"
+          }
+        }
+      },
+      "source_doc": {
+        "type": "string"
+      },
+      "contract_doc": {
+        "type": "string"
+      },
+      "blocking": {
+        "type": "boolean"
+      },
+      "validated_by": {
+        "type": "string"
+      },
+      "evidence_required": {
+        "type": "boolean"
+      },
+      "wamp_relevant": {
+        "type": "boolean"
+      },
+      "ai_read_required": {
+        "type": "boolean"
+      },
+      "requires_backup_before_change": {
+        "type": "boolean"
+      },
+      "dependency_contracts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "module",
+            "kind",
+            "required",
+            "required_for",
+            "fallback",
+            "min_lifecycle_status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "module": {
+              "type": "string"
+            },
+            "kind": {
+              "enum": [
+                "runtime_blocking",
+                "permission_guard",
+                "event_bus",
+                "event_consumer",
+                "ui_enhancement",
+                "data_read",
+                "data_write",
+                "stub_allowed",
+                "future_optional"
+              ]
+            },
+            "required": {
+              "type": "boolean"
+            },
+            "required_for": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "fallback": {
+              "type": "string",
+              "minLength": 8
+            },
+            "min_lifecycle_status": {
+              "enum": [
+                "planned",
+                "active",
+                "stub",
+                "disabled",
+                "deprecated"
+              ]
+            },
+            "allowed_events": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "direction": {
+              "enum": [
+                "emit",
+                "consume",
+                "emit_consume"
+              ]
+            },
+            "delivery_semantics": {
+              "type": "string",
+              "minLength": 8
+            },
+            "failure_policy": {
+              "type": "string",
+              "minLength": 8
+            },
+            "audit_policy": {
+              "type": "string",
+              "minLength": 8
+            },
+            "idempotency_policy": {
+              "type": "string",
+              "minLength": 8
+            },
+            "entity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "owner_module": {
+              "type": "string",
+              "minLength": 1
+            },
+            "purpose": {
+              "type": "string",
+              "minLength": 8
+            },
+            "allowed_fields": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "read_model": {
+              "type": "string",
+              "minLength": 1
+            },
+            "permission_context": {
+              "type": "string",
+              "minLength": 1
+            },
+            "redaction_policy": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidence_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "doctor_check_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "ai_access_policy": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "data_read"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              },
+              "then": {
+                "required": [
+                  "entity",
+                  "owner_module",
+                  "purpose",
+                  "allowed_fields",
+                  "read_model",
+                  "permission_context",
+                  "redaction_policy",
+                  "failure_policy",
+                  "evidence_ref",
+                  "doctor_check_ref",
+                  "ai_access_policy"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "commercial_tier_candidate": {
+        "enum": [
+          "core_included",
+          "free_mvp",
+          "future_premium_candidate",
+          "internal_only",
+          "not_monetizable"
+        ]
+      },
+      "commercial_surface": {
+        "enum": [
+          "core_internal",
+          "user_facing",
+          "admin_internal",
+          "integration_surface",
+          "ai_operations"
+        ]
+      }
+    }
+  }
+}

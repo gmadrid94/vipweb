@@ -1,0 +1,818 @@
+[
+  {
+    "id": "public.view",
+    "roles": [
+      "visitor",
+      "registered_user",
+      "admin",
+      "owner"
+    ],
+    "resource": "public",
+    "action": "view",
+    "risk_level": "low",
+    "phase": "foundation",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": true,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "core.identity",
+    "consumed_by_modules": [
+      "core.identity"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "auth.login",
+    "roles": [
+      "visitor"
+    ],
+    "resource": "auth",
+    "action": "login",
+    "risk_level": "medium",
+    "phase": "foundation",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": true,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "core.identity",
+    "consumed_by_modules": [
+      "core.identity"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "auth.logout",
+    "roles": [
+      "registered_user",
+      "admin",
+      "owner"
+    ],
+    "resource": "auth",
+    "action": "logout",
+    "risk_level": "low",
+    "phase": "foundation",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": true,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "core.identity",
+    "consumed_by_modules": [
+      "core.identity"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "profile.view",
+    "roles": [
+      "registered_user",
+      "admin",
+      "owner"
+    ],
+    "resource": "profile",
+    "action": "view",
+    "risk_level": "low",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "profile",
+    "consumed_by_modules": [
+      "onboarding",
+      "profile"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "profile.update",
+    "roles": [
+      "registered_user",
+      "owner"
+    ],
+    "resource": "profile",
+    "action": "update",
+    "risk_level": "medium",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "profile",
+    "consumed_by_modules": [
+      "onboarding",
+      "profile"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "dashboard.view",
+    "roles": [
+      "registered_user",
+      "admin",
+      "owner"
+    ],
+    "resource": "dashboard",
+    "action": "view",
+    "risk_level": "low",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "dashboard",
+    "consumed_by_modules": [
+      "dashboard"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "module.view",
+    "roles": [
+      "registered_user",
+      "admin",
+      "owner"
+    ],
+    "resource": "module",
+    "action": "view",
+    "risk_level": "low",
+    "phase": "foundation",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": true,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "core.modules",
+    "consumed_by_modules": [
+      "core.modules"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "module.use",
+    "roles": [
+      "registered_user",
+      "owner"
+    ],
+    "resource": "module",
+    "action": "use",
+    "risk_level": "medium",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "core.modules",
+    "consumed_by_modules": [
+      "core.modules"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "notification.view",
+    "roles": [
+      "registered_user",
+      "admin",
+      "owner"
+    ],
+    "resource": "notification",
+    "action": "view",
+    "risk_level": "low",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "notifications",
+    "consumed_by_modules": [
+      "notifications"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "gamification.view",
+    "roles": [
+      "registered_user",
+      "admin",
+      "owner"
+    ],
+    "resource": "gamification",
+    "action": "view",
+    "risk_level": "low",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "gamification",
+    "consumed_by_modules": [
+      "gamification"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "integration.view",
+    "roles": [
+      "admin",
+      "owner"
+    ],
+    "resource": "integration",
+    "action": "view",
+    "risk_level": "medium",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "integrations",
+    "consumed_by_modules": [
+      "integrations"
+    ],
+    "aggregated_by_modules": [
+      "admin"
+    ],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "integration.configure",
+    "roles": [
+      "owner"
+    ],
+    "resource": "integration",
+    "action": "configure_stub",
+    "risk_level": "high",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "integrations",
+    "consumed_by_modules": [
+      "integrations"
+    ],
+    "aggregated_by_modules": [
+      "admin"
+    ],
+    "manual_review_ref": "Owner-only runtime permission. Admin may aggregate/view integration state but cannot execute configuration.",
+    "grant_requires_approval": true,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "admin.access",
+    "roles": [
+      "admin",
+      "owner"
+    ],
+    "resource": "admin",
+    "action": "access",
+    "risk_level": "high",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "admin",
+    "consumed_by_modules": [
+      "admin"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": true,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "admin.manage_users",
+    "roles": [
+      "owner"
+    ],
+    "resource": "admin",
+    "action": "manage_users",
+    "risk_level": "critical",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "core.permissions",
+    "consumed_by_modules": [
+      "core.permissions",
+      "admin",
+      "core.identity"
+    ],
+    "aggregated_by_modules": [
+      "admin"
+    ],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": true,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "admin.manage_modules",
+    "roles": [
+      "owner"
+    ],
+    "resource": "admin",
+    "action": "manage_modules",
+    "risk_level": "critical",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "core.modules",
+    "consumed_by_modules": [
+      "core.modules",
+      "admin"
+    ],
+    "aggregated_by_modules": [
+      "admin"
+    ],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": true,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "admin.view_audit",
+    "roles": [
+      "admin",
+      "owner"
+    ],
+    "resource": "admin",
+    "action": "view_audit",
+    "risk_level": "high",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "core.audit",
+    "consumed_by_modules": [
+      "core.audit",
+      "admin"
+    ],
+    "aggregated_by_modules": [
+      "admin"
+    ],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": true,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "admin.view_evidence",
+    "roles": [
+      "admin",
+      "owner"
+    ],
+    "resource": "admin",
+    "action": "view_evidence",
+    "risk_level": "medium",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "core.doctor",
+    "consumed_by_modules": [
+      "core.doctor",
+      "admin"
+    ],
+    "aggregated_by_modules": [
+      "admin"
+    ],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "ai.read_context",
+    "roles": [
+      "ai_assistant",
+      "ai_admin",
+      "owner"
+    ],
+    "resource": "ai",
+    "action": "read_context",
+    "risk_level": "medium",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "ai_assistant",
+    "consumed_by_modules": [
+      "ai_assistant"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "mvp_ready",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "ai.suggest_changes",
+    "roles": [
+      "ai_assistant",
+      "ai_admin",
+      "owner"
+    ],
+    "resource": "ai",
+    "action": "suggest_changes",
+    "risk_level": "medium",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "ai_assistant",
+    "consumed_by_modules": [
+      "ai_assistant"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "mvp_ready",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "ai.write_draft",
+    "roles": [
+      "ai_admin",
+      "owner"
+    ],
+    "resource": "ai",
+    "action": "write_draft",
+    "risk_level": "high",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "ai_assistant",
+    "consumed_by_modules": [
+      "ai_assistant"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": true,
+    "ai_runtime_status": "restricted_mvp",
+    "grant_requires_disabled_by_default_role": true
+  },
+  {
+    "id": "system.configure",
+    "roles": [
+      "owner"
+    ],
+    "resource": "system",
+    "action": "configure",
+    "risk_level": "critical",
+    "phase": "foundation",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": true,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "core.config",
+    "consumed_by_modules": [
+      "core.config"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": true,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "system.run_doctor",
+    "roles": [],
+    "resource": "system",
+    "action": "run_doctor_legacy",
+    "risk_level": "high",
+    "phase": "foundation",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": true,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "deprecated": true,
+    "replaced_by": "system.run_doctor.readonly",
+    "description": "Alias legacy deprecado. No asignable a roles runtime; no usar en rutas, roles IA ni nuevos contratos.",
+    "owner_module": "core.doctor",
+    "consumed_by_modules": [
+      "core.doctor"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Legacy alias retained only for historical traceability; not assignable by seed.",
+    "grant_requires_approval": true,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": true,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "id": "system.run_doctor.readonly",
+    "roles": [
+      "admin",
+      "owner",
+      "ai_assistant"
+    ],
+    "resource": "system",
+    "action": "run_doctor_readonly",
+    "risk_level": "medium",
+    "phase": "foundation",
+    "description": "Ejecuta Doctor en modo lectura y no escribe evidencia ni cambia estado.",
+    "owner_module": "core.doctor",
+    "consumed_by_modules": [
+      "core.doctor",
+      "admin",
+      "ai_assistant"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "mvp_ready",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": true,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "id": "evidence.write",
+    "roles": [
+      "owner",
+      "ai_admin"
+    ],
+    "resource": "evidence",
+    "action": "write",
+    "risk_level": "high",
+    "phase": "foundation",
+    "description": "Escribe evidencia versionada tras ejecución aprobada.",
+    "owner_module": "core.doctor",
+    "consumed_by_modules": [
+      "core.doctor",
+      "ai_assistant"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": true,
+    "ai_runtime_status": "restricted_mvp",
+    "grant_requires_disabled_by_default_role": true
+  },
+  {
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": true,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "id": "doctor.status.validate",
+    "roles": [
+      "owner"
+    ],
+    "resource": "doctor_status",
+    "action": "validate",
+    "risk_level": "critical",
+    "phase": "foundation",
+    "description": "Marca estado documental como validado; solo owner humano.",
+    "owner_module": "core.doctor",
+    "consumed_by_modules": [
+      "core.doctor"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": true,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": true,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "id": "system.view_events",
+    "roles": [
+      "admin",
+      "owner"
+    ],
+    "resource": "system_events",
+    "action": "view",
+    "risk_level": "medium",
+    "phase": "foundation",
+    "description": "Consulta eventos de dominio registrados sin ejecutar Doctor.",
+    "owner_module": "core.events",
+    "consumed_by_modules": [
+      "core.events"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "notification.mark_read",
+    "roles": [
+      "registered_user",
+      "admin",
+      "owner"
+    ],
+    "resource": "notification",
+    "action": "mark_read",
+    "risk_level": "low",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_REFERENCE_CANONICAL_ROLES",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "description": "Marca una notificación como leída sin conceder permisos generales de escritura sobre notificaciones.",
+    "owner_module": "notifications",
+    "consumed_by_modules": [
+      "notifications"
+    ],
+    "aggregated_by_modules": [],
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "doctor.view_panel",
+    "roles": [
+      "admin",
+      "owner"
+    ],
+    "resource": "doctor",
+    "action": "view_panel",
+    "risk_level": "medium",
+    "phase": "foundation",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": true,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "core.doctor",
+    "consumed_by_modules": [
+      "core.doctor",
+      "admin"
+    ],
+    "aggregated_by_modules": [
+      "admin"
+    ],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "dashboard.track_view",
+    "roles": [
+      "registered_user",
+      "admin",
+      "owner"
+    ],
+    "resource": "dashboard",
+    "action": "track_view",
+    "risk_level": "medium",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "dashboard",
+    "consumed_by_modules": [
+      "dashboard"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  },
+  {
+    "id": "admin.track_panel_view",
+    "roles": [
+      "admin",
+      "owner"
+    ],
+    "resource": "admin",
+    "action": "track_panel_view",
+    "risk_level": "medium",
+    "phase": "mvp",
+    "source_doc": "docs/06-technical/05-security.md",
+    "blocking": false,
+    "validated_by": "PERMISSIONS_SEEDS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "owner_module": "admin",
+    "consumed_by_modules": [
+      "admin"
+    ],
+    "aggregated_by_modules": [],
+    "manual_review_ref": "Seed review pending implementation; executable permission/role consistency is validated by Doctor.",
+    "grant_requires_approval": false,
+    "ai_runtime_status": "not_ai",
+    "grant_requires_disabled_by_default_role": false
+  }
+]

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/MODULE_USE_TRACK.response.schema.json",
+  "title": "MODULE_USE_TRACK success response",
+  "type": "object",
+  "required": [
+    "ok",
+    "data",
+    "error",
+    "meta"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "module_id",
+        "usage_event",
+        "deduplicated_for_achievement"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "module_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "usage_event": {
+          "const": "module.used"
+        },
+        "deduplicated_for_achievement": {
+          "type": "boolean"
+        }
+      }
+    },
+    "error": {
+      "type": "null"
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "request_id",
+        "action_id",
+        "emitted_events"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "action_id": {
+          "const": "MODULE_USE_TRACK"
+        },
+        "emitted_events": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/AUTH_LOGOUT.response.schema.json",
+  "title": "AUTH_LOGOUT success response",
+  "type": "object",
+  "required": [
+    "ok",
+    "data",
+    "error",
+    "meta"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "logged_out",
+        "redirect_to"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "logged_out": {
+          "const": true
+        },
+        "redirect_to": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      }
+    },
+    "error": {
+      "type": "null"
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "request_id",
+        "action_id",
+        "emitted_events"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "action_id": {
+          "const": "AUTH_LOGOUT"
+        },
+        "emitted_events": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

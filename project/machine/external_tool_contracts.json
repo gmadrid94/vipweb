@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "execution_model": "AI_FIRST_LOCAL_EXECUTION",
+  "roots": {
+    "wamp_www_root": "C:/wamp64/www",
+    "official_repo_root": "C:/wamp64/www/vipweb",
+    "project_control_root": "C:/wamp64/www/vipweb/project",
+    "public_document_root": "C:/wamp64/www/vipweb/public",
+    "backup_root": "C:/wamp64/www/vipweb_backups",
+    "external_tools_root": "C:/wamp64/www/vipweb_tools",
+    "external_tool_log_root": "C:/wamp64/www/vipweb_tools/logs",
+    "internal_project_tools_root": "C:/wamp64/www/vipweb/tools"
+  },
+  "declared_local_facts_pending_verification": [
+    "WAMP is configured by owner to serve C:/wamp64/www/vipweb/public as public root",
+    "C:/wamp64/www/vipweb is the official Git-linked project folder"
+  ],
+  "logging": {
+    "per_execution_directory_pattern": "YYYY-MM-DD_HHMMSS__TASK-ID__tool-name",
+    "root": "C:/wamp64/www/vipweb_tools/logs",
+    "required_files": [
+      "run.log",
+      "result.json",
+      "stdout.txt",
+      "stderr.txt",
+      "context.json"
+    ],
+    "optional_files": [
+      "files_created.json",
+      "files_modified.json",
+      "git_status_before.txt",
+      "git_status_after.txt"
+    ],
+    "overwrite_previous_logs": false,
+    "delete_old_logs_automatically": false,
+    "gpt_review_required": true
+  },
+  "trust_boundary": {
+    "logs_are_context_not_authority": true,
+    "tools_may_not_approve_human_gates": true,
+    "tools_may_not_activate_adr026": true,
+    "tools_may_not_store_secrets_in_logs": true
+  },
+  "tools": [
+    {
+      "tool_id": "S0-000-check-wamp-env",
+      "task_id": "S0-000",
+      "phase": "Sprint 0",
+      "entrypoint": "C:/wamp64/www/vipweb_tools/phase-01-sprint0/S0-000-check-wamp-env/run.bat",
+      "purpose": "Detect real WAMP/PHP/MySQL versions and verify public document root exposure rules.",
+      "allowed_write_roots": [
+        "C:/wamp64/www/vipweb_tools/logs"
+      ],
+      "forbidden_write_roots": [
+        "C:/wamp64/www/vipweb/app",
+        "C:/wamp64/www/vipweb/config",
+        "C:/wamp64/www/vipweb/project/machine",
+        "C:/wamp64/www/vipweb/project/database"
+      ],
+      "requires_backup": false,
+      "requires_git_clean": false,
+      "destructive": false,
+      "idempotent": true,
+      "expected_outputs": [
+        "result.json",
+        "run.log",
+        "stdout.txt",
+        "stderr.txt",
+        "context.json"
+      ],
+      "gpt_review_checks": [
+        "php_version_detected_or_blocked",
+        "database_version_detected_or_blocked",
+        "apache_or_wamp_status_detected_or_blocked",
+        "public_root_checked",
+        "private_roots_not_exposed_or_blocked"
+      ]
+    },
+    {
+      "tool_id": "S0-001-create-backup",
+      "task_id": "S0-001",
+      "phase": "Sprint 0",
+      "entrypoint": "C:/wamp64/www/vipweb_tools/phase-01-sprint0/S0-001-create-backup/run.bat",
+      "purpose": "Create timestamped external backup of the official project folder before changes.",
+      "allowed_write_roots": [
+        "C:/wamp64/www/vipweb_backups",
+        "C:/wamp64/www/vipweb_tools/logs"
+      ],
+      "forbidden_write_roots": [
+        "C:/wamp64/www/vipweb/app",
+        "C:/wamp64/www/vipweb/project/machine",
+        "C:/wamp64/www/vipweb/project/database"
+      ],
+      "requires_backup": false,
+      "requires_git_clean": false,
+      "destructive": false,
+      "idempotent": false,
+      "expected_outputs": [
+        "result.json",
+        "run.log",
+        "stdout.txt",
+        "stderr.txt",
+        "context.json"
+      ],
+      "gpt_review_checks": [
+        "backup_path_created",
+        "project_files_copied",
+        "backup_not_inside_repo",
+        "logs_written"
+      ]
+    },
+    {
+      "tool_id": "S0-011-run-update-script",
+      "task_id": "S0-011",
+      "phase": "Sprint 0",
+      "entrypoint": "C:/wamp64/www/vipweb_tools/phase-01-sprint0/S0-011-run-update-script/run.bat",
+      "purpose": "Execute the canonical readonly documentation validator and capture output for GPT review.",
+      "allowed_write_roots": [
+        "C:/wamp64/www/vipweb_tools/logs"
+      ],
+      "forbidden_write_roots": [
+        "C:/wamp64/www/vipweb/project/machine",
+        "C:/wamp64/www/vipweb/project/database",
+        "C:/wamp64/www/vipweb/app"
+      ],
+      "requires_backup": false,
+      "requires_git_clean": false,
+      "destructive": false,
+      "idempotent": true,
+      "expected_outputs": [
+        "result.json",
+        "run.log",
+        "stdout.txt",
+        "stderr.txt",
+        "context.json"
+      ],
+      "gpt_review_checks": [
+        "validator_executed",
+        "json_status_passed_or_failed",
+        "failed_checks_explained"
+      ]
+    }
+  ]
+}

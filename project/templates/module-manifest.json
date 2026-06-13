@@ -1,0 +1,77 @@
+{
+  "id": "example.module",
+  "name": "Example Module",
+  "module_type": "feature",
+  "phase": "mvp",
+  "lifecycle_status": "planned",
+  "owner": "system",
+  "purpose": "Responsabilidad única del módulo expresada en una frase verificable.",
+  "depends_on": [],
+  "requires_manifest": true,
+  "mvp_included": true,
+  "external_dependency": false,
+  "implementation_type": "feature_module",
+  "integration_runtime": "not_applicable",
+  "provides": {
+    "routes": [
+      {
+        "path": "/example",
+        "method": "GET",
+        "permission": "module.view",
+        "mutable": false
+      }
+    ],
+    "permissions": [
+      "module.view"
+    ],
+    "events_emitted": [],
+    "events_consumed": [],
+    "ui_slots": [],
+    "config_keys": [
+      "example_module.enabled"
+    ]
+  },
+  "data": {
+    "owned_entities": [],
+    "read_entities": [],
+    "forbidden_entities": [
+      "Permission",
+      "AIActionLog"
+    ]
+  },
+  "forbidden": {
+    "direct_imports_from": {
+      "mode": "deny_all_module_internals",
+      "allowed_access": [
+        "public_contracts",
+        "events",
+        "permissions",
+        "module_manifest"
+      ]
+    },
+    "direct_db_access_to": [
+      "other_module_tables"
+    ],
+    "mutates_core": false
+  },
+  "validation": {
+    "contract_tests": [
+      "example.module.manifest.valid"
+    ],
+    "doctor_checks": [
+      "MODULE_SCHEMA_DEEP_CONTRACT"
+    ],
+    "required_evidence": [
+      "doctor:semantic"
+    ]
+  },
+  "rollback": {
+    "strategy": "disable_module",
+    "config_key": "example_module.enabled"
+  },
+  "source_doc": "docs/04-architecture/02-modules.md",
+  "contract_doc": "docs/04-architecture/03-module-contracts.md",
+  "dependency_contracts": [],
+  "commercial_tier_candidate": "free_mvp",
+  "commercial_surface": "user_facing"
+}

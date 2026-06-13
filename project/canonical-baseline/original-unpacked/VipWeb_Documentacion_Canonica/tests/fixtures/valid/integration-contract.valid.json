@@ -1,0 +1,58 @@
+[
+  {
+    "id": "integration.fixture",
+    "name": "Fixture Integration",
+    "owner_module": "core.integrations",
+    "phase": "future",
+    "lifecycle_status": "planned",
+    "provider": {
+      "code": "fixture",
+      "display_name": "Fixture",
+      "provider_type": "internal",
+      "vendor_lock_in_risk": "low"
+    },
+    "scopes": [],
+    "permissions": [],
+    "credentials": {
+      "required_secret_keys": [],
+      "real_values_forbidden": true,
+      "storage_policy": "not_required"
+    },
+    "data_exchange": {
+      "incoming": [],
+      "outgoing": [],
+      "personal_data": false,
+      "sensitive_data": false,
+      "retention_policy": "fixture_only"
+    },
+    "events": {
+      "emitted": [],
+      "consumed": []
+    },
+    "rate_limits": {
+      "declared": false,
+      "policy": null,
+      "retry_strategy": null
+    },
+    "fallback": {
+      "manual_available": true,
+      "strategy": "not_required"
+    },
+    "sandbox": {
+      "required_before_active": true,
+      "evidence_ref": null,
+      "last_verified_at": null
+    },
+    "ai_access": {
+      "ai_read_allowed": false,
+      "ai_write_allowed": false,
+      "max_ai_level": null,
+      "approval_required": false
+    },
+    "rollback": {
+      "strategy": "disable_config_flag",
+      "config_key": "integration.fixture.enabled"
+    },
+    "source_doc": "docs/06-technical/06-testing.md"
+  }
+]

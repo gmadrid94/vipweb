@@ -1,0 +1,275 @@
+[
+  {
+    "id": "DCE-001",
+    "entity": "ProgressRecord",
+    "table": "progress_records",
+    "field_or_rule": "user_id must be NOT NULL for persistent gamification runtime",
+    "constraint_type": "required_owner",
+    "criticality": "critical",
+    "enforcement_db": {
+      "required": true,
+      "mechanism": "NOT NULL + FK users(id)"
+    },
+    "enforcement_application": {
+      "required": true,
+      "mechanism": "gamification handler rejects events without non-null payload.user_id for persistence"
+    },
+    "enforcement_doctor": {
+      "required": true,
+      "check_id": "GAMIFICATION_PERSISTENT_USER_ID_NOT_NULL"
+    },
+    "evidence_required": [
+      "migration DDL",
+      "column_contracts",
+      "physical_constraints_matrix",
+      "gamification_rules"
+    ],
+    "decision_ref": "ADR-010",
+    "source_doc": "docs/05-domain-data/04-data-strategy.md"
+  },
+  {
+    "id": "DCE-002",
+    "entity": "UserAchievement",
+    "table": "user_achievements",
+    "field_or_rule": "user_id must be NOT NULL and unique with achievement_id",
+    "constraint_type": "idempotency",
+    "criticality": "critical",
+    "enforcement_db": {
+      "required": true,
+      "mechanism": "NOT NULL + FK users(id) + unique(user_id, achievement_id)"
+    },
+    "enforcement_application": {
+      "required": true,
+      "mechanism": "achievement unlock requires resolved user context"
+    },
+    "enforcement_doctor": {
+      "required": true,
+      "check_id": "GAMIFICATION_PERSISTENT_USER_ID_NOT_NULL"
+    },
+    "evidence_required": [
+      "migration DDL",
+      "entity constraints_minimum",
+      "gamification achievements docs"
+    ],
+    "decision_ref": "ADR-010",
+    "source_doc": "docs/08-gamification/02-achievements.md"
+  },
+  {
+    "id": "DCE-003",
+    "entity": "GamificationRuleState",
+    "table": "gamification_rule_states",
+    "field_or_rule": "user_id must be NOT NULL and part of cooldown uniqueness",
+    "constraint_type": "cooldown_idempotency",
+    "criticality": "critical",
+    "enforcement_db": {
+      "required": true,
+      "mechanism": "NOT NULL + FK users(id) + unique(user_id, rule_id, cooldown_scope_key, window_start)"
+    },
+    "enforcement_application": {
+      "required": true,
+      "mechanism": "cooldown state only created for eligible user-scoped events"
+    },
+    "enforcement_doctor": {
+      "required": true,
+      "check_id": "GAMIFICATION_PERSISTENT_USER_ID_NOT_NULL"
+    },
+    "evidence_required": [
+      "migration DDL",
+      "balance rules",
+      "gamification_rules"
+    ],
+    "decision_ref": "ADR-010",
+    "source_doc": "docs/08-gamification/06-balance-rules.md"
+  },
+  {
+    "id": "DCE-004",
+    "entity": "ProgressRecord",
+    "table": "progress_records",
+    "field_or_rule": "points must be integer >= 0",
+    "constraint_type": "range",
+    "criticality": "high",
+    "enforcement_db": {
+      "required": false,
+      "mechanism": "INT column; optional CHECK when target MariaDB/MySQL version supports it consistently"
+    },
+    "enforcement_application": {
+      "required": true,
+      "mechanism": "gamification rules schema enforces points minimum 0 and handler rejects negative points"
+    },
+    "enforcement_doctor": {
+      "required": true,
+      "check_id": "GAMIFICATION_RULES_MATCH_SCHEMA"
+    },
+    "evidence_required": [
+      "gamification-rules schema validation",
+      "runtime test matrix"
+    ],
+    "decision_ref": "ADR-010",
+    "source_doc": "docs/05-domain-data/04-data-strategy.md"
+  },
+  {
+    "id": "DCE-005",
+    "entity": "DomainEvent",
+    "table": "domain_events",
+    "field_or_rule": "events without non-null user_id are audit-only for gamification persistence",
+    "constraint_type": "eligibility_guard",
+    "criticality": "high",
+    "enforcement_db": {
+      "required": false,
+      "mechanism": "DomainEvent remains generic; no DB rule because not all events are user-scoped"
+    },
+    "enforcement_application": {
+      "required": true,
+      "mechanism": "gamification handler evaluates eligibility.user_context_source before writes"
+    },
+    "enforcement_doctor": {
+      "required": true,
+      "check_id": "GAMIFICATION_EVENT_USER_CONTEXT_MATCHES_PAYLOAD_SCHEMA"
+    },
+    "evidence_required": [
+      "gamification_rules eligibility predicates",
+      "event payload schemas"
+    ],
+    "decision_ref": "ADR-010",
+    "source_doc": "docs/08-gamification/00-gamification-overview.md"
+  },
+  {
+    "id": "DCE-006",
+    "entity": "AIDraft",
+    "table": "ai_drafts",
+    "field_or_rule": "AI-prepared changes to protected files require version-control gate before real application",
+    "constraint_type": "operational_guardrail",
+    "criticality": "critical",
+    "enforcement_db": {
+      "required": false,
+      "mechanism": "operational workflow, not data constraint"
+    },
+    "enforcement_application": {
+      "required": true,
+      "mechanism": "ApprovalService + protected_ai_write_gate + ADR-026 when trigger applies"
+    },
+    "enforcement_doctor": {
+      "required": true,
+      "check_id": "AI_DEVELOPMENT_MODE_GATE_DECLARED"
+    },
+    "evidence_required": [
+      "S0-000A preflight",
+      "ApprovalRecord",
+      "git baseline evidence when applicable"
+    ],
+    "decision_ref": "ADR-026",
+    "source_doc": "docs/09-ai-operations/08-ai-approval-policy.md"
+  },
+  {
+    "id": "DCE-007",
+    "entity": "Integration",
+    "table": "integrations",
+    "field_or_rule": "first real integration must have planned/stub contract before implementation",
+    "constraint_type": "extension_contract_gate",
+    "criticality": "high",
+    "enforcement_db": {
+      "required": false,
+      "mechanism": "catalog/contract gate, not FK"
+    },
+    "enforcement_application": {
+      "required": true,
+      "mechanism": "integration cannot be implemented without machine/integration_contracts.json planned/stub contract"
+    },
+    "enforcement_doctor": {
+      "required": true,
+      "check_id": "FIRST_EXTENSION_REQUIRES_PLANNED_OR_STUB_CONTRACT"
+    },
+    "evidence_required": [
+      "integration contract",
+      "permissions matrix",
+      "rollback plan"
+    ],
+    "decision_ref": "ADR-002",
+    "source_doc": "docs/04-architecture/04-integration-architecture.md"
+  },
+  {
+    "id": "DCE-008",
+    "entity": "SubwebContract",
+    "table": null,
+    "field_or_rule": "first real subweb must enter as planned or stub before active",
+    "constraint_type": "extension_contract_gate",
+    "criticality": "high",
+    "enforcement_db": {
+      "required": false,
+      "mechanism": "subwebs are contract catalog entries, not DB rows in Sprint 0"
+    },
+    "enforcement_application": {
+      "required": true,
+      "mechanism": "no route/subweb implementation without machine/subweb_contracts.json planned/stub contract"
+    },
+    "enforcement_doctor": {
+      "required": true,
+      "check_id": "FIRST_EXTENSION_REQUIRES_PLANNED_OR_STUB_CONTRACT"
+    },
+    "evidence_required": [
+      "subweb contract",
+      "route permission matrix",
+      "rollback plan"
+    ],
+    "decision_ref": "ADR-002",
+    "source_doc": "docs/04-architecture/08-subweb-contracts.md"
+  },
+  {
+    "id": "DCE-009",
+    "entity": "UserContext",
+    "table": "user_contexts",
+    "field_or_rule": "user_id must be NOT NULL because persistent context requires authenticated provisioned user in MVP",
+    "constraint_type": "authenticated_user_required",
+    "criticality": "critical",
+    "enforcement_db": {
+      "required": true,
+      "mechanism": "NOT NULL + FK users(id) + unique(user_id)"
+    },
+    "enforcement_application": {
+      "required": true,
+      "mechanism": "profile/context service only creates UserContext after authenticated or provisioned user exists"
+    },
+    "enforcement_doctor": {
+      "required": true,
+      "check_id": "AUTHENTICATED_USER_CONTEXT_ONBOARDING_CONTRACTS_MATCH_DDL"
+    },
+    "evidence_required": [
+      "migration DDL",
+      "column_contracts",
+      "physical_constraints_matrix",
+      "relationships",
+      "profile.updated payload schema"
+    ],
+    "decision_ref": "ADR-006 / ADR-017",
+    "source_doc": "docs/05-domain-data/04-data-strategy.md"
+  },
+  {
+    "id": "DCE-010",
+    "entity": "OnboardingSession",
+    "table": "onboarding_sessions",
+    "field_or_rule": "user_id must be NOT NULL because persistent onboarding requires authenticated provisioned user in MVP",
+    "constraint_type": "authenticated_user_required",
+    "criticality": "critical",
+    "enforcement_db": {
+      "required": true,
+      "mechanism": "NOT NULL + FK users(id)"
+    },
+    "enforcement_application": {
+      "required": true,
+      "mechanism": "onboarding service only creates OnboardingSession after authenticated or provisioned user exists"
+    },
+    "enforcement_doctor": {
+      "required": true,
+      "check_id": "AUTHENTICATED_USER_CONTEXT_ONBOARDING_CONTRACTS_MATCH_DDL"
+    },
+    "evidence_required": [
+      "migration DDL",
+      "column_contracts",
+      "physical_constraints_matrix",
+      "relationships",
+      "onboarding.completed payload schema"
+    ],
+    "decision_ref": "ADR-006 / ADR-017",
+    "source_doc": "docs/05-domain-data/04-data-strategy.md"
+  }
+]

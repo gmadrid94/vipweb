@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/decision.recorded.v1.schema.json",
+  "title": "decision.recorded v1 payload",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "adr",
+    "status",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "decision_id": {
+      "type": "string"
+    },
+    "adr": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

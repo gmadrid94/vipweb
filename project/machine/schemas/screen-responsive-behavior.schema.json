@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "screen_id",
+      "mobile",
+      "tablet",
+      "desktop"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "screen_id": {
+        "type": "string"
+      },
+      "mobile": {
+        "$ref": "#/$defs/breakpoint"
+      },
+      "tablet": {
+        "$ref": "#/$defs/breakpoint"
+      },
+      "desktop": {
+        "$ref": "#/$defs/breakpoint"
+      }
+    }
+  },
+  "$defs": {
+    "breakpoint": {
+      "type": "object",
+      "required": [
+        "layout",
+        "navigation",
+        "primary_content",
+        "secondary_content",
+        "critical_actions",
+        "tables",
+        "side_panel",
+        "ai_panel"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layout": {
+          "type": "string",
+          "minLength": 1
+        },
+        "navigation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "primary_content": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "secondary_content": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "critical_actions": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tables": {
+          "type": "string",
+          "minLength": 1
+        },
+        "side_panel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ai_panel": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

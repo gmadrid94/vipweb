@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/AUTH_LOGIN_SUBMIT.request.schema.json",
+  "title": "AUTH_LOGIN_SUBMIT request body",
+  "type": "object",
+  "required": [
+    "request_id",
+    "csrf_token",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 120
+    },
+    "csrf_token": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "email",
+        "password"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        },
+        "password": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 256
+        },
+        "remember_me": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    }
+  }
+}

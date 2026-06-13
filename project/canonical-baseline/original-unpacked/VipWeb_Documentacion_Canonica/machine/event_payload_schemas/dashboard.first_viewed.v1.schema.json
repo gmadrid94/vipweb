@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/dashboard.first_viewed.v1.schema.json",
+  "title": "dashboard.first_viewed v1 payload",
+  "type": "object",
+  "required": [
+    "user_id",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

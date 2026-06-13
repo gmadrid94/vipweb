@@ -1,0 +1,231 @@
+[
+  {
+    "id": "activation_rate",
+    "area": "producto",
+    "definition": "Porcentaje de usuarios provisionados activos con rol registered_user que completan onboarding y llegan al dashboard.",
+    "event_sources": [
+      "onboarding.completed",
+      "dashboard.first_viewed"
+    ],
+    "target_mvp": ">= 60%",
+    "denominator": "usuarios provisionados activos con rol registered_user",
+    "registration_policy": "controlled_provisioning_mvp_no_public_signup",
+    "validation_segment": "owner_operador_ecosistema_web_modular",
+    "measurement_window": "primeros 7 días desde provisioning o hasta completar onboarding, lo que ocurra antes",
+    "minimum_sample": "30 usuarios provisionados activos o 30 días de validación MVP",
+    "success_rule": ">= 60% de usuarios provisionados activos con rol registered_user completan onboarding y llegan al dashboard",
+    "warning_rule": "40% - 59%",
+    "failure_rule": "< 40%",
+    "decision_if_warning_or_failure": "Revisar onboarding, fricción de login, copy de bienvenida y transición hacia dashboard antes de añadir nuevos módulos visibles.",
+    "owner": "producto",
+    "review_cadence": "semanal durante validación MVP",
+    "small_sample_policy": {
+      "applies_when": "minimum_sample not reached",
+      "decision_weight": "quantitative_baseline_only",
+      "gate_rule": "does_not_approve_or_block_visible_expansion_by_itself",
+      "qualitative_fallback": "machine/mvp_qualitative_validation.json",
+      "interpretation": "Treat as directional signal until minimum_sample is reached; use qualitative validation and observed friction for early MVP decisions."
+    },
+    "metric_classification": "early_validation_signal"
+  },
+  {
+    "id": "dashboard_return_rate",
+    "area": "producto",
+    "definition": "Porcentaje de usuarios que vuelven al dashboard tras activación.",
+    "event_sources": [
+      "dashboard.viewed"
+    ],
+    "target_mvp": "medir baseline",
+    "measurement_window": "7 días tras activation_rate positiva",
+    "minimum_sample": "30 usuarios activados o 30 días naturales, lo que ocurra antes",
+    "success_rule": ">= 30% de usuarios activados vuelven al dashboard al menos una vez en D1-D7",
+    "warning_rule": "20% - 29%",
+    "failure_rule": "< 20%",
+    "decision_if_warning_or_failure": "Revisar dashboard, next-step card, onboarding completion copy y notificaciones internas antes de añadir nuevas features",
+    "review_cadence": "al cierre del primer baseline MVP y después cada ciclo de roadmap",
+    "owner": "producto",
+    "denominator": "usuarios activados que completaron onboarding y llegaron al dashboard",
+    "small_sample_policy": {
+      "applies_when": "minimum_sample not reached",
+      "decision_weight": "quantitative_baseline_only",
+      "gate_rule": "does_not_approve_or_block_visible_expansion_by_itself",
+      "qualitative_fallback": "machine/mvp_qualitative_validation.json",
+      "interpretation": "Treat as directional signal until minimum_sample is reached; use qualitative validation and observed friction for early MVP decisions."
+    },
+    "metric_classification": "early_validation_signal"
+  },
+  {
+    "id": "module_usage_count",
+    "area": "negocio",
+    "definition": "Número de usos reales de módulos por usuario provisionado activo; no mide instalación, activación, configuración ni disponibilidad del módulo.",
+    "event_sources": [
+      "module.used"
+    ],
+    "target_mvp": ">= 1 módulo usado",
+    "validation_segment": "owner_operador_ecosistema_web_modular",
+    "success_rule": ">= 1 módulo usado por usuario activado durante la ventana MVP",
+    "measurement_window": "primeros 7 días tras activation_rate positiva",
+    "minimum_sample": "30 usuarios activados o 30 días",
+    "warning_rule": "0.5 - 0.99 módulos usados de media por usuario activado",
+    "failure_rule": "< 0.5 módulos usados de media por usuario activado",
+    "decision_if_warning_or_failure": "Revisar claridad del catálogo de módulos, cards del dashboard, next-step card y onboarding antes de activar nuevos módulos.",
+    "owner": "producto",
+    "review_cadence": "semanal durante validación MVP",
+    "context_events": [
+      "module.activated",
+      "module.configured"
+    ],
+    "operational_rule": "El numerador se calcula exclusivamente con module.used emitido por MODULE_USE_TRACK o contrato equivalente aprobado. module_activation_count queda como alias consolidado/deprecado y no debe usarse en nuevas implementaciones.",
+    "legacy_aliases": [
+      "module_activation_count"
+    ],
+    "denominator": "usuarios activados durante la ventana MVP",
+    "small_sample_policy": {
+      "applies_when": "minimum_sample not reached",
+      "decision_weight": "quantitative_baseline_only",
+      "gate_rule": "does_not_approve_or_block_visible_expansion_by_itself",
+      "qualitative_fallback": "machine/mvp_qualitative_validation.json",
+      "interpretation": "Treat as directional signal until minimum_sample is reached; use qualitative validation and observed friction for early MVP decisions."
+    },
+    "metric_classification": "early_validation_signal"
+  },
+  {
+    "id": "onboarding_completion_time",
+    "area": "ux",
+    "definition": "Tiempo hasta completar onboarding mínimo.",
+    "event_sources": [
+      "onboarding.started",
+      "onboarding.completed"
+    ],
+    "target_mvp": "sin fricción crítica",
+    "measurement_window": "primera sesión de onboarding",
+    "minimum_sample": "30 sesiones iniciadas o 30 días naturales, lo que ocurra antes",
+    "success_rule": "p75 <= 7 minutos y tasa de bloqueo/error <= 5%",
+    "warning_rule": "p75 entre 7 y 10 minutos o tasa de bloqueo/error entre 5% y 10%",
+    "failure_rule": "p75 > 10 minutos o tasa de bloqueo/error > 10%",
+    "decision_if_warning_or_failure": "Reducir pasos, simplificar copy, revisar estados empty/error y posponer enriquecimiento visual no esencial",
+    "review_cadence": "cada cierre de iteración UX del MVP",
+    "owner": "ux",
+    "denominator": "sesiones de onboarding iniciadas",
+    "small_sample_policy": {
+      "applies_when": "minimum_sample not reached",
+      "decision_weight": "quantitative_baseline_only",
+      "gate_rule": "does_not_approve_or_block_visible_expansion_by_itself",
+      "qualitative_fallback": "machine/mvp_qualitative_validation.json",
+      "interpretation": "Treat as directional signal until minimum_sample is reached; use qualitative validation and observed friction for early MVP decisions."
+    },
+    "metric_classification": "early_validation_signal"
+  },
+  {
+    "id": "ai_suggestion_acceptance_rate",
+    "area": "ia",
+    "definition": "Proporción de sugerencias IA aceptadas o convertidas en backlog.",
+    "event_sources": [
+      "ai.suggestion.created",
+      "ai.action.approved"
+    ],
+    "target_mvp": "medir baseline",
+    "measurement_window": "primeras 30 sugerencias IA o 30 días naturales",
+    "minimum_sample": "30 sugerencias generadas",
+    "success_rule": ">= 25% de sugerencias aceptadas o convertidas en backlog",
+    "warning_rule": "10% - 24%",
+    "failure_rule": "< 10%",
+    "decision_if_warning_or_failure": "Restringir superficie visible de IA, revisar prompts operativos, mejorar contexto leído y no ampliar AI-2",
+    "review_cadence": "antes de permitir más acciones AI-2",
+    "owner": "ia_operativa",
+    "denominator": "sugerencias IA generadas",
+    "small_sample_policy": {
+      "applies_when": "minimum_sample not reached",
+      "decision_weight": "quantitative_baseline_only",
+      "gate_rule": "does_not_approve_or_block_visible_expansion_by_itself",
+      "qualitative_fallback": "machine/mvp_qualitative_validation.json",
+      "interpretation": "Treat as directional signal until minimum_sample is reached; use qualitative validation and observed friction for early MVP decisions."
+    },
+    "metric_classification": "operational_quality_signal"
+  },
+  {
+    "id": "doctor_pass_rate",
+    "area": "calidad",
+    "definition": "Proporción de ejecuciones Doctor sin fallos críticos.",
+    "event_sources": [
+      "system.doctor.executed",
+      "doctor.check.failed"
+    ],
+    "target_mvp": "100% critical passed",
+    "measurement_window": "cada ejecución Doctor durante Sprint 0 y antes de merge o entrega documental",
+    "minimum_sample": "1 ejecución por cambio estructural o lote de cambios documentales",
+    "success_rule": "100% de checks critical passed y overall passed",
+    "warning_rule": "fallos medium/high sin fallos critical",
+    "failure_rule": "cualquier fallo critical o overall failed",
+    "decision_if_warning_or_failure": "Bloquear avance de gates y corregir inconsistencias antes de iniciar desarrollo visible.",
+    "owner": "calidad",
+    "review_cadence": "por cambio estructural y cierre de sprint",
+    "denominator": "ejecuciones Doctor sobre cambios estructurales o lotes documentales",
+    "small_sample_policy": {
+      "applies_when": "minimum_sample not reached",
+      "decision_weight": "quantitative_baseline_only",
+      "gate_rule": "does_not_approve_or_block_visible_expansion_by_itself",
+      "qualitative_fallback": "machine/mvp_qualitative_validation.json",
+      "interpretation": "Treat as directional signal until minimum_sample is reached; use qualitative validation and observed friction for early MVP decisions."
+    },
+    "metric_classification": "operational_quality_signal"
+  },
+  {
+    "id": "progress_event_count",
+    "area": "gamificacion",
+    "definition": "Eventos que actualizan progreso sin duplicidad/fatiga.",
+    "event_sources": [
+      "progress.updated",
+      "achievement.unlocked"
+    ],
+    "target_mvp": "medir baseline",
+    "measurement_window": "primera sesión tras onboarding y primeros 7 días",
+    "minimum_sample": "30 usuarios activados",
+    "success_rule": ">= 80% de usuarios activados reciben al menos un progress.updated legítimo; duplicate_rate <= 1%; cooldown_violations = 0",
+    "warning_rule": "50% - 79% de cobertura o duplicate_rate entre 1% y 3%",
+    "failure_rule": "< 50% de cobertura, duplicate_rate > 3% o cualquier cooldown_violations > 0",
+    "decision_if_warning_or_failure": "Revisar reglas de gamificación, cooldowns, eventos fuente y evitar añadir nuevas recompensas hasta corregir duplicados",
+    "review_cadence": "cada iteración de gamificación MVP",
+    "owner": "gamificacion",
+    "denominator": "usuarios activados elegibles para progreso durante la ventana MVP",
+    "small_sample_policy": {
+      "applies_when": "minimum_sample not reached",
+      "decision_weight": "quantitative_baseline_only",
+      "gate_rule": "does_not_approve_or_block_visible_expansion_by_itself",
+      "qualitative_fallback": "machine/mvp_qualitative_validation.json",
+      "interpretation": "Treat as directional signal until minimum_sample is reached; use qualitative validation and observed friction for early MVP decisions."
+    },
+    "metric_classification": "operational_quality_signal"
+  },
+  {
+    "id": "qualitative_mvp_validation",
+    "area": "producto",
+    "definition": "Resultado cualitativo de 3-5 sesiones observadas para validar comprensión, acompañamiento y continuidad del MVP.",
+    "event_sources": [
+      "onboarding.completed",
+      "dashboard.viewed",
+      "dashboard.first_viewed",
+      "module.used",
+      "ai.suggestion.created"
+    ],
+    "target_mvp": ">= 3 sesiones completas sin señales críticas de incomprensión",
+    "measurement_window": "primer piloto MVP usable antes de expansión visible",
+    "minimum_sample": "3 sesiones observadas; objetivo 5",
+    "success_rule": "Mayoría identifica siguiente paso, entiende dashboard como continuidad y no confunde progreso ni límites IA",
+    "warning_rule": "Dudas resolubles mediante copy, layout o contrato de pantalla sin cambiar core",
+    "failure_rule": "Incomprensión del ecosistema, dashboard técnico, ausencia de motivo para volver o confusión crítica de IA/permisos",
+    "decision_if_warning_or_failure": "Iterar copy/composición o bloquear expansión visible; reabrir hipótesis de producto si el problema afecta valor o continuidad.",
+    "review_cadence": "al cierre del primer piloto cualitativo MVP",
+    "owner": "producto",
+    "qualitative_protocol_ref": "machine/mvp_qualitative_validation.json",
+    "denominator": "evento o población definida por la métrica",
+    "small_sample_policy": {
+      "applies_when": "minimum_sample not reached",
+      "decision_weight": "quantitative_baseline_only",
+      "gate_rule": "does_not_approve_or_block_visible_expansion_by_itself",
+      "qualitative_fallback": "machine/mvp_qualitative_validation.json",
+      "interpretation": "Treat as directional signal until minimum_sample is reached; use qualitative validation and observed friction for early MVP decisions."
+    },
+    "metric_classification": "operational_quality_signal"
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "name",
+      "threat_type",
+      "input_context",
+      "expected_classification",
+      "expected_response",
+      "must_not",
+      "related_policy"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^AI-FIX-CTX-[0-9]{3}$"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1
+      },
+      "threat_type": {
+        "type": "string",
+        "minLength": 1
+      },
+      "input_context": {
+        "type": "string",
+        "minLength": 1
+      },
+      "expected_classification": {
+        "type": "string",
+        "minLength": 1
+      },
+      "expected_response": {
+        "type": "string",
+        "minLength": 1
+      },
+      "must_not": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1
+      },
+      "related_policy": {
+        "const": "AI_CONTEXT_TRUST_POLICY"
+      }
+    }
+  }
+}

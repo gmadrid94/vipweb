@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "migration_order",
+    "relationships"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "from",
+          "to",
+          "type",
+          "foreign_key",
+          "required"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "foreign_key": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "parent_requires_child": {
+            "type": "boolean"
+          },
+          "child_requires_parent": {
+            "type": "boolean"
+          },
+          "fk_nullable": {
+            "type": "boolean"
+          },
+          "anonymous_allowed": {
+            "type": "boolean"
+          },
+          "requires_authenticated_user": {
+            "type": "boolean"
+          },
+          "db_enforced": {
+            "type": "boolean"
+          },
+          "semantic_note": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

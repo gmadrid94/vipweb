@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "requested_by",
+      "approved_by",
+      "action_type",
+      "permission_requested",
+      "scope",
+      "risk_level",
+      "files_affected",
+      "rollback_plan",
+      "status",
+      "expires_at",
+      "evidence_ref",
+      "created_at",
+      "approved_at",
+      "consumed_at",
+      "scope_hash",
+      "idempotency_key",
+      "consumed_by_action_id"
+    ],
+    "additionalProperties": true,
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "requested_by": {
+        "type": "string"
+      },
+      "approved_by": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "action_type": {
+        "type": "string"
+      },
+      "permission_requested": {
+        "type": "string"
+      },
+      "scope": {
+        "type": [
+          "object",
+          "string"
+        ]
+      },
+      "risk_level": {
+        "type": "string"
+      },
+      "files_affected": {
+        "type": [
+          "array",
+          "string"
+        ]
+      },
+      "rollback_plan": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "status": {
+        "enum": [
+          "requested",
+          "approved",
+          "rejected",
+          "expired",
+          "consumed"
+        ]
+      },
+      "expires_at": {
+        "type": "string"
+      },
+      "evidence_ref": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "created_at": {
+        "type": "string"
+      },
+      "approved_at": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "consumed_at": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "scope_hash": {
+        "type": "string"
+      },
+      "idempotency_key": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "consumed_by_action_id": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "status": {
+              "const": "requested"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "approved_by": {
+              "type": "null"
+            },
+            "approved_at": {
+              "type": "null"
+            },
+            "consumed_at": {
+              "type": "null"
+            },
+            "consumed_by_action_id": {
+              "type": "null"
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "status": {
+              "const": "approved"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "approved_by": {
+              "type": "string"
+            },
+            "approved_at": {
+              "type": "string"
+            },
+            "consumed_at": {
+              "type": "null"
+            },
+            "consumed_by_action_id": {
+              "type": "null"
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "status": {
+              "const": "consumed"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "approved_by": {
+              "type": "string"
+            },
+            "approved_at": {
+              "type": "string"
+            },
+            "consumed_at": {
+              "type": "string"
+            },
+            "consumed_by_action_id": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "status": {
+              "const": "rejected"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "approved_at": {
+              "type": "null"
+            },
+            "consumed_at": {
+              "type": "null"
+            },
+            "consumed_by_action_id": {
+              "type": "null"
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "status": {
+              "const": "expired"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "consumed_at": {
+              "type": "null"
+            },
+            "consumed_by_action_id": {
+              "type": "null"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "description": "Schema documental de ApprovalRecord: las claves existen para trazabilidad, pero los campos de transición aceptan null hasta que ApprovalService complete la transición correspondiente."
+}

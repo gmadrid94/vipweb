@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "version",
+    "id",
+    "status",
+    "source_doc",
+    "canonical_statement",
+    "authority_hierarchy",
+    "trusted_sources",
+    "untrusted_as_instruction_sources",
+    "mandatory_rules",
+    "forbidden_behaviors",
+    "escalation_rules",
+    "fixtures_required"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "const": "AI_CONTEXT_TRUST_POLICY"
+    },
+    "status": {
+      "const": "canonical"
+    },
+    "source_doc": {
+      "type": "string"
+    },
+    "authority_hierarchy": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "level",
+          "source",
+          "authority",
+          "rule"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "trusted_sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "untrusted_as_instruction_sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "mandatory_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "forbidden_behaviors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    }
+  }
+}

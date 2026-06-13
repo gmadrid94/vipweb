@@ -1,0 +1,367 @@
+[
+  {
+    "module": "core.identity",
+    "mvp_included": true,
+    "feature_ids": [
+      "F-CORE-001"
+    ],
+    "backlog_ids": [
+      "C1-000",
+      "UX2-002",
+      "C1-000A"
+    ],
+    "screen_ids": [
+      "public_entry",
+      "login"
+    ],
+    "route": "/, /login",
+    "permission": "public.view, auth.login",
+    "events": [
+      "user.logged_in",
+      "user.registered"
+    ],
+    "status": "covered",
+    "subview_ids": [],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "screen"
+  },
+  {
+    "module": "core.permissions",
+    "mvp_included": true,
+    "feature_ids": [
+      "F-CORE-002"
+    ],
+    "backlog_ids": [
+      "C1-002",
+      "C1-000C"
+    ],
+    "screen_ids": [
+      "admin"
+    ],
+    "route": "/admin/roles, /admin/permissions",
+    "permission": "admin.manage_users",
+    "events": [
+      "permission.changed"
+    ],
+    "status": "covered",
+    "subview_ids": [
+      "roles_panel",
+      "permissions_panel"
+    ],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "subview"
+  },
+  {
+    "module": "core.modules",
+    "mvp_included": true,
+    "feature_ids": [
+      "F-CORE-003"
+    ],
+    "backlog_ids": [
+      "C1-001"
+    ],
+    "screen_ids": [
+      "modules_catalog",
+      "admin"
+    ],
+    "route": "/modules, /admin/modules",
+    "permission": "module.view, admin.manage_modules",
+    "events": [
+      "module.activated",
+      "module.configured",
+      "module.used"
+    ],
+    "status": "covered",
+    "subview_ids": [
+      "module_admin_panel"
+    ],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "screen_and_subview"
+  },
+  {
+    "module": "core.events",
+    "mvp_included": true,
+    "feature_ids": [
+      "F-CORE-004"
+    ],
+    "backlog_ids": [
+      "C1-003",
+      "C1-003A"
+    ],
+    "screen_ids": [
+      "admin"
+    ],
+    "route": "/admin/events",
+    "permission": "system.view_events",
+    "events": [
+      "domain.event.recorded"
+    ],
+    "status": "covered",
+    "subview_ids": [
+      "domain_events_panel"
+    ],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "subview"
+  },
+  {
+    "module": "core.audit",
+    "mvp_included": true,
+    "feature_ids": [],
+    "backlog_ids": [
+      "C1-004",
+      "C1-004A"
+    ],
+    "screen_ids": [
+      "admin"
+    ],
+    "route": "/admin/audit",
+    "permission": "admin.view_audit",
+    "events": [
+      "audit.recorded"
+    ],
+    "status": "covered",
+    "subview_ids": [
+      "audit_log"
+    ],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "subview"
+  },
+  {
+    "module": "core.config",
+    "mvp_included": true,
+    "feature_ids": [],
+    "backlog_ids": [
+      "C1-005",
+      "C1-000B"
+    ],
+    "screen_ids": [
+      "admin"
+    ],
+    "route": "/admin/config",
+    "permission": "system.configure",
+    "events": [
+      "system.configured"
+    ],
+    "status": "covered",
+    "subview_ids": [
+      "config_panel"
+    ],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "subview"
+  },
+  {
+    "module": "core.doctor",
+    "mvp_included": true,
+    "feature_ids": [],
+    "backlog_ids": [
+      "C1-006",
+      "C1-006A",
+      "C1-007"
+    ],
+    "screen_ids": [
+      "admin",
+      "doctor_evidence"
+    ],
+    "route": "/admin/doctor",
+    "permission": "system.run_doctor.readonly",
+    "events": [
+      "system.doctor.executed",
+      "evidence.recorded"
+    ],
+    "status": "covered",
+    "subview_ids": [
+      "doctor_panel"
+    ],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "screen_and_subview"
+  },
+  {
+    "module": "dashboard",
+    "mvp_included": true,
+    "feature_ids": [
+      "F-UX-001",
+      "F-UX-003"
+    ],
+    "backlog_ids": [
+      "UX2-001",
+      "UX2-004",
+      "UX2-007"
+    ],
+    "screen_ids": [
+      "dashboard"
+    ],
+    "route": "/dashboard",
+    "permission": "dashboard.view",
+    "events": [
+      "dashboard.viewed",
+      "dashboard.first_viewed"
+    ],
+    "status": "covered",
+    "subview_ids": [],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "screen"
+  },
+  {
+    "module": "onboarding",
+    "mvp_included": true,
+    "feature_ids": [
+      "F-UX-002"
+    ],
+    "backlog_ids": [
+      "UX2-003"
+    ],
+    "screen_ids": [
+      "onboarding"
+    ],
+    "route": "/onboarding",
+    "permission": "profile.view",
+    "events": [
+      "onboarding.started",
+      "onboarding.completed"
+    ],
+    "status": "covered",
+    "subview_ids": [],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "screen"
+  },
+  {
+    "module": "profile",
+    "mvp_included": true,
+    "feature_ids": [
+      "F-UX-004"
+    ],
+    "backlog_ids": [
+      "UX2-005"
+    ],
+    "screen_ids": [
+      "profile"
+    ],
+    "route": "/profile",
+    "permission": "profile.view",
+    "events": [
+      "profile.updated"
+    ],
+    "status": "covered",
+    "subview_ids": [],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "screen"
+  },
+  {
+    "module": "notifications",
+    "mvp_included": true,
+    "feature_ids": [
+      "F-UX-005"
+    ],
+    "backlog_ids": [
+      "UX2-006"
+    ],
+    "screen_ids": [
+      "notifications"
+    ],
+    "route": "/notifications",
+    "permission": "notification.view",
+    "events": [
+      "notification.created"
+    ],
+    "status": "covered",
+    "subview_ids": [],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "screen"
+  },
+  {
+    "module": "admin",
+    "mvp_included": true,
+    "feature_ids": [],
+    "backlog_ids": [
+      "A3-001"
+    ],
+    "screen_ids": [
+      "admin"
+    ],
+    "route": "/admin",
+    "permission": "admin.access",
+    "events": [
+      "admin.panel.viewed"
+    ],
+    "status": "covered",
+    "subview_ids": [],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "screen"
+  },
+  {
+    "module": "gamification",
+    "mvp_included": true,
+    "feature_ids": [
+      "F-GAM-001"
+    ],
+    "backlog_ids": [
+      "G3-001A",
+      "G3-001B"
+    ],
+    "screen_ids": [
+      "progress",
+      "dashboard"
+    ],
+    "route": "/progress",
+    "permission": "gamification.view",
+    "events": [
+      "achievement.unlocked",
+      "progress.updated"
+    ],
+    "status": "covered",
+    "subview_ids": [],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "screen"
+  },
+  {
+    "module": "ai_assistant",
+    "mvp_included": true,
+    "feature_ids": [
+      "F-AI-001"
+    ],
+    "backlog_ids": [
+      "AI3-001",
+      "AI3-002",
+      "AI3-003",
+      "AI3-004"
+    ],
+    "screen_ids": [
+      "ai_workspace"
+    ],
+    "route": "/ai",
+    "permission": "ai.read_context",
+    "events": [
+      "ai.suggestion.created",
+      "ai.action.approved",
+      "ai.action.executed"
+    ],
+    "status": "covered",
+    "subview_ids": [],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "screen"
+  },
+  {
+    "module": "integrations",
+    "mvp_included": true,
+    "feature_ids": [
+      "F-INT-001"
+    ],
+    "backlog_ids": [
+      "I3-001"
+    ],
+    "screen_ids": [
+      "admin"
+    ],
+    "route": "/admin/integrations",
+    "permission": "integration.view",
+    "events": [
+      "integration.configured"
+    ],
+    "status": "covered_by_stub",
+    "subview_ids": [
+      "integrations_stub_panel"
+    ],
+    "coverage_exemption_reason": null,
+    "ui_coverage_kind": "stub_subview"
+  }
+]

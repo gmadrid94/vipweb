@@ -1,0 +1,1218 @@
+[
+  {
+    "adr": "ADR-001",
+    "decision_id": "D-CORE-001",
+    "modules": [
+      "core.modules"
+    ],
+    "entities": [
+      "Module"
+    ],
+    "permissions": [
+      "module.view"
+    ],
+    "events": [
+      "module.activated",
+      "module.used"
+    ],
+    "sprint0_tasks": [
+      "S0-001",
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "2"
+    ],
+    "backlog_items": [
+      "C1-001"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "module-loader-report"
+    ]
+  },
+  {
+    "adr": "ADR-002",
+    "decision_id": "D-MOD-001",
+    "modules": [
+      "core.modules"
+    ],
+    "entities": [
+      "ModuleManifest"
+    ],
+    "permissions": [
+      "module.use"
+    ],
+    "events": [
+      "module.configured"
+    ],
+    "sprint0_tasks": [
+      "S0-002",
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "2"
+    ],
+    "backlog_items": [
+      "C1-001"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "module-loader-report"
+    ]
+  },
+  {
+    "adr": "ADR-003",
+    "decision_id": "D-STACK-001",
+    "modules": [
+      "core.config"
+    ],
+    "entities": [
+      "SystemSetting"
+    ],
+    "permissions": [
+      "system.configure"
+    ],
+    "events": [
+      "system.configured"
+    ],
+    "sprint0_tasks": [
+      "S0-003",
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "1",
+      "2"
+    ],
+    "backlog_items": [
+      "C1-005"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "config-registry-report"
+    ]
+  },
+  {
+    "adr": "ADR-004",
+    "decision_id": "D-AUTH-001",
+    "modules": [
+      "core.permissions"
+    ],
+    "entities": [
+      "Role",
+      "Permission",
+      "RolePermission",
+      "UserRole"
+    ],
+    "permissions": [
+      "admin.manage_users",
+      "admin.view_audit"
+    ],
+    "events": [
+      "permission.changed"
+    ],
+    "sprint0_tasks": [
+      "S0-004",
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "2"
+    ],
+    "backlog_items": [
+      "C1-002",
+      "C1-000A",
+      "C1-000C",
+      "C1-004A"
+    ],
+    "doctor_checks": [
+      "ROUTE_PERMISSION_ROLE_MATRIX_VALID",
+      "CONTROLLED_PROVISIONING_ACTION_DEFINED",
+      "CORE_RUNTIME_SKELETON_DECLARED",
+      "APPROVAL_SERVICE_RUNTIME_DECLARED"
+    ],
+    "expected_evidence": [
+      "rbac-seed-report",
+      "controlled-provisioning-report",
+      "action-executor-report",
+      "approval-runtime-report"
+    ]
+  },
+  {
+    "adr": "ADR-005",
+    "decision_id": "D-AI-001",
+    "modules": [
+      "ai_assistant"
+    ],
+    "entities": [
+      "AIActionLog"
+    ],
+    "permissions": [
+      "ai.suggest_changes"
+    ],
+    "events": [
+      "ai.suggestion.created"
+    ],
+    "sprint0_tasks": [
+      "S0-005",
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "5"
+    ],
+    "backlog_items": [
+      "AI3-001",
+      "AI3-002",
+      "AI3-003",
+      "AI3-004"
+    ],
+    "doctor_checks": [
+      "AI_APPROVAL_POLICY_RUNTIME_READY",
+      "AI_DOCTOR_ASSISTED_MODE_IS_READONLY",
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "ai-action-log-report",
+      "ai-workflow-report",
+      "approval-policy-report",
+      "doctor-runtime-report"
+    ]
+  },
+  {
+    "adr": "ADR-006",
+    "decision_id": "D-DATA-001",
+    "modules": [
+      "core.events"
+    ],
+    "entities": [
+      "DomainEvent"
+    ],
+    "permissions": [
+      "system.view_events"
+    ],
+    "events": [
+      "domain.event.recorded"
+    ],
+    "sprint0_tasks": [
+      "S0-006",
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "2"
+    ],
+    "backlog_items": [
+      "C1-003",
+      "C1-003A"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+      "EVENTS_USED_BY_ACTIONS_EXIST_AND_HAVE_SCHEMAS"
+    ],
+    "expected_evidence": [
+      "event-dispatcher-report"
+    ]
+  },
+  {
+    "adr": "ADR-007",
+    "decision_id": "D-DOCS-001",
+    "modules": [
+      "core.doctor"
+    ],
+    "entities": [
+      "EvidenceReport"
+    ],
+    "permissions": [
+      "admin.view_evidence"
+    ],
+    "events": [
+      "evidence.recorded"
+    ],
+    "sprint0_tasks": [
+      "S0-007",
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "0",
+      "2"
+    ],
+    "backlog_items": [
+      "C1-006",
+      "C1-006A"
+    ],
+    "doctor_checks": [
+      "DOCTOR_EVIDENCE_PERMISSION_SEPARATED",
+      "DOCTOR_READONLY_DOES_NOT_WRITE_EVIDENCE"
+    ],
+    "expected_evidence": [
+      "doctor-runtime-report"
+    ]
+  },
+  {
+    "adr": "ADR-008",
+    "decision_id": "D-ROADMAP-001",
+    "modules": [
+      "core.doctor"
+    ],
+    "entities": [
+      "EvidenceReport"
+    ],
+    "permissions": [
+      "system.run_doctor.readonly"
+    ],
+    "events": [
+      "system.doctor.executed"
+    ],
+    "sprint0_tasks": [
+      "S0-008",
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "0",
+      "2"
+    ],
+    "backlog_items": [
+      "C1-006",
+      "C1-006A"
+    ],
+    "doctor_checks": [
+      "DOCTOR_EVIDENCE_PERMISSION_SEPARATED",
+      "DOCTOR_READONLY_DOES_NOT_WRITE_EVIDENCE"
+    ],
+    "expected_evidence": [
+      "doctor-runtime-report"
+    ]
+  },
+  {
+    "adr": "ADR-009",
+    "decision_id": "D-QUALITY-001",
+    "modules": [
+      "core.doctor"
+    ],
+    "entities": [
+      "EvidenceReport"
+    ],
+    "permissions": [
+      "system.run_doctor.readonly"
+    ],
+    "events": [
+      "doctor.check.failed"
+    ],
+    "sprint0_tasks": [
+      "S0-009",
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "0",
+      "2"
+    ],
+    "backlog_items": [
+      "C1-006",
+      "C1-006A",
+      "C1-007"
+    ],
+    "doctor_checks": [
+      "DOCTOR_EVIDENCE_PERMISSION_SEPARATED",
+      "DOCTOR_READONLY_DOES_NOT_WRITE_EVIDENCE",
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS"
+    ],
+    "expected_evidence": [
+      "doctor-runtime-report",
+      "runtime-test-matrix-report"
+    ]
+  },
+  {
+    "adr": "ADR-010",
+    "decision_id": "D-GAM-001",
+    "modules": [
+      "gamification"
+    ],
+    "entities": [
+      "ProgressRecord",
+      "Achievement"
+    ],
+    "permissions": [
+      "gamification.view"
+    ],
+    "events": [
+      "progress.updated",
+      "achievement.unlocked"
+    ],
+    "sprint0_tasks": [
+      "S0-010",
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "3"
+    ],
+    "backlog_items": [
+      "G3-001A",
+      "G3-001B",
+      "UX2-007"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "dashboard-enrichment-report",
+      "gamification-rules-report"
+    ]
+  },
+  {
+    "adr": "ADR-011",
+    "decision_id": "D-UX-001",
+    "modules": [
+      "dashboard"
+    ],
+    "entities": [
+      "UserContext"
+    ],
+    "permissions": [
+      "dashboard.view"
+    ],
+    "events": [
+      "dashboard.viewed"
+    ],
+    "sprint0_tasks": [
+      "S0-011",
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "3"
+    ],
+    "backlog_items": [
+      "UX2-001",
+      "UX2-004",
+      "UX2-007"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "appshell-report",
+      "dashboard-e2e-report",
+      "dashboard-enrichment-report"
+    ]
+  },
+  {
+    "adr": "ADR-012",
+    "decision_id": "D-PRODUCT-001",
+    "modules": [
+      "core.modules"
+    ],
+    "entities": [
+      "Module"
+    ],
+    "permissions": [
+      "module.view"
+    ],
+    "events": [
+      "module.activated"
+    ],
+    "sprint0_tasks": [
+      "S0-012",
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "2",
+      "3"
+    ],
+    "backlog_items": [
+      "C1-001",
+      "UX2-001"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "appshell-report",
+      "module-loader-report"
+    ]
+  },
+  {
+    "adr": "ADR-013",
+    "decision_id": "D-BUSINESS-001",
+    "modules": [
+      "integrations"
+    ],
+    "entities": [
+      "Integration"
+    ],
+    "permissions": [
+      "integration.view"
+    ],
+    "events": [
+      "integration.configured"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "6"
+    ],
+    "backlog_items": [
+      "I3-001"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "integrations-stub-report"
+    ]
+  },
+  {
+    "adr": "ADR-014",
+    "decision_id": "D-MVP-001",
+    "modules": [
+      "dashboard",
+      "onboarding",
+      "profile",
+      "gamification"
+    ],
+    "entities": [
+      "UserContext",
+      "OnboardingSession",
+      "ProgressRecord"
+    ],
+    "permissions": [
+      "dashboard.view",
+      "profile.update",
+      "gamification.view"
+    ],
+    "events": [
+      "onboarding.completed",
+      "dashboard.first_viewed",
+      "progress.updated"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "3"
+    ],
+    "backlog_items": [
+      "UX2-001",
+      "UX2-003",
+      "UX2-004",
+      "UX2-005",
+      "UX2-006",
+      "UX2-007",
+      "G3-001A",
+      "G3-001B"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "appshell-report",
+      "dashboard-e2e-report",
+      "dashboard-enrichment-report",
+      "gamification-rules-report",
+      "notifications-e2e-report",
+      "onboarding-e2e-report",
+      "profile-e2e-report"
+    ]
+  },
+  {
+    "adr": "ADR-015",
+    "decision_id": "D-INTEGRATIONS-001",
+    "modules": [
+      "integrations"
+    ],
+    "entities": [
+      "Integration"
+    ],
+    "permissions": [
+      "integration.configure"
+    ],
+    "events": [
+      "integration.configured"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "6"
+    ],
+    "backlog_items": [
+      "I3-001"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "integrations-stub-report"
+    ]
+  },
+  {
+    "adr": "ADR-016",
+    "decision_id": "D-DASHBOARD-001",
+    "modules": [
+      "dashboard"
+    ],
+    "entities": [
+      "UserContext"
+    ],
+    "permissions": [
+      "dashboard.view"
+    ],
+    "events": [
+      "dashboard.viewed"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "3"
+    ],
+    "backlog_items": [
+      "UX2-004",
+      "UX2-007"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "dashboard-e2e-report",
+      "dashboard-enrichment-report"
+    ]
+  },
+  {
+    "adr": "ADR-017",
+    "decision_id": "D-ONBOARDING-001",
+    "modules": [
+      "onboarding"
+    ],
+    "entities": [
+      "OnboardingSession"
+    ],
+    "permissions": [
+      "profile.update"
+    ],
+    "events": [
+      "onboarding.completed"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "3"
+    ],
+    "backlog_items": [
+      "UX2-003"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "onboarding-e2e-report"
+    ]
+  },
+  {
+    "adr": "ADR-018",
+    "decision_id": "D-ADMIN-001",
+    "modules": [
+      "admin"
+    ],
+    "entities": [
+      "AuditLog"
+    ],
+    "permissions": [
+      "admin.access"
+    ],
+    "events": [
+      "admin.panel.viewed"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "4"
+    ],
+    "backlog_items": [
+      "A3-001"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "admin-readonly-report"
+    ]
+  },
+  {
+    "adr": "ADR-019",
+    "decision_id": "D-MIGRATIONS-001",
+    "modules": [
+      "core.identity"
+    ],
+    "entities": [
+      "User",
+      "Role",
+      "Permission",
+      "Module",
+      "DomainEvent",
+      "AuditLog"
+    ],
+    "permissions": [
+      "auth.login"
+    ],
+    "events": [
+      "user.registered"
+    ],
+    "sprint0_tasks": [
+      "S0-009",
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "2"
+    ],
+    "backlog_items": [
+      "C1-000",
+      "C1-002",
+      "C1-003",
+      "C1-004",
+      "C1-000A",
+      "C1-000B",
+      "C1-000C",
+      "C1-003A",
+      "C1-004A",
+      "C1-006A",
+      "C1-007"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+      "ROUTE_PERMISSION_ROLE_MATRIX_VALID",
+      "CONTROLLED_PROVISIONING_ACTION_DEFINED",
+      "CORE_RUNTIME_SKELETON_DECLARED",
+      "EVENTS_USED_BY_ACTIONS_EXIST_AND_HAVE_SCHEMAS",
+      "APPROVAL_SERVICE_RUNTIME_DECLARED",
+      "DOCTOR_READONLY_DOES_NOT_WRITE_EVIDENCE",
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS"
+    ],
+    "expected_evidence": [
+      "audit-log-report",
+      "event-dispatcher-report",
+      "identity-runtime-report",
+      "rbac-seed-report",
+      "controlled-provisioning-report",
+      "core-http-runtime-report",
+      "action-executor-report",
+      "approval-runtime-report",
+      "doctor-runtime-report",
+      "runtime-test-matrix-report"
+    ]
+  },
+  {
+    "adr": "ADR-020",
+    "decision_id": "D-TESTING-001",
+    "modules": [
+      "core.doctor"
+    ],
+    "entities": [
+      "EvidenceReport"
+    ],
+    "permissions": [
+      "system.run_doctor.readonly"
+    ],
+    "events": [
+      "system.doctor.executed"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "2"
+    ],
+    "backlog_items": [
+      "C1-006",
+      "C1-007"
+    ],
+    "doctor_checks": [
+      "DOCTOR_EVIDENCE_PERMISSION_SEPARATED",
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS"
+    ],
+    "expected_evidence": [
+      "doctor-runtime-report",
+      "runtime-test-matrix-report"
+    ]
+  },
+  {
+    "adr": "ADR-021",
+    "decision_id": "D-WAMP-001",
+    "modules": [
+      "core.config"
+    ],
+    "entities": [
+      "BackupRecord"
+    ],
+    "permissions": [
+      "system.configure"
+    ],
+    "events": [
+      "backup.created"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "1"
+    ],
+    "backlog_items": [
+      "C1-005"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "config-registry-report"
+    ]
+  },
+  {
+    "adr": "ADR-022",
+    "decision_id": "D-VISUAL-001",
+    "modules": [
+      "dashboard"
+    ],
+    "entities": [
+      "UserContext"
+    ],
+    "permissions": [
+      "dashboard.view"
+    ],
+    "events": [
+      "dashboard.first_viewed"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "3"
+    ],
+    "backlog_items": [
+      "UX2-001",
+      "UX2-004",
+      "UX2-007"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "appshell-report",
+      "dashboard-e2e-report",
+      "dashboard-enrichment-report"
+    ]
+  },
+  {
+    "adr": "ADR-023",
+    "decision_id": "D-MODULES-001",
+    "modules": [
+      "core.modules"
+    ],
+    "entities": [
+      "ModuleManifest"
+    ],
+    "permissions": [
+      "module.view"
+    ],
+    "events": [
+      "module.configured"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "2"
+    ],
+    "backlog_items": [
+      "C1-001"
+    ],
+    "doctor_checks": [
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT"
+    ],
+    "expected_evidence": [
+      "module-loader-report"
+    ]
+  },
+  {
+    "adr": "ADR-024",
+    "decision_id": "D-SPRINT0-001",
+    "modules": [
+      "core.doctor"
+    ],
+    "entities": [
+      "EvidenceReport"
+    ],
+    "permissions": [
+      "evidence.write"
+    ],
+    "events": [
+      "evidence.recorded"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "0"
+    ],
+    "backlog_items": [],
+    "doctor_checks": [
+      "TRACEABILITY_REFERENCES_EXIST"
+    ],
+    "expected_evidence": [
+      "doctor:consistency+semantic"
+    ]
+  },
+  {
+    "adr": "ADR-025",
+    "decision_id": "D-ORDER-001",
+    "modules": [
+      "core.config"
+    ],
+    "entities": [
+      "SystemSetting"
+    ],
+    "permissions": [
+      "system.configure"
+    ],
+    "events": [
+      "system.configured"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:consistency+semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "backlog_items": [
+      "C1-000",
+      "C1-001",
+      "C1-002",
+      "C1-003",
+      "C1-004",
+      "C1-005",
+      "C1-006",
+      "UX2-001",
+      "UX2-002",
+      "UX2-003",
+      "UX2-004",
+      "UX2-005",
+      "UX2-006",
+      "UX2-007",
+      "G3-001A",
+      "G3-001B",
+      "A3-001",
+      "AI3-001",
+      "AI3-002",
+      "AI3-003",
+      "AI3-004",
+      "I3-001",
+      "C1-000A",
+      "C1-000B",
+      "C1-000C",
+      "C1-003A",
+      "C1-004A",
+      "C1-006A",
+      "C1-007"
+    ],
+    "doctor_checks": [
+      "AI_APPROVAL_POLICY_RUNTIME_READY",
+      "AI_DOCTOR_ASSISTED_MODE_IS_READONLY",
+      "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+      "DOCTOR_EVIDENCE_PERMISSION_SEPARATED",
+      "ROUTE_PERMISSION_ROLE_MATRIX_VALID",
+      "P0_BACKLOG_ITEMS_ARE_TRACEABLE",
+      "P0_BACKLOG_ITEMS_HAVE_MVP_OR_GATE_COVERAGE",
+      "HUMAN_BACKLOG_MATCHES_MACHINE_BACKLOG_FOR_P0"
+    ],
+    "expected_evidence": [
+      "admin-readonly-report",
+      "ai-action-log-report",
+      "ai-workflow-report",
+      "approval-policy-report",
+      "appshell-report",
+      "audit-log-report",
+      "auth-ui-e2e-report",
+      "config-registry-report",
+      "dashboard-e2e-report",
+      "dashboard-enrichment-report",
+      "doctor-runtime-report",
+      "event-dispatcher-report",
+      "gamification-rules-report",
+      "identity-runtime-report",
+      "integrations-stub-report",
+      "module-loader-report",
+      "notifications-e2e-report",
+      "onboarding-e2e-report",
+      "profile-e2e-report",
+      "rbac-seed-report",
+      "controlled-provisioning-report",
+      "core-http-runtime-report",
+      "action-executor-report",
+      "approval-runtime-report",
+      "runtime-test-matrix-report"
+    ]
+  },
+  {
+    "adr": "ADR-027",
+    "decision_id": "D-MOD-READ-001",
+    "modules": [
+      "core.modules",
+      "dashboard",
+      "profile",
+      "notifications",
+      "gamification",
+      "integrations",
+      "admin",
+      "ai_assistant"
+    ],
+    "entities": [
+      "User",
+      "Module",
+      "DomainEvent",
+      "ApprovalRecord"
+    ],
+    "permissions": [
+      "module.view",
+      "system.view_events",
+      "admin.view_audit",
+      "ai.write_draft"
+    ],
+    "events": [
+      "module.configured",
+      "domain.event.recorded"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "0",
+      "2"
+    ],
+    "backlog_items": [],
+    "doctor_checks": [
+      "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT"
+    ],
+    "expected_evidence": [
+      "doctor:semantic"
+    ]
+  },
+  {
+    "adr": "ADR-028",
+    "decision_id": "D-AI-RUNBOOK-001",
+    "modules": [
+      "ai_assistant",
+      "core.doctor"
+    ],
+    "entities": [
+      "AIActionLog",
+      "AIDraft",
+      "ApprovalRecord"
+    ],
+    "permissions": [
+      "system.run_doctor.readonly",
+      "evidence.write",
+      "ai.write_draft",
+      "doctor.status.validate"
+    ],
+    "events": [
+      "ai.suggestion.created",
+      "ai.action.executed",
+      "evidence.recorded"
+    ],
+    "sprint0_tasks": [
+      "S0-013"
+    ],
+    "evidence": [
+      "doctor:semantic"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md",
+    "roadmap_gates": [
+      "0",
+      "5"
+    ],
+    "backlog_items": [
+      "AI3-001",
+      "AI3-002",
+      "AI3-003",
+      "AI3-004"
+    ],
+    "doctor_checks": [
+      "AI_RUNBOOKS_SCHEMA_VALID",
+      "AI_RUNBOOKS_REFERENCE_EXISTING_ACTIONS",
+      "AI_RUNBOOKS_HAVE_RUNTIME_TESTS",
+      "AI_RUNBOOKS_FORBID_SENSITIVE_ACTIONS_WITHOUT_APPROVAL"
+    ],
+    "expected_evidence": [
+      "ai-workflow-report",
+      "approval-policy-report",
+      "runtime-test-matrix-report"
+    ]
+  }
+]

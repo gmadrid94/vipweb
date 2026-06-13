@@ -1,0 +1,2278 @@
+[
+  {
+    "id": "A3-001",
+    "priority": "P1",
+    "phase": "4",
+    "title": "Admin read-only",
+    "module": "admin",
+    "dependencies": [
+      "C1-004",
+      "C1-006A"
+    ],
+    "acceptance_criteria": [
+      "ver módulos",
+      "ver auditoría",
+      "ver evidencias",
+      "sin mutación peligrosa"
+    ],
+    "evidence": "admin-readonly-report",
+    "status": "pending",
+    "description": "Ejecutar Admin read-only dentro de la fase 4 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con admin",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Admin/*",
+      "app/Core/Audit/*",
+      "app/Core/Doctor/*",
+      "machine/permissions.json",
+      "machine/route_permission_matrix.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "admin-readonly-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/Admin/*",
+      "app/Core/Audit/*",
+      "app/Core/Doctor/*",
+      "machine/permissions.json",
+      "machine/route_permission_matrix.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "AI3-001",
+    "priority": "P1",
+    "phase": "5",
+    "title": "AIActionLog",
+    "module": "ai_assistant",
+    "dependencies": [
+      "C1-004",
+      "machine/ai_approval_policy.json"
+    ],
+    "acceptance_criteria": [
+      "toda acción IA registrada",
+      "AI-2 requiere aprobación",
+      "AIActionLog append-only persistente y enlazado con AuditLog/ApprovalRecord cuando aplique"
+    ],
+    "evidence": "ai-action-log-report",
+    "status": "pending",
+    "description": "Implementar AIActionLog como primer bloqueante interno de Fase 5; la fase puede arrancar sin él, pero no puede cerrarse ni declarar operación IA recurrente hasta que exista, sea append-only y quede auditado.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con ai_assistant",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/AI/*",
+      "app/Core/Audit/*",
+      "machine/ai_approval_policy.json",
+      "machine/ai_context_trust_policy.json",
+      "machine/entities.json",
+      "machine/action_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "ai-action-log-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/AI/*",
+      "app/Core/Audit/*",
+      "machine/ai_approval_policy.json",
+      "machine/ai_context_trust_policy.json",
+      "machine/entities.json",
+      "machine/action_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "AI3-002",
+    "priority": "P1",
+    "phase": "5",
+    "title": "Flujo AI-0/AI-1",
+    "module": "ai_assistant",
+    "dependencies": [
+      "AI3-001",
+      "machine/ai_context_trust_policy.json"
+    ],
+    "acceptance_criteria": [
+      "lee contexto",
+      "propone sin modificar",
+      "ejecuta Doctor no destructivo",
+      "Aplica AI_CONTEXT_TRUST_POLICY antes de leer o actuar sobre contexto no confiable"
+    ],
+    "evidence": "ai-workflow-report",
+    "status": "pending",
+    "description": "Ejecutar Flujo AI-0/AI-1 dentro de la fase 5 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con ai_assistant",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/AI/*",
+      "app/Core/Audit/*",
+      "machine/ai_approval_policy.json",
+      "machine/ai_context_trust_policy.json",
+      "machine/entities.json",
+      "machine/action_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "ai-workflow-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/AI/*",
+      "app/Core/Audit/*",
+      "machine/ai_approval_policy.json",
+      "machine/ai_context_trust_policy.json",
+      "machine/entities.json",
+      "machine/action_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "AI3-003",
+    "priority": "P1",
+    "phase": "5",
+    "title": "Política runtime de aprobación IA",
+    "module": "ai_assistant",
+    "dependencies": [
+      "C1-004A",
+      "AI3-001",
+      "machine/ai_approval_policy.json",
+      "machine/action_contracts.json",
+      "machine/permissions.json",
+      "machine/route_permission_matrix.json",
+      "machine/ai_context_trust_policy.json"
+    ],
+    "acceptance_criteria": [
+      "approval semantics are context-specific",
+      "AI-2 actions require ApprovalRecord",
+      "human-only actions cannot be executed by AI",
+      "approval consumption is audited",
+      "ApprovalService runtime disponible",
+      "Aplica AI_CONTEXT_TRUST_POLICY antes de leer o actuar sobre contexto no confiable",
+      "AI-2 actions consume ApprovalRecord through ApprovalService",
+      "approval lifecycle matches machine/ai_approval_policy.json::approval_record_lifecycle"
+    ],
+    "evidence": "approval-policy-report",
+    "status": "pending",
+    "description": "Implementar la política runtime de aprobación IA respetando ApprovalRecord, AIActionLog, permisos, rutas y contratos de acción.",
+    "actions": [
+      "Validar semántica de aprobación por contexto",
+      "Conectar ApprovalRecord con acciones AI-2",
+      "Impedir ejecución de acciones HUMAN_ONLY por IA",
+      "Registrar consumo de aprobación"
+    ],
+    "files_affected": [
+      "app/AI/*",
+      "app/Core/Audit/*",
+      "machine/ai_approval_policy.json",
+      "machine/ai_context_trust_policy.json",
+      "machine/entities.json",
+      "machine/action_contracts.json",
+      "docs/11-backlog/04-ai-tasks.md"
+    ],
+    "doctor_check": "AI_APPROVAL_POLICY_RUNTIME_READY",
+    "expected_evidence": "approval-policy-report",
+    "risk": "La IA podría ejecutar operaciones con aprobación ambigua o insuficiente.",
+    "local_rollback": "Restaurar backup local previo y revertir cambios registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/04-ai-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/AI/*",
+      "app/Core/Audit/*",
+      "machine/ai_approval_policy.json",
+      "machine/ai_context_trust_policy.json",
+      "machine/entities.json",
+      "machine/action_contracts.json",
+      "docs/11-backlog/04-ai-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "AI3-004",
+    "priority": "P2",
+    "phase": "5",
+    "title": "Doctor asistido por IA",
+    "module": "ai_assistant",
+    "dependencies": [
+      "AI3-002",
+      "C1-006A",
+      "machine/doctor_checks.json",
+      "machine/ai_approval_policy.json",
+      "machine/ai_context_trust_policy.json"
+    ],
+    "acceptance_criteria": [
+      "AI can run Doctor readonly",
+      "AI cannot write evidence without approval",
+      "AI can explain failed checks",
+      "AI cannot validate project status autonomously",
+      "Aplica AI_CONTEXT_TRUST_POLICY antes de leer o actuar sobre contexto no confiable"
+    ],
+    "evidence": "doctor-runtime-report",
+    "status": "pending",
+    "description": "Permitir asistencia IA sobre Doctor readonly, explicación de checks y preparación de reportes sin modificar estado.",
+    "actions": [
+      "Ejecutar Doctor en modo readonly",
+      "Interpretar checks fallidos",
+      "Preparar propuesta de corrección",
+      "Bloquear escritura de evidencia sin aprobación"
+    ],
+    "files_affected": [
+      "app/AI/*",
+      "app/Core/Doctor/*",
+      "scripts/update_script.py",
+      "machine/doctor_checks.json",
+      "machine/ai_approval_policy.json",
+      "docs/11-backlog/04-ai-tasks.md"
+    ],
+    "doctor_check": "AI_DOCTOR_ASSISTED_MODE_IS_READONLY",
+    "expected_evidence": "doctor-runtime-report",
+    "risk": "La IA podría confundirse entre reportar estado y validarlo oficialmente.",
+    "local_rollback": "Restaurar backup local previo y revertir cambios registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/04-ai-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/AI/*",
+      "app/Core/Doctor/*",
+      "scripts/update_script.py",
+      "machine/doctor_checks.json",
+      "machine/ai_approval_policy.json",
+      "docs/11-backlog/04-ai-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "C1-000",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar identity/session runtime",
+    "module": "core.identity",
+    "dependencies": [
+      "S0-013",
+      "S0-006",
+      "machine/entities.json",
+      "machine/permissions.json"
+    ],
+    "acceptance_criteria": [
+      "Existe sesión local protegida",
+      "User mínimo resoluble por request",
+      "Login/logout tienen contrato técnico aunque la pantalla llegue después",
+      "Emite user.logged_in",
+      "Bloquea acceso autenticado sin sesión válida",
+      "No introduce proveedor externo"
+    ],
+    "evidence": "identity-runtime-report",
+    "status": "pending",
+    "description": "Ejecutar Implementar identity/session runtime dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con core.identity",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Core/Identity/*",
+      "machine/entities.json",
+      "machine/permissions.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "identity-runtime-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "direct_execution_scope",
+    "allowed_paths": [
+      "app/Core/Identity/*",
+      "machine/entities.json",
+      "machine/permissions.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "files_affected listed in this task"
+  },
+  {
+    "id": "C1-000A",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar provisionamiento controlado MVP",
+    "module": "core.identity",
+    "dependencies": [
+      "S0-013",
+      "C1-000",
+      "C1-002",
+      "C1-004A",
+      "machine/action_contracts.json",
+      "machine/route_permission_matrix.json"
+    ],
+    "acceptance_criteria": [
+      "POST /admin/users/provision ejecuta USER_PROVISION_CONTROLLED",
+      "Solo owner puede crear usuarios registered_user",
+      "ApprovalRecord se consume de forma atómica",
+      "UserRole se asigna vía contrato core.permissions",
+      "Emite user.registered",
+      "La contraseña inicial no se registra en logs, eventos, evidencias ni auditoría"
+    ],
+    "evidence": "controlled-provisioning-report",
+    "status": "pending",
+    "description": "Ejecutar Implementar provisionamiento controlado MVP dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Core/Identity/*",
+      "app/Core/Permissions/*",
+      "machine/action_contracts.json",
+      "machine/route_permission_matrix.json",
+      "machine/action_payloads/USER_PROVISION_CONTROLLED.request.schema.json",
+      "machine/action_payloads/USER_PROVISION_CONTROLLED.response.schema.json"
+    ],
+    "doctor_check": "CONTROLLED_PROVISIONING_ACTION_DEFINED",
+    "expected_evidence": "controlled-provisioning-report",
+    "risk": "Sin provisionamiento controlado, las métricas MVP basadas en usuarios provisionados no son medibles.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "direct_execution_scope",
+    "allowed_paths": [
+      "app/Core/Identity/*",
+      "app/Core/Permissions/*",
+      "machine/action_contracts.json",
+      "machine/route_permission_matrix.json",
+      "machine/action_payloads/USER_PROVISION_CONTROLLED.request.schema.json",
+      "machine/action_payloads/USER_PROVISION_CONTROLLED.response.schema.json"
+    ],
+    "forbidden_paths": [],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "files_affected listed in this task"
+  },
+  {
+    "id": "C1-000B",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Crear AppKernel, Router y Request/Response",
+    "module": "core.config",
+    "dependencies": [
+      "S0-013",
+      "S0-006",
+      "docs/06-technical/11-core-runtime-skeleton.md"
+    ],
+    "acceptance_criteria": [
+      "Existe public/index.php",
+      "Existe AppKernel",
+      "Router despacha por rutas declaradas",
+      "Request/Response encapsulan entrada y salida",
+      "No se implementa UI visible"
+    ],
+    "evidence": "core-http-runtime-report",
+    "status": "pending",
+    "description": "Ejecutar Crear AppKernel, Router y Request/Response dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "public/index.php",
+      "app/Core/Bootstrap/*",
+      "app/Core/Http/*",
+      "config/routes.php"
+    ],
+    "doctor_check": "CORE_RUNTIME_SKELETON_DECLARED",
+    "expected_evidence": "core-http-runtime-report",
+    "risk": "Sin skeleton mínimo, el primer código puede derivar a estructura procedural o acoplada.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "direct_execution_scope",
+    "allowed_paths": [
+      "public/index.php",
+      "app/Core/Bootstrap/*",
+      "app/Core/Http/*",
+      "config/routes.php"
+    ],
+    "forbidden_paths": [],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "files_affected listed in this task"
+  },
+  {
+    "id": "C1-000C",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar ActionExecutor y ActionContractRegistry",
+    "module": "core.permissions",
+    "dependencies": [
+      "S0-013",
+      "C1-000B",
+      "machine/action_contracts.json",
+      "machine/route_permission_matrix.json"
+    ],
+    "acceptance_criteria": [
+      "ActionExecutor carga contratos",
+      "PermissionGuard se ejecuta antes de dominio",
+      "ApprovalService se invoca si aplica",
+      "IdempotencyGuard se aplica en mutaciones",
+      "Controladores no ejecutan mutaciones directamente"
+    ],
+    "evidence": "action-executor-report",
+    "status": "pending",
+    "description": "Ejecutar Implementar ActionExecutor y ActionContractRegistry dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Core/Actions/*",
+      "app/Core/Permissions/*",
+      "docs/06-technical/11-core-runtime-skeleton.md"
+    ],
+    "doctor_check": "CORE_RUNTIME_SKELETON_DECLARED",
+    "expected_evidence": "action-executor-report",
+    "risk": "Sin ActionExecutor, cada controlador puede reinterpretar permisos, auditoría o aprobación.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "direct_execution_scope",
+    "allowed_paths": [
+      "app/Core/Actions/*",
+      "app/Core/Permissions/*",
+      "docs/06-technical/11-core-runtime-skeleton.md"
+    ],
+    "forbidden_paths": [],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "files_affected listed in this task"
+  },
+  {
+    "id": "C1-001",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar loader de módulos",
+    "module": "core.modules",
+    "dependencies": [
+      "S0-006",
+      "S0-013"
+    ],
+    "acceptance_criteria": [
+      "Lee manifests",
+      "Distingue active/stub/planned",
+      "Falla ante schema inválido"
+    ],
+    "evidence": "module-loader-report",
+    "status": "pending",
+    "description": "Ejecutar Implementar loader de módulos dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con core.modules",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Core/Modules/*",
+      "machine/modules.json",
+      "machine/catalog_modules.json",
+      "templates/module-manifest.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "module-loader-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/Core/Modules/*",
+      "machine/modules.json",
+      "machine/catalog_modules.json",
+      "templates/module-manifest.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "C1-002",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar guards de permisos",
+    "module": "core.permissions",
+    "dependencies": [
+      "S0-013",
+      "C1-000",
+      "machine/permissions.json",
+      "machine/roles.json",
+      "machine/route_permission_matrix.json"
+    ],
+    "acceptance_criteria": [
+      "Ruta mutable exige permiso",
+      "roles canónicos sembrados",
+      "owner conserva control total"
+    ],
+    "evidence": "rbac-seed-report",
+    "status": "pending",
+    "description": "Ejecutar Implementar guards de permisos dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Cargar machine/roles.json",
+      "Cargar machine/permissions.json",
+      "Cargar machine/route_permission_matrix.json",
+      "Resolver permisos por ruta, método, rol y mutabilidad",
+      "Bloquear rutas sin permiso explícito",
+      "Registrar denegaciones sensibles en AuditLog"
+    ],
+    "files_affected": [
+      "app/Core/Permissions/*",
+      "machine/route_permission_matrix.json",
+      "machine/roles.json",
+      "machine/permissions.json",
+      "docs/06-technical/05-security.md"
+    ],
+    "doctor_check": "ROUTE_PERMISSION_ROLE_MATRIX_VALID",
+    "expected_evidence": "rbac-seed-report",
+    "risk": "Autorización incoherente o escalada accidental de permisos.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "direct_execution_scope",
+    "allowed_paths": [
+      "app/Core/Permissions/*",
+      "machine/route_permission_matrix.json",
+      "machine/roles.json",
+      "machine/permissions.json",
+      "docs/06-technical/05-security.md"
+    ],
+    "forbidden_paths": [],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "files_affected listed in this task"
+  },
+  {
+    "id": "C1-003",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar event dispatcher interno",
+    "module": "core.events",
+    "dependencies": [
+      "S0-013",
+      "machine/events.json"
+    ],
+    "acceptance_criteria": [
+      "Solo eventos registrados",
+      "payload versionado",
+      "evento auditado"
+    ],
+    "evidence": "event-dispatcher-report",
+    "status": "pending",
+    "description": "Ejecutar Implementar event dispatcher interno dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con core.events",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Core/Events/*",
+      "machine/events.json",
+      "machine/catalog_events.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "event-dispatcher-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "superseded_by": [
+      "C1-003A"
+    ],
+    "implementation_role": "base",
+    "relationship_note": "Alcance base conservado por trazabilidad; C1-003A es el objetivo de implementación endurecido para dependencias posteriores.",
+    "must_close_with": [
+      "C1-003A"
+    ],
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/Core/Events/*",
+      "machine/events.json",
+      "machine/catalog_events.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "C1-003A",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar EventRegistry y EventDispatcher transaccional",
+    "module": "core.events",
+    "dependencies": [
+      "S0-013",
+      "C1-000C",
+      "machine/events.json"
+    ],
+    "acceptance_criteria": [
+      "Solo se emiten eventos registrados",
+      "Payload se valida contra schema",
+      "Eventos se persisten",
+      "Emisión se integra con transacciones de acción"
+    ],
+    "evidence": "event-dispatcher-report",
+    "status": "pending",
+    "description": "Ejecutar Implementar EventRegistry y EventDispatcher transaccional dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Core/Events/*",
+      "machine/events.json"
+    ],
+    "doctor_check": "EVENTS_USED_BY_ACTIONS_EXIST_AND_HAVE_SCHEMAS",
+    "expected_evidence": "event-dispatcher-report",
+    "risk": "Sin EventRegistry runtime, acciones y consumidores pueden desacoplarse del canon.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "parent_task_id": "C1-003",
+    "supersedes": [
+      "C1-003"
+    ],
+    "implementation_role": "hardening",
+    "relationship_note": "Endurece y reemplaza operativamente C1-003 mediante EventRegistry, EventDispatcher transaccional y contrato de ejecución por ActionExecutor.",
+    "scope_intent": "direct_execution_scope",
+    "allowed_paths": [
+      "app/Core/Events/*",
+      "machine/events.json"
+    ],
+    "forbidden_paths": [],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "files_affected listed in this task"
+  },
+  {
+    "id": "C1-004",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar audit log base",
+    "module": "core.audit",
+    "dependencies": [
+      "S0-013",
+      "C1-003A"
+    ],
+    "acceptance_criteria": [
+      "Acciones sensibles quedan registradas",
+      "logs append-only"
+    ],
+    "evidence": "audit-log-report",
+    "status": "pending",
+    "description": "Ejecutar Implementar audit log base dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con core.audit",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Core/Audit/*",
+      "machine/entities.json",
+      "machine/column_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "audit-log-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/Core/Audit/*",
+      "machine/entities.json",
+      "machine/column_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "C1-004A",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar ApprovalService runtime",
+    "module": "core.audit",
+    "dependencies": [
+      "S0-013",
+      "C1-004",
+      "machine/entities.json",
+      "machine/action_contracts.json",
+      "docs/05-domain-data/06-approval-records.md"
+    ],
+    "acceptance_criteria": [
+      "ApprovalService valida approval_id",
+      "Valida scope_hash, idempotency_key, status y expiración",
+      "Consume ApprovalRecord dentro de la transacción",
+      "Rellena consumed_by_action_id",
+      "Registra AuditLog por transición",
+      "requestApproval crea status=requested sin approved_by ni approved_at",
+      "approve rellena approved_by y approved_at con actor humano",
+      "consumeForAction rellena consumed_at y consumed_by_action_id de forma atómica",
+      "expires_at se valida siempre y nunca queda vacío"
+    ],
+    "evidence": "approval-runtime-report",
+    "status": "pending",
+    "description": "Ejecutar Implementar ApprovalService runtime dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Core/Audit/ApprovalService.php",
+      "machine/entities.json",
+      "machine/column_contracts.json",
+      "docs/05-domain-data/06-approval-records.md"
+    ],
+    "doctor_check": "APPROVAL_SERVICE_RUNTIME_DECLARED",
+    "expected_evidence": "approval-runtime-report",
+    "risk": "Sin ApprovalService transversal, las acciones críticas pueden implementar aprobaciones incompatibles.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "direct_execution_scope",
+    "allowed_paths": [
+      "app/Core/Audit/ApprovalService.php",
+      "machine/entities.json",
+      "machine/column_contracts.json",
+      "docs/05-domain-data/06-approval-records.md"
+    ],
+    "forbidden_paths": [],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "files_affected listed in this task"
+  },
+  {
+    "id": "C1-005",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar config registry",
+    "module": "core.config",
+    "dependencies": [
+      "S0-013",
+      "machine/modules.json"
+    ],
+    "acceptance_criteria": [
+      "Config keys declaradas",
+      "sin secretos reales",
+      "fallback local"
+    ],
+    "evidence": "config-registry-report",
+    "status": "pending",
+    "description": "Ejecutar Implementar config registry dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con core.config",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Core/Config/*",
+      "config/*",
+      "machine/modules.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "config-registry-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/Core/Config/*",
+      "config/*",
+      "machine/modules.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "C1-006",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar Doctor runtime wrapper",
+    "module": "core.doctor",
+    "dependencies": [
+      "S0-013",
+      "C1-000",
+      "machine/ai_approval_policy.json",
+      "machine/permissions.json",
+      "scripts/update_script.py"
+    ],
+    "acceptance_criteria": [
+      "Doctor ejecutable desde CLI local en modo readonly",
+      "No modifica archivos ni evidencia por defecto",
+      "La escritura de evidencia exige evidence.write y aprobación cuando aplique"
+    ],
+    "evidence": "doctor-runtime-report",
+    "status": "pending",
+    "description": "Ejecutar Implementar Doctor runtime wrapper dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con core.doctor",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Core/Doctor/*",
+      "scripts/update_script.py",
+      "machine/doctor_checks.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "DOCTOR_EVIDENCE_PERMISSION_SEPARATED",
+    "expected_evidence": "doctor-runtime-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "superseded_by": [
+      "C1-006A"
+    ],
+    "implementation_role": "base",
+    "relationship_note": "Alcance base conservado por trazabilidad; C1-006A es el objetivo de implementación endurecido para dependencias posteriores.",
+    "must_close_with": [
+      "C1-006A"
+    ],
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/Core/Doctor/*",
+      "scripts/update_script.py",
+      "machine/doctor_checks.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "C1-006A",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar DoctorRuntime wrapper readonly",
+    "module": "core.doctor",
+    "dependencies": [
+      "S0-013",
+      "C1-000C",
+      "C1-004A",
+      "scripts/update_script.py"
+    ],
+    "acceptance_criteria": [
+      "DoctorRuntime ejecuta Doctor readonly",
+      "No escribe evidencia automáticamente",
+      "Devuelve estado estructurado",
+      "Registra auditoría operacional si aplica"
+    ],
+    "evidence": "doctor-runtime-report",
+    "status": "pending",
+    "description": "Ejecutar Implementar DoctorRuntime wrapper readonly dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Core/Doctor/*",
+      "scripts/update_script.py"
+    ],
+    "doctor_check": "DOCTOR_READONLY_DOES_NOT_WRITE_EVIDENCE",
+    "expected_evidence": "doctor-runtime-report",
+    "risk": "Sin wrapper readonly, Doctor puede confundirse con generación de evidencia o validación humana.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "parent_task_id": "C1-006",
+    "supersedes": [
+      "C1-006"
+    ],
+    "implementation_role": "hardening",
+    "relationship_note": "Endurece y reemplaza operativamente C1-006 con DoctorRuntime readonly, ApprovalService y separación Doctor/evidencia/validación.",
+    "scope_intent": "direct_execution_scope",
+    "allowed_paths": [
+      "app/Core/Doctor/*",
+      "scripts/update_script.py"
+    ],
+    "forbidden_paths": [],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "files_affected listed in this task"
+  },
+  {
+    "id": "C1-007",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar suite runtime desde matriz de tests por acción",
+    "module": "core.doctor",
+    "dependencies": [
+      "S0-013",
+      "C1-000C",
+      "machine/action_contracts.json",
+      "machine/runtime_test_matrix.json"
+    ],
+    "acceptance_criteria": [
+      "Cada ACTION_ID de machine/action_contracts.json tiene test runtime trazable desde machine/runtime_test_matrix.json",
+      "Las acciones con ApprovalRecord tienen pruebas negativas obligatorias",
+      "Las acciones IA tienen pruebas de guardrail y contexto no confiable",
+      "Las acciones críticas validan permisos, roles y audit log",
+      "Doctor falla si una acción crítica queda sin cobertura mínima"
+    ],
+    "evidence": "runtime-test-matrix-report",
+    "status": "pending",
+    "description": "Implementar la suite de tests runtime derivada de machine/runtime_test_matrix.json para cerrar la trazabilidad action contract -> prueba -> evidencia antes de activar acciones críticas.",
+    "actions": [
+      "Leer machine/action_contracts.json y machine/runtime_test_matrix.json",
+      "Generar pruebas por grupo obligatorio",
+      "Ejecutar pruebas positivas y negativas de acciones críticas",
+      "Registrar evidencia runtime-test-matrix-report",
+      "Ejecutar Doctor después de la suite"
+    ],
+    "files_affected": [
+      "tests/*",
+      "machine/runtime_test_matrix.json",
+      "docs/06-technical/06-testing.md",
+      "scripts/update_script.py"
+    ],
+    "doctor_check": "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+    "expected_evidence": "runtime-test-matrix-report",
+    "risk": "Acciones críticas implementadas sin cobertura runtime equivalente a sus contratos, especialmente ApprovalRecord, IA, permisos y audit log.",
+    "local_rollback": "Restaurar backup local previo y revertir tests añadidos si bloquean el runtime sin evidencia clara.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "direct_execution_scope",
+    "allowed_paths": [
+      "tests/*",
+      "machine/runtime_test_matrix.json",
+      "docs/06-technical/06-testing.md",
+      "scripts/update_script.py"
+    ],
+    "forbidden_paths": [],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "files_affected listed in this task"
+  },
+  {
+    "id": "G3-001A",
+    "priority": "P1",
+    "phase": "3",
+    "title": "Motor mínimo de progreso",
+    "module": "gamification",
+    "dependencies": [
+      "C1-003A",
+      "UX2-003",
+      "machine/screen_component_contracts.json"
+    ],
+    "acceptance_criteria": [
+      "Consume eventos fuente mínimos: onboarding.completed, profile.updated, dashboard.first_viewed",
+      "Persiste ProgressRecord mínimo",
+      "Aplica idempotencia y cooldown antifatiga",
+      "Emite progress.updated",
+      "No escribe entidades de otros módulos",
+      "No bloquea onboarding ni dashboard si falla; muestra fallback",
+      "/progress devuelve estados empty, ready y error",
+      "Doctor valida reglas antifatiga y ausencia de loops de recompensa",
+      "Pantalla o superficie visible implementada según machine/screen_component_contracts.json cuando aplique"
+    ],
+    "evidence": "gamification-rules-report",
+    "status": "pending",
+    "description": "Implementar el runtime mínimo de progreso derivado de eventos como requisito estructural del MVP.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con gamification",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Gamification/*",
+      "app/Dashboard/*",
+      "machine/gamification_rules.json",
+      "machine/events.json",
+      "machine/screen_component_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "gamification-rules-report",
+    "risk": "Si no existe, el MVP conserva dashboard y onboarding pero pierde la continuidad/progreso prometida.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/Gamification/*",
+      "app/Dashboard/*",
+      "machine/gamification_rules.json",
+      "machine/events.json",
+      "machine/screen_component_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "G3-001B",
+    "priority": "P2",
+    "phase": "3",
+    "title": "Enriquecimiento visual de gamificación",
+    "module": "gamification",
+    "dependencies": [
+      "G3-001A",
+      "UX2-007",
+      "machine/screen_component_contracts.json"
+    ],
+    "acceptance_criteria": [
+      "Dashboard muestra progreso real si existe",
+      "Dashboard muestra fallback si gamification está desactivado o vacío",
+      "Logros suaves pueden mostrarse sin rankings ni presión",
+      "No introduce rachas agresivas ni loops de recompensa",
+      "Pantalla o superficie visible implementada según machine/screen_component_contracts.json cuando aplique"
+    ],
+    "evidence": "dashboard-enrichment-report",
+    "status": "pending",
+    "description": "Añadir capa visual de logros/progreso sobre el runtime mínimo sin bloquear el MVP estructural.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con gamification",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Gamification/*",
+      "app/Dashboard/*",
+      "machine/gamification_rules.json",
+      "machine/events.json",
+      "machine/screen_component_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "dashboard-enrichment-report",
+    "risk": "Si se omite, el progreso sigue existiendo por runtime, pero la presentación visual será más austera.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/Gamification/*",
+      "app/Dashboard/*",
+      "machine/gamification_rules.json",
+      "machine/events.json",
+      "machine/screen_component_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "I3-001",
+    "priority": "P2",
+    "phase": "6",
+    "title": "Integraciones stub",
+    "module": "integrations",
+    "dependencies": [
+      "C1-001",
+      "C1-005"
+    ],
+    "acceptance_criteria": [
+      "sin credenciales reales",
+      "catálogo visible",
+      "configuración simulada"
+    ],
+    "evidence": "integrations-stub-report",
+    "status": "pending",
+    "description": "Ejecutar Integraciones stub dentro de la fase 6 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con integrations",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Integrations/*",
+      "machine/integration_contracts.json",
+      "machine/subweb_contracts.json",
+      "templates/integration-contract.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "integrations-stub-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/Integrations/*",
+      "machine/integration_contracts.json",
+      "machine/subweb_contracts.json",
+      "templates/integration-contract.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "UX2-001",
+    "priority": "P1",
+    "phase": "3",
+    "title": "AppShell base",
+    "module": "dashboard",
+    "dependencies": [
+      "C1-001",
+      "C1-002",
+      "machine/screen_component_contracts.json"
+    ],
+    "acceptance_criteria": [
+      "Header contextual",
+      "navegación modular",
+      "panel de estado/progreso",
+      "Pantalla o superficie visible implementada según machine/screen_component_contracts.json cuando aplique"
+    ],
+    "evidence": "appshell-report",
+    "status": "pending",
+    "description": "Ejecutar AppShell base dentro de la fase 3 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con dashboard",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Dashboard/*",
+      "app/Core/UI/*",
+      "machine/ui_screens.json",
+      "machine/screen_component_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "appshell-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/Dashboard/*",
+      "app/Core/UI/*",
+      "machine/ui_screens.json",
+      "machine/screen_component_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "UX2-002",
+    "priority": "P1",
+    "phase": "3",
+    "title": "Pantalla login/logout básico",
+    "module": "core.identity",
+    "dependencies": [
+      "C1-000",
+      "C1-002",
+      "UX2-001",
+      "machine/screen_component_contracts.json"
+    ],
+    "acceptance_criteria": [
+      "Formulario de login conectado al runtime de identidad",
+      "Logout visible y funcional",
+      "Estados loading, error y success cubiertos",
+      "Redirección segura a dashboard u onboarding",
+      "Pantalla o superficie visible implementada según machine/screen_component_contracts.json cuando aplique"
+    ],
+    "evidence": "auth-ui-e2e-report",
+    "status": "pending",
+    "description": "Ejecutar Login/logout básico dentro de la fase 3 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con core.identity",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Core/Identity/*",
+      "app/Auth/*",
+      "machine/ui_screens.json",
+      "machine/screen_component_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "auth-ui-e2e-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/Core/Identity/*",
+      "app/Auth/*",
+      "machine/ui_screens.json",
+      "machine/screen_component_contracts.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "UX2-003",
+    "priority": "P1",
+    "phase": "3",
+    "title": "Onboarding progresivo",
+    "module": "onboarding",
+    "dependencies": [
+      "UX2-001",
+      "C1-003A",
+      "UX2-005",
+      "machine/screen_component_contracts.json"
+    ],
+    "acceptance_criteria": [
+      "Onboarding retomable",
+      "Lee/escribe UserContext mediante profile",
+      "Emite onboarding.started y onboarding.completed",
+      "No bloquea navegación básica",
+      "Funciona aunque gamification procese el evento más adelante",
+      "Pantalla o superficie visible implementada según machine/screen_component_contracts.json cuando aplique"
+    ],
+    "evidence": "onboarding-e2e-report",
+    "status": "pending",
+    "description": "Ejecutar Onboarding progresivo dentro de la fase 3 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con onboarding",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Onboarding/*",
+      "app/Dashboard/*",
+      "machine/ui_screens.json",
+      "machine/screen_component_contracts.json",
+      "machine/journeys.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "onboarding-e2e-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/Onboarding/*",
+      "app/Dashboard/*",
+      "machine/ui_screens.json",
+      "machine/screen_component_contracts.json",
+      "machine/journeys.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "UX2-004",
+    "priority": "P1",
+    "phase": "3",
+    "title": "Dashboard inicial",
+    "module": "dashboard",
+    "dependencies": [
+      "UX2-001",
+      "UX2-002",
+      "UX2-003",
+      "machine/screen_component_contracts.json"
+    ],
+    "acceptance_criteria": [
+      "Módulos visibles",
+      "Próximo paso contextual",
+      "Estado Doctor resumido",
+      "Fallbacks para progreso, notificaciones e IA si esos módulos están stub/planned",
+      "Pantalla o superficie visible implementada según machine/screen_component_contracts.json cuando aplique"
+    ],
+    "evidence": "dashboard-e2e-report",
+    "status": "pending",
+    "description": "Ejecutar Dashboard inicial dentro de la fase 3 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con dashboard",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Dashboard/*",
+      "app/Core/UI/*",
+      "machine/ui_screens.json",
+      "machine/screen_component_contracts.json",
+      "machine/ui_state_copy.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "dashboard-e2e-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "scope_intent": "planning_scope_requires_granular_subtask_before_execution",
+    "allowed_paths": [
+      "app/Dashboard/*",
+      "app/Core/UI/*",
+      "machine/ui_screens.json",
+      "machine/screen_component_contracts.json",
+      "machine/ui_state_copy.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": true,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "one granular subtask with explicit allowed_paths and local backup/change log entry",
+    "scope_note": "Original app/* or machine/* scope is conceptual only; direct execution requires a granular subtask with concrete paths, scope_hash and rollback_unit."
+  },
+  {
+    "id": "UX2-005",
+    "priority": "P1",
+    "phase": "3",
+    "title": "Profile básico",
+    "module": "profile",
+    "dependencies": [
+      "C1-000",
+      "C1-002",
+      "C1-003A",
+      "UX2-001",
+      "machine/screen_component_contracts.json"
+    ],
+    "acceptance_criteria": [
+      "Ruta /profile visible con PermissionGate",
+      "Permite ver datos mínimos de UserContext",
+      "Permite editar campos mínimos no sensibles",
+      "Emite profile.updated",
+      "Registra evento/auditoría cuando aplique",
+      "Estados view, edit, saving, saved, error cubiertos",
+      "Pantalla o superficie visible implementada según machine/screen_component_contracts.json cuando aplique"
+    ],
+    "evidence": "profile-e2e-report",
+    "status": "pending",
+    "description": "Ejecutar Profile básico dentro de la fase 3 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con profile",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Profile/*",
+      "machine/ui_screens.json",
+      "docs/07-design-ux/03-screens.md",
+      "docs/11-backlog/02-features.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "profile-e2e-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/02-features.md",
+    "scope_intent": "direct_execution_scope",
+    "allowed_paths": [
+      "app/Profile/*",
+      "machine/ui_screens.json",
+      "docs/07-design-ux/03-screens.md",
+      "docs/11-backlog/02-features.md"
+    ],
+    "forbidden_paths": [],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "files_affected listed in this task"
+  },
+  {
+    "id": "UX2-006",
+    "priority": "P1",
+    "phase": "3",
+    "title": "Notifications internas",
+    "module": "notifications",
+    "dependencies": [
+      "C1-000",
+      "C1-002",
+      "C1-003A",
+      "UX2-001",
+      "machine/screen_component_contracts.json"
+    ],
+    "acceptance_criteria": [
+      "Ruta /notifications visible con PermissionGate",
+      "NotificationList soporta empty, unread y read",
+      "Consume eventos internos autorizados",
+      "No usa push externo ni proveedor real",
+      "Permite marcar notificación como leída si la acción queda autorizada",
+      "Fallback vacío si no hay eventos",
+      "Pantalla o superficie visible implementada según machine/screen_component_contracts.json cuando aplique"
+    ],
+    "evidence": "notifications-e2e-report",
+    "status": "pending",
+    "description": "Ejecutar Notifications internas dentro de la fase 3 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con notifications",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Notifications/*",
+      "machine/ui_screens.json",
+      "docs/07-design-ux/03-screens.md",
+      "docs/11-backlog/02-features.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "notifications-e2e-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/02-features.md",
+    "scope_intent": "direct_execution_scope",
+    "allowed_paths": [
+      "app/Notifications/*",
+      "machine/ui_screens.json",
+      "docs/07-design-ux/03-screens.md",
+      "docs/11-backlog/02-features.md"
+    ],
+    "forbidden_paths": [],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "files_affected listed in this task"
+  },
+  {
+    "id": "UX2-007",
+    "priority": "P2",
+    "phase": "3",
+    "title": "Conectar Dashboard con profile, notifications y gamification",
+    "module": "dashboard",
+    "dependencies": [
+      "UX2-004",
+      "UX2-005",
+      "UX2-006",
+      "G3-001A",
+      "machine/screen_component_contracts.json"
+    ],
+    "acceptance_criteria": [
+      "Dashboard muestra progreso real si gamification está activo",
+      "Dashboard muestra notificaciones internas si existen",
+      "Dashboard muestra fallback si un módulo está stub/planned",
+      "No rompe navegación si AIHelperPanel está bloqueado",
+      "Pantalla o superficie visible implementada según machine/screen_component_contracts.json cuando aplique"
+    ],
+    "evidence": "dashboard-enrichment-report",
+    "status": "pending",
+    "description": "Ejecutar Conectar Dashboard con profile, notifications y gamification dentro de la fase 3 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con dashboard",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Dashboard/*",
+      "docs/07-design-ux/04-components.md",
+      "docs/11-backlog/02-features.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "dashboard-enrichment-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/02-features.md",
+    "scope_intent": "direct_execution_scope",
+    "allowed_paths": [
+      "app/Dashboard/*",
+      "docs/07-design-ux/04-components.md",
+      "docs/11-backlog/02-features.md"
+    ],
+    "forbidden_paths": [],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": false,
+    "rollback_unit": "files_affected listed in this task"
+  },
+  {
+    "id": "C1-008",
+    "priority": "P1",
+    "phase": "2",
+    "title": "Crear AppKernel, Request, Response y Router mínimos",
+    "module": "core.config",
+    "dependencies": [
+      "S0-013",
+      "C1-000B"
+    ],
+    "acceptance_criteria": [
+      "HTTP request entra por public/index.php",
+      "Router resuelve rutas declaradas sin ejecutar mutaciones directas",
+      "Response centraliza headers mínimos de seguridad",
+      "No existe UI visible funcional nueva"
+    ],
+    "evidence": "core-http-runtime-minimal-report",
+    "status": "pending",
+    "description": "Subtarea granular post-Sprint 0 para Crear AppKernel, Request, Response y Router mínimos. No habilita UI visible ni módulos funcionales por sí misma.",
+    "actions": [
+      "Leer documentos y contratos machine-readable indicados.",
+      "Aplicar cambio mínimo en los paths permitidos.",
+      "Ejecutar Doctor y pruebas contractuales aplicables.",
+      "Registrar evidencia y evidence/sprint-0-local-execution.md sin validar estado automáticamente."
+    ],
+    "files_affected": [
+      "public/index.php",
+      "app/Core/Bootstrap/AppKernel.php",
+      "app/Core/Http/Request.php",
+      "app/Core/Http/Response.php",
+      "app/Core/Http/Router.php",
+      "config/routes.php"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "core-http-runtime-minimal-report",
+    "risk": "Controladores podrían ejecutar lógica directa si no existe kernel/router mínimo.",
+    "local_rollback": "Restaurar backup local previo y revertir únicamente los archivos declarados en allowed_paths; registrar reversión en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "parent_task_id": "C1-000B",
+    "supersedes": [],
+    "superseded_by": [],
+    "must_close_with": [],
+    "is_umbrella": false,
+    "implementation_role": "base",
+    "relationship_note": "Subtarea ejecutable granular derivada de C1-000B; reduce reinterpretación antes de Core Runtime.",
+    "scope_intent": "granular_executable_scope",
+    "allowed_paths": [
+      "public/index.php",
+      "app/Core/Bootstrap/AppKernel.php",
+      "app/Core/Http/Request.php",
+      "app/Core/Http/Response.php",
+      "app/Core/Http/Router.php",
+      "config/routes.php"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "single granular change with explicit allowed_paths, local backup and evidence/sprint-0-local-execution.md entry",
+    "scope_note": "Esta subtarea es ejecutable tras Sprint 0; no autoriza UI visible hasta completar los gates correspondientes."
+  },
+  {
+    "id": "C1-009",
+    "priority": "P1",
+    "phase": "2",
+    "title": "Crear PdoConnection y configuración local segura",
+    "module": "core.data",
+    "dependencies": [
+      "S0-013",
+      "C1-008"
+    ],
+    "acceptance_criteria": [
+      "PDO usa prepared statements para todo input externo",
+      "No se concatenan payloads ni query params en SQL",
+      "La configuración local no contiene secretos reales",
+      "Errores DB no se exponen al usuario final"
+    ],
+    "evidence": "pdo-connection-security-report",
+    "status": "pending",
+    "description": "Subtarea granular post-Sprint 0 para Crear PdoConnection y configuración local segura. No habilita UI visible ni módulos funcionales por sí misma.",
+    "actions": [
+      "Leer documentos y contratos machine-readable indicados.",
+      "Aplicar cambio mínimo en los paths permitidos.",
+      "Ejecutar Doctor y pruebas contractuales aplicables.",
+      "Registrar evidencia y evidence/sprint-0-local-execution.md sin validar estado automáticamente."
+    ],
+    "files_affected": [
+      "app/Core/Database/PdoConnection.php",
+      "app/Core/Database/TransactionManager.php",
+      "config/database.php",
+      "docs/06-technical/05-security.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "pdo-connection-security-report",
+    "risk": "Acceso DB inseguro o replicado por módulos si no se centraliza desde el inicio.",
+    "local_rollback": "Restaurar backup local previo y revertir únicamente los archivos declarados en allowed_paths; registrar reversión en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "parent_task_id": "C1-000B",
+    "supersedes": [],
+    "superseded_by": [],
+    "must_close_with": [],
+    "is_umbrella": false,
+    "implementation_role": "hardening",
+    "relationship_note": "Subtarea ejecutable granular derivada de C1-000B; reduce reinterpretación antes de Core Runtime.",
+    "scope_intent": "granular_executable_scope",
+    "allowed_paths": [
+      "app/Core/Database/PdoConnection.php",
+      "app/Core/Database/TransactionManager.php",
+      "config/database.php",
+      "docs/06-technical/05-security.md"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "single granular change with explicit allowed_paths, local backup and evidence/sprint-0-local-execution.md entry",
+    "scope_note": "Esta subtarea es ejecutable tras Sprint 0; no autoriza UI visible hasta completar los gates correspondientes."
+  },
+  {
+    "id": "C1-010",
+    "priority": "P1",
+    "phase": "2",
+    "title": "Crear ActionContractRegistry",
+    "module": "core.permissions",
+    "dependencies": [
+      "S0-013",
+      "C1-008"
+    ],
+    "acceptance_criteria": [
+      "El registry carga y valida contratos de acción",
+      "Rechaza acciones sin request/response/error contract",
+      "Expone allowed_roles y ai_roles sin inferencias documentales"
+    ],
+    "evidence": "action-contract-registry-report",
+    "status": "pending",
+    "description": "Subtarea granular post-Sprint 0 para Crear ActionContractRegistry. No habilita UI visible ni módulos funcionales por sí misma.",
+    "actions": [
+      "Leer documentos y contratos machine-readable indicados.",
+      "Aplicar cambio mínimo en los paths permitidos.",
+      "Ejecutar Doctor y pruebas contractuales aplicables.",
+      "Registrar evidencia y evidence/sprint-0-local-execution.md sin validar estado automáticamente."
+    ],
+    "files_affected": [
+      "app/Core/Actions/ActionContractRegistry.php",
+      "machine/action_contracts.json",
+      "machine/schemas/action-contract.schema.json"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "action-contract-registry-report",
+    "risk": "ActionExecutor podría depender de catálogos humanos o inferencias si no existe registry.",
+    "local_rollback": "Restaurar backup local previo y revertir únicamente los archivos declarados en allowed_paths; registrar reversión en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "parent_task_id": "C1-000C",
+    "supersedes": [],
+    "superseded_by": [],
+    "must_close_with": [],
+    "is_umbrella": false,
+    "implementation_role": "base",
+    "relationship_note": "Subtarea ejecutable granular derivada de C1-000C; reduce reinterpretación antes de Core Runtime.",
+    "scope_intent": "granular_executable_scope",
+    "allowed_paths": [
+      "app/Core/Actions/ActionContractRegistry.php",
+      "machine/action_contracts.json",
+      "machine/schemas/action-contract.schema.json"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "single granular change with explicit allowed_paths, local backup and evidence/sprint-0-local-execution.md entry",
+    "scope_note": "Esta subtarea es ejecutable tras Sprint 0; no autoriza UI visible hasta completar los gates correspondientes."
+  },
+  {
+    "id": "C1-011",
+    "priority": "P1",
+    "phase": "2",
+    "title": "Crear ActionExecutor mínimo para acción no IA",
+    "module": "core.permissions",
+    "dependencies": [
+      "S0-013",
+      "C1-010",
+      "C1-002"
+    ],
+    "acceptance_criteria": [
+      "ActionExecutor ejecuta AUTH_LOGIN_SUBMIT o AUTH_LOGOUT mediante contrato",
+      "PermissionGuard valida rol y permiso",
+      "CSRF y payload_valid forman parte de precondiciones",
+      "No se ejecutan acciones IA sensibles"
+    ],
+    "evidence": "action-executor-non-ai-report",
+    "status": "pending",
+    "description": "Subtarea granular post-Sprint 0 para Crear ActionExecutor mínimo para acción no IA. No habilita UI visible ni módulos funcionales por sí misma.",
+    "actions": [
+      "Leer documentos y contratos machine-readable indicados.",
+      "Aplicar cambio mínimo en los paths permitidos.",
+      "Ejecutar Doctor y pruebas contractuales aplicables.",
+      "Registrar evidencia y evidence/sprint-0-local-execution.md sin validar estado automáticamente."
+    ],
+    "files_affected": [
+      "app/Core/Actions/ActionExecutor.php",
+      "app/Core/Permissions/PermissionGuard.php",
+      "machine/action_contracts.json"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "action-executor-non-ai-report",
+    "risk": "Las primeras mutaciones podrían saltarse contratos si se implementan desde controladores.",
+    "local_rollback": "Restaurar backup local previo y revertir únicamente los archivos declarados en allowed_paths; registrar reversión en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "parent_task_id": "C1-000C",
+    "supersedes": [],
+    "superseded_by": [],
+    "must_close_with": [],
+    "is_umbrella": false,
+    "implementation_role": "base",
+    "relationship_note": "Subtarea ejecutable granular derivada de C1-000C; reduce reinterpretación antes de Core Runtime.",
+    "scope_intent": "granular_executable_scope",
+    "allowed_paths": [
+      "app/Core/Actions/ActionExecutor.php",
+      "app/Core/Permissions/PermissionGuard.php",
+      "machine/action_contracts.json"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "single granular change with explicit allowed_paths, local backup and evidence/sprint-0-local-execution.md entry",
+    "scope_note": "Esta subtarea es ejecutable tras Sprint 0; no autoriza UI visible hasta completar los gates correspondientes."
+  },
+  {
+    "id": "C1-012",
+    "priority": "P1",
+    "phase": "2",
+    "title": "Añadir autorización IA estructural sin activar acciones sensibles",
+    "module": "ai_assistant",
+    "dependencies": [
+      "S0-013",
+      "C1-010",
+      "machine/action_contracts.json",
+      "machine/route_permission_matrix.json"
+    ],
+    "acceptance_criteria": [
+      "ActionExecutor valida ai_roles además de allowed_roles",
+      "Las acciones AI-2 permanecen disabled_by_default",
+      "Divergencia ruta/acción falla cerrado",
+      "No se ejecuta AI_WRITE_DRAFT ni EVIDENCE_WRITE en entorno activo"
+    ],
+    "evidence": "ai-role-authorization-structural-report",
+    "status": "pending",
+    "description": "Subtarea granular post-Sprint 0 para Añadir autorización IA estructural sin activar acciones sensibles. No habilita UI visible ni módulos funcionales por sí misma.",
+    "actions": [
+      "Leer documentos y contratos machine-readable indicados.",
+      "Aplicar cambio mínimo en los paths permitidos.",
+      "Ejecutar Doctor y pruebas contractuales aplicables.",
+      "Registrar evidencia y evidence/sprint-0-local-execution.md sin validar estado automáticamente."
+    ],
+    "files_affected": [
+      "app/Core/Actions/ActionExecutor.php",
+      "machine/action_contracts.json",
+      "machine/route_permission_matrix.json",
+      "machine/ai_approval_policy.json"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "ai-role-authorization-structural-report",
+    "risk": "Permisos IA podrían depender de inferencias entre ruta y acción.",
+    "local_rollback": "Restaurar backup local previo y revertir únicamente los archivos declarados en allowed_paths; registrar reversión en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "parent_task_id": "C1-000C",
+    "supersedes": [],
+    "superseded_by": [],
+    "must_close_with": [],
+    "is_umbrella": false,
+    "implementation_role": "hardening",
+    "relationship_note": "Subtarea ejecutable granular derivada de C1-000C; reduce reinterpretación antes de Core Runtime.",
+    "scope_intent": "granular_executable_scope",
+    "allowed_paths": [
+      "app/Core/Actions/ActionExecutor.php",
+      "machine/action_contracts.json",
+      "machine/route_permission_matrix.json",
+      "machine/ai_approval_policy.json"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "single granular change with explicit allowed_paths, local backup and evidence/sprint-0-local-execution.md entry",
+    "scope_note": "Esta subtarea es ejecutable tras Sprint 0; no autoriza UI visible hasta completar los gates correspondientes."
+  },
+  {
+    "id": "C1-013",
+    "priority": "P1",
+    "phase": "2",
+    "title": "Emitir user.logged_in con envelope v1",
+    "module": "core.events",
+    "dependencies": [
+      "S0-013",
+      "C1-011",
+      "C1-003A",
+      "machine/events.json"
+    ],
+    "acceptance_criteria": [
+      "El evento usa domain_event_envelope_v1",
+      "Payload valida contra schema",
+      "El evento queda ligado a action_id/request_id",
+      "No se escribe progreso ni gamificación desde core.identity"
+    ],
+    "evidence": "user-logged-in-event-report",
+    "status": "pending",
+    "description": "Subtarea granular post-Sprint 0 para Emitir user.logged_in con envelope v1. No habilita UI visible ni módulos funcionales por sí misma.",
+    "actions": [
+      "Leer documentos y contratos machine-readable indicados.",
+      "Aplicar cambio mínimo en los paths permitidos.",
+      "Ejecutar Doctor y pruebas contractuales aplicables.",
+      "Registrar evidencia y evidence/sprint-0-local-execution.md sin validar estado automáticamente."
+    ],
+    "files_affected": [
+      "app/Core/Events/EventRegistry.php",
+      "app/Core/Events/EventDispatcher.php",
+      "app/Core/Events/DomainEventRepository.php",
+      "machine/events.json",
+      "machine/event_payload_schemas/user.logged_in.v1.schema.json"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "user-logged-in-event-report",
+    "risk": "Eventos tempranos podrían nacer sin envelope ni trazabilidad.",
+    "local_rollback": "Restaurar backup local previo y revertir únicamente los archivos declarados en allowed_paths; registrar reversión en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "parent_task_id": "C1-003A",
+    "supersedes": [],
+    "superseded_by": [],
+    "must_close_with": [],
+    "is_umbrella": false,
+    "implementation_role": "base",
+    "relationship_note": "Subtarea ejecutable granular derivada de C1-003A; reduce reinterpretación antes de Core Runtime.",
+    "scope_intent": "granular_executable_scope",
+    "allowed_paths": [
+      "app/Core/Events/EventRegistry.php",
+      "app/Core/Events/EventDispatcher.php",
+      "app/Core/Events/DomainEventRepository.php",
+      "machine/events.json",
+      "machine/event_payload_schemas/user.logged_in.v1.schema.json"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "single granular change with explicit allowed_paths, local backup and evidence/sprint-0-local-execution.md entry",
+    "scope_note": "Esta subtarea es ejecutable tras Sprint 0; no autoriza UI visible hasta completar los gates correspondientes."
+  },
+  {
+    "id": "C1-014",
+    "priority": "P1",
+    "phase": "2",
+    "title": "Persistir auditoría básica de acción/evento",
+    "module": "core.audit",
+    "dependencies": [
+      "S0-013",
+      "C1-011",
+      "C1-013",
+      "C1-004"
+    ],
+    "acceptance_criteria": [
+      "AuditLog registra acción ejecutada sin secretos",
+      "DomainEvent queda append-only",
+      "Errores técnicos no exponen payload sensible",
+      "Rollback local documentado"
+    ],
+    "evidence": "audit-event-persistence-report",
+    "status": "pending",
+    "description": "Subtarea granular post-Sprint 0 para Persistir auditoría básica de acción/evento. No habilita UI visible ni módulos funcionales por sí misma.",
+    "actions": [
+      "Leer documentos y contratos machine-readable indicados.",
+      "Aplicar cambio mínimo en los paths permitidos.",
+      "Ejecutar Doctor y pruebas contractuales aplicables.",
+      "Registrar evidencia y evidence/sprint-0-local-execution.md sin validar estado automáticamente."
+    ],
+    "files_affected": [
+      "app/Core/Audit/AuditLogger.php",
+      "app/Core/Events/DomainEventRepository.php",
+      "database/migrations/010_create_audit_logs.sql",
+      "database/migrations/009_create_domain_events.sql"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "audit-event-persistence-report",
+    "risk": "No habría trazabilidad mínima entre acción, evento y auditoría.",
+    "local_rollback": "Restaurar backup local previo y revertir únicamente los archivos declarados en allowed_paths; registrar reversión en evidence/sprint-0-local-execution.md.",
+    "blocking": false,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "parent_task_id": "C1-004",
+    "supersedes": [],
+    "superseded_by": [],
+    "must_close_with": [],
+    "is_umbrella": false,
+    "implementation_role": "base",
+    "relationship_note": "Subtarea ejecutable granular derivada de C1-004; reduce reinterpretación antes de Core Runtime.",
+    "scope_intent": "granular_executable_scope",
+    "allowed_paths": [
+      "app/Core/Audit/AuditLogger.php",
+      "app/Core/Events/DomainEventRepository.php",
+      "database/migrations/010_create_audit_logs.sql",
+      "database/migrations/009_create_domain_events.sql"
+    ],
+    "forbidden_paths": [
+      "database/migrations/** unless explicitly declared in this task",
+      "database/rollbacks/** unless explicitly declared in this task",
+      "machine/schemas/** unless schema change is explicit",
+      "docs/12-decisions/** unless ADR change is explicit",
+      "secrets/**",
+      ".env"
+    ],
+    "requires_subtask_split": false,
+    "approval_scope_hash_required": true,
+    "rollback_unit": "single granular change with explicit allowed_paths, local backup and evidence/sprint-0-local-execution.md entry",
+    "scope_note": "Esta subtarea es ejecutable tras Sprint 0; no autoriza UI visible hasta completar los gates correspondientes."
+  },
+  {
+    "id": "C1-015",
+    "priority": "P1",
+    "phase": "2",
+    "title": "Formalizar catálogo de analítica UI y contratos de eventos de vista persistentes",
+    "module": "dashboard",
+    "dependencies": [
+      "S0-013",
+      "C1-003A",
+      "UX2-001",
+      "G3-001B"
+    ],
+    "acceptance_criteria": [
+      "machine/analytics_events.json existe y valida contra schema.",
+      "Todo analytics_ref de pantalla referencia el catálogo.",
+      "dashboard.first_viewed y admin.panel.viewed se registran solo mediante action contract POST.",
+      "Los eventos first_view declaran idempotencia.",
+      "Doctor falla si una regla de gamificación consume una señal UI no persistente."
+    ],
+    "evidence": "doctor:analytics-events-contracts",
+    "status": "pending",
+    "description": "Cierra la frontera entre analítica UI, eventos de dominio y gamificación para evitar tracking ad hoc.",
+    "actions": [
+      "Crear catálogo analytics_events.",
+      "Añadir action contracts de view tracking persistente.",
+      "Actualizar Doctor y documentación de seguridad/UX/gamificación."
+    ],
+    "files_affected": [
+      "machine/analytics_events.json",
+      "machine/action_contracts.json",
+      "machine/screen_component_contracts.json",
+      "docs/07-design-ux/08-screen-component-contracts.md"
+    ],
+    "doctor_check": "SCREEN_ANALYTICS_REFS_EXIST_IN_ANALYTICS_CATALOG",
+    "expected_evidence": "Doctor passed con checks de analítica/eventos de vista.",
+    "risk": "Sin esta tarea, las métricas de vista y la gamificación podrían implementarse con side effects en GET.",
+    "local_rollback": "Revertir catálogo analytics_events, action contracts asociados y checks Doctor añadidos.",
+    "blocking": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md"
+  }
+]

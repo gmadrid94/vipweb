@@ -1,0 +1,550 @@
+[
+  {
+    "screen_id": "public_entry",
+    "mobile": {
+      "layout": "single_column_entry",
+      "navigation": "none",
+      "primary_content": [
+        "value_statement",
+        "login_cta"
+      ],
+      "secondary_content": [
+        "controlled_access_note"
+      ],
+      "critical_actions": "visible_or_sticky",
+      "tables": "not_applicable",
+      "side_panel": "hidden",
+      "ai_panel": "not_applicable"
+    },
+    "tablet": {
+      "layout": "centered_entry_with_context",
+      "navigation": "none",
+      "primary_content": [
+        "value_statement",
+        "login_cta"
+      ],
+      "secondary_content": [
+        "ecosystem_summary",
+        "controlled_access_note"
+      ],
+      "critical_actions": "visible",
+      "tables": "not_applicable",
+      "side_panel": "inline_below",
+      "ai_panel": "not_applicable"
+    },
+    "desktop": {
+      "layout": "two_column_public_entry",
+      "navigation": "none",
+      "primary_content": [
+        "value_statement",
+        "login_cta"
+      ],
+      "secondary_content": [
+        "ecosystem_summary",
+        "trust_copy",
+        "controlled_access_note"
+      ],
+      "critical_actions": "visible",
+      "tables": "not_applicable",
+      "side_panel": "context_panel",
+      "ai_panel": "not_applicable"
+    }
+  },
+  {
+    "screen_id": "login",
+    "mobile": {
+      "layout": "single_card_centered",
+      "navigation": "none",
+      "primary_content": [
+        "login_form",
+        "password_recovery",
+        "submit_action"
+      ],
+      "secondary_content": [
+        "short_value_message"
+      ],
+      "critical_actions": "visible_or_sticky",
+      "tables": "not_applicable",
+      "side_panel": "hidden",
+      "ai_panel": "not_applicable"
+    },
+    "tablet": {
+      "layout": "centered_card_with_context",
+      "navigation": "none",
+      "primary_content": [
+        "login_form",
+        "submit_action"
+      ],
+      "secondary_content": [
+        "short_value_message",
+        "trust_copy"
+      ],
+      "critical_actions": "visible",
+      "tables": "not_applicable",
+      "side_panel": "hidden",
+      "ai_panel": "not_applicable"
+    },
+    "desktop": {
+      "layout": "two_column_auth",
+      "navigation": "none",
+      "primary_content": [
+        "login_form",
+        "submit_action"
+      ],
+      "secondary_content": [
+        "value_message",
+        "continuity_copy"
+      ],
+      "critical_actions": "visible",
+      "tables": "not_applicable",
+      "side_panel": "marketing_or_help_panel",
+      "ai_panel": "not_applicable"
+    }
+  },
+  {
+    "screen_id": "onboarding",
+    "mobile": {
+      "layout": "single_step",
+      "navigation": "collapsed_or_top_back",
+      "primary_content": [
+        "current_step",
+        "progress_indicator",
+        "continue_action"
+      ],
+      "secondary_content": [
+        "context_help"
+      ],
+      "critical_actions": "sticky_bottom",
+      "tables": "not_applicable",
+      "side_panel": "hidden_but_accessible",
+      "ai_panel": "collapsed_help"
+    },
+    "tablet": {
+      "layout": "step_plus_summary",
+      "navigation": "compact_top",
+      "primary_content": [
+        "current_step",
+        "continue_action"
+      ],
+      "secondary_content": [
+        "progress_summary",
+        "context_help"
+      ],
+      "critical_actions": "visible",
+      "tables": "not_applicable",
+      "side_panel": "inline_below_or_right",
+      "ai_panel": "drawer"
+    },
+    "desktop": {
+      "layout": "stepper_with_side_panel",
+      "navigation": "left_sidebar",
+      "primary_content": [
+        "current_step",
+        "stepper",
+        "continue_action"
+      ],
+      "secondary_content": [
+        "progress_summary",
+        "context_help",
+        "ai_helper"
+      ],
+      "critical_actions": "visible",
+      "tables": "not_applicable",
+      "side_panel": "visible",
+      "ai_panel": "right_panel_or_drawer"
+    }
+  },
+  {
+    "screen_id": "dashboard",
+    "mobile": {
+      "layout": "single_column",
+      "navigation": "bottom_or_collapsed",
+      "primary_content": [
+        "next_step",
+        "progress_summary",
+        "module_cards"
+      ],
+      "secondary_content": [
+        "notifications_preview"
+      ],
+      "critical_actions": "visible_or_sticky",
+      "tables": "not_applicable",
+      "side_panel": "hidden_but_accessible",
+      "ai_panel": "collapsed"
+    },
+    "tablet": {
+      "layout": "two_column_adaptive",
+      "navigation": "top_or_compact_side",
+      "primary_content": [
+        "next_step",
+        "progress_summary"
+      ],
+      "secondary_content": [
+        "module_cards",
+        "notifications_preview"
+      ],
+      "critical_actions": "visible",
+      "tables": "cards_or_compact_rows",
+      "side_panel": "inline_below_or_right",
+      "ai_panel": "drawer"
+    },
+    "desktop": {
+      "layout": "app_shell_with_side_panel",
+      "navigation": "left_sidebar",
+      "primary_content": [
+        "next_step",
+        "module_grid"
+      ],
+      "secondary_content": [
+        "progress_panel",
+        "notifications",
+        "ai_helper"
+      ],
+      "critical_actions": "visible",
+      "tables": "full_width_when_needed",
+      "side_panel": "visible",
+      "ai_panel": "right_panel_or_drawer"
+    }
+  },
+  {
+    "screen_id": "profile",
+    "mobile": {
+      "layout": "single_column_sections",
+      "navigation": "bottom_or_collapsed",
+      "primary_content": [
+        "profile_sections",
+        "save_action"
+      ],
+      "secondary_content": [
+        "completion_hint"
+      ],
+      "critical_actions": "sticky_bottom",
+      "tables": "not_applicable",
+      "side_panel": "hidden_but_accessible",
+      "ai_panel": "collapsed_help"
+    },
+    "tablet": {
+      "layout": "form_plus_summary",
+      "navigation": "compact_top",
+      "primary_content": [
+        "profile_form",
+        "save_action"
+      ],
+      "secondary_content": [
+        "completion_summary"
+      ],
+      "critical_actions": "visible",
+      "tables": "not_applicable",
+      "side_panel": "inline_right",
+      "ai_panel": "drawer"
+    },
+    "desktop": {
+      "layout": "wide_form_with_context_panel",
+      "navigation": "left_sidebar",
+      "primary_content": [
+        "profile_form",
+        "save_action"
+      ],
+      "secondary_content": [
+        "completion_summary",
+        "context_help"
+      ],
+      "critical_actions": "visible",
+      "tables": "not_applicable",
+      "side_panel": "visible",
+      "ai_panel": "right_panel_or_drawer"
+    }
+  },
+  {
+    "screen_id": "notifications",
+    "mobile": {
+      "layout": "single_column_cards",
+      "navigation": "bottom_or_collapsed",
+      "primary_content": [
+        "notification_cards",
+        "mark_read_action"
+      ],
+      "secondary_content": [
+        "filters_collapsed"
+      ],
+      "critical_actions": "visible_per_card",
+      "tables": "cards",
+      "side_panel": "hidden",
+      "ai_panel": "not_applicable"
+    },
+    "tablet": {
+      "layout": "list_with_top_filters",
+      "navigation": "compact_top",
+      "primary_content": [
+        "notification_list"
+      ],
+      "secondary_content": [
+        "filters_top"
+      ],
+      "critical_actions": "visible_per_row",
+      "tables": "compact_rows_or_cards",
+      "side_panel": "hidden",
+      "ai_panel": "not_applicable"
+    },
+    "desktop": {
+      "layout": "list_with_filter_panel",
+      "navigation": "left_sidebar",
+      "primary_content": [
+        "notification_table_or_list"
+      ],
+      "secondary_content": [
+        "filter_panel"
+      ],
+      "critical_actions": "visible_per_row",
+      "tables": "full_width_or_dense_list",
+      "side_panel": "visible_filters",
+      "ai_panel": "not_applicable"
+    }
+  },
+  {
+    "screen_id": "admin",
+    "mobile": {
+      "layout": "read_only_cards",
+      "navigation": "bottom_or_collapsed",
+      "primary_content": [
+        "admin_summary_cards"
+      ],
+      "secondary_content": [
+        "filters_collapsed"
+      ],
+      "critical_actions": "visible_but_readonly",
+      "tables": "cards",
+      "side_panel": "hidden",
+      "ai_panel": "not_applicable"
+    },
+    "tablet": {
+      "layout": "grouped_cards_and_compact_tables",
+      "navigation": "compact_top",
+      "primary_content": [
+        "admin_groups"
+      ],
+      "secondary_content": [
+        "status_summary"
+      ],
+      "critical_actions": "visible_but_readonly",
+      "tables": "compact_rows",
+      "side_panel": "inline_below",
+      "ai_panel": "not_applicable"
+    },
+    "desktop": {
+      "layout": "admin_shell_with_tables",
+      "navigation": "left_sidebar",
+      "primary_content": [
+        "admin_tables"
+      ],
+      "secondary_content": [
+        "filters",
+        "status_summary"
+      ],
+      "critical_actions": "visible_but_readonly",
+      "tables": "full_width",
+      "side_panel": "visible_filters",
+      "ai_panel": "not_applicable"
+    }
+  },
+  {
+    "screen_id": "doctor_evidence",
+    "mobile": {
+      "layout": "status_first_cards",
+      "navigation": "bottom_or_collapsed",
+      "primary_content": [
+        "overall_status",
+        "failed_checks_cards"
+      ],
+      "secondary_content": [
+        "evidence_metadata"
+      ],
+      "critical_actions": "readonly_or_approval_required_visible",
+      "tables": "cards",
+      "side_panel": "hidden",
+      "ai_panel": "collapsed_explanation"
+    },
+    "tablet": {
+      "layout": "checks_grouped_by_layer",
+      "navigation": "compact_top",
+      "primary_content": [
+        "overall_status",
+        "checks_groups"
+      ],
+      "secondary_content": [
+        "evidence_metadata"
+      ],
+      "critical_actions": "visible_with_approval_state",
+      "tables": "compact_rows_or_cards",
+      "side_panel": "inline_below",
+      "ai_panel": "drawer"
+    },
+    "desktop": {
+      "layout": "table_plus_metadata_panel",
+      "navigation": "left_sidebar",
+      "primary_content": [
+        "checks_table",
+        "overall_status"
+      ],
+      "secondary_content": [
+        "evidence_metadata",
+        "doctor_actions",
+        "ai_explanation"
+      ],
+      "critical_actions": "visible_with_approval_state",
+      "tables": "full_width",
+      "side_panel": "visible_metadata",
+      "ai_panel": "right_panel_or_drawer"
+    }
+  },
+  {
+    "screen_id": "modules_catalog",
+    "mobile": {
+      "layout": "single_column_cards",
+      "navigation": "bottom_or_header",
+      "primary_content": [
+        "module_cards",
+        "next_step"
+      ],
+      "secondary_content": [
+        "status_badges"
+      ],
+      "critical_actions": "module open CTA and dashboard return visible",
+      "tables": "cards",
+      "side_panel": "collapsible",
+      "ai_panel": "contextual_collapsible"
+    },
+    "tablet": {
+      "layout": "two_column_adaptive",
+      "navigation": "header_with_tabs",
+      "primary_content": [
+        "module_cards_grid"
+      ],
+      "secondary_content": [
+        "filters",
+        "status_summary"
+      ],
+      "critical_actions": "module open CTA visible",
+      "tables": "cards_or_compact_rows",
+      "side_panel": "collapsible",
+      "ai_panel": "contextual_collapsible"
+    },
+    "desktop": {
+      "layout": "grid_with_context_panel",
+      "navigation": "app_shell_sidebar",
+      "primary_content": [
+        "module_grid"
+      ],
+      "secondary_content": [
+        "filters",
+        "module_status_summary",
+        "next_step"
+      ],
+      "critical_actions": "module open CTA visible",
+      "tables": "cards_or_compact_rows",
+      "side_panel": "right_context_panel",
+      "ai_panel": "contextual_collapsible"
+    }
+  },
+  {
+    "screen_id": "progress",
+    "mobile": {
+      "layout": "single_column_progress",
+      "navigation": "bottom_or_header",
+      "primary_content": [
+        "current_progress",
+        "next_step"
+      ],
+      "secondary_content": [
+        "recent_achievements"
+      ],
+      "critical_actions": "continue CTA visible",
+      "tables": "cards",
+      "side_panel": "collapsible",
+      "ai_panel": "contextual_collapsible"
+    },
+    "tablet": {
+      "layout": "two_column_progress",
+      "navigation": "header_with_tabs",
+      "primary_content": [
+        "progress_summary",
+        "next_step"
+      ],
+      "secondary_content": [
+        "achievement_cards"
+      ],
+      "critical_actions": "continue CTA visible",
+      "tables": "cards_or_compact_rows",
+      "side_panel": "collapsible",
+      "ai_panel": "contextual_collapsible"
+    },
+    "desktop": {
+      "layout": "dashboard_panel_layout",
+      "navigation": "app_shell_sidebar",
+      "primary_content": [
+        "progress_summary",
+        "achievement_grid"
+      ],
+      "secondary_content": [
+        "event_history",
+        "next_step"
+      ],
+      "critical_actions": "continue CTA visible",
+      "tables": "cards_or_compact_rows",
+      "side_panel": "right_context_panel",
+      "ai_panel": "contextual_collapsible"
+    }
+  },
+  {
+    "screen_id": "ai_workspace",
+    "mobile": {
+      "layout": "single_column_readonly",
+      "navigation": "header_only",
+      "primary_content": [
+        "ai_status",
+        "suggestions"
+      ],
+      "secondary_content": [
+        "guardrails_summary"
+      ],
+      "critical_actions": "review draft CTA visible when allowed",
+      "tables": "cards",
+      "side_panel": "collapsed",
+      "ai_panel": "main_content"
+    },
+    "tablet": {
+      "layout": "two_column_readonly",
+      "navigation": "header_with_tabs",
+      "primary_content": [
+        "suggestions",
+        "drafts"
+      ],
+      "secondary_content": [
+        "guardrails",
+        "approval_status"
+      ],
+      "critical_actions": "review draft CTA visible when allowed",
+      "tables": "cards_or_compact_rows",
+      "side_panel": "right_context_panel",
+      "ai_panel": "main_content"
+    },
+    "desktop": {
+      "layout": "workspace_with_guardrail_panel",
+      "navigation": "app_shell_sidebar",
+      "primary_content": [
+        "suggestions",
+        "drafts",
+        "context_summary"
+      ],
+      "secondary_content": [
+        "guardrails",
+        "approval_status",
+        "recent_evidence"
+      ],
+      "critical_actions": "review draft CTA visible when allowed",
+      "tables": "compact_rows_or_cards",
+      "side_panel": "right_context_panel",
+      "ai_panel": "main_content"
+    }
+  }
+]

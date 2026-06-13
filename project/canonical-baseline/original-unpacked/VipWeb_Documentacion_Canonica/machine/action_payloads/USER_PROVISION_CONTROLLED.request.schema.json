@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/USER_PROVISION_CONTROLLED.request.schema.json",
+  "title": "USER_PROVISION_CONTROLLED request body",
+  "type": "object",
+  "required": [
+    "request_id",
+    "csrf_token",
+    "payload",
+    "approval_id",
+    "idempotency_key"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 120
+    },
+    "csrf_token": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "email",
+        "display_name",
+        "initial_role",
+        "initial_status",
+        "password_set_mode",
+        "initial_password",
+        "reason",
+        "rollback_plan"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "initial_role": {
+          "const": "registered_user"
+        },
+        "initial_status": {
+          "const": "active"
+        },
+        "password_set_mode": {
+          "const": "owner_defined_local_only"
+        },
+        "initial_password": {
+          "type": "string",
+          "minLength": 12,
+          "maxLength": 256,
+          "description": "Secreto transitorio: no debe registrarse en logs, eventos, evidencias ni auditoría."
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 1000
+        },
+        "rollback_plan": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 2000
+        }
+      }
+    },
+    "approval_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    }
+  }
+}

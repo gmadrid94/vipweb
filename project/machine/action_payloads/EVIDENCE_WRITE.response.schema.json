@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/EVIDENCE_WRITE.response.schema.json",
+  "title": "EVIDENCE_WRITE success response",
+  "type": "object",
+  "required": [
+    "ok",
+    "data",
+    "error",
+    "meta"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "evidence_id",
+        "latest_updated",
+        "path",
+        "checksum",
+        "checksum_algorithm",
+        "integrity_manifest_ref"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "latest_updated": {
+          "type": "boolean"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "checksum": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "checksum_algorithm": {
+          "const": "sha256"
+        },
+        "integrity_manifest_ref": {
+          "type": "string",
+          "const": "evidence/sprint-0-local-execution.md"
+        }
+      }
+    },
+    "error": {
+      "type": "null"
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "request_id",
+        "action_id",
+        "emitted_events"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "action_id": {
+          "const": "EVIDENCE_WRITE"
+        },
+        "emitted_events": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

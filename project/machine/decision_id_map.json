@@ -1,0 +1,292 @@
+[
+  {
+    "decision_id": "D-CORE-001",
+    "adr": "ADR-001",
+    "module": "core.modules",
+    "entity": "Module",
+    "permission": "module.view",
+    "event": "module.activated",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-MOD-001",
+    "adr": "ADR-002",
+    "module": "core.modules",
+    "entity": "ModuleManifest",
+    "permission": "module.use",
+    "event": "module.configured",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-STACK-001",
+    "adr": "ADR-003",
+    "module": "core.config",
+    "entity": "SystemSetting",
+    "permission": "system.configure",
+    "event": "system.configured",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-AUTH-001",
+    "adr": "ADR-004",
+    "module": "core.permissions",
+    "entity": "Permission",
+    "permission": "admin.manage_users",
+    "event": "permission.changed",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-AI-001",
+    "adr": "ADR-005",
+    "module": "ai_assistant",
+    "entity": "AIActionLog",
+    "permission": "ai.suggest_changes",
+    "event": "ai.suggestion.created",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-DATA-001",
+    "adr": "ADR-006",
+    "module": "core.events",
+    "entity": "DomainEvent",
+    "permission": "system.view_events",
+    "event": "domain.event.recorded",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-DOCS-001",
+    "adr": "ADR-007",
+    "module": "core.doctor",
+    "entity": "EvidenceReport",
+    "permission": "admin.view_evidence",
+    "event": "evidence.recorded",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-ROADMAP-001",
+    "adr": "ADR-008",
+    "module": "core.doctor",
+    "entity": "EvidenceReport",
+    "permission": "system.run_doctor.readonly",
+    "event": "system.doctor.executed",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-QUALITY-001",
+    "adr": "ADR-009",
+    "module": "core.doctor",
+    "entity": "EvidenceReport",
+    "permission": "system.run_doctor.readonly",
+    "event": "doctor.check.failed",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-GAM-001",
+    "adr": "ADR-010",
+    "module": "gamification",
+    "entity": "Achievement",
+    "permission": "gamification.view",
+    "event": "achievement.unlocked",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-UX-001",
+    "adr": "ADR-011",
+    "module": "dashboard",
+    "entity": "UserContext",
+    "permission": "dashboard.view",
+    "event": "dashboard.viewed",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-PRODUCT-001",
+    "adr": "ADR-012",
+    "module": "core.modules",
+    "entity": "Module",
+    "permission": "module.view",
+    "event": "module.activated",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-BUSINESS-001",
+    "adr": "ADR-013",
+    "module": "integrations",
+    "entity": "Integration",
+    "permission": "integration.view",
+    "event": "integration.configured",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-MVP-001",
+    "adr": "ADR-014",
+    "module": "dashboard",
+    "entity": "UserContext",
+    "permission": "dashboard.view",
+    "event": "dashboard.first_viewed",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-INTEGRATIONS-001",
+    "adr": "ADR-015",
+    "module": "integrations",
+    "entity": "Integration",
+    "permission": "integration.configure",
+    "event": "integration.configured",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-DASHBOARD-001",
+    "adr": "ADR-016",
+    "module": "dashboard",
+    "entity": "UserContext",
+    "permission": "dashboard.view",
+    "event": "dashboard.viewed",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-ONBOARDING-001",
+    "adr": "ADR-017",
+    "module": "onboarding",
+    "entity": "OnboardingSession",
+    "permission": "profile.update",
+    "event": "onboarding.completed",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-ADMIN-001",
+    "adr": "ADR-018",
+    "module": "admin",
+    "entity": "AuditLog",
+    "permission": "admin.access",
+    "event": "admin.panel.viewed",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-MIGRATIONS-001",
+    "adr": "ADR-019",
+    "module": "core.identity",
+    "entity": "User",
+    "permission": "auth.login",
+    "event": "user.registered",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-TESTING-001",
+    "adr": "ADR-020",
+    "module": "core.doctor",
+    "entity": "EvidenceReport",
+    "permission": "system.run_doctor.readonly",
+    "event": "system.doctor.executed",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-WAMP-001",
+    "adr": "ADR-021",
+    "module": "core.config",
+    "entity": "BackupRecord",
+    "permission": "system.configure",
+    "event": "backup.created",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-VISUAL-001",
+    "adr": "ADR-022",
+    "module": "dashboard",
+    "entity": "UserContext",
+    "permission": "dashboard.view",
+    "event": "dashboard.first_viewed",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-MODULES-001",
+    "adr": "ADR-023",
+    "module": "core.modules",
+    "entity": "ModuleManifest",
+    "permission": "module.view",
+    "event": "module.configured",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-SPRINT0-001",
+    "adr": "ADR-024",
+    "module": "core.doctor",
+    "entity": "EvidenceReport",
+    "permission": "evidence.write",
+    "event": "evidence.recorded",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-ORDER-001",
+    "adr": "ADR-025",
+    "module": "core.config",
+    "entity": "SystemSetting",
+    "permission": "system.configure",
+    "event": "system.configured",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-MOD-READ-001",
+    "adr": "ADR-027",
+    "module": "core.modules",
+    "entity": "ModuleManifest",
+    "permission": "module.view",
+    "event": "module.configured",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-AI-RUNBOOK-001",
+    "adr": "ADR-028",
+    "module": "ai_assistant",
+    "entity": "AIActionLog",
+    "permission": "ai.write_draft",
+    "event": "ai.suggestion.created",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-LAYOUT-001",
+    "adr": "ADR-029",
+    "module": "core.config",
+    "entity": "SystemSetting",
+    "permission": "system.configure",
+    "event": "system.configured",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  },
+  {
+    "decision_id": "D-AI-FIRST-001",
+    "adr": "ADR-030",
+    "module": "ai_assistant",
+    "entity": "AIActionLog",
+    "permission": "ai.read_context",
+    "event": "ai.suggestion.created",
+    "status": "accepted",
+    "source": "docs/12-decisions/adr/"
+  }
+]

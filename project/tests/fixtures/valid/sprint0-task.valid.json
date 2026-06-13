@@ -1,0 +1,26 @@
+[
+  {
+    "id": "S0-999",
+    "priority": "P3",
+    "phase": "Sprint 0",
+    "title": "Fixture válida mínima Sprint 0",
+    "dependencies": [],
+    "acceptance_criteria": [
+      "Debe validar contra schema."
+    ],
+    "status": "pending",
+    "description": "Caso positivo mínimo para sprint0-task.schema.json.",
+    "actions": [
+      "Validar fixture positiva."
+    ],
+    "files_affected": [],
+    "doctor_check": "POSITIVE_SCHEMA_FIXTURES_PASS",
+    "expected_evidence": "Doctor acepta fixture positiva.",
+    "risk": "Regresión de schema no detectada.",
+    "local_rollback": "Eliminar fixture.",
+    "blocking": false,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/06-technical/06-testing.md"
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "J-001",
+    "name": "Activación inicial guiada",
+    "actor": "registered_user",
+    "entry": "Login completado con usuario provisionado",
+    "steps": [
+      "Ver bienvenida",
+      "Completar onboarding mínimo",
+      "Llegar al dashboard",
+      "Ver módulos iniciales",
+      "Recibir próximo paso"
+    ],
+    "success_event": "onboarding.completed",
+    "success_metric": "activation_rate",
+    "modules": [
+      "core.identity",
+      "onboarding",
+      "dashboard",
+      "profile",
+      "gamification"
+    ],
+    "registration_policy": "controlled_provisioning_mvp_no_public_signup"
+  },
+  {
+    "id": "J-002",
+    "name": "Continuidad diaria",
+    "actor": "registered_user",
+    "entry": "Usuario vuelve al dashboard",
+    "steps": [
+      "Ver estado",
+      "Ver progreso",
+      "Abrir módulo",
+      "Recibir notificación contextual"
+    ],
+    "success_event": "dashboard.viewed",
+    "success_metric": "dashboard_return_rate",
+    "modules": [
+      "dashboard",
+      "notifications",
+      "gamification"
+    ]
+  },
+  {
+    "id": "J-003",
+    "name": "Operación segura por admin",
+    "actor": "admin",
+    "entry": "Admin accede a panel",
+    "steps": [
+      "Ver módulos",
+      "Ver auditoría",
+      "Ver evidencias",
+      "Ejecutar Doctor no destructivo"
+    ],
+    "success_event": "admin.panel.viewed",
+    "success_metric": "doctor_pass_rate",
+    "modules": [
+      "admin",
+      "core.audit",
+      "core.doctor"
+    ]
+  },
+  {
+    "id": "J-004",
+    "name": "Asistencia IA no autónoma",
+    "actor": "ai_assistant",
+    "entry": "Tarea de auditoría o propuesta",
+    "steps": [
+      "Leer contexto",
+      "Detectar incoherencia",
+      "Proponer cambio",
+      "Registrar acción"
+    ],
+    "success_event": "ai.suggestion.created",
+    "success_metric": "ai_suggestion_acceptance_rate",
+    "modules": [
+      "ai_assistant",
+      "core.audit",
+      "core.doctor"
+    ]
+  }
+]

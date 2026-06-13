@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/progress.updated.v1.schema.json",
+  "title": "progress.updated v1 payload",
+  "type": "object",
+  "required": [
+    "user_id",
+    "source_event",
+    "delta",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "source_event": {
+      "type": "string"
+    },
+    "delta": {
+      "type": "integer"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

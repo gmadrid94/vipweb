@@ -1,0 +1,269 @@
+[
+  {
+    "id": "RB-AI-004A",
+    "title": "Ejecutar Doctor readonly",
+    "status": "active",
+    "human_document": "docs/09-ai-operations/04-ai-runbooks.md",
+    "allowed_ai_levels": [
+      "AI-1"
+    ],
+    "human_only": false,
+    "trigger": "Cuando se deba auditar consistencia documental o técnica sin escribir evidencia ni cambiar estado.",
+    "preconditions": [
+      "Repositorio local legible.",
+      "No existe solicitud de escritura sobre archivos, base de datos o estado.",
+      "La acción solicitada coincide con DOCTOR_RUN_READONLY."
+    ],
+    "action_contract_ids": [
+      "DOCTOR_RUN_READONLY"
+    ],
+    "action_permissions": [
+      "system.run_doctor.readonly"
+    ],
+    "allowed_actions": [
+      "system.run_doctor.readonly"
+    ],
+    "forbidden_actions": [
+      "file.write",
+      "db.migrate",
+      "db.write",
+      "evidence.write",
+      "doctor.status.validate",
+      "ai.write_draft"
+    ],
+    "required_approval": "none",
+    "approval_record_required": false,
+    "inputs": [
+      "doctor_profile",
+      "working_tree_path"
+    ],
+    "outputs": [
+      "doctor_output",
+      "readonly_report"
+    ],
+    "evidence_required": [
+      "doctor_stdout_or_json_report"
+    ],
+    "runtime_tests": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "AI_ACTIONS_HAVE_GUARDRAIL_TESTS"
+    ],
+    "fallback": "escalate_to_human_if_doctor_fails_or_requests_write",
+    "writes_entities": [
+      "AuditLog",
+      "DomainEvent"
+    ],
+    "forbidden_entities": [
+      "EvidenceReport",
+      "DecisionRecord"
+    ],
+    "related_documents": [
+      "docs/09-ai-operations/04-ai-runbooks.md",
+      "machine/action_contracts.json",
+      "machine/runtime_test_matrix.json"
+    ]
+  },
+  {
+    "id": "RB-AI-004B",
+    "title": "Escribir evidencia versionada",
+    "status": "restricted_mvp",
+    "human_document": "docs/09-ai-operations/04-ai-runbooks.md",
+    "allowed_ai_levels": [
+      "AI-2"
+    ],
+    "human_only": false,
+    "trigger": "Cuando el owner apruebe una escritura de evidencia append-only con scope, checksum y rollback definidos.",
+    "preconditions": [
+      "AI-2 activado explícitamente para el entorno.",
+      "ApprovalRecord aprobado, no expirado y con scope_hash coincidente.",
+      "La evidencia no valida estado automáticamente.",
+      "Checksum SHA-256 lowercase calculado sobre artifact final.",
+      "La ruta o almacenamiento de evidencia está en allowlist y se valida con canonical path.",
+      "La acción no valida estado ni modifica archivos protegidos del producto."
+    ],
+    "action_contract_ids": [
+      "EVIDENCE_WRITE"
+    ],
+    "action_permissions": [
+      "evidence.write"
+    ],
+    "allowed_actions": [
+      "evidence.write"
+    ],
+    "forbidden_actions": [
+      "doctor.status.validate",
+      "file.overwrite_protected",
+      "db.migrate",
+      "db.write_uncontracted",
+      "file.write_protected_product"
+    ],
+    "required_approval": "owner_approved_approval_record",
+    "approval_record_required": true,
+    "inputs": [
+      "approval_id",
+      "scope_hash",
+      "checksum",
+      "checksum_algorithm",
+      "artifact_path"
+    ],
+    "outputs": [
+      "evidence_report",
+      "audit_log",
+      "domain_event"
+    ],
+    "evidence_required": [
+      "evidence_manifest_entry",
+      "approval_consumption_log"
+    ],
+    "runtime_tests": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "APPROVAL_ACTIONS_HAVE_NEGATIVE_TESTS",
+      "AI_ACTIONS_HAVE_GUARDRAIL_TESTS"
+    ],
+    "fallback": "block_write_and_request_human_review",
+    "writes_entities": [
+      "EvidenceReport",
+      "AuditLog",
+      "DomainEvent"
+    ],
+    "forbidden_entities": [
+      "DecisionRecord"
+    ],
+    "related_documents": [
+      "docs/09-ai-operations/04-ai-runbooks.md",
+      "docs/09-ai-operations/08-ai-approval-policy.md",
+      "machine/ai_approval_policy.json"
+    ]
+  },
+  {
+    "id": "RB-AI-004C",
+    "title": "Validar estado tras revisar evidencia",
+    "status": "human_only",
+    "human_document": "docs/09-ai-operations/04-ai-runbooks.md",
+    "allowed_ai_levels": [],
+    "human_only": true,
+    "trigger": "Cuando el owner humano revisa evidencias y decide cambiar estado operativo.",
+    "preconditions": [
+      "Evidencia generada y revisada por humano.",
+      "Owner humano autenticado.",
+      "La IA no solicita ni ejecuta validación de estado."
+    ],
+    "action_contract_ids": [
+      "DOCTOR_STATUS_VALIDATE"
+    ],
+    "action_permissions": [
+      "doctor.status.validate"
+    ],
+    "allowed_actions": [
+      "doctor.status.validate"
+    ],
+    "forbidden_actions": [
+      "ai.execute",
+      "ai.approve_state",
+      "auto_validate_status"
+    ],
+    "required_approval": "owner_human_direct_action",
+    "approval_record_required": true,
+    "inputs": [
+      "evidence_id",
+      "target_status",
+      "human_review_note"
+    ],
+    "outputs": [
+      "DecisionRecord",
+      "AuditLog"
+    ],
+    "evidence_required": [
+      "human_review_record",
+      "decision_record"
+    ],
+    "runtime_tests": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "APPROVAL_ACTIONS_HAVE_NEGATIVE_TESTS"
+    ],
+    "fallback": "keep_previous_status",
+    "writes_entities": [
+      "DecisionRecord",
+      "AuditLog"
+    ],
+    "forbidden_entities": [
+      "AIActionLog"
+    ],
+    "related_documents": [
+      "docs/09-ai-operations/04-ai-runbooks.md",
+      "machine/ai_approval_policy.json"
+    ]
+  },
+  {
+    "id": "RB-AI-005",
+    "title": "Crear y gestionar borrador AI-2",
+    "status": "restricted_mvp",
+    "human_document": "docs/09-ai-operations/04-ai-runbooks.md",
+    "allowed_ai_levels": [
+      "AI-2"
+    ],
+    "human_only": false,
+    "trigger": "Cuando el owner apruebe crear un borrador revisable sin tocar target_doc, código ni archivos protegidos del producto.",
+    "preconditions": [
+      "AI-2 activado explícitamente para el entorno.",
+      "ApprovalRecord aprobado, no expirado y con scope_hash coincidente.",
+      "target_doc y files_read existen.",
+      "La acción no modifica target_doc, código ni archivos protegidos del producto."
+    ],
+    "action_contract_ids": [
+      "AI_WRITE_DRAFT"
+    ],
+    "action_permissions": [
+      "ai.write_draft"
+    ],
+    "allowed_actions": [
+      "ai.write_draft"
+    ],
+    "forbidden_actions": [
+      "file.write",
+      "db.migrate",
+      "db.write",
+      "doctor.status.validate",
+      "mark_draft_as_applied"
+    ],
+    "required_approval": "owner_approved_approval_record",
+    "approval_record_required": true,
+    "inputs": [
+      "approval_id",
+      "idempotency_key",
+      "target_doc",
+      "draft_type",
+      "instructions",
+      "files_read",
+      "risk_level"
+    ],
+    "outputs": [
+      "draft_id",
+      "AIActionLog",
+      "ai.suggestion.created"
+    ],
+    "evidence_required": [
+      "ai_action_log",
+      "draft_created_response"
+    ],
+    "runtime_tests": [
+      "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+      "APPROVAL_ACTIONS_HAVE_NEGATIVE_TESTS",
+      "AI_ACTIONS_HAVE_GUARDRAIL_TESTS"
+    ],
+    "fallback": "discard_draft_and_escalate_to_human",
+    "writes_entities": [
+      "AIDraft",
+      "AIActionLog"
+    ],
+    "forbidden_entities": [
+      "DecisionRecord",
+      "EvidenceReport"
+    ],
+    "related_documents": [
+      "docs/09-ai-operations/04-ai-runbooks.md",
+      "docs/09-ai-operations/08-ai-approval-policy.md",
+      "machine/action_contracts.json"
+    ]
+  }
+]

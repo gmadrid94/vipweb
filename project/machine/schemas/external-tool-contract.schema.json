@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "version",
+    "execution_model",
+    "roots",
+    "logging",
+    "trust_boundary",
+    "tools"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "execution_model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "roots": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "declared_local_facts_pending_verification": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "logging": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "trust_boundary": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "tools": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "tool_id",
+          "task_id",
+          "phase",
+          "entrypoint",
+          "purpose",
+          "allowed_write_roots",
+          "forbidden_write_roots",
+          "requires_backup",
+          "requires_git_clean",
+          "destructive",
+          "idempotent",
+          "expected_outputs",
+          "gpt_review_checks"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "tool_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "task_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "phase": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entrypoint": {
+            "type": "string",
+            "minLength": 1
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          },
+          "allowed_write_roots": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "forbidden_write_roots": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "requires_backup": {
+            "type": "boolean"
+          },
+          "requires_git_clean": {
+            "type": "boolean"
+          },
+          "destructive": {
+            "type": "boolean"
+          },
+          "idempotent": {
+            "type": "boolean"
+          },
+          "expected_outputs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "gpt_review_checks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

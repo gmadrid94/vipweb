@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/user.logged_in.v1.schema.json",
+  "title": "user.logged_in v1 payload",
+  "type": "object",
+  "required": [
+    "user_id",
+    "ip_hash",
+    "request_id",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "ip_hash": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

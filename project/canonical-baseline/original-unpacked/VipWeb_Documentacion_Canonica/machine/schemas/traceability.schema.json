@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "adr",
+      "decision_id",
+      "modules",
+      "entities",
+      "permissions",
+      "events",
+      "sprint0_tasks",
+      "evidence",
+      "expected_evidence",
+      "doctor_checks",
+      "backlog_items",
+      "roadmap_gates",
+      "status",
+      "deprecated_references",
+      "source_doc"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "adr": {
+        "type": "string"
+      },
+      "decision_id": {
+        "type": "string"
+      },
+      "modules": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "entities": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "permissions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "sprint0_tasks": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "evidence": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "status": {
+        "enum": [
+          "active",
+          "deprecated",
+          "draft"
+        ]
+      },
+      "deprecated_references": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "source_doc": {
+        "type": "string"
+      },
+      "roadmap_gates": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "backlog_items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "doctor_checks": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "expected_evidence": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      }
+    }
+  }
+}

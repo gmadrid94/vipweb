@@ -1,0 +1,47 @@
+[
+  {
+    "id": "C1-000",
+    "priority": "P0",
+    "phase": "2",
+    "title": "Implementar identity/session runtime",
+    "module": "core.identity",
+    "dependencies": [
+      "S0-013",
+      "S0-006",
+      "machine/entities.json",
+      "machine/permissions.json"
+    ],
+    "acceptance_criteria": [
+      "Existe sesión local protegida",
+      "User mínimo resoluble por request",
+      "Login/logout tienen contrato técnico aunque la pantalla llegue después",
+      "Emite user.logged_in",
+      "Bloquea acceso autenticado sin sesión válida",
+      "No introduce proveedor externo"
+    ],
+    "evidence": "identity-runtime-report",
+    "status": "pending",
+    "description": "Ejecutar Implementar identity/session runtime dentro de la fase 2 respetando contratos de módulos, permisos, evidencias y rollback local.",
+    "actions": [
+      "Leer documento fuente y catálogos machine-readable relacionados con core.identity",
+      "Preparar cambio mínimo y trazable",
+      "Ejecutar validaciones locales",
+      "Registrar evidencia esperada sin marcar estado validado automáticamente"
+    ],
+    "files_affected": [
+      "app/Core/Identity/*",
+      "machine/entities.json",
+      "machine/permissions.json",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "doctor_check": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "expected_evidence": "identity-runtime-report",
+    "risk": "Reinterpretación técnica o pérdida de trazabilidad si se implementa sin contrato operativo.",
+    "local_rollback": "Restaurar backup local previo y revertir archivos afectados registrados en evidence/sprint-0-local-execution.md.",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/03-technical-tasks.md",
+    "unexpected_field": true
+  }
+]

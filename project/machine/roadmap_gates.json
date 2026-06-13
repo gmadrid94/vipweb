@@ -1,0 +1,269 @@
+[
+  {
+    "phase_id": "0",
+    "name": "Foundation Hardening",
+    "entry": [
+      "ZIP original preservado",
+      "ADRs aceptadas"
+    ],
+    "exit": [
+      "Doctor sin críticos",
+      "catálogos machine válidos",
+      "trazabilidad sincronizada"
+    ],
+    "evidence": [
+      "evidence/sprint-0-local-execution.md",
+      "machine/traceability_matrix.json"
+    ],
+    "blocking_if_missing": [
+      "roles.json",
+      "relationships.json",
+      "module.schema.json"
+    ],
+    "modules": [
+      "core.doctor",
+      "core.modules"
+    ]
+  },
+  {
+    "phase_id": "1",
+    "name": "Technical Skeleton / Sprint 0",
+    "entry": [
+      "Foundation Hardening cerrado",
+      "validación documental sin críticos",
+      "catálogos machine-readable válidos",
+      "S0-000A declara development_mode antes de cambios protegidos preparados por IA"
+    ],
+    "exit": [
+      "Sprint 0 cerrado mediante S0-013",
+      "S0-000A ADR-026 preflight cerrado o no aplicable",
+      "estructura WAMP creada",
+      "scripts seguros",
+      "config sin secretos",
+      "migraciones iniciales creadas",
+      "rollbacks iniciales creados",
+      "seeds iniciales creados",
+      "Doctor readonly sin críticos",
+      "evidencia local inicial completada manualmente",
+      "trazabilidad validada",
+      "protected_ai_write_gate verificado cuando aplique",
+      "S0-000A clasifica origen y alcance de cambios protegidos preparados por IA",
+      "development_mode registrado y coherente con ADR-026",
+      "UserContext y OnboardingSession validados con user_id NOT NULL contra DCE-009/DCE-010 antes de ejecutar migraciones",
+      "schema_migrations ledger creado",
+      "migraciones iniciales ejecutadas localmente",
+      "seeds iniciales ejecutados localmente",
+      "owner seed fail-closed validado",
+      "ProgressRecord MVP event-driven validado",
+      "estructura AI-first externa verificada",
+      "public document root verificado",
+      "logs externos de Sprint 0 revisados por GPT",
+      "Git local/repo oficial verificado"
+    ],
+    "evidence": [
+      "evidence/sprint-0-local-execution.md",
+      "adr026-preflight-report",
+      "development-mode-preflight-report",
+      "schema-migrations-ledger-validation-report",
+      "migration-sql-apply-report",
+      "core-seed-sql-apply-report",
+      "ai-first-external-layout-report",
+      "public-root-exposure-report",
+      "external-tool-log-review-report"
+    ],
+    "blocking_if_missing": [
+      "backup",
+      "config local",
+      "database/migrations",
+      "database/seeds",
+      "scripts/update_script.py",
+      "database/rollbacks",
+      "database/seeds/*.sql",
+      "contrato autenticado de UserContext/OnboardingSession",
+      "database/migrations/000_create_schema_migrations.sql",
+      "schema_migrations ledger",
+      "owner seed fail-closed",
+      "ProgressRecord.source_event_id NOT NULL",
+      "C:/wamp64/www/vipweb_tools/logs",
+      "C:/wamp64/www/vipweb_backups",
+      "PUBLIC_DOCUMENT_ROOT verification",
+      "Git baseline when protected AI changes apply"
+    ],
+    "modules": [
+      "core.config",
+      "core.doctor",
+      "core.events"
+    ]
+  },
+  {
+    "phase_id": "2",
+    "name": "Core Runtime",
+    "entry": [
+      "Technical Skeleton cerrado",
+      "migraciones ordenadas",
+      "S0-013 completado",
+      "migraciones iniciales creadas",
+      "seeds iniciales creados",
+      "evidencia local inicial completada manualmente",
+      "trazabilidad validada",
+      "schema_migrations ledger aplicado",
+      "migraciones iniciales ejecutadas localmente",
+      "seeds iniciales ejecutados localmente"
+    ],
+    "exit": [
+      "identity/session runtime",
+      "permissions",
+      "modules",
+      "events",
+      "audit",
+      "config",
+      "doctor runtime",
+      "approval service runtime",
+      "controlled user provisioning",
+      "action executor",
+      "core runtime skeleton",
+      "C1-003A cerrado para core.events endurecido",
+      "C1-006A cerrado para core.doctor endurecido"
+    ],
+    "evidence": [
+      "identity-runtime-report",
+      "migration-report",
+      "seed-report",
+      "doctor-runtime-report",
+      "approval-runtime-report",
+      "controlled-provisioning-report",
+      "action-executor-report",
+      "core-http-runtime-report"
+    ],
+    "blocking_if_missing": [
+      "RBAC",
+      "event dispatcher",
+      "module loader",
+      "ApprovalService",
+      "USER_PROVISION_CONTROLLED",
+      "ActionExecutor"
+    ],
+    "modules": [
+      "core.identity",
+      "core.permissions",
+      "core.modules",
+      "core.events",
+      "core.audit",
+      "core.config",
+      "core.doctor"
+    ]
+  },
+  {
+    "phase_id": "3",
+    "name": "MVP UX Skeleton",
+    "entry": [
+      "Core Runtime cerrado"
+    ],
+    "exit": [
+      "login UI",
+      "onboarding",
+      "dashboard",
+      "profile",
+      "notifications",
+      "estados comunes",
+      "gamification runtime mínimo",
+      "pantallas MVP con contratos screen_component_contracts",
+      "validación cualitativa MVP ejecutada si existe superficie usable"
+    ],
+    "evidence": [
+      "ux-state-report",
+      "journey-e2e-report",
+      "gamification-rules-report",
+      "screen-component-contracts-report",
+      "mvp-qualitative-validation-report"
+    ],
+    "blocking_if_missing": [
+      "AppShell",
+      "onboarding",
+      "dashboard",
+      "profile",
+      "notifications",
+      "gamification-minimal-runtime"
+    ],
+    "modules": [
+      "dashboard",
+      "onboarding",
+      "profile",
+      "notifications",
+      "gamification"
+    ]
+  },
+  {
+    "phase_id": "4",
+    "name": "Admin Read-only",
+    "entry": [
+      "audit y doctor runtime activos"
+    ],
+    "exit": [
+      "admin ve módulos",
+      "admin ve auditoría",
+      "admin ve evidencias"
+    ],
+    "evidence": [
+      "admin-readonly-report"
+    ],
+    "blocking_if_missing": [
+      "admin.access",
+      "admin.view_evidence"
+    ],
+    "modules": [
+      "admin",
+      "core.audit",
+      "core.doctor"
+    ]
+  },
+  {
+    "phase_id": "5",
+    "name": "AI-Assisted Operations",
+    "entry": [
+      "permisos IA",
+      "approval policy",
+      "AI_CONTEXT_TRUST_POLICY aplicada antes de acciones IA sensibles"
+    ],
+    "exit": [
+      "AIActionLog implementado, append-only y auditado",
+      "AI-0/AI-1 operativos",
+      "AI-2 solo borrador/aprobación",
+      "acciones auditadas",
+      "AI3-001 cerrado como bloqueante interno antes de operación IA recurrente"
+    ],
+    "evidence": [
+      "ai-action-log-report",
+      "ai-context-trust-report"
+    ],
+    "blocking_if_missing": [
+      "AIActionLog",
+      "ai_approval_policy"
+    ],
+    "modules": [
+      "ai_assistant"
+    ]
+  },
+  {
+    "phase_id": "6",
+    "name": "Integrations Stub",
+    "entry": [
+      "module loader y config activos"
+    ],
+    "exit": [
+      "catálogo stub",
+      "sin credenciales reales",
+      "fallback seguro"
+    ],
+    "evidence": [
+      "integrations-stub-report"
+    ],
+    "blocking_if_missing": [
+      "integration.configured",
+      "integration.configure"
+    ],
+    "modules": [
+      "integrations"
+    ]
+  }
+]

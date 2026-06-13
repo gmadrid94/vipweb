@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "status",
+    "open_contradictions",
+    "critical_correction",
+    "dependencies",
+    "impacts"
+  ],
+  "additionalProperties": true
+}

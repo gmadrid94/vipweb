@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "action_id",
+      "module",
+      "criticality",
+      "required_test_groups",
+      "positive_tests",
+      "negative_tests",
+      "permission_tests",
+      "role_tests",
+      "csrf_tests",
+      "payload_validation_tests",
+      "approval_record_tests",
+      "idempotency_tests",
+      "audit_log_tests",
+      "event_tests",
+      "rollback_tests",
+      "error_contract_tests",
+      "fixtures_required",
+      "evidence_required",
+      "doctor_check_refs",
+      "source_doc"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "action_id": {
+        "type": "string",
+        "pattern": "^[A-Z0-9_]+$"
+      },
+      "module": {
+        "type": "string",
+        "minLength": 1
+      },
+      "criticality": {
+        "enum": [
+          "low",
+          "medium",
+          "high",
+          "critical"
+        ]
+      },
+      "required_test_groups": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "positive_tests": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "negative_tests": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "permission_tests": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "role_tests": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "csrf_tests": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "payload_validation_tests": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "approval_record_tests": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "idempotency_tests": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "audit_log_tests": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "event_tests": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "rollback_tests": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "error_contract_tests": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "fixtures_required": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "evidence_required": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "doctor_check_refs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "source_doc": {
+        "type": "string"
+      }
+    }
+  }
+}

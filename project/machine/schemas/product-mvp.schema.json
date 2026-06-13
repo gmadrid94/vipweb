@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "id",
+    "definition",
+    "included_modules",
+    "excluded_from_mvp",
+    "mvp_principles",
+    "source_adrs"
+  ],
+  "additionalProperties": true
+}

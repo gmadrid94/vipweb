@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/achievement.unlocked.v1.schema.json",
+  "title": "achievement.unlocked v1 payload",
+  "type": "object",
+  "required": [
+    "achievement_key",
+    "user_id",
+    "source_event",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "achievement_key": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "source_event": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

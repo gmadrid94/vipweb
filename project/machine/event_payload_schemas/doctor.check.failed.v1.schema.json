@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/doctor.check.failed.v1.schema.json",
+  "title": "doctor.check.failed v1 payload",
+  "type": "object",
+  "required": [
+    "check_id",
+    "severity",
+    "observed",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "check_id": {
+      "type": "string"
+    },
+    "severity": {
+      "type": "string"
+    },
+    "observed": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/ai.action.approved.v1.schema.json",
+  "title": "ai.action.approved v1 payload",
+  "type": "object",
+  "required": [
+    "action_id",
+    "approval_ref",
+    "approver_id",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "type": "string"
+    },
+    "approval_ref": {
+      "type": "string"
+    },
+    "approver_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

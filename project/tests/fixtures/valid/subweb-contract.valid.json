@@ -1,0 +1,28 @@
+[
+  {
+    "id": "fixture.subweb",
+    "name": "Fixture Subweb",
+    "owner_module": "core.modules",
+    "phase": "future",
+    "lifecycle_status": "planned",
+    "entry_route": "/fixture-subweb",
+    "uses_app_shell": true,
+    "required_permissions": [],
+    "owned_modules": [],
+    "shared_modules": [],
+    "data_access": {
+      "owned_entities": [],
+      "read_entities": [],
+      "forbidden_entities": []
+    },
+    "events": {
+      "emitted": [],
+      "consumed": []
+    },
+    "integration_type": "internal_subweb",
+    "rollback": {
+      "strategy": "disable_config_flag",
+      "config_key": "fixture.subweb.enabled"
+    }
+  }
+]

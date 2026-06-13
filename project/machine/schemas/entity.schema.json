@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "table",
+      "module",
+      "owner_module",
+      "phase",
+      "sensitivity",
+      "retention_policy",
+      "delete_policy",
+      "exportable",
+      "audit_required",
+      "events_related",
+      "migration_ref",
+      "source_doc",
+      "validated_by",
+      "evidence_required",
+      "wamp_relevant",
+      "ai_read_required",
+      "blocking",
+      "migration_order",
+      "fields_minimum",
+      "constraints_minimum",
+      "indexes_minimum"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "table": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      },
+      "module": {
+        "type": "string",
+        "minLength": 1
+      },
+      "owner_module": {
+        "type": "string",
+        "minLength": 1
+      },
+      "phase": {
+        "enum": [
+          "foundation",
+          "mvp",
+          "post_mvp",
+          "future"
+        ]
+      },
+      "sensitivity": {
+        "enum": [
+          "public",
+          "personal",
+          "system",
+          "sensitive",
+          "audit"
+        ]
+      },
+      "retention_policy": {
+        "type": "string",
+        "minLength": 1
+      },
+      "delete_policy": {
+        "enum": [
+          "logical",
+          "append_only",
+          "restricted",
+          "none",
+          "physical",
+          "versioned"
+        ]
+      },
+      "exportable": {
+        "type": "boolean"
+      },
+      "audit_required": {
+        "type": "boolean"
+      },
+      "events_related": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uniqueItems": true
+      },
+      "migration_ref": {
+        "type": "string",
+        "pattern": "^database/migrations/.+\\.sql$"
+      },
+      "source_doc": {
+        "type": "string",
+        "minLength": 1
+      },
+      "validated_by": {
+        "type": "string",
+        "minLength": 1
+      },
+      "evidence_required": {
+        "type": "boolean"
+      },
+      "wamp_relevant": {
+        "type": "boolean"
+      },
+      "ai_read_required": {
+        "type": "boolean"
+      },
+      "blocking": {
+        "type": "boolean"
+      },
+      "migration_order": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "fields_minimum": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "constraints_minimum": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uniqueItems": true
+      },
+      "indexes_minimum": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uniqueItems": true
+      }
+    }
+  }
+}

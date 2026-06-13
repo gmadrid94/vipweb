@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/evidence.recorded.v1.schema.json",
+  "title": "evidence.recorded v1 payload",
+  "type": "object",
+  "required": [
+    "evidence_id",
+    "result",
+    "scope",
+    "timestamp",
+    "evidence_path",
+    "checksum",
+    "checksum_algorithm",
+    "integrity_manifest_ref"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "evidence_id": {
+      "type": "string"
+    },
+    "result": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "array"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "evidence_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "checksum": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "checksum_algorithm": {
+      "const": "sha256"
+    },
+    "integrity_manifest_ref": {
+      "type": "string",
+      "const": "evidence/sprint-0-local-execution.md"
+    }
+  }
+}

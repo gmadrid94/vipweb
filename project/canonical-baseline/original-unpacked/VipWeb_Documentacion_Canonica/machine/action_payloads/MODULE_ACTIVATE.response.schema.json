@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/MODULE_ACTIVATE.response.schema.json",
+  "title": "MODULE_ACTIVATE success response",
+  "type": "object",
+  "required": [
+    "ok",
+    "data",
+    "error",
+    "meta"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "module_id",
+        "previous_status",
+        "new_status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "module_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "previous_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "new_status": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "error": {
+      "type": "null"
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "request_id",
+        "action_id",
+        "emitted_events"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "action_id": {
+          "const": "MODULE_ACTIVATE"
+        },
+        "emitted_events": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

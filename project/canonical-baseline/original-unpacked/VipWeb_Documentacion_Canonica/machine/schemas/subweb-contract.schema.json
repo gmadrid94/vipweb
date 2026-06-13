@@ -1,0 +1,303 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "name",
+      "owner_module",
+      "phase",
+      "lifecycle_status",
+      "entry_route",
+      "uses_app_shell",
+      "required_permissions",
+      "owned_modules",
+      "shared_modules",
+      "data_access",
+      "events",
+      "integration_type",
+      "rollback"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1
+      },
+      "owner_module": {
+        "type": "string",
+        "minLength": 1
+      },
+      "phase": {
+        "enum": [
+          "future",
+          "post_mvp",
+          "mvp"
+        ]
+      },
+      "lifecycle_status": {
+        "enum": [
+          "planned",
+          "stub",
+          "active",
+          "disabled",
+          "deprecated"
+        ]
+      },
+      "entry_route": {
+        "type": "string",
+        "pattern": "^/"
+      },
+      "uses_app_shell": {
+        "type": "boolean"
+      },
+      "required_permissions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "owned_modules": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "shared_modules": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "data_access": {
+        "type": "object",
+        "required": [
+          "owned_entities",
+          "read_entities",
+          "forbidden_entities"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "owned_entities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "read_entities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "forbidden_entities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        }
+      },
+      "events": {
+        "type": "object",
+        "required": [
+          "emitted",
+          "consumed"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "emitted": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "consumed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        }
+      },
+      "integration_type": {
+        "enum": [
+          "internal_subweb",
+          "external_subweb_stub",
+          "external_provider_stub"
+        ]
+      },
+      "rollback": {
+        "type": "object",
+        "required": [
+          "strategy",
+          "config_key"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "strategy": {
+            "type": "string",
+            "minLength": 1
+          },
+          "config_key": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "lifecycle_status": {
+              "const": "stub"
+            }
+          },
+          "required": [
+            "lifecycle_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "required_permissions": {
+              "minItems": 1
+            }
+          },
+          "required": [
+            "required_permissions",
+            "entry_route",
+            "uses_app_shell",
+            "rollback"
+          ],
+          "allOf": [
+            {
+              "anyOf": [
+                {
+                  "properties": {
+                    "owned_modules": {
+                      "minItems": 1
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "shared_modules": {
+                      "minItems": 1
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "lifecycle_status": {
+              "const": "active"
+            }
+          },
+          "required": [
+            "lifecycle_status"
+          ]
+        },
+        "then": {
+          "properties": {
+            "required_permissions": {
+              "minItems": 1
+            }
+          },
+          "required": [
+            "required_permissions",
+            "entry_route",
+            "uses_app_shell",
+            "rollback"
+          ],
+          "allOf": [
+            {
+              "anyOf": [
+                {
+                  "properties": {
+                    "owned_modules": {
+                      "minItems": 1
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "shared_modules": {
+                      "minItems": 1
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "properties": {
+                    "data_access": {
+                      "properties": {
+                        "owned_entities": {
+                          "minItems": 1
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "data_access": {
+                      "properties": {
+                        "read_entities": {
+                          "minItems": 1
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "events": {
+                      "properties": {
+                        "emitted": {
+                          "minItems": 1
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "events": {
+                      "properties": {
+                        "consumed": {
+                          "minItems": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

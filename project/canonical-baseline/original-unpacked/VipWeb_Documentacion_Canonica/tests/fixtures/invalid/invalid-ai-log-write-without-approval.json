@@ -1,0 +1,26 @@
+[
+  {
+    "id": "ai-log-invalid-001",
+    "actor_type": "ai",
+    "actor_id": "ai_assistant",
+    "ai_level": "AI-2",
+    "action_type": "machine_catalog.modify",
+    "permission_used": "ai.write_draft",
+    "target_type": "file",
+    "target_id": "machine/backlog_items.json",
+    "scope": "test",
+    "files_read": [
+      "machine/backlog_items.json"
+    ],
+    "files_changed": [
+      "machine/backlog_items.json"
+    ],
+    "approval_id": null,
+    "evidence_ref": null,
+    "risk_level": "high",
+    "status": "drafted",
+    "result": null,
+    "error_summary": null,
+    "created_at": "2026-05-30T00:00:00Z"
+  }
+]

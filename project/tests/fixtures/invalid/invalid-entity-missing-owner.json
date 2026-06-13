@@ -1,0 +1,44 @@
+[
+  {
+    "id": "User",
+    "table": "users",
+    "module": "core.identity",
+    "phase": "foundation",
+    "sensitivity": "personal",
+    "retention_policy": "active_lifetime",
+    "delete_policy": "logical",
+    "exportable": true,
+    "audit_required": true,
+    "events_related": [
+      "user.registered",
+      "user.logged_in"
+    ],
+    "migration_ref": "database/migrations/001_create_users.sql",
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "validated_by": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "blocking": true,
+    "migration_order": 1,
+    "fields_minimum": [
+      "id",
+      "email",
+      "password_hash",
+      "display_name",
+      "status",
+      "created_at",
+      "updated_at",
+      "deleted_at"
+    ],
+    "constraints_minimum": [
+      "status in active|disabled|deleted",
+      "unique(email)"
+    ],
+    "indexes_minimum": [
+      "email",
+      "id",
+      "status"
+    ]
+  }
+]

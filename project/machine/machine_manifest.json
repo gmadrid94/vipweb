@@ -1,0 +1,700 @@
+[
+  {
+    "file": "machine/action_contracts.json",
+    "schema": "machine/schemas/action-contract.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.modules",
+    "purpose": "Fuente machine-readable para action_contracts.",
+    "markdown_docs": [
+      "docs/03-functional/07-action-contracts.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.modules"
+  },
+  {
+    "file": "machine/ai_approval_policy.json",
+    "schema": "machine/schemas/ai-approval-policy.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "ai_assistant",
+    "purpose": "Fuente machine-readable para ai_approval_policy.",
+    "markdown_docs": [
+      "docs/09-ai-operations/00-ai-operating-model.md",
+      "docs/09-ai-operations/08-ai-approval-policy.md",
+      "docs/09-ai-operations/09-ai-behavior-fixtures.md",
+      "docs/05-domain-data/06-approval-records.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "ai_assistant"
+  },
+  {
+    "file": "machine/ai_runbooks.json",
+    "schema": "machine/schemas/ai-runbook.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "ai_assistant",
+    "purpose": "Catálogo machine-readable de runbooks IA, precondiciones, permisos, acciones prohibidas, evidencias y tests.",
+    "markdown_docs": [
+      "docs/09-ai-operations/04-ai-runbooks.md",
+      "docs/09-ai-operations/07-machine-readable-docs.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "ai_assistant"
+  },
+  {
+    "file": "machine/ai_behavior_fixtures.json",
+    "schema": "machine/schemas/ai-behavior-fixture.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "ai_assistant",
+    "purpose": "Fixtures adversariales de comportamiento IA para validar contexto no confiable, falsa aprobación, evidencia, secretos y gates.",
+    "markdown_docs": [
+      "docs/09-ai-operations/09-ai-behavior-fixtures.md",
+      "docs/09-ai-operations/10-ai-context-trust-policy.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "ai_assistant"
+  },
+  {
+    "file": "machine/ai_context_trust_policy.json",
+    "schema": "machine/schemas/ai-context-trust-policy.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "ai_assistant",
+    "purpose": "Política machine-readable de jerarquía de autoridad y defensa anti prompt-injection para contexto IA.",
+    "markdown_docs": [
+      "docs/09-ai-operations/03-ai-guardrails.md",
+      "docs/09-ai-operations/10-ai-context-trust-policy.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "ai_assistant"
+  },
+  {
+    "file": "machine/backlog_items.json",
+    "schema": "machine/schemas/backlog-item.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "purpose": "Fuente machine-readable para backlog_items.",
+    "markdown_docs": [
+      "docs/11-backlog/00-backlog-overview.md",
+      "docs/11-backlog/03-technical-tasks.md",
+      "docs/11-backlog/04-ai-tasks.md",
+      "docs/11-backlog/06-sprint-0-ejecutable.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.doctor"
+  },
+  {
+    "file": "machine/catalog_entities.json",
+    "schema": "machine/schemas/entity.schema.json",
+    "status": "derived_alias",
+    "canonical_source": "machine/entities.json",
+    "owner": "core.data",
+    "purpose": "Alias derivado del catálogo canónico de entidades.",
+    "markdown_docs": [
+      "docs/05-domain-data/01-entities.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "core.data"
+  },
+  {
+    "file": "machine/catalog_events.json",
+    "schema": "machine/schemas/event.schema.json",
+    "status": "derived_alias",
+    "canonical_source": "machine/events.json",
+    "owner": "core.events",
+    "purpose": "Alias derivado del catálogo canónico de eventos.",
+    "markdown_docs": [
+      "docs/05-domain-data/03-domain-events.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.events"
+  },
+  {
+    "file": "machine/catalog_modules.json",
+    "schema": "machine/schemas/module.schema.json",
+    "status": "derived_alias",
+    "canonical_source": "machine/modules.json",
+    "owner": "core.modules",
+    "purpose": "Alias derivado del catálogo canónico de módulos.",
+    "markdown_docs": [
+      "docs/04-architecture/02-modules.md",
+      "docs/04-architecture/03-module-contracts.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.modules"
+  },
+  {
+    "file": "machine/column_contracts.json",
+    "schema": "machine/schemas/column-contract.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.data",
+    "purpose": "Contrato físico de columnas para migraciones WAMP/MySQL/MariaDB derivables sin interpretación.",
+    "markdown_docs": [
+      "docs/05-domain-data/01-entities.md",
+      "docs/06-technical/05-security.md",
+      "docs/05-domain-data/06-approval-records.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "core.data"
+  },
+  {
+    "file": "machine/critical_decisions.json",
+    "schema": "machine/schemas/critical-decision.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "purpose": "Fuente machine-readable para critical_decisions.",
+    "markdown_docs": [
+      "docs/12-decisions/01-critical-decisions.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.doctor"
+  },
+  {
+    "file": "machine/decision_dependency_matrix.json",
+    "schema": "machine/schemas/decision-dependency-matrix.schema.json",
+    "status": "derived_matrix",
+    "canonical_source": null,
+    "owner": "core.events",
+    "purpose": "Fuente machine-readable para decision_dependency_matrix.",
+    "markdown_docs": [
+      "docs/12-decisions/01-critical-decisions.md",
+      "docs/12-decisions/05-auditoria-coherencia-adrs.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.events"
+  },
+  {
+    "file": "machine/decision_id_map.json",
+    "schema": "machine/schemas/decision-id-map.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.events",
+    "purpose": "Fuente machine-readable para decision_id_map.",
+    "markdown_docs": [
+      "docs/12-decisions/06-decision-id-map.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.events"
+  },
+  {
+    "file": "machine/decisions.json",
+    "schema": "machine/schemas/decision.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.events",
+    "purpose": "Fuente machine-readable para decisions.",
+    "markdown_docs": [
+      "docs/12-decisions/00-decision-log.md",
+      "docs/12-decisions/01-critical-decisions.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.events"
+  },
+  {
+    "file": "machine/design_tokens.json",
+    "schema": "machine/schemas/design-token.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "design.ux",
+    "purpose": "Fuente machine-readable de tokens visuales mínimos y variantes base.",
+    "markdown_docs": [
+      "docs/07-design-ux/10-design-tokens.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "design.ux"
+  },
+  {
+    "file": "machine/doctor_checks.json",
+    "schema": "machine/schemas/doctor-check.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "purpose": "Catálogo machine-readable de checks Doctor: incluye checks reales emitidos por scripts/update_script.py y contratos declarativos para Doctor runtime futuro.",
+    "markdown_docs": [
+      "docs/13-quality/06-doctor-checks.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.doctor"
+  },
+  {
+    "file": "machine/domain_constraints_enforcement_matrix.json",
+    "schema": "machine/schemas/domain-constraints-enforcement-matrix.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.data",
+    "purpose": "Matriz canónica que clasifica constraints de dominio por enforcement en DB, aplicación y Doctor.",
+    "markdown_docs": [
+      "docs/05-domain-data/04-data-strategy.md",
+      "docs/09-ai-operations/07-machine-readable-docs.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "core.data"
+  },
+  {
+    "file": "machine/entities.json",
+    "schema": "machine/schemas/entity.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.data",
+    "purpose": "Fuente machine-readable para entities.",
+    "markdown_docs": [
+      "docs/05-domain-data/01-entities.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "core.data"
+  },
+  {
+    "file": "machine/events.json",
+    "schema": "machine/schemas/event.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.events",
+    "purpose": "Fuente machine-readable para events.",
+    "markdown_docs": [
+      "docs/05-domain-data/03-domain-events.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.events"
+  },
+  {
+    "file": "machine/features.json",
+    "schema": "machine/schemas/feature.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "producto",
+    "purpose": "Fuente machine-readable para features.",
+    "markdown_docs": [
+      "docs/02-product/05-feature-classification.md",
+      "docs/11-backlog/02-features.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "producto"
+  },
+  {
+    "file": "machine/gamification_rules.json",
+    "schema": "machine/schemas/gamification-rules.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "gamification",
+    "purpose": "Fuente machine-readable para gamification_rules.",
+    "markdown_docs": [
+      "docs/08-gamification/00-gamification-overview.md",
+      "docs/08-gamification/05-gamification-events.md",
+      "docs/08-gamification/06-balance-rules.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "gamification"
+  },
+  {
+    "file": "machine/integration_contracts.json",
+    "schema": "machine/schemas/integration-contract.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "integrations",
+    "purpose": "Contratos machine-readable para integraciones reales futuras sin activar proveedores externos en el MVP.",
+    "markdown_docs": [
+      "docs/04-architecture/04-integration-architecture.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "integrations"
+  },
+  {
+    "file": "machine/journeys.json",
+    "schema": "machine/schemas/journey.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "producto",
+    "purpose": "Fuente machine-readable para journeys.",
+    "markdown_docs": [
+      "docs/02-product/02-user-journeys.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "producto"
+  },
+  {
+    "file": "machine/machine_manifest.json",
+    "schema": "machine/schemas/machine-manifest.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "purpose": "Fuente machine-readable para machine_manifest.",
+    "markdown_docs": [
+      "docs/09-ai-operations/07-machine-readable-docs.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.doctor"
+  },
+  {
+    "file": "machine/metrics.json",
+    "schema": "machine/schemas/metric.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "negocio",
+    "purpose": "Fuente machine-readable para metrics.",
+    "markdown_docs": [
+      "docs/01-business/05-success-metrics.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "negocio"
+  },
+  {
+    "file": "machine/migration_contracts.json",
+    "schema": "machine/schemas/migration-contract.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.data",
+    "purpose": "Contrato machine-readable de migraciones SQL reversibles: up_ref, rollback_ref, checksum y ledger para WAMP local.",
+    "markdown_docs": [
+      "docs/06-technical/03-conventions.md",
+      "docs/05-domain-data/04-data-strategy.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "core.data"
+  },
+  {
+    "file": "machine/modules.json",
+    "schema": "machine/schemas/module.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.modules",
+    "purpose": "Fuente machine-readable para modules.",
+    "markdown_docs": [
+      "docs/04-architecture/02-modules.md",
+      "docs/04-architecture/03-module-contracts.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.modules"
+  },
+  {
+    "file": "machine/mvp_coverage_matrix.json",
+    "schema": "machine/schemas/mvp-coverage-matrix.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "purpose": "Fuente machine-readable para mvp_coverage_matrix.",
+    "markdown_docs": [
+      "docs/13-quality/07-mvp-coverage-matrix.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.doctor"
+  },
+  {
+    "file": "machine/mvp_qualitative_validation.json",
+    "schema": "machine/schemas/mvp-qualitative-validation.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "producto",
+    "purpose": "Protocolo cualitativo MVP para validar comprensión, acompañamiento y continuidad con muestra inicial pequeña.",
+    "markdown_docs": [
+      "docs/01-business/05-success-metrics.md",
+      "docs/01-business/07-mvp-qualitative-validation.md",
+      "docs/02-product/02-user-journeys.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "producto"
+  },
+  {
+    "file": "machine/permissions.json",
+    "schema": "machine/schemas/permission.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.permissions",
+    "purpose": "Fuente machine-readable para permissions.",
+    "markdown_docs": [
+      "docs/06-technical/05-security.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.permissions"
+  },
+  {
+    "file": "machine/physical_constraints_matrix.json",
+    "schema": "machine/schemas/physical-constraints-matrix.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.data",
+    "purpose": "Fuente machine-readable para physical_constraints_matrix.",
+    "markdown_docs": [
+      "docs/05-domain-data/02-relationships.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "core.data"
+  },
+  {
+    "file": "machine/product_mvp.json",
+    "schema": "machine/schemas/product-mvp.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "producto",
+    "purpose": "Fuente machine-readable para product_mvp.",
+    "markdown_docs": [
+      "docs/02-product/00-product-map.md",
+      "docs/02-product/04-mvp-definition.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "producto"
+  },
+  {
+    "file": "machine/proposed_decisions.json",
+    "schema": "machine/schemas/proposed-decision.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "purpose": "Catálogo machine-readable de ADRs propuestas, condicionales o futuras que no cuentan como ADRs aceptadas.",
+    "markdown_docs": [
+      "docs/12-decisions/00-decision-log.md",
+      "docs/12-decisions/proposed/adr-026-introduccion-de-git-local-y-control-de-versiones-minimo.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.doctor"
+  },
+  {
+    "file": "machine/relationships.json",
+    "schema": "machine/schemas/relationship.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.data",
+    "purpose": "Fuente machine-readable para relationships.",
+    "markdown_docs": [
+      "docs/05-domain-data/02-relationships.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "core.data"
+  },
+  {
+    "file": "machine/risk_register.json",
+    "schema": "machine/schemas/risk-register.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "purpose": "Registro estratégico canónico de riesgos: categoría, probabilidad, impacto, señales tempranas, mitigación, decisión asociada y fases referenciadas a roadmap_gates.",
+    "markdown_docs": [
+      "docs/04-architecture/07-architecture-risks.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.doctor"
+  },
+  {
+    "file": "machine/risks.json",
+    "schema": "machine/schemas/risk.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "purpose": "Catálogo operativo canónico de controles de riesgo validables por Doctor: bloqueo, evidencia, WAMP, validated_by, lectura IA y vínculo opcional a risk_register.",
+    "markdown_docs": [
+      "docs/01-business/06-business-risks.md",
+      "docs/04-architecture/07-architecture-risks.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.doctor"
+  },
+  {
+    "file": "machine/roadmap_gates.json",
+    "schema": "machine/schemas/roadmap-gate.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "purpose": "Fuente machine-readable para roadmap_gates.",
+    "markdown_docs": [
+      "docs/10-roadmap/00-roadmap-overview.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.doctor"
+  },
+  {
+    "file": "machine/roles.json",
+    "schema": "machine/schemas/role.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.permissions",
+    "purpose": "Fuente machine-readable para roles.",
+    "markdown_docs": [
+      "docs/01-business/02-target-users.md",
+      "docs/06-technical/05-security.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.permissions"
+  },
+  {
+    "file": "machine/roles_permissions_matrix.json",
+    "schema": "machine/schemas/roles-permissions-matrix.schema.json",
+    "status": "derived_matrix",
+    "canonical_source": null,
+    "owner": "core.permissions",
+    "purpose": "Fuente machine-readable para roles_permissions_matrix.",
+    "markdown_docs": [
+      "docs/06-technical/05-security.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.permissions"
+  },
+  {
+    "file": "machine/route_permission_matrix.json",
+    "schema": "machine/schemas/route-permission-matrix.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.permissions",
+    "purpose": "Fuente machine-readable para route_permission_matrix.",
+    "markdown_docs": [
+      "docs/06-technical/05-security.md",
+      "docs/09-ai-operations/08-ai-approval-policy.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.permissions"
+  },
+  {
+    "file": "machine/runtime_test_matrix.json",
+    "schema": "machine/schemas/runtime-test-matrix.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "owner_type": "module",
+    "owner_ref": "core.doctor",
+    "purpose": "Matriz machine-readable que vincula cada action contract con grupos de tests runtime obligatorios, pruebas positivas, negativas, guardrails IA, ApprovalRecord, auditoría, eventos y rollback.",
+    "markdown_docs": [
+      "docs/06-technical/06-testing.md",
+      "docs/09-ai-operations/03-ai-guardrails.md"
+    ]
+  },
+  {
+    "file": "machine/schema_registry.json",
+    "schema": "machine/schemas/schema-registry.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "purpose": "Registry machine-readable de schemas auxiliares runtime: schemas de catálogos, payloads de acciones y payloads de eventos.",
+    "markdown_docs": [
+      "docs/09-ai-operations/07-machine-readable-docs.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.doctor"
+  },
+  {
+    "file": "machine/screen_component_contracts.json",
+    "schema": "machine/schemas/screen-component-contract.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "design.ux",
+    "purpose": "Contratos de composición pantalla-componentes-datos-acciones-eventos para pantallas MVP visibles.",
+    "markdown_docs": [
+      "docs/07-design-ux/03-screens.md",
+      "docs/07-design-ux/04-components.md",
+      "docs/07-design-ux/08-screen-component-contracts.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "design.ux"
+  },
+  {
+    "file": "machine/screen_responsive_behavior.json",
+    "schema": "machine/schemas/screen-responsive-behavior.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "design.ux",
+    "purpose": "Contrato responsive por pantalla y breakpoint para MVP.",
+    "markdown_docs": [
+      "docs/07-design-ux/07-responsive.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "design.ux"
+  },
+  {
+    "file": "machine/sprint0_tasks.json",
+    "schema": "machine/schemas/sprint0-task.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "purpose": "Fuente machine-readable para sprint0_tasks.",
+    "markdown_docs": [
+      "docs/11-backlog/06-sprint-0-ejecutable.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.doctor"
+  },
+  {
+    "file": "machine/subweb_contracts.json",
+    "schema": "machine/schemas/subweb-contract.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.modules",
+    "purpose": "Contratos machine-readable para subwebs futuras conectadas al core sin activar ninguna subweb por defecto.",
+    "markdown_docs": [
+      "docs/04-architecture/08-subweb-contracts.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.modules"
+  },
+  {
+    "file": "machine/traceability_matrix.json",
+    "schema": "machine/schemas/traceability.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "purpose": "Fuente machine-readable para traceability_matrix.",
+    "markdown_docs": [
+      "docs/13-quality/05-traceability-matrix.md"
+    ],
+    "owner_type": "module",
+    "owner_ref": "core.doctor"
+  },
+  {
+    "file": "machine/ui_screens.json",
+    "schema": "machine/schemas/ui-screen.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "design.ux",
+    "purpose": "Fuente machine-readable para ui_screens.",
+    "markdown_docs": [
+      "docs/07-design-ux/03-screens.md",
+      "docs/07-design-ux/05-interface-states.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "design.ux"
+  },
+  {
+    "file": "machine/ui_state_copy.json",
+    "schema": "machine/schemas/ui-state-copy.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "design.ux",
+    "purpose": "Fuente machine-readable para ui_state_copy.",
+    "markdown_docs": [
+      "docs/07-design-ux/09-screen-state-copy.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "design.ux"
+  },
+  {
+    "file": "machine/analytics_events.json",
+    "schema": "machine/schemas/analytics-event.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "design.ux",
+    "purpose": "Catálogo canónico de señales de analítica UI, eventos de vista persistentes y observaciones de sistema emitidas por pantallas.",
+    "markdown_docs": [
+      "docs/07-design-ux/08-screen-component-contracts.md",
+      "docs/01-business/05-success-metrics.md",
+      "docs/08-gamification/00-gamification-overview.md"
+    ],
+    "owner_type": "area",
+    "owner_ref": "design.ux"
+  },
+  {
+    "file": "machine/external_tool_contracts.json",
+    "schema": "machine/schemas/external-tool-contract.schema.json",
+    "status": "canonical",
+    "canonical_source": null,
+    "owner": "core.doctor",
+    "purpose": "Contrato machine-readable para tools externas de ejecución del roadmap AI-first.",
+    "markdown_docs": [
+      "docs/06-technical/12-external-roadmap-tools.md",
+      "docs/09-ai-operations/11-ai-first-execution-model.md",
+      "docs/10-roadmap/09-ai-first-roadmap-execution.md"
+    ],
+    "owner_type": "system",
+    "owner_ref": "external_roadmap_tools"
+  }
+]

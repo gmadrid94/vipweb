@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "description",
+      "mitigation",
+      "phase",
+      "blocking",
+      "source_doc",
+      "validated_by",
+      "evidence_required",
+      "wamp_relevant",
+      "ai_read_required",
+      "primary_phase_id",
+      "phase_ids",
+      "risk_layer",
+      "parent_risk_id"
+    ],
+    "additionalProperties": true,
+    "properties": {
+      "parent_risk_id": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "primary_phase_id": {
+        "type": "string"
+      },
+      "phase_ids": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1
+      },
+      "phase_label": {
+        "type": "string"
+      },
+      "risk_layer": {
+        "enum": [
+          "operational_control",
+          "local_wamp",
+          "documentation_control"
+        ]
+      }
+    }
+  }
+}

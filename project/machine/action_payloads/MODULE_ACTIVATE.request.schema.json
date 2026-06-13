@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/MODULE_ACTIVATE.request.schema.json",
+  "title": "MODULE_ACTIVATE request body",
+  "type": "object",
+  "required": [
+    "request_id",
+    "csrf_token",
+    "payload",
+    "approval_id",
+    "idempotency_key"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 120
+    },
+    "csrf_token": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "target_status",
+        "reason",
+        "rollback_plan"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "target_status": {
+          "enum": [
+            "active",
+            "disabled",
+            "stub"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 1000
+        },
+        "rollback_plan": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 2000
+        }
+      }
+    },
+    "approval_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    }
+  }
+}

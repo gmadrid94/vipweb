@@ -1,0 +1,175 @@
+[
+  {
+    "id": "F-AI-001",
+    "name": "IA asistente AI-0/AI-1",
+    "module": "ai_assistant",
+    "priority": "P1",
+    "phase": "ai_assisted_ops",
+    "acceptance": [
+      "lee contexto",
+      "propone sin modificar",
+      "registra AIActionLog"
+    ],
+    "commercial_tier_candidate": "internal_only",
+    "commercial_surface": "ai_operations"
+  },
+  {
+    "id": "F-CORE-001",
+    "name": "Identidad y sesión local",
+    "module": "core.identity",
+    "priority": "P0",
+    "phase": "core_runtime",
+    "acceptance": [
+      "runtime de sesión protegido",
+      "contrato técnico login/logout disponible",
+      "eventos user.logged_in/user.logged_out",
+      "user.registered reservado a provisionamiento controlado",
+      "USER_PROVISION_CONTROLLED owner-only"
+    ],
+    "commercial_tier_candidate": "core_included",
+    "commercial_surface": "core_internal"
+  },
+  {
+    "id": "F-CORE-002",
+    "name": "RBAC y guards",
+    "module": "core.permissions",
+    "priority": "P0",
+    "phase": "core_runtime",
+    "acceptance": [
+      "roles canónicos sembrados",
+      "permisos existentes validados",
+      "rutas mutables protegidas"
+    ],
+    "commercial_tier_candidate": "core_included",
+    "commercial_surface": "core_internal"
+  },
+  {
+    "id": "F-CORE-003",
+    "name": "Registro de módulos y manifiestos",
+    "module": "core.modules",
+    "priority": "P0",
+    "phase": "core_runtime",
+    "acceptance": [
+      "manifiestos cumplen schema",
+      "módulos activos/stub distinguibles",
+      "rollback por desactivación"
+    ],
+    "commercial_tier_candidate": "core_included",
+    "commercial_surface": "core_internal"
+  },
+  {
+    "id": "F-CORE-004",
+    "name": "Bus interno de eventos",
+    "module": "core.events",
+    "priority": "P0",
+    "phase": "core_runtime",
+    "acceptance": [
+      "solo eventos registrados",
+      "payload versionado",
+      "eventos auditables persistidos"
+    ],
+    "commercial_tier_candidate": "core_included",
+    "commercial_surface": "core_internal"
+  },
+  {
+    "id": "F-GAM-001",
+    "name": "Progreso y logros mínimos",
+    "module": "gamification",
+    "priority": "P1",
+    "phase": "mvp_ux",
+    "acceptance": [
+      "runtime mínimo deriva progreso desde eventos fuente",
+      "evita loops y fatiga mediante cooldowns",
+      "ProgressRecord queda disponible para dashboard",
+      "enriquecimiento visual puede ser posterior"
+    ],
+    "commercial_tier_candidate": "free_mvp",
+    "commercial_surface": "user_facing"
+  },
+  {
+    "id": "F-INT-001",
+    "name": "Integraciones stub",
+    "module": "integrations",
+    "priority": "P2",
+    "phase": "integrations_stub",
+    "acceptance": [
+      "sin credenciales reales",
+      "configurable como catálogo",
+      "eventos integration.configured"
+    ],
+    "commercial_tier_candidate": "future_premium_candidate",
+    "commercial_surface": "integration_surface"
+  },
+  {
+    "id": "F-UX-001",
+    "name": "AppShell MVP",
+    "module": "dashboard",
+    "priority": "P1",
+    "phase": "mvp_ux",
+    "acceptance": [
+      "header contextual",
+      "navegación modular",
+      "zona principal",
+      "panel de estado/progreso"
+    ],
+    "commercial_tier_candidate": "free_mvp",
+    "commercial_surface": "user_facing"
+  },
+  {
+    "id": "F-UX-002",
+    "name": "Onboarding progresivo",
+    "module": "onboarding",
+    "priority": "P1",
+    "phase": "mvp_ux",
+    "acceptance": [
+      "retomable",
+      "no bloquea navegación básica",
+      "emite onboarding.started/completed"
+    ],
+    "commercial_tier_candidate": "free_mvp",
+    "commercial_surface": "user_facing"
+  },
+  {
+    "id": "F-UX-003",
+    "name": "Dashboard inicial",
+    "module": "dashboard",
+    "priority": "P1",
+    "phase": "mvp_ux",
+    "acceptance": [
+      "módulos visibles",
+      "próximo paso",
+      "progreso ligero",
+      "estado Doctor resumido"
+    ],
+    "commercial_tier_candidate": "free_mvp",
+    "commercial_surface": "user_facing"
+  },
+  {
+    "id": "F-UX-004",
+    "name": "Profile básico",
+    "module": "profile",
+    "priority": "P1",
+    "phase": "mvp_ux",
+    "acceptance": [
+      "perfil visible",
+      "edición mínima controlada",
+      "emite profile.updated"
+    ],
+    "commercial_tier_candidate": "free_mvp",
+    "commercial_surface": "user_facing"
+  },
+  {
+    "id": "F-UX-005",
+    "name": "Notifications internas",
+    "module": "notifications",
+    "priority": "P1",
+    "phase": "mvp_ux",
+    "acceptance": [
+      "lista de avisos internos",
+      "estados empty/unread/read",
+      "sin proveedor externo real"
+    ],
+    "commercial_tier_candidate": "free_mvp",
+    "commercial_surface": "user_facing"
+  }
+]

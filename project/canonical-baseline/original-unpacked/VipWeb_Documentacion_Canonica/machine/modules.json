@@ -1,0 +1,2967 @@
+[
+  {
+    "id": "core.identity",
+    "name": "Core Identity",
+    "phase": "foundation",
+    "purpose": "Usuarios, sesión e identidad",
+    "depends_on": [],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "core_runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/",
+          "method": "GET",
+          "permission": "public.view",
+          "mutable": false
+        },
+        {
+          "path": "/login",
+          "method": "GET",
+          "permission": "auth.login",
+          "mutable": false
+        },
+        {
+          "path": "/login",
+          "method": "POST",
+          "permission": "auth.login",
+          "mutable": true
+        },
+        {
+          "path": "/logout",
+          "method": "POST",
+          "permission": "auth.logout",
+          "mutable": true
+        },
+        {
+          "path": "/admin/users/provision",
+          "method": "POST",
+          "permission": "admin.manage_users",
+          "mutable": true
+        }
+      ],
+      "permissions": [
+        "public.view",
+        "auth.login",
+        "auth.logout",
+        "admin.manage_users"
+      ],
+      "events_emitted": [
+        "user.logged_in",
+        "user.logged_out",
+        "user.registered"
+      ],
+      "events_consumed": [],
+      "ui_slots": [],
+      "config_keys": [
+        "core_identity.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "core.identity.manifest.valid",
+        "core.identity.permissions.valid",
+        "core.identity.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": true,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": true,
+    "module_classification": "core",
+    "module_type": "core",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [
+        "User",
+        "AuthAttempt"
+      ],
+      "read_entities": [],
+      "forbidden_entities": [
+        "Permission",
+        "AIActionLog"
+      ]
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "core_identity.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "core.permissions",
+        "kind": "data_write",
+        "required": true,
+        "required_for": [
+          "USER_PROVISION_CONTROLLED delegated UserRole assignment"
+        ],
+        "fallback": "block_user_provisioning_until_role_assignment_contract_is_available",
+        "min_lifecycle_status": "planned"
+      },
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:user.logged_in,user.logged_out,user.registered"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "user.logged_in",
+          "user.logged_out",
+          "user.registered"
+        ],
+        "direction": "emit",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      }
+    ],
+    "commercial_tier_candidate": "core_included",
+    "commercial_surface": "core_internal"
+  },
+  {
+    "id": "core.permissions",
+    "name": "Core Permissions",
+    "phase": "foundation",
+    "purpose": "Roles, permisos y autorización",
+    "depends_on": [
+      "core.identity"
+    ],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "core_runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/admin/permissions",
+          "method": "GET",
+          "permission": "admin.manage_users",
+          "mutable": false
+        },
+        {
+          "path": "/admin/roles",
+          "method": "GET",
+          "permission": "admin.manage_users",
+          "mutable": false
+        }
+      ],
+      "permissions": [
+        "admin.manage_users",
+        "admin.view_audit"
+      ],
+      "events_emitted": [
+        "permission.changed"
+      ],
+      "events_consumed": [
+        "user.registered"
+      ],
+      "ui_slots": [],
+      "config_keys": [
+        "core_permissions.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "core.permissions.manifest.valid",
+        "core.permissions.permissions.valid",
+        "core.permissions.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": true,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": true,
+    "module_classification": "core",
+    "module_type": "core",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [
+        "Role",
+        "Permission",
+        "RolePermission",
+        "UserRole"
+      ],
+      "read_entities": [],
+      "forbidden_entities": []
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "core_permissions.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:permission.changed",
+          "consume:user.registered"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "permission.changed",
+          "user.registered"
+        ],
+        "direction": "emit_consume",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      }
+    ],
+    "commercial_tier_candidate": "core_included",
+    "commercial_surface": "core_internal"
+  },
+  {
+    "id": "core.modules",
+    "name": "Core Modules",
+    "phase": "foundation",
+    "purpose": "Registro, manifiestos y estado de módulos",
+    "depends_on": [],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "core_runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/modules",
+          "method": "GET",
+          "permission": "module.view",
+          "mutable": false
+        },
+        {
+          "path": "/admin/modules",
+          "method": "GET",
+          "permission": "admin.manage_modules",
+          "mutable": false
+        },
+        {
+          "path": "/admin/modules/{id}/activate",
+          "method": "POST",
+          "permission": "admin.manage_modules",
+          "mutable": true
+        },
+        {
+          "path": "/admin/modules/{id}/configure",
+          "method": "PATCH",
+          "permission": "admin.manage_modules",
+          "mutable": true
+        },
+        {
+          "path": "/modules/{id}/use",
+          "method": "POST",
+          "permission": "module.use",
+          "mutable": true
+        }
+      ],
+      "permissions": [
+        "admin.manage_modules",
+        "module.view",
+        "module.use"
+      ],
+      "events_emitted": [
+        "module.activated",
+        "module.configured",
+        "module.used"
+      ],
+      "events_consumed": [],
+      "ui_slots": [],
+      "config_keys": [
+        "core_modules.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "core.modules.manifest.valid",
+        "core.modules.permissions.valid",
+        "core.modules.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": true,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": true,
+    "module_classification": "core",
+    "module_type": "core",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [
+        "Module",
+        "ModuleManifest"
+      ],
+      "read_entities": [],
+      "forbidden_entities": [
+        "Permission",
+        "AIActionLog"
+      ]
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "core_modules.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:module.activated,module.configured,module.used"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "module.activated",
+          "module.configured",
+          "module.used"
+        ],
+        "direction": "emit",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      }
+    ],
+    "commercial_tier_candidate": "core_included",
+    "commercial_surface": "core_internal"
+  },
+  {
+    "id": "core.events",
+    "name": "Core Events",
+    "phase": "foundation",
+    "purpose": "Bus de eventos de dominio persistente",
+    "depends_on": [
+      "core.identity"
+    ],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "core_runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/admin/events",
+          "method": "GET",
+          "permission": "system.view_events",
+          "mutable": false
+        }
+      ],
+      "permissions": [
+        "system.view_events"
+      ],
+      "events_emitted": [
+        "decision.recorded",
+        "domain.event.recorded"
+      ],
+      "events_consumed": [],
+      "ui_slots": [],
+      "config_keys": [
+        "core_events.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "core.events.manifest.valid",
+        "core.events.permissions.valid",
+        "core.events.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": true,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": true,
+    "module_classification": "core",
+    "module_type": "core",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [
+        "DomainEvent",
+        "DecisionRecord"
+      ],
+      "read_entities": [],
+      "forbidden_entities": [
+        "Permission",
+        "AIActionLog"
+      ]
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "core_events.enabled"
+    },
+    "dependency_contracts": [],
+    "commercial_tier_candidate": "core_included",
+    "commercial_surface": "core_internal"
+  },
+  {
+    "id": "core.audit",
+    "name": "Core Audit",
+    "phase": "foundation",
+    "purpose": "Auditoría de acciones sensibles",
+    "depends_on": [
+      "core.identity",
+      "core.permissions"
+    ],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "core_runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/admin/audit",
+          "method": "GET",
+          "permission": "admin.view_audit",
+          "mutable": false
+        }
+      ],
+      "permissions": [
+        "admin.view_audit"
+      ],
+      "events_emitted": [
+        "audit.recorded"
+      ],
+      "events_consumed": [
+        "admin.panel.viewed",
+        "ai.action.approved",
+        "ai.action.executed",
+        "ai.suggestion.created",
+        "dashboard.viewed",
+        "domain.event.recorded",
+        "evidence.recorded",
+        "integration.configured",
+        "module.activated",
+        "module.configured",
+        "notification.read",
+        "permission.changed",
+        "profile.updated",
+        "system.configured",
+        "system.doctor.executed",
+        "user.logged_in",
+        "user.logged_out",
+        "user.registered"
+      ],
+      "ui_slots": [],
+      "config_keys": [
+        "core_audit.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "core.audit.manifest.valid",
+        "core.audit.permissions.valid",
+        "core.audit.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": true,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": true,
+    "module_classification": "core",
+    "module_type": "core",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [
+        "AuditLog",
+        "ApprovalRecord"
+      ],
+      "read_entities": [],
+      "forbidden_entities": [
+        "Permission",
+        "AIActionLog"
+      ]
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "core_audit.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:audit.recorded",
+          "consume:admin.panel.viewed,ai.action.approved,ai.action.executed,ai.suggestion.created,dashboard.viewed,domain.event.recorded,evidence.recorded,integration.configured,module.activated,module.configured,notification.read,permission.changed,profile.updated,system.configured,system.doctor.executed,user.logged_in,user.logged_out,user.registered"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "admin.panel.viewed",
+          "ai.action.approved",
+          "ai.action.executed",
+          "ai.suggestion.created",
+          "audit.recorded",
+          "dashboard.viewed",
+          "domain.event.recorded",
+          "evidence.recorded",
+          "integration.configured",
+          "module.activated",
+          "module.configured",
+          "notification.read",
+          "permission.changed",
+          "profile.updated",
+          "system.configured",
+          "system.doctor.executed",
+          "user.logged_in",
+          "user.logged_out",
+          "user.registered"
+        ],
+        "direction": "emit_consume",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      }
+    ],
+    "commercial_tier_candidate": "core_included",
+    "commercial_surface": "core_internal"
+  },
+  {
+    "id": "core.config",
+    "name": "Core Config",
+    "phase": "foundation",
+    "purpose": "Configuración global y entorno local",
+    "depends_on": [],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "core_runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/admin/config",
+          "method": "GET",
+          "permission": "system.configure",
+          "mutable": false
+        }
+      ],
+      "permissions": [
+        "system.configure"
+      ],
+      "events_emitted": [
+        "backup.created",
+        "system.configured"
+      ],
+      "events_consumed": [],
+      "ui_slots": [],
+      "config_keys": [
+        "core_config.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "core.config.manifest.valid",
+        "core.config.permissions.valid",
+        "core.config.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": true,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": true,
+    "module_classification": "core",
+    "module_type": "core",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [
+        "SystemSetting",
+        "BackupRecord"
+      ],
+      "read_entities": [],
+      "forbidden_entities": [
+        "Permission",
+        "AIActionLog"
+      ]
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "core_config.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:backup.created,system.configured"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "backup.created",
+          "system.configured"
+        ],
+        "direction": "emit",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      }
+    ],
+    "commercial_tier_candidate": "core_included",
+    "commercial_surface": "core_internal"
+  },
+  {
+    "id": "core.doctor",
+    "name": "Core Doctor",
+    "phase": "foundation",
+    "purpose": "Validación, checks y evidencias",
+    "depends_on": [
+      "core.config",
+      "core.events",
+      "core.audit"
+    ],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "core_runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/admin/doctor",
+          "method": "GET",
+          "permission": "doctor.view_panel",
+          "mutable": false
+        },
+        {
+          "path": "/admin/doctor/evidence/write",
+          "method": "POST",
+          "permission": "evidence.write",
+          "mutable": true
+        },
+        {
+          "path": "/admin/doctor/run-readonly",
+          "method": "POST",
+          "permission": "system.run_doctor.readonly",
+          "mutable": false
+        },
+        {
+          "path": "/admin/doctor/status/validate",
+          "method": "POST",
+          "permission": "doctor.status.validate",
+          "mutable": true
+        },
+        {
+          "path": "/admin/evidence",
+          "method": "GET",
+          "permission": "admin.view_evidence",
+          "mutable": false
+        }
+      ],
+      "permissions": [
+        "admin.view_evidence",
+        "evidence.write",
+        "system.run_doctor.readonly",
+        "doctor.status.validate",
+        "doctor.view_panel"
+      ],
+      "events_emitted": [
+        "doctor.check.failed",
+        "evidence.recorded",
+        "system.doctor.executed"
+      ],
+      "events_consumed": [
+        "ai.action.executed",
+        "audit.recorded",
+        "backup.created",
+        "decision.recorded",
+        "domain.event.recorded",
+        "system.configured"
+      ],
+      "ui_slots": [],
+      "config_keys": [
+        "core_doctor.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "core.doctor.manifest.valid",
+        "core.doctor.permissions.valid",
+        "core.doctor.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "ACTION_DELEGATED_WRITES_HAVE_CONTRACT",
+        "DOCTOR_PANEL_ROUTE_IS_VIEW_ONLY",
+        "DOCTOR_RUN_ONLY_ALLOWED_ON_POST_ROUTE",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": true,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": true,
+    "module_classification": "core",
+    "module_type": "core",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [
+        "EvidenceReport"
+      ],
+      "read_entities": [],
+      "forbidden_entities": [
+        "Permission",
+        "AIActionLog"
+      ]
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "core_doctor.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "core.events",
+        "kind": "data_write",
+        "required": true,
+        "required_for": [
+          "DOCTOR_STATUS_VALIDATE -> DecisionRecord",
+          "DOCTOR_RUN_READONLY -> DomainEvent"
+        ],
+        "fallback": "Bloquear validación de estado o emisión auditada de eventos Doctor si core.events no puede registrar DecisionRecord/DomainEvent.",
+        "min_lifecycle_status": "planned"
+      },
+      {
+        "module": "core.audit",
+        "kind": "data_write",
+        "required": true,
+        "required_for": [
+          "DOCTOR_RUN_READONLY -> AuditLog"
+        ],
+        "fallback": "Bloquear ejecución Doctor auditada si core.audit no puede registrar AuditLog.",
+        "min_lifecycle_status": "planned"
+      },
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:doctor.check.failed,evidence.recorded,system.doctor.executed",
+          "consume:ai.action.executed,audit.recorded,backup.created,decision.recorded,domain.event.recorded,system.configured"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "ai.action.executed",
+          "audit.recorded",
+          "backup.created",
+          "decision.recorded",
+          "doctor.check.failed",
+          "domain.event.recorded",
+          "evidence.recorded",
+          "system.configured",
+          "system.doctor.executed"
+        ],
+        "direction": "emit_consume",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      }
+    ],
+    "commercial_tier_candidate": "core_included",
+    "commercial_surface": "core_internal"
+  },
+  {
+    "id": "dashboard",
+    "name": "Dashboard",
+    "phase": "mvp",
+    "purpose": "Centro de retorno, estado y continuidad del usuario",
+    "depends_on": [
+      "core.identity",
+      "core.permissions",
+      "core.modules",
+      "core.events",
+      "core.doctor"
+    ],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/dashboard",
+          "method": "GET",
+          "permission": "dashboard.view",
+          "mutable": false
+        },
+        {
+          "path": "/dashboard/view-track",
+          "method": "POST",
+          "permission": "dashboard.track_view",
+          "mutable": true
+        }
+      ],
+      "permissions": [
+        "dashboard.view",
+        "dashboard.track_view"
+      ],
+      "events_emitted": [
+        "dashboard.first_viewed",
+        "dashboard.viewed",
+        "task.completed"
+      ],
+      "events_consumed": [
+        "achievement.unlocked",
+        "integration.configured",
+        "module.activated",
+        "module.configured",
+        "notification.created",
+        "notification.read",
+        "onboarding.completed",
+        "onboarding.started",
+        "profile.updated",
+        "progress.updated",
+        "user.logged_in",
+        "user.registered",
+        "module.used"
+      ],
+      "ui_slots": [
+        "app_shell.main"
+      ],
+      "config_keys": [
+        "dashboard.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "dashboard.manifest.valid",
+        "dashboard.permissions.valid",
+        "dashboard.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT",
+        "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": true,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": false,
+    "module_classification": "mvp",
+    "module_type": "feature",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [],
+      "read_entities": [
+        "User",
+        "Module",
+        "DomainEvent"
+      ],
+      "forbidden_entities": [
+        "Permission",
+        "AIActionLog"
+      ]
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "dashboard.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "gamification",
+        "kind": "ui_enhancement",
+        "required": false,
+        "required_for": [
+          "ProgressSummary"
+        ],
+        "fallback": "Mostrar ProgressSummary vacío o pendiente hasta que gamification esté activo.",
+        "min_lifecycle_status": "planned"
+      },
+      {
+        "module": "notifications",
+        "kind": "ui_enhancement",
+        "required": false,
+        "required_for": [
+          "NotificationList"
+        ],
+        "fallback": "Mostrar NotificationList vacío hasta que existan avisos internos.",
+        "min_lifecycle_status": "planned"
+      },
+      {
+        "module": "ai_assistant",
+        "kind": "ui_enhancement",
+        "required": false,
+        "required_for": [
+          "AIHelperPanel"
+        ],
+        "fallback": "Mostrar AIHelperPanel bloqueado o no disponible sin impedir el Dashboard.",
+        "min_lifecycle_status": "planned"
+      },
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:dashboard.first_viewed,dashboard.viewed,task.completed",
+          "consume:achievement.unlocked,integration.configured,module.activated,module.configured,module.used,notification.created,notification.read,onboarding.completed,onboarding.started,profile.updated,progress.updated,user.logged_in,user.registered"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "achievement.unlocked",
+          "dashboard.first_viewed",
+          "dashboard.viewed",
+          "integration.configured",
+          "module.activated",
+          "module.configured",
+          "module.used",
+          "notification.created",
+          "notification.read",
+          "onboarding.completed",
+          "onboarding.started",
+          "profile.updated",
+          "progress.updated",
+          "task.completed",
+          "user.logged_in",
+          "user.registered"
+        ],
+        "direction": "emit_consume",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      },
+      {
+        "module": "core.identity",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:User"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "User",
+        "owner_module": "core.identity",
+        "purpose": "Lectura contractual de User por dashboard sin acceso directo a internals de core.identity.",
+        "allowed_fields": [
+          "id",
+          "display_name",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "UserPublicContextReadModel",
+        "permission_context": "user.self_or_system_context",
+        "redaction_policy": "role_based_mask_email",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.modules",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:Module"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "Module",
+        "owner_module": "core.modules",
+        "purpose": "Lectura contractual de Module por dashboard sin acceso directo a internals de core.modules.",
+        "allowed_fields": [
+          "id",
+          "code",
+          "name",
+          "module_type",
+          "phase",
+          "lifecycle_status",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "ModuleCatalogReadModel",
+        "permission_context": "module.view",
+        "redaction_policy": "none",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.events",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:DomainEvent"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "DomainEvent",
+        "owner_module": "core.events",
+        "purpose": "Lectura contractual de DomainEvent por dashboard sin acceso directo a internals de core.events.",
+        "allowed_fields": [
+          "id",
+          "event_id",
+          "producer_module",
+          "privacy_level",
+          "created_at"
+        ],
+        "read_model": "DomainEventTimelineReadModel",
+        "permission_context": "system.view_events",
+        "redaction_policy": "schema_filtered_payload_excluded_by_default",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      }
+    ],
+    "commercial_tier_candidate": "free_mvp",
+    "commercial_surface": "user_facing"
+  },
+  {
+    "id": "onboarding",
+    "name": "Onboarding",
+    "phase": "mvp",
+    "purpose": "Activación guiada progresiva",
+    "depends_on": [
+      "core.identity",
+      "core.permissions",
+      "core.events",
+      "profile"
+    ],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/onboarding",
+          "method": "GET",
+          "permission": "profile.view",
+          "mutable": false
+        },
+        {
+          "path": "/onboarding/complete",
+          "method": "POST",
+          "permission": "profile.update",
+          "mutable": true
+        },
+        {
+          "path": "/onboarding/start",
+          "method": "POST",
+          "permission": "profile.update",
+          "mutable": true
+        }
+      ],
+      "permissions": [
+        "profile.update",
+        "profile.view"
+      ],
+      "events_emitted": [
+        "onboarding.completed",
+        "onboarding.started"
+      ],
+      "events_consumed": [
+        "dashboard.first_viewed",
+        "user.registered"
+      ],
+      "ui_slots": [
+        "app_shell.main"
+      ],
+      "config_keys": [
+        "onboarding.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "onboarding.manifest.valid",
+        "onboarding.permissions.valid",
+        "onboarding.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "NO_EVENT_PRODUCER_WRITES_CONSUMER_ENTITY",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT",
+        "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": true,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": false,
+    "module_classification": "mvp",
+    "module_type": "feature",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [
+        "OnboardingSession"
+      ],
+      "read_entities": [
+        "User",
+        "Module",
+        "DomainEvent"
+      ],
+      "forbidden_entities": [
+        "Permission",
+        "AIActionLog"
+      ]
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "onboarding.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "gamification",
+        "kind": "event_consumer",
+        "required": false,
+        "required_for": [
+          "onboarding.completed -> progress"
+        ],
+        "fallback": "Emitir onboarding.completed aunque gamification no procese todavía la progresión.",
+        "min_lifecycle_status": "planned"
+      },
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:onboarding.completed,onboarding.started",
+          "consume:dashboard.first_viewed,user.registered"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "dashboard.first_viewed",
+          "onboarding.completed",
+          "onboarding.started",
+          "user.registered"
+        ],
+        "direction": "emit_consume",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      },
+      {
+        "module": "core.identity",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:User"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "User",
+        "owner_module": "core.identity",
+        "purpose": "Lectura contractual de User por onboarding sin acceso directo a internals de core.identity.",
+        "allowed_fields": [
+          "id",
+          "display_name",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "UserPublicContextReadModel",
+        "permission_context": "user.self_or_system_context",
+        "redaction_policy": "role_based_mask_email",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.modules",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:Module"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "Module",
+        "owner_module": "core.modules",
+        "purpose": "Lectura contractual de Module por onboarding sin acceso directo a internals de core.modules.",
+        "allowed_fields": [
+          "id",
+          "code",
+          "name",
+          "module_type",
+          "phase",
+          "lifecycle_status",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "ModuleCatalogReadModel",
+        "permission_context": "module.view",
+        "redaction_policy": "none",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.events",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:DomainEvent"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "DomainEvent",
+        "owner_module": "core.events",
+        "purpose": "Lectura contractual de DomainEvent por onboarding sin acceso directo a internals de core.events.",
+        "allowed_fields": [
+          "id",
+          "event_id",
+          "producer_module",
+          "privacy_level",
+          "created_at"
+        ],
+        "read_model": "DomainEventTimelineReadModel",
+        "permission_context": "system.view_events",
+        "redaction_policy": "schema_filtered_payload_excluded_by_default",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      }
+    ],
+    "commercial_tier_candidate": "free_mvp",
+    "commercial_surface": "user_facing"
+  },
+  {
+    "id": "profile",
+    "name": "Profile",
+    "phase": "mvp",
+    "purpose": "Perfil, contexto y preferencias básicas",
+    "depends_on": [
+      "core.identity",
+      "core.permissions",
+      "core.events"
+    ],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/profile",
+          "method": "GET",
+          "permission": "profile.view",
+          "mutable": false
+        },
+        {
+          "path": "/profile",
+          "method": "PATCH",
+          "permission": "profile.update",
+          "mutable": true
+        }
+      ],
+      "permissions": [
+        "profile.update",
+        "profile.view"
+      ],
+      "events_emitted": [
+        "profile.updated"
+      ],
+      "events_consumed": [
+        "user.registered"
+      ],
+      "ui_slots": [
+        "app_shell.main"
+      ],
+      "config_keys": [
+        "profile.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "profile.manifest.valid",
+        "profile.permissions.valid",
+        "profile.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT",
+        "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": false,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": false,
+    "module_classification": "mvp",
+    "module_type": "feature",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [
+        "UserContext"
+      ],
+      "read_entities": [
+        "User",
+        "Module",
+        "DomainEvent"
+      ],
+      "forbidden_entities": [
+        "Permission",
+        "AIActionLog"
+      ]
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "profile.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:profile.updated",
+          "consume:user.registered"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "profile.updated",
+          "user.registered"
+        ],
+        "direction": "emit_consume",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      },
+      {
+        "module": "core.identity",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:User"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "User",
+        "owner_module": "core.identity",
+        "purpose": "Lectura contractual de User por profile sin acceso directo a internals de core.identity.",
+        "allowed_fields": [
+          "id",
+          "display_name",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "UserPublicContextReadModel",
+        "permission_context": "user.self_or_system_context",
+        "redaction_policy": "role_based_mask_email",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.modules",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:Module"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "Module",
+        "owner_module": "core.modules",
+        "purpose": "Lectura contractual de Module por profile sin acceso directo a internals de core.modules.",
+        "allowed_fields": [
+          "id",
+          "code",
+          "name",
+          "module_type",
+          "phase",
+          "lifecycle_status",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "ModuleCatalogReadModel",
+        "permission_context": "module.view",
+        "redaction_policy": "none",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.events",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:DomainEvent"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "DomainEvent",
+        "owner_module": "core.events",
+        "purpose": "Lectura contractual de DomainEvent por profile sin acceso directo a internals de core.events.",
+        "allowed_fields": [
+          "id",
+          "event_id",
+          "producer_module",
+          "privacy_level",
+          "created_at"
+        ],
+        "read_model": "DomainEventTimelineReadModel",
+        "permission_context": "system.view_events",
+        "redaction_policy": "schema_filtered_payload_excluded_by_default",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      }
+    ],
+    "commercial_tier_candidate": "free_mvp",
+    "commercial_surface": "user_facing"
+  },
+  {
+    "id": "notifications",
+    "name": "Notifications",
+    "phase": "mvp",
+    "purpose": "Avisos, feedback y acompañamiento",
+    "depends_on": [
+      "core.identity",
+      "core.permissions",
+      "core.events"
+    ],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/notifications",
+          "method": "GET",
+          "permission": "notification.view",
+          "mutable": false
+        },
+        {
+          "path": "/notifications/{id}/read",
+          "method": "POST",
+          "permission": "notification.mark_read",
+          "mutable": true
+        }
+      ],
+      "permissions": [
+        "notification.view",
+        "notification.mark_read"
+      ],
+      "events_emitted": [
+        "notification.created",
+        "notification.read"
+      ],
+      "events_consumed": [
+        "achievement.unlocked",
+        "doctor.check.failed",
+        "onboarding.completed",
+        "task.completed"
+      ],
+      "ui_slots": [
+        "app_shell.main"
+      ],
+      "config_keys": [
+        "notifications.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "notifications.manifest.valid",
+        "notifications.permissions.valid",
+        "notifications.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT",
+        "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": false,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": false,
+    "module_classification": "mvp",
+    "module_type": "feature",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [
+        "Notification"
+      ],
+      "read_entities": [
+        "User",
+        "Module",
+        "DomainEvent"
+      ],
+      "forbidden_entities": [
+        "Permission",
+        "AIActionLog"
+      ]
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "notifications.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "dashboard",
+        "kind": "ui_enhancement",
+        "required": false,
+        "required_for": [
+          "NotificationList in AppShell/Dashboard"
+        ],
+        "fallback": "Las notificaciones internas pueden existir aunque el Dashboard no las muestre todavía.",
+        "min_lifecycle_status": "planned"
+      },
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:notification.created,notification.read",
+          "consume:achievement.unlocked,doctor.check.failed,onboarding.completed,task.completed"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "achievement.unlocked",
+          "doctor.check.failed",
+          "notification.created",
+          "notification.read",
+          "onboarding.completed",
+          "task.completed"
+        ],
+        "direction": "emit_consume",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      },
+      {
+        "module": "core.identity",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:User"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "User",
+        "owner_module": "core.identity",
+        "purpose": "Lectura contractual de User por notifications sin acceso directo a internals de core.identity.",
+        "allowed_fields": [
+          "id",
+          "display_name",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "UserPublicContextReadModel",
+        "permission_context": "user.self_or_system_context",
+        "redaction_policy": "role_based_mask_email",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.modules",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:Module"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "Module",
+        "owner_module": "core.modules",
+        "purpose": "Lectura contractual de Module por notifications sin acceso directo a internals de core.modules.",
+        "allowed_fields": [
+          "id",
+          "code",
+          "name",
+          "module_type",
+          "phase",
+          "lifecycle_status",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "ModuleCatalogReadModel",
+        "permission_context": "module.view",
+        "redaction_policy": "none",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.events",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:DomainEvent"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "DomainEvent",
+        "owner_module": "core.events",
+        "purpose": "Lectura contractual de DomainEvent por notifications sin acceso directo a internals de core.events.",
+        "allowed_fields": [
+          "id",
+          "event_id",
+          "producer_module",
+          "privacy_level",
+          "created_at"
+        ],
+        "read_model": "DomainEventTimelineReadModel",
+        "permission_context": "system.view_events",
+        "redaction_policy": "schema_filtered_payload_excluded_by_default",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      }
+    ],
+    "commercial_tier_candidate": "free_mvp",
+    "commercial_surface": "user_facing"
+  },
+  {
+    "id": "admin",
+    "name": "Admin",
+    "phase": "mvp",
+    "purpose": "Administración mínima inicial",
+    "depends_on": [
+      "core.identity",
+      "core.permissions",
+      "core.modules",
+      "core.audit",
+      "core.doctor"
+    ],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/admin",
+          "method": "GET",
+          "permission": "admin.access",
+          "mutable": false
+        },
+        {
+          "path": "/admin/panel-view-track",
+          "method": "POST",
+          "permission": "admin.track_panel_view",
+          "mutable": true
+        }
+      ],
+      "permissions": [
+        "admin.access",
+        "admin.manage_modules",
+        "admin.manage_users",
+        "admin.view_audit",
+        "admin.view_evidence",
+        "admin.track_panel_view"
+      ],
+      "events_emitted": [
+        "admin.panel.viewed"
+      ],
+      "events_consumed": [
+        "ai.action.approved",
+        "ai.suggestion.created",
+        "audit.recorded",
+        "backup.created",
+        "doctor.check.failed",
+        "evidence.recorded",
+        "module.activated",
+        "permission.changed",
+        "system.doctor.executed"
+      ],
+      "ui_slots": [
+        "app_shell.main"
+      ],
+      "config_keys": [
+        "admin.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "admin.manifest.valid",
+        "admin.permissions.valid",
+        "admin.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT",
+        "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": false,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": false,
+    "module_classification": "mvp",
+    "module_type": "admin",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [],
+      "read_entities": [
+        "User",
+        "Module",
+        "DomainEvent"
+      ],
+      "forbidden_entities": []
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "admin.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:admin.panel.viewed",
+          "consume:ai.action.approved,ai.suggestion.created,audit.recorded,backup.created,doctor.check.failed,evidence.recorded,module.activated,permission.changed,system.doctor.executed"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "admin.panel.viewed",
+          "ai.action.approved",
+          "ai.suggestion.created",
+          "audit.recorded",
+          "backup.created",
+          "doctor.check.failed",
+          "evidence.recorded",
+          "module.activated",
+          "permission.changed",
+          "system.doctor.executed"
+        ],
+        "direction": "emit_consume",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      },
+      {
+        "module": "core.identity",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:User"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "User",
+        "owner_module": "core.identity",
+        "purpose": "Lectura contractual de User por admin sin acceso directo a internals de core.identity.",
+        "allowed_fields": [
+          "id",
+          "email",
+          "display_name",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "UserAdminListReadModel",
+        "permission_context": "admin.view_audit",
+        "redaction_policy": "role_based_mask_email",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.modules",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:Module"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "Module",
+        "owner_module": "core.modules",
+        "purpose": "Lectura contractual de Module por admin sin acceso directo a internals de core.modules.",
+        "allowed_fields": [
+          "id",
+          "code",
+          "name",
+          "module_type",
+          "phase",
+          "lifecycle_status",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "ModuleCatalogReadModel",
+        "permission_context": "admin.view_audit",
+        "redaction_policy": "none",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.events",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:DomainEvent"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "DomainEvent",
+        "owner_module": "core.events",
+        "purpose": "Lectura contractual de DomainEvent por admin sin acceso directo a internals de core.events.",
+        "allowed_fields": [
+          "id",
+          "event_id",
+          "event_version",
+          "producer_module",
+          "privacy_level",
+          "created_at"
+        ],
+        "read_model": "DomainEventTimelineReadModel",
+        "permission_context": "admin.view_audit",
+        "redaction_policy": "schema_filtered_payload_excluded_by_default",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      }
+    ],
+    "commercial_tier_candidate": "internal_only",
+    "commercial_surface": "admin_internal"
+  },
+  {
+    "id": "gamification",
+    "name": "Gamification",
+    "phase": "mvp",
+    "purpose": "Progreso, logros suaves y recompensas funcionales",
+    "depends_on": [
+      "core.events",
+      "core.identity",
+      "core.permissions"
+    ],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/progress",
+          "method": "GET",
+          "permission": "gamification.view",
+          "mutable": false
+        }
+      ],
+      "permissions": [
+        "gamification.view"
+      ],
+      "events_emitted": [
+        "achievement.unlocked",
+        "progress.updated"
+      ],
+      "events_consumed": [
+        "ai.suggestion.created",
+        "dashboard.first_viewed",
+        "module.activated",
+        "notification.read",
+        "onboarding.completed",
+        "onboarding.started",
+        "profile.updated",
+        "system.doctor.executed",
+        "task.completed",
+        "user.registered",
+        "module.used"
+      ],
+      "ui_slots": [
+        "app_shell.main"
+      ],
+      "config_keys": [
+        "gamification.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "gamification.manifest.valid",
+        "gamification.permissions.valid",
+        "gamification.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "GAMIFICATION_RULES_WRITE_ONLY_GAMIFICATION_ENTITIES",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT",
+        "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": false,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": false,
+    "module_classification": "mvp",
+    "module_type": "feature",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [
+        "ProgressRecord",
+        "Achievement",
+        "UserAchievement",
+        "GamificationRuleState"
+      ],
+      "read_entities": [
+        "User",
+        "Module",
+        "DomainEvent"
+      ],
+      "forbidden_entities": [
+        "Permission",
+        "AIActionLog"
+      ]
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "gamification.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "dashboard",
+        "kind": "ui_enhancement",
+        "required": false,
+        "required_for": [
+          "ProgressSummary"
+        ],
+        "fallback": "El progreso puede calcularse antes de visualizarse en Dashboard.",
+        "min_lifecycle_status": "planned"
+      },
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:achievement.unlocked,progress.updated",
+          "consume:ai.suggestion.created,dashboard.first_viewed,module.activated,module.used,notification.read,onboarding.completed,onboarding.started,profile.updated,system.doctor.executed,task.completed,user.registered"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "achievement.unlocked",
+          "ai.suggestion.created",
+          "dashboard.first_viewed",
+          "module.activated",
+          "module.used",
+          "notification.read",
+          "onboarding.completed",
+          "onboarding.started",
+          "profile.updated",
+          "progress.updated",
+          "system.doctor.executed",
+          "task.completed",
+          "user.registered"
+        ],
+        "direction": "emit_consume",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      },
+      {
+        "module": "core.identity",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:User"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "User",
+        "owner_module": "core.identity",
+        "purpose": "Lectura contractual de User por gamification sin acceso directo a internals de core.identity.",
+        "allowed_fields": [
+          "id",
+          "display_name",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "UserPublicContextReadModel",
+        "permission_context": "user.self_or_system_context",
+        "redaction_policy": "role_based_mask_email",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.modules",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:Module"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "Module",
+        "owner_module": "core.modules",
+        "purpose": "Lectura contractual de Module por gamification sin acceso directo a internals de core.modules.",
+        "allowed_fields": [
+          "id",
+          "code",
+          "name",
+          "module_type",
+          "phase",
+          "lifecycle_status",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "ModuleCatalogReadModel",
+        "permission_context": "module.view",
+        "redaction_policy": "none",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.events",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:DomainEvent"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "DomainEvent",
+        "owner_module": "core.events",
+        "purpose": "Lectura contractual de DomainEvent por gamification sin acceso directo a internals de core.events.",
+        "allowed_fields": [
+          "id",
+          "event_id",
+          "producer_module",
+          "privacy_level",
+          "created_at"
+        ],
+        "read_model": "DomainEventTimelineReadModel",
+        "permission_context": "system.view_events",
+        "redaction_policy": "schema_filtered_payload_excluded_by_default",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      }
+    ],
+    "commercial_tier_candidate": "free_mvp",
+    "commercial_surface": "user_facing"
+  },
+  {
+    "id": "ai_assistant",
+    "name": "Ai Assistant",
+    "phase": "mvp",
+    "purpose": "IA de lectura, auditoría, propuesta y borrador controlado",
+    "depends_on": [
+      "core.audit",
+      "core.doctor",
+      "core.permissions"
+    ],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "runtime_module",
+    "integration_runtime": "not_applicable",
+    "provides": {
+      "routes": [
+        {
+          "path": "/ai",
+          "method": "GET",
+          "permission": "ai.read_context",
+          "mutable": false
+        },
+        {
+          "path": "/ai/drafts",
+          "method": "POST",
+          "permission": "ai.write_draft",
+          "mutable": true
+        }
+      ],
+      "permissions": [
+        "ai.read_context",
+        "ai.suggest_changes",
+        "ai.write_draft"
+      ],
+      "events_emitted": [
+        "ai.action.approved",
+        "ai.action.executed",
+        "ai.suggestion.created"
+      ],
+      "events_consumed": [
+        "decision.recorded",
+        "doctor.check.failed",
+        "evidence.recorded",
+        "system.doctor.executed"
+      ],
+      "ui_slots": [
+        "app_shell.main"
+      ],
+      "config_keys": [
+        "ai_assistant.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "ai_assistant.manifest.valid",
+        "ai_assistant.permissions.valid",
+        "ai_assistant.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT",
+        "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": true,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": false,
+    "module_classification": "mvp",
+    "module_type": "ai",
+    "lifecycle_status": "planned",
+    "owner": "system",
+    "data": {
+      "owned_entities": [
+        "AIActionLog",
+        "AIDraft"
+      ],
+      "read_entities": [
+        "User",
+        "Module",
+        "DomainEvent",
+        "ApprovalRecord"
+      ],
+      "forbidden_entities": []
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "ai_assistant.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:ai.action.approved,ai.action.executed,ai.suggestion.created",
+          "consume:decision.recorded,doctor.check.failed,evidence.recorded,system.doctor.executed"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "ai.action.approved",
+          "ai.action.executed",
+          "ai.suggestion.created",
+          "decision.recorded",
+          "doctor.check.failed",
+          "evidence.recorded",
+          "system.doctor.executed"
+        ],
+        "direction": "emit_consume",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      },
+      {
+        "module": "core.identity",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:User"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "User",
+        "owner_module": "core.identity",
+        "purpose": "Lectura contractual de User por ai_assistant sin acceso directo a internals de core.identity.",
+        "allowed_fields": [
+          "id",
+          "display_name",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "UserPublicContextReadModel",
+        "permission_context": "user.self_or_system_context",
+        "redaction_policy": "role_based_mask_email",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.modules",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:Module"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "Module",
+        "owner_module": "core.modules",
+        "purpose": "Lectura contractual de Module por ai_assistant sin acceso directo a internals de core.modules.",
+        "allowed_fields": [
+          "id",
+          "code",
+          "name",
+          "module_type",
+          "phase",
+          "lifecycle_status",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "ModuleCatalogReadModel",
+        "permission_context": "module.view",
+        "redaction_policy": "none",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.events",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:DomainEvent"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "DomainEvent",
+        "owner_module": "core.events",
+        "purpose": "Lectura contractual de DomainEvent por ai_assistant sin acceso directo a internals de core.events.",
+        "allowed_fields": [
+          "id",
+          "event_id",
+          "event_version",
+          "producer_module",
+          "privacy_level",
+          "created_at"
+        ],
+        "read_model": "DomainEventRedactedAIRuntimeReadModel",
+        "permission_context": "system.view_events",
+        "redaction_policy": "schema_filtered_payload_excluded_by_default",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.audit",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:ApprovalRecord"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "ApprovalRecord",
+        "owner_module": "core.audit",
+        "purpose": "Lectura contractual de ApprovalRecord por ai_assistant sin acceso directo a internals de core.audit.",
+        "allowed_fields": [
+          "id",
+          "requested_by",
+          "approved_by",
+          "action_type",
+          "permission_requested",
+          "scope",
+          "scope_hash",
+          "risk_level",
+          "files_affected",
+          "status",
+          "expires_at",
+          "evidence_ref",
+          "created_at",
+          "approved_at",
+          "consumed_at",
+          "consumed_by_action_id"
+        ],
+        "read_model": "ApprovalRecordAIGuardrailReadModel",
+        "permission_context": "ai.write_draft approval_scope_match",
+        "redaction_policy": "role_based_scope_filtered",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      }
+    ],
+    "commercial_tier_candidate": "internal_only",
+    "commercial_surface": "ai_operations"
+  },
+  {
+    "id": "integrations",
+    "name": "Integrations",
+    "phase": "mvp",
+    "purpose": "Catálogo/stub de integraciones sin proveedores reales en MVP",
+    "depends_on": [
+      "core.modules",
+      "core.permissions",
+      "core.events"
+    ],
+    "requires_manifest": true,
+    "mvp_included": true,
+    "external_dependency": false,
+    "implementation_type": "runtime_module",
+    "integration_runtime": "stub_only",
+    "provides": {
+      "routes": [
+        {
+          "path": "/admin/integrations",
+          "method": "GET",
+          "permission": "integration.view",
+          "mutable": false
+        },
+        {
+          "path": "/admin/integrations/{id}/configure-stub",
+          "method": "POST",
+          "permission": "integration.configure",
+          "mutable": true
+        }
+      ],
+      "permissions": [
+        "integration.configure",
+        "integration.view"
+      ],
+      "events_emitted": [
+        "integration.configured"
+      ],
+      "events_consumed": [
+        "module.activated"
+      ],
+      "ui_slots": [
+        "app_shell.main"
+      ],
+      "config_keys": [
+        "integrations.enabled"
+      ]
+    },
+    "forbidden": {
+      "direct_imports_from": {
+        "mode": "deny_all_module_internals",
+        "allowed_access": [
+          "public_contracts",
+          "events",
+          "permissions",
+          "module_manifest"
+        ]
+      },
+      "direct_db_access_to": [
+        "other_module_tables"
+      ],
+      "mutates_core": false
+    },
+    "validation": {
+      "contract_tests": [
+        "integrations.manifest.valid",
+        "integrations.permissions.valid",
+        "integrations.events.valid"
+      ],
+      "doctor_checks": [
+        "MODULES_MARKDOWN_MATCH_MACHINE",
+        "MODULE_MANIFESTS_DEFINED",
+        "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+        "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+        "NO_WILDCARD_FORBIDDEN_IMPORTS",
+        "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT",
+        "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT"
+      ],
+      "required_evidence": [
+        "doctor:consistency",
+        "doctor:semantic"
+      ]
+    },
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "contract_doc": "docs/04-architecture/03-module-contracts.md",
+    "blocking": false,
+    "validated_by": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "requires_backup_before_change": false,
+    "module_classification": "mvp_stub",
+    "module_type": "adapter",
+    "lifecycle_status": "stub",
+    "owner": "system",
+    "data": {
+      "owned_entities": [
+        "Integration"
+      ],
+      "read_entities": [
+        "User",
+        "Module",
+        "DomainEvent"
+      ],
+      "forbidden_entities": [
+        "Permission",
+        "AIActionLog"
+      ]
+    },
+    "rollback": {
+      "strategy": "disable_module",
+      "config_key": "integrations.enabled"
+    },
+    "dependency_contracts": [
+      {
+        "module": "core.events",
+        "kind": "event_bus",
+        "required": true,
+        "required_for": [
+          "emit:integration.configured",
+          "consume:module.activated"
+        ],
+        "fallback": "Bloquear emisión o consumo de eventos del módulo hasta que core.events exponga el bus contractual; no usar imports internos, callbacks directos ni servicios globales no declarados.",
+        "min_lifecycle_status": "planned",
+        "allowed_events": [
+          "integration.configured",
+          "module.activated"
+        ],
+        "direction": "emit_consume",
+        "delivery_semantics": "domain_event_envelope_v1_append_only",
+        "failure_policy": "fail_closed_for_mutating_actions_and_no_direct_module_callback",
+        "audit_policy": "registrar DomainEvent o AuditLog según machine/events.json y action_contracts.json",
+        "idempotency_policy": "event_id_unique_per_envelope_and_action_idempotency_when_action_contract_requires_it"
+      },
+      {
+        "module": "core.identity",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:User"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "User",
+        "owner_module": "core.identity",
+        "purpose": "Lectura contractual de User por integrations sin acceso directo a internals de core.identity.",
+        "allowed_fields": [
+          "id",
+          "display_name",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "UserPublicContextReadModel",
+        "permission_context": "user.self_or_system_context",
+        "redaction_policy": "role_based_mask_email",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.modules",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:Module"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "Module",
+        "owner_module": "core.modules",
+        "purpose": "Lectura contractual de Module por integrations sin acceso directo a internals de core.modules.",
+        "allowed_fields": [
+          "id",
+          "code",
+          "name",
+          "module_type",
+          "phase",
+          "lifecycle_status",
+          "enabled",
+          "created_at",
+          "updated_at"
+        ],
+        "read_model": "ModuleCatalogReadModel",
+        "permission_context": "module.view",
+        "redaction_policy": "none",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      },
+      {
+        "module": "core.events",
+        "kind": "data_read",
+        "required": true,
+        "required_for": [
+          "read:DomainEvent"
+        ],
+        "fallback": "Bloquear lectura cross-module o mostrar estado vacío/degradado; prohibido consultar tablas ajenas directamente.",
+        "min_lifecycle_status": "planned",
+        "entity": "DomainEvent",
+        "owner_module": "core.events",
+        "purpose": "Lectura contractual de DomainEvent por integrations sin acceso directo a internals de core.events.",
+        "allowed_fields": [
+          "id",
+          "event_id",
+          "producer_module",
+          "privacy_level",
+          "created_at"
+        ],
+        "read_model": "DomainEventTimelineReadModel",
+        "permission_context": "system.view_events",
+        "redaction_policy": "schema_filtered_payload_excluded_by_default",
+        "failure_policy": "fail_closed_or_render_empty_state_without_direct_table_access",
+        "evidence_ref": "doctor:semantic",
+        "doctor_check_ref": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+        "ai_access_policy": "allowed_only_if_ai_level_and_permission_context_match"
+      }
+    ],
+    "commercial_tier_candidate": "future_premium_candidate",
+    "commercial_surface": "integration_surface"
+  }
+]

@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "route",
+      "method",
+      "module",
+      "permission",
+      "allowed_roles",
+      "mutable",
+      "runtime_approval_required",
+      "audit_required",
+      "route_kind",
+      "ui_contract_required",
+      "screen_id",
+      "parent_screen_id",
+      "subview_id",
+      "ui_exemption_reason"
+    ],
+    "additionalProperties": true,
+    "properties": {
+      "route": {
+        "type": "string"
+      },
+      "method": {
+        "type": "string"
+      },
+      "module": {
+        "type": "string"
+      },
+      "permission": {
+        "type": "string"
+      },
+      "allowed_roles": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "ai_allowed": {
+        "type": "boolean"
+      },
+      "ai_roles": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "ai_level_max": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "mutable": {
+        "type": "boolean"
+      },
+      "runtime_approval_required": {
+        "type": "boolean"
+      },
+      "audit_required": {
+        "type": "boolean"
+      },
+      "implementation_status": {
+        "enum": [
+          "foundation_ready",
+          "mvp_ready",
+          "restricted_mvp",
+          "future_prepared",
+          "not_implemented"
+        ]
+      },
+      "activation_status": {
+        "enum": [
+          "active_by_default",
+          "disabled_by_default",
+          "owner_enabled_only",
+          "not_assignable"
+        ]
+      },
+      "requires_approval_record": {
+        "type": "boolean"
+      },
+      "requires_owner_confirmation": {
+        "type": "boolean"
+      },
+      "route_kind": {
+        "enum": [
+          "screen",
+          "admin_subview",
+          "user_subview",
+          "internal_api",
+          "action_endpoint"
+        ]
+      },
+      "ui_contract_required": {
+        "type": "boolean"
+      },
+      "screen_id": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "parent_screen_id": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "subview_id": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "ui_exemption_reason": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  }
+}

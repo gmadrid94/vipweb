@@ -1,0 +1,558 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-31T00:00:00+00:00",
+  "checksum_contract": "sha256_lowercase_bytes",
+  "artifact_state": "generated_not_executed",
+  "artifacts": [
+    {
+      "artifact_path": "database/migrations/000_create_schema_migrations.sql",
+      "artifact_type": "migration",
+      "order": 0,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "564f4bc0d2fe7fa03e4520e0d9e7184c98ecaeb1651c51b1a4f14cec83bbc0e7",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/001_create_users.sql",
+      "artifact_type": "migration",
+      "order": 1,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "f9fd137d51c105f79d55ed7ff27f3b80caea5885a66ff3948ebd46309b6354ac",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/002_create_auth_attempts.sql",
+      "artifact_type": "migration",
+      "order": 2,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "29573bd15def8fa873515c28ca34f5336563824a0d427c1ebf4020f1d9f6abc3",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/003_create_roles.sql",
+      "artifact_type": "migration",
+      "order": 3,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "d26c9148dd98ec9eaf6ecfb651fdca05a14655d0209eb42c27626380dca14274",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/004_create_permissions.sql",
+      "artifact_type": "migration",
+      "order": 4,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "681ceec85637d3b5b29ea10e96364c40bbaf9b7ada305d428a1e16bbd77bbd96",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/005_create_role_permissions.sql",
+      "artifact_type": "migration",
+      "order": 5,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "e5a1c8ae9ced81e2c70b9d1ca9a9f9c92916e753df7043c68a4452ab25cd1295",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/006_create_user_roles.sql",
+      "artifact_type": "migration",
+      "order": 6,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "eb108f420cf90feb6db0f6b5ec85fd8412c098a851403880d6cd9d38124d414b",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/007_create_modules.sql",
+      "artifact_type": "migration",
+      "order": 7,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "8322940978711868ac9dbb871aac28176385103fcff2bdd07305c9280c317095",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/008_create_module_manifests.sql",
+      "artifact_type": "migration",
+      "order": 8,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "0e89f9fe14c024b2cb02d7e8c02784f1a9b7054c7cbcec31c2ed8cc486d9b10c",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/009_create_domain_events.sql",
+      "artifact_type": "migration",
+      "order": 9,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "d2edcffb84218ee5788b9a7215816aad7139fb771c819b4a157378b9db2bf55b",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/010_create_audit_logs.sql",
+      "artifact_type": "migration",
+      "order": 10,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "1a8b743dd0628f9c4521c70e95c3ad6b7072cdf21f168c0ac7d3b1b87b9af21f",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/011_create_approval_records.sql",
+      "artifact_type": "migration",
+      "order": 11,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "8ad542227443530d7f609f4193d7117bc6184716939f018201d985b6fc15e470",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/012_create_system_settings.sql",
+      "artifact_type": "migration",
+      "order": 12,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "53019b8149cbaf1e3452360286406ef50adb9504cf7c634072e864d7c04dc94f",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/013_create_evidence_reports.sql",
+      "artifact_type": "migration",
+      "order": 13,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "04c97c9caf064687ad5a56d73f9ef3c5c7b86b368d8ab2d40df7474b3598dd9e",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/014_create_backup_records.sql",
+      "artifact_type": "migration",
+      "order": 14,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "1660399e3fecf3050f667c3a5a9c1d6feb344f4b9dfad7990d263d9edc6774f3",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/015_create_decision_records.sql",
+      "artifact_type": "migration",
+      "order": 15,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "8c6e074b72065fc8131ac1487ee8fb0bc429d9cd6dc492b7591733d428773df7",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/016_create_user_contexts.sql",
+      "artifact_type": "migration",
+      "order": 16,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "87d51045986bab299a6a1e932fb7d4e7e72fd76f0361f9496b89543fba52e504",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/017_create_onboarding_sessions.sql",
+      "artifact_type": "migration",
+      "order": 17,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "2f31e830c26055e21ce3dcde4bca5500bec49f7e013ccab189e423cef37fd5cc",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/018_create_notifications.sql",
+      "artifact_type": "migration",
+      "order": 18,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "768af2183ce6f63437ff4f215e2632b2d4a4f9047917aabd27770459bb0e2ce1",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/019_create_achievements.sql",
+      "artifact_type": "migration",
+      "order": 19,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "42ca9de7ae68b62f2fe24207c57a2a17d47a1ffb33c517671ec0cffae0b3e7cc",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/020_create_user_achievements.sql",
+      "artifact_type": "migration",
+      "order": 20,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "4afac1252c49f0a39da77fa8da36c3858d3e6e4747b20e9f396674718f98b89a",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/021_create_gamification_rule_states.sql",
+      "artifact_type": "migration",
+      "order": 21,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "f599b4717125d819cdd79011786da5db0a18cc769c450b0d1ab98292216bb67f",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/022_create_progress_records.sql",
+      "artifact_type": "migration",
+      "order": 22,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "4946f500e9984be049d6b80a726f2cad15a166df4f0ad0344032105bff595352",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/023_create_ai_action_logs.sql",
+      "artifact_type": "migration",
+      "order": 23,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "7aa97fd1520b18168c426ae5c94427693b490e9de12fa8390f38cdef6e5e47b4",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/024_create_integrations.sql",
+      "artifact_type": "migration",
+      "order": 24,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "b2b10b430e6e0ef3fb2284cabb02212ac2f5e5c943e9643b190a1760777165c2",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/migrations/025_create_ai_drafts.sql",
+      "artifact_type": "migration",
+      "order": 25,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "05efc9f6aef3e8ae282e0232edffa36d04af52d8a770449bfd0f5dd256a6e9df",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/000_rollback_create_schema_migrations.sql",
+      "artifact_type": "rollback",
+      "order": 0,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "dfb458a98d0bb85d132845eb0a24f5b2e84fda01aaa58103cbb420b5c9815b2d",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/001_rollback_create_users.sql",
+      "artifact_type": "rollback",
+      "order": 1,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "d5da13e777e71821aace982025a3c2934b66d9be1ab714c485bcf52262b231c9",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/002_rollback_create_auth_attempts.sql",
+      "artifact_type": "rollback",
+      "order": 2,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "0f9d62f7bfd4571df84926fce975bffcd245579d1749eee827e50424680bc210",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/003_rollback_create_roles.sql",
+      "artifact_type": "rollback",
+      "order": 3,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "3f04ceeee979e67a86a89a4405c9112bed10085ceae68bfa3d5a18772dea3f80",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/004_rollback_create_permissions.sql",
+      "artifact_type": "rollback",
+      "order": 4,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "7290000f59939ac1def06100adc9bf425008cca9b1344212e61597a517394f95",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/005_rollback_create_role_permissions.sql",
+      "artifact_type": "rollback",
+      "order": 5,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "2a073c09b11158e3266ffb896ed35b06264b523170b5e07a6a2a00258e27673d",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/006_rollback_create_user_roles.sql",
+      "artifact_type": "rollback",
+      "order": 6,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "537cd231a93d9e23696da26929a5afe26fb3a5fc7da84f1d36b954aba567ce09",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/007_rollback_create_modules.sql",
+      "artifact_type": "rollback",
+      "order": 7,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "ea526954e5d094bad6978ffacce883e179f704052081572c3e186ead550598d2",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/008_rollback_create_module_manifests.sql",
+      "artifact_type": "rollback",
+      "order": 8,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "6b97b08c1a3e48460bceaa09dc8a0615dabe01e3206da726f8b59c6391109e75",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/009_rollback_create_domain_events.sql",
+      "artifact_type": "rollback",
+      "order": 9,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "6415db3d1aefb20f1f51bb2136aeee8d71a0e6cc4a459ebe74d223ae2c1b5914",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/010_rollback_create_audit_logs.sql",
+      "artifact_type": "rollback",
+      "order": 10,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "6814c5b75ebf73c10d6da80640903304b17f29dde16f3bb15d3d28f8d9220f7c",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/011_rollback_create_approval_records.sql",
+      "artifact_type": "rollback",
+      "order": 11,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "da0c22bb3e3bf5b53b3831cecb1f541dedd919032f995d78397d8fa0e93ef3ae",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/012_rollback_create_system_settings.sql",
+      "artifact_type": "rollback",
+      "order": 12,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "a8128b9e968b5a268fa37cae8f34f906e7ee8189a3cb194b24ad0048f46c057d",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/013_rollback_create_evidence_reports.sql",
+      "artifact_type": "rollback",
+      "order": 13,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "fdc24c8749872afa4947d60bda91dca3e484b8b8cc913897917a103ead1f0f0e",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/014_rollback_create_backup_records.sql",
+      "artifact_type": "rollback",
+      "order": 14,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "6d12025642f529a2ad0360e67cf08dd82ba9f577f36c93bc29a4217cef8b6cb2",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/015_rollback_create_decision_records.sql",
+      "artifact_type": "rollback",
+      "order": 15,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "fad7e48b3e334e968a8e11f670627d701a0d2f2a85f3e12f725b8161dda5cb89",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/016_rollback_create_user_contexts.sql",
+      "artifact_type": "rollback",
+      "order": 16,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "ee87b5467d592e26af741a5be934b035ea59a4018cf779b750686884927aa6f7",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/017_rollback_create_onboarding_sessions.sql",
+      "artifact_type": "rollback",
+      "order": 17,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "64c9685d40655d52319b41fc27b33961eda47159397ee7ba7c625ec356402abf",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/018_rollback_create_notifications.sql",
+      "artifact_type": "rollback",
+      "order": 18,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "2d567262ac27c5f6d80f0838849193c24d371e0fbb53d92f823650a7dd52f7be",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/019_rollback_create_achievements.sql",
+      "artifact_type": "rollback",
+      "order": 19,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "b540e6b0c1797dfd9c6fb85b2262f25c265fecae1dc8d17e349f4844b13cf7ac",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/020_rollback_create_user_achievements.sql",
+      "artifact_type": "rollback",
+      "order": 20,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "3aa493c2d7585ec4eb8eb1dad804eca9e1bd53a1fc074f02808fa0c6d32ab0ea",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/021_rollback_create_gamification_rule_states.sql",
+      "artifact_type": "rollback",
+      "order": 21,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "7f0d4448d1d44e34d7da1f021b5c756526db67294d70a58344de0a5b4bb997d5",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/022_rollback_create_progress_records.sql",
+      "artifact_type": "rollback",
+      "order": 22,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "38c1aeee3262f917f79d7813882c539cf23d71036616bb99d91d5dcb8ad48314",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/023_rollback_create_ai_action_logs.sql",
+      "artifact_type": "rollback",
+      "order": 23,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "2b0a85f283de65957a0c8c424f0012667bcdfdd666e933deaef0b20282a44273",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/024_rollback_create_integrations.sql",
+      "artifact_type": "rollback",
+      "order": 24,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "e17cde5c8cb142b8d8aaa777f54dd7783ded8eda40653fc60718f102ddf5c24c",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/rollbacks/025_rollback_create_ai_drafts.sql",
+      "artifact_type": "rollback",
+      "order": 25,
+      "module": "core.runtime",
+      "checksum_algorithm": "sha256",
+      "checksum": "0a95b059b037430ff9c7d0615f6dc67d8309c0fbaf3f4f110760d96e23909269",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/migration_contracts.json"
+    },
+    {
+      "artifact_path": "database/seeds/001_seed_core_reference_data.sql",
+      "artifact_type": "seed",
+      "order": 1,
+      "module": "core.seed",
+      "checksum_algorithm": "sha256",
+      "checksum": "84794932df2cb64f46fad29705db64c46b737a26cdf40e9b0ee1ea64b42f3271",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/sprint0_tasks.json"
+    },
+    {
+      "artifact_path": "database/seeds/002_seed_system_settings.sql",
+      "artifact_type": "seed",
+      "order": 2,
+      "module": "core.seed",
+      "checksum_algorithm": "sha256",
+      "checksum": "0038fe88131f66cc95771a562657968e0e13642c116c4c1f0f7f047c7d0a95f8",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/sprint0_tasks.json"
+    },
+    {
+      "artifact_path": "database/seeds/003_seed_local_owner_template.sql",
+      "artifact_type": "seed",
+      "order": 3,
+      "module": "core.seed",
+      "checksum_algorithm": "sha256",
+      "checksum": "b3b2940408616b61b75eb024c2e95eca3f621017cfdc650a1e7186403a225df1",
+      "artifact_state": "generated_not_executed",
+      "source_contract": "machine/sprint0_tasks.json"
+    }
+  ]
+}

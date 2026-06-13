@@ -1,0 +1,4138 @@
+[
+  {
+    "id": "ACCESSIBILITY_CONTRACTS_DECLARE_REQUIRED_FOCUS_AND_LIVE_REGIONS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Visible UI",
+    "description": "Los contratos accesibles declaran teclado, foco y regiones aria-live.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACCESSIBILITY_MINIMUM_TOKENS_DECLARED",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Tokens mínimos de accesibilidad declarados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACHIEVEMENTS_HAVE_USER_UNLOCK_ENTITY",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Los logros de usuario usan entidad UserAchievement.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTION_AI_ROLES_DECLARED_AND_VALID",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "foundation",
+    "description": "Toda acción con ai_allowed=true declara ai_roles válidos, con permiso y nivel IA compatible.",
+    "source_doc": "docs/03-functional/07-action-contracts.md"
+  },
+  {
+    "id": "ACTION_AI_ROLES_MATCH_ROUTE_AI_ROLES",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "foundation",
+    "description": "Action contracts y route matrix coinciden en ai_roles para la misma ruta/método/módulo.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "ACTION_ALLOWED_ROLES_MATCH_ROUTE_ALLOWED_ROLES",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "foundation",
+    "description": "Action contracts y route matrix coinciden en allowed_roles.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "ACTION_CONTRACTS_DECLARE_ERROR_CODES",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Contratos de acción declaran códigos de error.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTION_CONTRACTS_DECLARE_PRE_POSTCONDITIONS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Contratos de acción declaran pre/postcondiciones.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTION_CONTRACTS_DECLARE_REQUEST_RESPONSE",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Contratos de acción declaran request y response.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTION_CONTRACTS_HAVE_RUNTIME_TESTS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Core Runtime",
+    "description": "Todo action contract tiene fila equivalente en machine/runtime_test_matrix.json.",
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "id": "ACTION_CONTRACTS_MATCH_SCHEMA",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Contratos de acciones cumplen schema mínimo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTION_CONTRACTS_REFERENCE_EXISTING_EVENTS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Contratos de acción referencian eventos existentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTION_CONTRACTS_REFERENCE_EXISTING_PERMISSIONS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Contratos de acción referencian rutas, permisos y roles existentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTION_CONTRACT_REQUEST_SCHEMA_EXISTS",
+    "type": "structure",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Schemas de request de acciones existen.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTION_CONTRACT_RESPONSE_SCHEMA_EXISTS",
+    "type": "structure",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Schemas de respuesta de acciones existen.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTION_CONTRACT_UX_STATES_ARE_VALID",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Estados UX de acciones son válidos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTION_DELEGATED_WRITES_HAVE_CONTRACT",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Toda escritura delegada apunta a owner real y a contrato data_write declarado.",
+    "source_doc": "docs/04-architecture/03-module-contracts.md"
+  },
+  {
+    "id": "ACTION_DIRECT_WRITES_ONLY_OWNED_ENTITIES",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Toda entidad en writes_entities pertenece al módulo de la acción.",
+    "source_doc": "docs/03-functional/07-action-contracts.md"
+  },
+  {
+    "id": "ACTION_EMITTED_EVENTS_MATCH_PRODUCER_OR_DELEGATED_OWNER",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "foundation",
+    "description": "Acciones solo emiten eventos propios o eventos delegados al productor canónico.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "ACTION_ERROR_CODES_COVER_SECURITY_FAILURES",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Los contratos cubren fallos de seguridad, sesión, payload y aprobación.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTION_PAYLOAD_SCHEMAS_ARE_STRICT",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Los payload schemas mutables son cerrados y no aceptan campos arbitrarios.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTION_RESPONSE_DATA_SCHEMAS_ARE_STRICT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Las respuestas de acciones tipan data sin objeto abierto.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTIVATION_RATE_DENOMINATOR_IS_UNAMBIGUOUS",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "activation_rate define denominador no ambiguo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ACTIVE_INTEGRATIONS_REQUIRE_SANDBOX_EVIDENCE",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "No hay integraciones active sin evidencia de sandbox y fallback.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ADMIN_MODULE_ROUTES_REQUIRE_ADMIN_PERMISSION",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Las rutas /admin/modules requieren permisos administrativos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ADMIN_ROUTES_DO_NOT_ALLOW_REGISTERED_USER",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Ninguna ruta /admin/* permite registered_user.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ADMIN_TABLES_DEGRADE_ON_MOBILE",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Tablas admin degradan a cards/listas en mobile.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ADR026_GIT_CONDITIONAL_LANGUAGE_DECLARED",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La auditoría ADR matiza WAMP/no Git con trigger condicional ADR-026.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ADR_026_NOT_COUNTED_AS_ACCEPTED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "ADR-026 no cuenta como aceptada y no altera el conjunto vigente de 27 ADRs aceptadas.",
+    "source_doc": "docs/12-decisions/00-decision-log.md"
+  },
+  {
+    "id": "ADR_026_REGISTERED_AS_PROPOSED_CONDITIONAL",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "ADR-026 existe como propuesta condicional machine-readable.",
+    "source_doc": "docs/12-decisions/proposed/adr-026-introduccion-de-git-local-y-control-de-versiones-minimo.md"
+  },
+  {
+    "id": "ADR_ACCEPTED_COUNT_AND_PROPOSED_ADR026_ALIGNED",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Las 27 ADRs aceptadas están sincronizadas entre carpeta ADR, decision log y machine/decisions.json; ADR-026 permanece propuesta condicional.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "AI2_ACTIONS_REQUIRE_APPROVAL_RECORD",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Toda acción AI-2/AI-3 mutable requiere ApprovalRecord runtime y aprobación humana.",
+    "source_doc": "docs/09-ai-operations/08-ai-approval-policy.md"
+  },
+  {
+    "id": "AI2_MVP_RESTRICTED_TERMINOLOGY_USED",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "AI-Assisted Operations",
+    "description": "El backlog IA usa AI-2 MVP restringido en lugar de AI-2 futuro.",
+    "source_doc": "docs/11-backlog/04-ai-tasks.md"
+  },
+  {
+    "id": "AI2_RESTRICTED_ROUTES_REQUIRE_APPROVAL_AND_DISABLED_STATUS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Toda ruta AI-2 mutable exige ApprovalRecord y está desactivada por defecto.",
+    "source_doc": "docs/09-ai-operations/02-ai-permissions.md"
+  },
+  {
+    "id": "AI2_WRITES_REQUIRE_APPROVAL_RECORD",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Rutas AI-2/AI-3 permitidas requieren aprobación.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_ACRONYM_FILENAMES_ARE_NORMALIZED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Los acrónimos de entidades IA se normalizan en nombres físicos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_ACTIONS_HAVE_GUARDRAIL_TESTS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Core Runtime",
+    "description": "Toda acción permitida para IA declara pruebas negativas de guardrails y contexto no confiable.",
+    "source_doc": "docs/09-ai-operations/03-ai-guardrails.md"
+  },
+  {
+    "id": "AI_ACTIONS_REQUIRE_APPROVAL_WHEN_NEEDED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Acciones IA con escritura declaran aprobación.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_ACTION_LOG_APPROVAL_FK_PHYSICAL",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "AIActionLog.approval_id tiene FK física a ApprovalRecord.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_ACTION_LOG_FIELDS_MATCH_POLICY",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "AIActionLog contiene campos mínimos exigidos por política IA.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_ALLOWED_ROUTES_DECLARE_LEVEL_AND_AUDIT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Rutas IA declaran nivel, roles y auditoría.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_APPROVAL_POLICY_DEFINED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Política de aprobación IA definida.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_APPROVAL_POLICY_HAS_VERSION_CONTROL_GATE",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "La política IA declara gate de control de versiones para cambios protegidos.",
+    "source_doc": "docs/09-ai-operations/08-ai-approval-policy.md"
+  },
+  {
+    "id": "AI_APPROVAL_POLICY_MATCH_SCHEMA",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Approval policy cumple schema mínimo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_APPROVAL_POLICY_REFERENCES_CONTEXT_TRUST",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La política de aprobación IA referencia AI_CONTEXT_TRUST_POLICY antes de acciones sensibles.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_APPROVAL_POLICY_RUNTIME_READY",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Política runtime de aprobación IA está lista.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_APPROVAL_RECORD_ENTITY_DEFINED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "ApprovalRecord existe y está referenciado por approval policy.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_APPROVAL_RECORD_REFERENCED_BY_AI_ACTION_LOG",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "AIActionLog referencia ApprovalRecord mediante approval_id.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_BACKLOG_TASKS_ARE_SYNCHRONIZED_IN_HUMAN_DOCS",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Tareas AI3-* canónicas aparecen en tablas humanas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_BEHAVIOR_FIXTURES_DECLARED",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Fixtures de comportamiento IA declaran casos mínimos de rechazo, aprobación, evidencia, gates y secretos.",
+    "source_doc": "docs/09-ai-operations/09-ai-behavior-fixtures.md"
+  },
+  {
+    "id": "AI_BEHAVIOR_FIXTURES_INCLUDE_PROMPT_INJECTION",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Fixtures IA cubren prompt injection, falsa aprobación y manipulación de evidencia.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_CONTEXT_TRUST_POLICY_DECLARED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "La política de confianza de contexto IA existe en documentación humana y machine-readable.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_CONTEXT_TRUST_POLICY_GUARDRAIL_LINKED",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Los guardrails IA enlazan AI_CONTEXT_TRUST_POLICY y regla de contenido no confiable.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_CONTEXT_TRUST_POLICY_MACHINE_READABLE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La política de confianza de contexto IA tiene JSON canónico y schema declarado.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_DEVELOPMENT_MODE_GATE_DECLARED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "development_mode y gate ADR-026 para cambios IA protegidos quedan declarados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_DOCTOR_ASSISTED_MODE_IS_READONLY",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Doctor asistido por IA es readonly.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_DRAFTS_DO_NOT_MUTATE_TARGET_FILES",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "AI_WRITE_DRAFT no modifica archivos reales.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_DRAFTS_REQUIRE_APPROVAL_RECORD",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "AIDraft exige ApprovalRecord y AIActionLog físico.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_DRAFT_EXEMPTION_IS_MACHINE_READABLE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La exención de AIDraft no aplicado es machine-readable.",
+    "source_doc": "docs/09-ai-operations/08-ai-approval-policy.md"
+  },
+  {
+    "id": "AI_DRAFT_STATUS_APPLIED_IS_HUMAN_ONLY",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "El estado aplicado de AIDraft es humano-only.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_GUARDRAILS_DECLARED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Guardrails IA declarados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_LEVELS_CANONICAL",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Texto canónico AI-0/AI-4 presente.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_MUTABLE_ACTIONS_REQUIRE_HUMAN_APPROVAL",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Acciones IA mutables requieren aprobación humana.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_MUTABLE_AI_ACTIONS_HAVE_RUNBOOK",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Acciones IA permitidas tienen runbook operativo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_PERMISSION_LEVELS_ARE_COHERENT",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Roles IA, permisos y aprobación coherentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_PROTECTED_CHANGE_RISK_IS_NOT_BASE_MITIGATED_ONLY",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Cambios IA protegidos no quedan cubiertos solo por backup/registro operativo.",
+    "source_doc": "machine/risks.json"
+  },
+  {
+    "id": "AI_PROTECTED_FILE_APPLICATION_REQUIRES_ADR_026",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Aplicar cambios IA sobre archivos protegidos exige ADR-026/Git local mínimo.",
+    "source_doc": "docs/09-ai-operations/08-ai-approval-policy.md"
+  },
+  {
+    "id": "AI_PROTECTED_WRITE_GATE_IS_EXPLICITLY_MACHINE_READABLE",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "El gate de escritura IA protegida está explícito en ai_approval_policy.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AI_ROLE_PHASE_MATCHES_ROUTE_IMPLEMENTATION_STATUS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Ninguna ruta activa usa roles future salvo rutas future_prepared no asignables.",
+    "source_doc": "docs/09-ai-operations/01-ai-roles.md"
+  },
+  {
+    "id": "AI_RUNBOOKS_FORBID_SENSITIVE_ACTIONS_WITHOUT_APPROVAL",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "foundation",
+    "description": "Runbooks IA mutables o sensibles exigen ApprovalRecord o son humano-only y declaran acciones prohibidas.",
+    "source_doc": "docs/09-ai-operations/04-ai-runbooks.md"
+  },
+  {
+    "id": "AI_RUNBOOKS_HAVE_RUNTIME_TESTS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "foundation",
+    "description": "Cada runbook IA referencia cobertura de runtime tests compatible con sus acciones.",
+    "source_doc": "docs/09-ai-operations/04-ai-runbooks.md"
+  },
+  {
+    "id": "AI_RUNBOOKS_REFERENCE_EXISTING_ACTIONS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "foundation",
+    "description": "Cada runbook IA referencia action_contract_ids y permisos existentes.",
+    "source_doc": "docs/09-ai-operations/04-ai-runbooks.md"
+  },
+  {
+    "id": "AI_RUNBOOKS_SCHEMA_VALID",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "foundation",
+    "description": "machine/ai_runbooks.json valida contra machine/schemas/ai-runbook.schema.json.",
+    "source_doc": "docs/09-ai-operations/04-ai-runbooks.md"
+  },
+  {
+    "id": "AI_WRITE_DRAFT_WRITES_AIDRAFT",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "AI_WRITE_DRAFT escribe AIDraft y AIActionLog.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ALL_CANONICAL_MACHINE_FILES_HAVE_SCHEMA",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Archivos canónicos machine tienen schema.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ALL_DERIVED_MATRICES_HAVE_SCHEMA",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Matrices derivadas tienen schema.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ANALYTICS_RELATED_DOMAIN_EVENTS_EXIST",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "MVP UX Skeleton",
+    "description": "Toda señal analítica relacionada con evento de dominio referencia un evento canónico existente.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "APPEND_ONLY_TABLES_DO_NOT_DECLARE_DESTRUCTIVE_DELETE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Tablas append-only no declaran borrado destructivo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "APPROVAL_ACTIONS_HAVE_NEGATIVE_TESTS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Core Runtime",
+    "description": "Toda acción que requiere ApprovalRecord declara pruebas negativas para aprobación ausente, caducada, consumida, actor incorrecto y scope_hash inválido.",
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "id": "APPROVAL_ACTIONS_REQUIRE_IDEMPOTENCY_KEY",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Las acciones con aprobación exigen idempotency_key.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "APPROVAL_ID_UNIQUE_IF_PRESENT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "approval_id no puede reutilizarse entre acciones IA.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "APPROVAL_RECORD_APPROVED_BY_LIFECYCLE_NULLABILITY",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "approval_records.approved_by es nullable físicamente y obligatorio solo por lifecycle aprobado/consumido.",
+    "source_doc": "docs/05-domain-data/06-approval-records.md"
+  },
+  {
+    "id": "APPROVAL_RECORD_CONSUMPTION_FIELDS_CONDITIONAL",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "consumed_at y consumed_by_action_id son nullable físicamente y obligatorios solo cuando status=consumed.",
+    "source_doc": "docs/05-domain-data/06-approval-records.md"
+  },
+  {
+    "id": "APPROVAL_RECORD_EXPIRES_AT_REQUIRED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "approval_records.expires_at es obligatorio físicamente para impedir aprobaciones sin caducidad.",
+    "source_doc": "docs/05-domain-data/06-approval-records.md"
+  },
+  {
+    "id": "APPROVAL_RECORD_PRECEDES_AI_ACTION_LOG",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "ApprovalRecord se migra antes que AIActionLog.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "APPROVAL_RECORD_STATUS_CONDITIONAL_FIELDS_DEFINED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "ApprovalRecord declara matriz de campos condicionales por estado.",
+    "source_doc": "docs/05-domain-data/06-approval-records.md"
+  },
+  {
+    "id": "APPROVAL_SEMANTICS_ARE_CONTEXT_SPECIFIC",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La semántica de aprobación está separada por contexto.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "APPROVAL_SERVICE_RUNTIME_DECLARED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Core Runtime",
+    "description": "ApprovalService está declarado como servicio runtime transversal de core.audit.",
+    "source_doc": "docs/05-domain-data/06-approval-records.md"
+  },
+  {
+    "id": "NON_CANONICAL_DOCS_ARE_NOT_AI_INGESTION_SOURCES",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "foundation",
+    "description": "La documentación histórica, archivada o no canónica no aparece como fuente machine-readable/IA vigente.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AUTHENTICATED_USER_CONTEXT_ONBOARDING_CONTRACTS_MATCH_DDL",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "UserContext y OnboardingSession requieren usuario autenticado/provisionado: user_id NOT NULL en contratos, matriz física, DDL y DCE.",
+    "source_doc": "docs/05-domain-data/04-data-strategy.md"
+  },
+  {
+    "id": "AUTHORITATIVE_DOCS_HAVE_CANONICAL_SECTIONS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Documentos canónicos con secciones mínimas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "AUTH_ATTEMPT_THROTTLING_DECLARED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "AuthAttempt y throttling de login están declarados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "BACKLOG_AFTER_SPRINT0_ACTIONABLE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Backlog posterior a Sprint 0 accionable.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "BACKLOG_AI_TASKS_DECLARE_AI_LIMITS",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Tareas IA declaran límites operativos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "BACKLOG_DEPENDENCIES_USE_HARDENED_TASKS",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Core Runtime",
+    "description": "Las dependencias posteriores usan la tarea endurecida cuando existe.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "BACKLOG_DERIVED_TASKS_DECLARE_RELATIONSHIPS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Core Runtime",
+    "description": "Las tareas base/endurecidas declaran parent_task_id, supersedes y superseded_by.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "BACKLOG_ITEMS_HAVE_EXECUTION_CONTRACT",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Backlog posterior a Sprint 0 accionable con contrato operativo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "BACKLOG_ITEMS_MATCH_SCHEMA",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Backlog cumple schema mínimo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "BACKLOG_MARKDOWN_IDS_EXIST_IN_MACHINE",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "IDs del backlog Markdown existen en backlog machine.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "BASELINE_METRICS_DECLARE_DECISION_POLICY",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Métricas baseline declaran política de decisión.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "CHECKSUM_CANONICAL_CONTRACT_DECLARED",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Contrato SHA-256 lowercase para evidencias, migraciones y artifacts técnicos está declarado en docs humanas.",
+    "source_doc": "docs/05-domain-data/04-data-strategy.md"
+  },
+  {
+    "id": "CLIENT_REQUESTS_DO_NOT_ACCEPT_ACTOR_ID",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Los requests de cliente no aceptan actor_id.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "COLUMN_CONTRACTS_EXIST",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe machine/column_contracts.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "COLUMN_CONTRACTS_HAVE_NO_DUPLICATE_INDEX_NAMES",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "No existen índices duplicados por tabla en column_contracts.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "COLUMN_CONTRACTS_HAVE_NO_DUPLICATE_TABLE_CONSTRAINTS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "No existen constraints duplicadas por tabla en column_contracts.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "COLUMN_EXPOSURE_FLAGS_ARE_DECLARED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Todas las columnas declaran flags de exposición granular.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "COLUMN_INDEXES_REFERENCE_EXISTING_COLUMNS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Ningún índice de column_contracts referencia columnas inexistentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "COLUMN_TYPES_ARE_DECLARED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Toda columna tiene tipo lógico y tipo SQL WAMP.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "CONTROLLED_PROVISIONING_ACTION_DEFINED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Core Runtime",
+    "description": "USER_PROVISION_CONTROLLED existe como acción owner-only con ApprovalRecord, ruta, schemas y evento user.registered.",
+    "source_doc": "docs/03-functional/07-action-contracts.md"
+  },
+  {
+    "id": "CORE_FEATURES_DO_NOT_INCLUDE_NON_CORE_MODULES",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Core features no mezcla módulos UX/P1 no core.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "CORE_MODULES_ARE_NOT_PREMIUM_CANDIDATES",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Los módulos core no son candidatos premium.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "CORE_RUNTIME_SKELETON_DECLARED",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Core Runtime",
+    "description": "El skeleton PHP/WAMP mínimo de Core Runtime está documentado con flujo ActionExecutor y vertical slices.",
+    "source_doc": "docs/06-technical/11-core-runtime-skeleton.md"
+  },
+  {
+    "id": "CORE_VALIDATION_METRICS_DECLARE_DECISION_POLICY",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Métricas centrales declaran ventana, muestra, éxito, alerta, fallo, decisión, owner y cadencia.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "CRITICAL_ACTIONS_HAVE_AUDIT_AND_PERMISSION_TESTS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Core Runtime",
+    "description": "Toda acción crítica tiene cobertura runtime de permisos, roles y audit log cuando el contrato lo requiere.",
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "id": "CRITICAL_DECISIONS_DO_NOT_REFERENCE_PROJECT_STATE_AS_CURRENT",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "critical_decisions usa CURRENT_STATUS.md y no PROJECT_STATE como fuente vigente.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "CRITICAL_MACHINE_FILES_HAVE_SCHEMAS",
+    "type": "structure",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Schemas críticos presentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "CRITICAL_TEMPLATES_HAVE_OPERATIONAL_CONTRACT_SECTIONS",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Foundation",
+    "description": "Plantillas críticas tienen secciones operativas homogéneas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "CURRENT_STATUS_DECLARES_CANONICAL_BASELINE_AND_READINESS",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "foundation",
+    "description": "CURRENT_STATUS.md declara baseline documental canónica y estado operativo READY_FOR_SPRINT_0.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DATABASE_MANIFEST_CHECKSUMS_VALID",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "database/manifest.json conserva checksums SHA-256 válidos para los artefactos SQL referenciados.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "DB_ON_DELETE_MATCHES_DDL",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "db_on_delete coincide con ON DELETE declarado en las migraciones SQL físicas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DECISION_ADR_COVERAGE_COMPLETE",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Decisiones fundacionales tienen cobertura ADR/decision_id.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DELETE_POLICY_FIELDS_ARE_SEPARATED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "db_on_delete y application_delete_policy están separados y delete_behavior no se usa como campo ambiguo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DERIVED_ALIAS_MATCHES_CANONICAL_SOURCE",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Los aliases catalog_* coinciden con su fuente canónica.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DESIGN_TOKENS_DECLARED",
+    "type": "structure",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Design tokens declarados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DESIGN_TOKENS_SCHEMA_VALID",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Design tokens cumplen schema.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DOCTOR_CATALOG_COVERS_ALL_EMITTED_CHECKS",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "machine/doctor_checks.json cubre todos los checks emitidos por el validador documental actual scripts/update_script.py.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DOCTOR_CHECK_CATALOG_COVERS_EMITTED_CHECKS",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Los checks que emite scripts/update_script.py están catalogados en machine/doctor_checks.json.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "DOCTOR_CHECK_DESCRIPTIONS_USE_CANONICAL_BASELINE_LANGUAGE",
+    "type": "documentation",
+    "severity": "low",
+    "phase": "Sprint 0",
+    "description": "Las descripciones de checks usan lenguaje de baseline canónica y evitan terminología retirada.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "UPDATE_SCRIPT_EMITTED_CHECKS_ARE_CATALOGED",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Los checks emitidos por scripts/update_script.py existen en el catálogo machine/doctor_checks.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DOCTOR_EVIDENCE_PERMISSION_SEPARATED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Doctor readonly, evidence.write y validate separados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DOCTOR_PANEL_ROUTE_IS_VIEW_ONLY",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "GET /admin/doctor es vista de panel, no ejecución Doctor.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DOCTOR_READONLY_DOES_NOT_WRITE_EVIDENCE",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Doctor readonly no escribe ficheros ni evidencia.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DOCTOR_READONLY_TASK_DOES_NOT_WRITE_EVIDENCE",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "S0-011 no escribe evidencia.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DOCTOR_RUN_ONLY_ALLOWED_ON_POST_ROUTE",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "La ejecución Doctor readonly solo puede declararse en POST /admin/doctor/run-readonly.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "UPDATE_SCRIPT_BASELINE_IS_CANONICAL",
+    "type": "documentation",
+    "severity": "low",
+    "phase": "foundation",
+    "description": "El validador documental actual declara documentation_baseline 1.0 como baseline canónica.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DOCTOR_STATUS_VALIDATE_HUMAN_ONLY",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "doctor.status.validate no está permitido para IA.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DOCTOR_STATUS_VALIDATE_REMAINS_HUMAN_ONLY",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "La validación de estado Doctor sigue siendo solo humana.",
+    "source_doc": "docs/09-ai-operations/03-ai-guardrails.md"
+  },
+  {
+    "id": "DOCUMENT_MATURITY_MODEL_DEFINES_AUTHORITY_STATUSES",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Modelo de madurez define estados de autoridad documental canónica, futura y no canónica.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DOMAIN_CONSTRAINTS_CRITICAL_RULES_HAVE_ENFORCEMENT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Toda constraint crítica tiene enforcement fuerte en DB o aplicación además de Doctor.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "DOMAIN_CONSTRAINTS_ENFORCEMENT_MATRIX_EXISTS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Existe matriz de enforcement DB/aplicación/Doctor para constraints de dominio.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ENTITIES_HAVE_RELATIONSHIPS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Entidades críticas tienen relaciones.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ENTITIES_MARKDOWN_FULLY_MATCH_MACHINE",
+    "type": "consistency",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Todas las entidades machine-readable están reflejadas en Markdown.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ENTITIES_MARKDOWN_MATCH_MACHINE",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Entidades bloqueantes están reflejadas en Markdown.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ENTITY_FIELDS_HAVE_COLUMN_CONTRACTS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Todo fields_minimum de entidades está cubierto por column contracts.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ENUM_CONSTRAINED_COLUMNS_ARE_NOT_JSON",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Columnas con dominio enum no están tipadas como JSON.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EVENTS_DECLARE_PAYLOAD_SCHEMA_REF",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Eventos declaran payload_schema_ref.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EVENTS_MARKDOWN_MATCH_MACHINE",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Eventos bloqueantes están reflejados en Markdown.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EVENTS_USED_BY_ACTIONS_EXIST_AND_HAVE_SCHEMAS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Eventos emitidos por acciones existen y tienen schema.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EVENT_ALIASES_NOT_USED_AS_CANON",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Sin alias deprecados usados como canónicos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EVENT_CONSUMERS_MATCH_MODULE_DECLARATIONS",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "foundation",
+    "description": "Todo consumer canónico aparece en events_consumed del módulo.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "EVENT_CONSUMERS_REFERENCE_EXISTING_MODULES",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "foundation",
+    "description": "Todo consumidor de evento referencia un módulo existente.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "EVENT_PAYLOAD_SCHEMAS_ARE_VALID_JSON_SCHEMA",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Schemas de payload de eventos son JSON Schema válidos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EVENT_PAYLOAD_SCHEMAS_MATCH_EVENT_VERSION",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Schemas de payload coinciden con versión del evento.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EVENT_PAYLOAD_SCHEMA_FILES_EXIST",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Schemas de payload de eventos existen.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Core Runtime",
+    "description": "Todo módulo productor o consumidor de eventos declara core.events como dependencia dura o contrato dependency_contracts.kind=event_bus.",
+    "source_doc": "docs/04-architecture/03-module-contracts.md"
+  },
+  {
+    "id": "EVENT_PRODUCERS_REFERENCE_EXISTING_MODULES",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "foundation",
+    "description": "Todo productor de evento referencia un módulo existente.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "EVIDENCE_DATED_HASH_MATCHES_MANIFEST",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El hash del reporte fechado coincide con el manifest.",
+    "source_doc": "evidence/sprint-0-local-execution.md"
+  },
+  {
+    "id": "EVIDENCE_EXCLUDES_OR_REDACTS_SENSITIVE_COLUMNS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Evidencias excluyen o redactan columnas sensibles.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EVIDENCE_FILENAME_IS_CANONICAL_LOCAL_EXECUTION",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "La evidencia local usa la ruta canónica evidence/sprint-0-local-execution.md, independiente de identificadores históricos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EVIDENCE_LOCAL_EXECUTION_FILE_INTEGRITY_DECLARED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El registro evidence/sprint-0-local-execution.md declara integridad SHA-256 verificable para la evidencia local real de Sprint 0.",
+    "source_doc": "evidence/sprint-0-local-execution.md"
+  },
+  {
+    "id": "EVIDENCE_MANIFEST_EXISTS",
+    "type": "structure",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Existe evidence/sprint-0-local-execution.md.",
+    "source_doc": "evidence/sprint-0-local-execution.md"
+  },
+  {
+    "id": "EVIDENCE_MANIFEST_SCHEMA_VALID",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El manifest de evidencias cumple schema.",
+    "source_doc": "evidence/sprint-0-local-execution.md"
+  },
+  {
+    "id": "EVIDENCE_MANIFEST_USES_CANONICAL_SHA256",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El manifest usa SHA-256 lowercase canónico.",
+    "source_doc": "docs/06-technical/03-conventions.md"
+  },
+  {
+    "id": "EVIDENCE_RECORDED_EVENT_INCLUDES_CHECKSUM",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "El evento evidence.recorded incluye checksum e integrity_manifest_ref.",
+    "source_doc": "machine/event_payload_schemas/evidence.recorded.v1.schema.json"
+  },
+  {
+    "id": "EVIDENCE_SCHEMA_REFERENCES_INTEGRITY_MANIFEST",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "El schema de evidencia y sprint-0-local-execution.md referencian evidence/sprint-0-local-execution.md.",
+    "source_doc": "machine/schemas/evidence.schema.json"
+  },
+  {
+    "id": "EVIDENCE_WRITE_CHECKSUM_IS_CANONICAL",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "EVIDENCE_WRITE exige checksum SHA-256 lowercase y checksum_algorithm=sha256.",
+    "source_doc": "machine/action_payloads/EVIDENCE_WRITE.request.schema.json"
+  },
+  {
+    "id": "EVIDENCE_WRITE_ONLY_USES_CANONICAL_PATHS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "La escritura de evidencia usa solo sprint-0-local-execution.md y doctor-validation-canonica.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EVIDENCE_WRITE_RESPONSE_INCLUDES_CHECKSUM",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "La respuesta de EVIDENCE_WRITE devuelve checksum e integrity_manifest_ref.",
+    "source_doc": "machine/action_payloads/EVIDENCE_WRITE.response.schema.json"
+  },
+  {
+    "id": "EVIDENCE_WRITE_TASK_IS_SEPARATE_FROM_DOCTOR_RUN",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "S0-012 concentra escritura de evidencia.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_README.md",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "README.md",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_docs",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "docs",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_evidence",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "evidence",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_evidence_manifest.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe evidence/sprint-0-local-execution.md.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_action_contracts.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/action_contracts.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_ai_approval_policy.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/ai_approval_policy.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_ai_behavior_fixtures.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe machine/ai_behavior_fixtures.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_ai_context_trust_policy.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe machine/ai_context_trust_policy.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_ai_runbooks.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "foundation",
+    "description": "machine/ai_runbooks.json existe como catálogo machine-readable de runbooks IA.",
+    "source_doc": "docs/09-ai-operations/04-ai-runbooks.md"
+  },
+  {
+    "id": "EXISTS_machine_analytics_events.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "MVP UX Skeleton",
+    "description": "machine/analytics_events.json existe.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_backlog_items.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/backlog_items.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_column_contracts.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/column_contracts.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_design_tokens.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/design_tokens.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_domain_constraints_enforcement_matrix.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo requerido: machine/domain_constraints_enforcement_matrix.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_features.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/features.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_gamification_rules.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/gamification_rules.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_journeys.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/journeys.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_machine_manifest.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/machine_manifest.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_metrics.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/metrics.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_migration_contracts.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo requerido: machine/migration_contracts.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_mvp_coverage_matrix.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/mvp_coverage_matrix.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_mvp_qualitative_validation.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe machine/mvp_qualitative_validation.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_physical_constraints_matrix.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/physical_constraints_matrix.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_product_mvp.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/product_mvp.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_proposed_decisions.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe machine/proposed_decisions.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_relationships.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/relationships.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_roadmap_gates.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/roadmap_gates.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_roles.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/roles.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_route_permission_matrix.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/route_permission_matrix.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_runtime_test_matrix.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Core Runtime",
+    "description": "Existe machine/runtime_test_matrix.json.",
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "id": "EXISTS_machine_schema_registry.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe machine/schema_registry.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_action-contract.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/schemas/action-contract.schema.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_ai-approval-policy.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/schemas/ai-approval-policy.schema.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_ai-behavior-fixture.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe schema de fixtures IA.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_ai-context-trust-policy.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe schema de AI context trust policy.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_ai-runbook.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "foundation",
+    "description": "machine/schemas/ai-runbook.schema.json existe para validar runbooks IA.",
+    "source_doc": "docs/09-ai-operations/04-ai-runbooks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_analytics-event.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "MVP UX Skeleton",
+    "description": "machine/schemas/analytics-event.schema.json existe.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_api-error.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/schemas/api-error.schema.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_api-response.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/schemas/api-response.schema.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_approval-record.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/schemas/approval-record.schema.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_backlog-item.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/schemas/backlog-item.schema.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_column-contract.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/schemas/column-contract.schema.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_design-token.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/schemas/design-token.schema.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_domain-constraints-enforcement-matrix.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe schema requerido: machine/schemas/domain-constraints-enforcement-matrix.schema.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_domain-event-envelope.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/schemas/domain-event-envelope.schema.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_evidence-manifest.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe schema de manifest de evidencias.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_gamification-rules.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/schemas/gamification-rules.schema.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_machine-manifest.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/schemas/machine-manifest.schema.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_migration-contract.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe schema requerido: machine/schemas/migration-contract.schema.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_module.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/schemas/module.schema.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_mvp-coverage-matrix.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/schemas/mvp-coverage-matrix.schema.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_mvp-qualitative-validation.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe schema de validación cualitativa MVP.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_proposed-decision.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe schema de proposed_decisions.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_risk-register.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/schemas/risk-register.schema.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_risk.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/schemas/risk.schema.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_roadmap-gate.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/schemas/roadmap-gate.schema.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_role.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/schemas/role.schema.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_runtime-test-matrix.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Core Runtime",
+    "description": "Existe machine/schemas/runtime-test-matrix.schema.json.",
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_schema-registry.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe machine/schemas/schema-registry.schema.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_screen-component-contract.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe schema de contratos de pantalla.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_screen-responsive-behavior.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/schemas/screen-responsive-behavior.schema.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_sprint0-task.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/schemas/sprint0-task.schema.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_subweb-contract.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/schemas/subweb-contract.schema.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_traceability.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/schemas/traceability.schema.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_schemas_ui-state-copy.schema.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/schemas/ui-state-copy.schema.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_screen_component_contracts.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe machine/screen_component_contracts.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_screen_responsive_behavior.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/screen_responsive_behavior.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_subweb_contracts.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Existe archivo o carpeta requerida: machine/subweb_contracts.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_machine_ui_state_copy.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/ui_state_copy.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_templates",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "templates",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EXISTS_templates_subweb-contract.json",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "templates/subweb-contract.json",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "FEATURES_DECLARE_COMMERCIAL_CLASSIFICATION",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Features declaran clasificación comercial futura no operativa.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "FEATURES_MARKDOWN_MATCH_MACHINE",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La clasificación Markdown cubre todas las features machine-readable.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "FEATURES_REFERENCE_EXISTING_MODULES",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Features referencian módulos existentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "FEATURE_CLASSIFICATION_COVERS_ALL_MACHINE_FEATURES",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "docs/02-product/05-feature-classification.md cubre todas las features.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "FILE_PATH_CANONICALIZATION_DECLARED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Core Runtime",
+    "description": "Paths derivados de input se canonicalizan y validan contra directorios permitidos.",
+    "source_doc": "docs/06-technical/05-security.md"
+  },
+  {
+    "id": "FIRST_EXTENSION_REQUIRES_PLANNED_OR_STUB_CONTRACT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Primera subweb o integración real exige contrato planned/stub previo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "FIRST_SUBWEB_CANNOT_START_AS_ACTIVE",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "foundation",
+    "description": "La primera subweb real no puede incorporarse directamente como active; debe pasar por planned o stub.",
+    "source_doc": "docs/04-architecture/08-subweb-contracts.md"
+  },
+  {
+    "id": "FIRST_VIEW_EVENTS_DECLARE_IDEMPOTENCY",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "MVP UX Skeleton",
+    "description": "Los eventos first_view persistentes declaran idempotencia en catálogo y action contract.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "FK_COLUMNS_MATCH_PHYSICAL_CONSTRAINTS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Las FK físicas están cubiertas por contratos de columnas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "FK_NULLABILITY_MATCHES_PHYSICAL_CONSTRAINTS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "La nullability de FKs coincide entre column_contracts y physical_constraints_matrix.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "FOCUS_TOKEN_DECLARED",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Token de foco declarado.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_COOLDOWNS_HAVE_PERSISTENT_STATE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Los cooldowns tienen entidad persistente GamificationRuleState.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_EVENTS_DOC_MATCHES_PROCESSING_CONTRACT",
+    "type": "consistency",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Documento humano de eventos de gamificación refleja processing_contract y UserAchievement.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_EVENT_SOURCES_CONSUMED_BY_GAMIFICATION",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Todo evento usado por gamificación declara consumidor gamification.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_EVENT_SOURCES_EXIST",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Todo evento usado por gamificación existe.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_EVENT_USER_CONTEXT_MATCHES_PAYLOAD_SCHEMA",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Las fuentes de user context de gamificación existen en los payload schemas de eventos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_FIRST_MODULE_CHALLENGE_USES_MODULE_USED",
+    "type": "consistency",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "El reto de primer módulo usa module.used y no task.completed.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_FIRST_MODULE_REQUIRES_MODULE_USED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El logro first_module_used depende de module.used y no de activación administrativa.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_MARKDOWN_LISTS_MODULE_USED",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Documentos humanos de progresión y eventos listan module.used.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_NO_STRING_LOGIC_CONDITIONS",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Las condiciones de logros son estructuras machine-readable, no strings con lógica.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_PERSISTENT_USER_ID_NOT_NULL",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Gamificación persistente MVP exige user_id NOT NULL en contratos, DDL y documentación.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_PROCESSING_CONSUMES_ACHIEVEMENT_EVENTS",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "El handler de gamificación consume todos los eventos usados por logros.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_RULES_DECLARE_ELIGIBILITY_PREDICATES",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Las reglas de gamificación declaran predicados de elegibilidad machine-readable.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_RULES_HAVE_EVENT_SOURCES",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Gamificación deriva de eventos reales.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_RULES_MATCH_SCHEMA",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Reglas de gamificación cumplen schema estructurado.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_RULES_WRITE_ONLY_GAMIFICATION_ENTITIES",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El contrato de procesamiento de gamificación solo escribe entidades owned por gamification.",
+    "source_doc": "docs/08-gamification/00-gamification-overview.md"
+  },
+  {
+    "id": "GAMIFICATION_RULE_EVENTS_ARE_DOMAIN_EVENTS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "MVP UX Skeleton",
+    "description": "La gamificación consume eventos de dominio canónicos, no señales UI no persistentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_RUNTIME_WRITES_REQUIRED_ENTITIES",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El runtime de gamificación escribe ProgressRecord, UserAchievement y GamificationRuleState, no el catálogo Achievement.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GAMIFICATION_USER_CONTEXT_REQUIRED_FOR_POINTS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Toda regla con puntos exige contexto de usuario.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EVIDENCE_COMPLETION_IS_MANUAL_AND_READONLY_VALIDATOR_DECLARED",
+    "type": "documentation",
+    "severity": "low",
+    "phase": "Sprint 0",
+    "description": "La evidencia local real de Sprint 0 se completa manualmente; scripts/update_script.py es readonly y no genera evidencia.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GENERATE_EVIDENCE_OUTPUT_MATCHES_EVIDENCE_README",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La ruta canónica de evidencia local es evidence/sprint-0-local-execution.md y se actualiza manualmente con datos reales.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GENERATE_EVIDENCE_VALIDATES_DOCTOR_CATALOG_IDS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La validación de catálogo Doctor queda separada de la escritura de evidencia; scripts/update_script.py solo valida.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "EVIDENCE_LOCAL_EXECUTION_UPDATE_IS_MANUAL_TASK",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La actualización de evidence/sprint-0-local-execution.md pertenece a tareas manuales de Sprint 0 y no a scripts de generación automática.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GET_ROUTES_DECLARE_UI_CONTRACT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Toda ruta GET activa declara route_kind y contrato UI o exención.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GET_ROUTES_DO_NOT_DECLARE_OPERATIONAL_ACTION_TYPES",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Ninguna ruta GET declara action_type operacional.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "GET_ROUTES_DO_NOT_DECLARE_STATEFUL_TRACKING",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "MVP UX Skeleton",
+    "description": "Las rutas GET no son el contrato de mutación para tracking persistente.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "HIGH_RISK_PERMISSION_GRANTS_REQUIRE_APPROVAL",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Permisos de alto riesgo declaran aprobación de concesión.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "HTML_OUTPUT_ESCAPING_DECLARED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Core Runtime",
+    "description": "La salida HTML usa helper de escaping por defecto y HTML raw queda restringido.",
+    "source_doc": "docs/06-technical/05-security.md"
+  },
+  {
+    "id": "HUMAN_BACKLOG_MATCHES_MACHINE_BACKLOG_FOR_P0",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El backlog humano contiene todas las tareas P0 declaradas en machine/backlog_items.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "HUMAN_FEATURE_DEPENDENCIES_MATCH_MACHINE_BACKLOG",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Dependencias funcionales humanas sincronizadas con machine/backlog_items.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "INITIAL_VALIDATION_SEGMENT_DECLARED",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "MVP",
+    "description": "Producto y negocio declaran ICP inicial, anti-ICP, política de usuario provisionado y señal de éxito MVP.",
+    "source_doc": "docs/01-business/02-target-users.md"
+  },
+  {
+    "id": "INTEGRATION_CONTRACTS_FORBID_REAL_SECRET_VALUES",
+    "type": "security",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Los contratos de integración prohíben valores reales de secretos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "INTEGRATION_CONTRACTS_MATCH_SCHEMA",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "integration_contracts.json valida contra integration-contract.schema.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "INTEGRATION_CONTRACT_SCHEMA_EXISTS",
+    "type": "structure",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Existe schema, catálogo y plantilla para contratos de integración real.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "INTEGRATION_SCHEMA_REJECTS_ACTIVE_WITHOUT_SANDBOX_EVIDENCE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Schema rechaza integración active sin scopes, permisos o evidencia sandbox.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "INTEGRATION_TEMPLATE_VALIDATES_AGAINST_SCHEMA",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "La plantilla de integración valida contra el schema canónico.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "INTERNAL_MODULES_ARE_NOT_USER_PLAN_FEATURES",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Módulos internos no se exponen como plan de usuario.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "INTERNAL_REFERENCES_EXIST",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Las referencias internas a archivos conservados resuelven dentro del paquete canónico.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "JOURNEYS_REFERENCE_EXISTING_MODULES",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Journeys referencian módulos existentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "JSON_COLUMNS_DECLARE_VALIDATION",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Las columnas JSON declaran validación de aplicación.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "JSON_PARSE",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Todos los JSON conservados parsean correctamente.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "JSON_SCHEMA_LIBRARY_AVAILABLE",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "La dependencia jsonschema está disponible para validación estricta.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SPRINT0_EVIDENCE_REFERENCES_LOCAL_EXECUTION_RECORD",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La evidencia local real de Sprint 0 se referencia mediante evidence/sprint-0-local-execution.md y reportes derivados explícitos cuando existan.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SPRINT0_EVIDENCE_USES_CANONICAL_PATH",
+    "type": "documentation",
+    "severity": "low",
+    "phase": "Sprint 0",
+    "description": "La evidencia local real de Sprint 0 usa exclusivamente evidence/sprint-0-local-execution.md como ruta canónica.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "LEGACY_EXPORTABLE_MATCHES_USER_EXPORTABLE",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Flag legacy exportable coincide con user_exportable.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "LOCAL_BACKUP_DECLARED",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Backup local declarado.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "LOCAL_EXECUTION_RECORD_EXISTS",
+    "type": "structure",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "registro de ejecución local y plantilla de entrada local existen para operar sin Git obligatorio base.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "LOCAL_EXECUTION_RECORD_HAS_NO_DUPLICATE_HEADINGS",
+    "type": "documentation",
+    "severity": "low",
+    "phase": "Sprint 0",
+    "description": "registro de ejecución local no tiene encabezados duplicados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "LOGIN_ACTION_REQUIRES_CSRF",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "AUTH_LOGIN_SUBMIT exige csrf_token.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "LOGIN_ERRORS_ARE_NON_ENUMERATIVE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Los errores visibles de login no enumeran existencia de email o contraseña.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "LOGIN_SCREEN_REMAINS_AUTH_ONLY",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Login queda como pantalla funcional de autenticación.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MACHINE_FILES_MATCH_DECLARED_SCHEMAS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Archivos machine cumplen sus schemas declarados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MACHINE_JSON_VALID",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Todos los JSON de machine son válidos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MACHINE_MANIFEST_AREA_FILES_USE_AREA_OWNER_TYPE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Catálogos machine-readable de datos, producto, negocio y UX usan owner_type=area y owner_ref semántico.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MACHINE_MANIFEST_CANONICAL_FILES_HAVE_MARKDOWN_DOCS",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Archivos canónicos y matrices derivadas declaran documentos humanos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MACHINE_MANIFEST_COVERS_MACHINE_JSON",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El manifiesto cubre todos los machine/*.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MACHINE_MANIFEST_DERIVED_ALIAS_INHERITS_CANONICAL_DOCS",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Aliases derivados heredan o declaran docs humanos del canónico.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MACHINE_MANIFEST_EXISTS",
+    "type": "structure",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Existe machine/machine_manifest.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MACHINE_MANIFEST_INCLUDES_SUBWEB_CONTRACT_SCHEMA",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "El manifest referencia subweb_contracts.json y su schema.",
+    "source_doc": "docs/09-ai-operations/07-machine-readable-docs.md"
+  },
+  {
+    "id": "MACHINE_MANIFEST_LISTED_JSON_VALIDATE",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Todos los JSON listados en machine/machine_manifest.json validan contra su schema declarado.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "MACHINE_MANIFEST_MARKDOWN_DOCS_EXIST",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Backlinks markdown del manifest existen.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MACHINE_MANIFEST_MATCH_SCHEMA",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El manifiesto machine-readable cumple schema.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MACHINE_MANIFEST_OWNER_METADATA_TYPED",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "machine_manifest declara owner_type y owner_ref tipados para reducir ambigüedad de routing IA.",
+    "source_doc": "docs/09-ai-operations/07-machine-readable-docs.md"
+  },
+  {
+    "id": "MACHINE_MANIFEST_REFERENCES_EXIST",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/machine_manifest.json no referencia archivos, schemas ni documentos inexistentes.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "MACHINE_MANIFEST_REFERENCES_EXISTING_SCHEMAS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El manifiesto solo referencia schemas existentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MACHINE_MANIFEST_SCHEMA_REFS_EXIST",
+    "type": "structure",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Referencias de schema del manifest existen.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MACHINE_MANIFEST_SCHEMA_VALID",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/machine_manifest.json valida contra machine/schemas/machine-manifest.schema.json.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "MACHINE_READABLE_DOCS_DECLARE_REQUIRED_CANONICAL_FILES",
+    "type": "consistency",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "La documentación machine-readable declara archivos canónicos requeridos.",
+    "source_doc": "docs/09-ai-operations/07-machine-readable-docs.md"
+  },
+  {
+    "id": "MACHINE_READABLE_DOCS_MATCH_MANIFEST",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "La documentación machine-readable refleja el manifiesto.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MARKDOWN_NUMERIC_HEADINGS_MATCH_FILENAMES",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "foundation",
+    "description": "Los headings H1 numerados de documentos activos coinciden con la numeración del archivo.",
+    "source_doc": "docs/13-quality/04-documentation-quality.md"
+  },
+  {
+    "id": "MEDIUM_RISK_ADMIN_READS_ARE_AUDITED",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Lecturas admin con permisos de riesgo medio o superior son auditadas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "METRICS_DECLARE_MEASUREMENT_SOURCE",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Métricas declaran fuentes de medición.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "METRICS_WITH_TARGET_MVP_HAVE_REVIEW_CADENCE",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Toda métrica con objetivo MVP declara owner y cadencia de revisión.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MIGRATION_CONTRACTS_COVER_COLUMN_CONTRACTS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Todo migration_ref de column_contracts está cubierto por migration_contracts con rollback.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MIGRATION_CONTRACTS_DECLARE_SHA256",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Todos los contratos de migración declaran checksum_algorithm=sha256 junto con checksum obligatorio.",
+    "source_doc": "machine/migration_contracts.json"
+  },
+  {
+    "id": "MIGRATION_CONTRACT_STATUS_DECLARED",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Docs humanas declaran SQL físicos base presentes, estado generated_not_executed, validación Sprint 0 y manifest SQL.",
+    "source_doc": "docs/05-domain-data/01-entities.md"
+  },
+  {
+    "id": "MIGRATION_ORDER_DECLARED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Entidades foundation/mvp tienen orden y campos mínimos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MIGRATION_ORDER_MATCHES_CANONICAL_SEQUENCE",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "El orden canónico de migración coincide entre relationships y entities.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MIGRATION_ORDER_PHASE_COHERENT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El orden de migraciones respeta dependencias fundacionales y MVP.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MIGRATION_ORDER_UNIQUE",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "El orden de migraciones de entidades es único.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MIGRATION_REFS_USE_CANONICAL_DATABASE_PATH",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Todas las referencias de migración usan database/migrations/.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MIGRATION_REFS_USE_SQL_EXTENSION",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Todas las referencias de migración usan extensión .sql y no .php.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MIGRATION_ROLLBACK_REFS_ARE_SEPARATE_FROM_UP_REFS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Los rollback_ref de migraciones están separados de los up_ref.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MIGRATION_SQL_FILES_EXIST_FOR_CONTRACTS",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Migraciones y rollbacks SQL existen para todos los contratos de migración.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULES_COUNT_IS_15",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Módulos detectados: 15",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULES_DECLARE_ALLOWED_CROSS_MODULE_ACCESS",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Los módulos declaran accesos cruzados permitidos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULES_DECLARE_COMMERCIAL_CLASSIFICATION",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Módulos declaran clasificación comercial futura no operativa.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULE_DEPENDENCIES_ARE_TYPED_AND_PHASE_VALID",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Dependencias duras y opcionales tipadas y válidas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULE_DEPENDENCY_CONTRACT_SCHEMA_DEFINED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Schema de módulo exige dependency_contracts tipados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULE_EVENTS_AND_PERMISSIONS_EXIST",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Permisos/eventos de módulos existen.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULE_EVENTS_CONSUMED_MATCH_EVENT_CONSUMERS",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "foundation",
+    "description": "Eventos consumidos por módulos coinciden con consumers.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "MODULE_EVENTS_EMITTED_MATCH_EVENT_PRODUCERS",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "foundation",
+    "description": "Eventos emitidos por módulos coinciden con producer_module.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "MODULE_FORBIDDEN_IMPORTS_USE_EXPLICIT_MODE",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "forbidden.direct_imports_from usa modo explícito.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULE_MANIFEST_FIELDS_CANONICAL",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Módulos usan module_type/phase/lifecycle_status y no status ambiguo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULE_OWNED_ENTITIES_MATCH_ENTITY_OWNERS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Las entidades owned declaradas por módulo coinciden con owner_module de entities.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "foundation",
+    "description": "Toda lectura cross-module declarada en data.read_entities tiene contrato dependency_contracts.kind=data_read con owner, campos, permiso, redacción, fallback y evidencia.",
+    "source_doc": "docs/04-architecture/03-module-contracts.md"
+  },
+  {
+    "id": "MODULE_ROUTES_USE_CANONICAL_PERMISSIONS",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Rutas usan permisos canónicos y declarados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULE_SCHEMA_DEEP_CONTRACT",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Schema de módulo valida contrato profundo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULE_SCHEMA_ENFORCES_CONTRACT",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Schema de módulo exige contrato completo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULE_TEMPLATE_VALIDATES_AGAINST_SCHEMA",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La plantilla de módulo valida contra machine/schemas/module.schema.json.",
+    "source_doc": "docs/04-architecture/03-module-contracts.md"
+  },
+  {
+    "id": "MODULE_USAGE_METRIC_HAS_USAGE_EVENT",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "La métrica de módulos diferencia uso real mediante module.used.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MODULE_USED_HAS_OPERATIONAL_EMISSION_CONTRACT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "module.used tiene contrato productor operativo en action_contracts.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MUTABLE_ACTIONS_DECLARE_IDEMPOTENCY_POLICY",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Acciones mutables declaran política de idempotencia.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MUTABLE_ACTIONS_DECLARE_ROLLBACK",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Acciones mutables declaran rollback.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MUTABLE_ADMIN_ROUTES_REQUIRE_OWNER_OR_EXPLICIT_EXCEPTION",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "foundation",
+    "description": "Rutas mutables de riesgo alto/crítico no quedan bajo admin sin owner.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "MUTABLE_BROWSER_ACTIONS_REQUIRE_CSRF",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Toda acción mutable originada en navegador exige csrf_token.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MUTABLE_HIGH_RISK_ACTIONS_REQUIRE_RUNTIME_APPROVAL",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Acciones mutables sensibles requieren aprobación runtime.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MUTABLE_ROUTES_HAVE_ACTION_CONTRACT",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Toda ruta mutable tiene action contract.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MVP_COVERAGE_CANNOT_BE_COVERED_WITH_EMPTY_SCREEN_IDS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La cobertura MVP no puede marcarse como covered sin pantalla o exención interna.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MVP_MODULES_HAVE_FULL_COVERAGE",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Módulos MVP con cobertura feature/backlog/pantalla.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MVP_QUALITATIVE_VALIDATION_LINKS_METRICS_AND_JOURNEYS",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "El protocolo cualitativo enlaza métricas y journeys canónicos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "MVP_QUALITATIVE_VALIDATION_PROTOCOL_DECLARED",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Existe protocolo cualitativo MVP para owner/equipo pequeño.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "NEGATIVE_SCHEMA_FIXTURES_FAIL",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Los fixtures inválidos fallan contra sus schemas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "CURRENT_DOCS_REFERENCE_CANONICAL_VALIDATION_OUTPUTS",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La documentación canónica referencia las salidas autorizadas de validación documental.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "NO_EVENT_PRODUCER_WRITES_CONSUMER_ENTITY",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Un productor de evento no escribe directamente entidades que corresponden al consumidor del evento.",
+    "source_doc": "docs/08-gamification/05-gamification-events.md"
+  },
+  {
+    "id": "NO_NON_CANONICAL_EVIDENCE_PATH_EXAMPLES",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "La documentación vigente no recomienda ejemplos de evidencia sin ruta fechada canónica.",
+    "source_doc": "docs/06-technical/10-wamp-local-workflow.md"
+  },
+  {
+    "id": "NO_RETIRED_PACKAGE_REFERENCES",
+    "type": "documentation",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "El corpus canónico no contiene nomenclatura retirada ni referencias a entregas no canónicas.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "NO_TEMPLATE_CONTENT_IN_REQUIRED_DOCS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Documentos requeridos no son plantilla vacía.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "NO_WILDCARD_FORBIDDEN_IMPORTS",
+    "type": "semantic",
+    "severity": "low",
+    "phase": "Sprint 0",
+    "description": "No se usa wildcard ambiguo en forbidden imports.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "CANONICAL_SOURCES_ONLY_USED",
+    "type": "structure",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "La documentación operativa referencia únicamente fuentes canónicas autorizadas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "OPERATIONAL_SCHEMAS_ARE_STRICT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Schemas operativos canónicos son cerrados y tipados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "OWNER_PERMISSIONS_MATCH_PERMISSION_CATALOG",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Los permisos owner coinciden con los permisos cuyo catálogo incluye el rol owner.",
+    "source_doc": "docs/06-technical/05-security.md"
+  },
+  {
+    "id": "OWNER_ROLE_HAS_NO_RUNTIME_WILDCARD",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "El rol owner no usa wildcard runtime en permissions.",
+    "source_doc": "docs/06-technical/05-security.md"
+  },
+  {
+    "id": "OWNER_SEED_FAILS_CLOSED_ON_PLACEHOLDERS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "El seed owner local aborta con placeholders y condiciona inserts por owner_ready.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "P0_BACKLOG_ITEMS_ARE_TRACEABLE",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Toda tarea P0 del backlog post-Sprint 0 aparece en la matriz de trazabilidad.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "P0_BACKLOG_ITEMS_HAVE_MVP_OR_GATE_COVERAGE",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Toda tarea P0 tiene cobertura MVP o gate/fase explícita en trazabilidad.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "CANONICAL_ROOT_IDENTITY_MATCHES_FOLDER",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La carpeta raíz, README y CURRENT_STATUS declaran identidad VipWeb y documentation_baseline 1.0.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "PASSWORD_HASH_IS_NEVER_EXPORTABLE",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "password_hash nunca exportable ni legible por IA/evidencia.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "PASSWORD_HASH_POLICY_DECLARED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "La política de hash de contraseña está declarada.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "CANONICAL_BASELINE_NOT_OVERRIDDEN_BY_AUXILIARY_NOTES",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "foundation",
+    "description": "Las notas auxiliares no prevalecen sobre documentation_baseline 1.0 ni sobre CURRENT_STATUS.md como estado canónico.",
+    "source_doc": "CURRENT_STATUS.md"
+  },
+  {
+    "id": "ROOT_DOCUMENTS_DECLARE_CANONICAL_AUTHORITY",
+    "type": "documentation",
+    "severity": "low",
+    "phase": "Sprint 0",
+    "description": "Los documentos de raíz autorizados remiten al estado canónico y a la baseline documental.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "PERMISSIONS_REFERENCE_CANONICAL_ROLES",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Permisos referencian roles canónicos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "PERMISSIONS_SEEDS_DECLARED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Permisos tienen datos suficientes para seeds RBAC.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "PERMISSION_CONSUMERS_INCLUDE_ROUTE_MODULES",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "foundation",
+    "description": "Los módulos de ruta están declarados como owner, consumidores o agregadores del permiso.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "PERMISSION_ROLES_MATCH_ROLE_CATALOG",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "foundation",
+    "description": "permissions.json y roles.json son recíprocos.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "PERSISTENT_VIEW_EVENTS_HAVE_ACTION_CONTRACT",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "MVP UX Skeleton",
+    "description": "Todo evento de vista persistente tiene action contract POST explícito.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "PERSONAL_COLUMNS_DECLARE_USER_EXPORTABILITY",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Columnas personales declaran exportabilidad al usuario.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "PHASE2_BACKLOG_DEPENDS_ON_SPRINT0_GATE",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Las tareas C1 de fase 2 dependen explícitamente de S0-013.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "PHP_84_FEATURES_BLOCKED_UNTIL_VERIFIED",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "No se usan features PHP 8.4 hasta verificar WAMP local.",
+    "source_doc": "docs/06-technical/01-stack.md"
+  },
+  {
+    "id": "PHP_IMPLEMENTATION_SECURITY_BASELINE_DECLARED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Core Runtime",
+    "description": "La baseline PHP/WAMP de implementación segura está documentada antes del primer vertical slice.",
+    "source_doc": "docs/06-technical/05-security.md"
+  },
+  {
+    "id": "PHP_RUNTIME_MINIMUM_DECLARED",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Se declara mínimo operativo PHP verificado en Sprint 0.",
+    "source_doc": "docs/06-technical/01-stack.md"
+  },
+  {
+    "id": "PHP_RUNTIME_TARGET_DECLARED",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Se declara target PHP 8.4+.",
+    "source_doc": "docs/06-technical/01-stack.md"
+  },
+  {
+    "id": "PHP_RUNTIME_VERIFICATION_TASK_EXISTS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Sprint 0 incluye tarea de php -v.",
+    "source_doc": "docs/11-backlog/06-sprint-0-ejecutable.md"
+  },
+  {
+    "id": "PHP_SQL_PREPARED_STATEMENTS_REQUIRED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Core Runtime",
+    "description": "PDO prepared statements son obligatorios y se prohíbe concatenar input en SQL.",
+    "source_doc": "docs/06-technical/05-security.md"
+  },
+  {
+    "id": "POLYMORPHIC_RELATIONS_DO_NOT_DECLARE_CONFLICTING_NULLABILITY",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Las relaciones polimórficas sobre una misma FK no declaran nullability contradictoria.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "POSITIVE_SCHEMA_FIXTURES_PASS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Las fixtures positivas mínimas validan contra sus schemas críticos.",
+    "source_doc": "docs/06-technical/06-testing.md"
+  },
+  {
+    "id": "PRODUCT_MVP_DEFINED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "MVP tiene features, journeys y métricas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "PROGRESS_RECORD_REQUIRES_SOURCE_EVENT_IN_MVP",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "MVP",
+    "description": "ProgressRecord MVP exige source_event_id NOT NULL y no permite ajustes manuales/admin sin contrato post_mvp.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "PROJECT_IDENTITY_VIPWEB",
+    "type": "documentation",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "La identidad canónica del proyecto es VipWeb y no aparecen identidades no canónicas.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "PROJECT_STRUCTURE_EXISTS",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Carpetas y archivos base existen.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "PROPOSED_ADRS_NOT_IN_ACCEPTED_ADR_FOLDER",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Las ADRs propuestas o condicionales no viven dentro de docs/12-decisions/adr/.",
+    "source_doc": "docs/12-decisions/00-decision-log.md"
+  },
+  {
+    "id": "PROPOSED_DECISIONS_SCHEMA_VALID",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "proposed_decisions cumple schema.",
+    "source_doc": "docs/12-decisions/00-decision-log.md"
+  },
+  {
+    "id": "PUBLIC_ENTRY_DOES_NOT_ENABLE_PUBLIC_SIGNUP",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La entrada pública no habilita auto-registro.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "PUBLIC_ENTRY_HAS_LOGIN_CTA",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "La entrada pública tiene CTA hacia login.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "PUBLIC_VIEW_PERMISSION_HAS_PUBLIC_ROUTE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "public.view está trazado a una ruta pública GET /.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "READINESS_READY_FOR_SPRINT_0",
+    "type": "documentation",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "El estado operativo declarado es READY_FOR_SPRINT_0 y el desarrollo visible permanece bloqueado hasta Sprint 0 local real.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "README_STATUS_MATCHES_CURRENT_STATUS",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "README.md y CURRENT_STATUS.md declaran documentation_baseline 1.0, estado READY_FOR_SPRINT_0 y bloqueo del desarrollo visible hasta Sprint 0 local real.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "README_BASELINE_MATCHES_CURRENT_STATUS",
+    "type": "documentation",
+    "severity": "low",
+    "phase": "Sprint 0",
+    "description": "README.md y CURRENT_STATUS.md declaran documentation_baseline 1.0 y estado READY_FOR_SPRINT_0 con lenguaje canónico.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "READONLY_ACTION_SIDE_EFFECTS_DECLARED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Las acciones readonly con auditoría/eventos declaran side effects operacionales delegados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "READONLY_ROUTES_DO_NOT_REQUIRE_RUNTIME_APPROVAL",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Rutas read-only no exigen aprobación runtime.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "READY_FOR_IMPLEMENTATION_FILES_DECLARE_OPERATIONAL_GATE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "foundation",
+    "description": "Todo documento READY_FOR_IMPLEMENTATION declara que el estado es madurez documental y queda subordinado al gate operativo vigente.",
+    "source_doc": "CURRENT_STATUS.md"
+  },
+  {
+    "id": "READY_FOR_SPRINT0_BLOCKS_VISIBLE_DEVELOPMENT",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "READY_FOR_SPRINT_0 bloquea UI visible, Dashboard, Onboarding, módulos funcionales, integraciones reales e IA operativa avanzada hasta completar Sprint 0 local real.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "REGISTER_EVENT_SOURCE_ENUM_DECLARED",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "El evento user.registered declara enum cerrado de source.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "REGISTRATION_POLICY_IS_EXPLICIT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La política de creación de usuarios MVP está explicitada como provisionamiento controlado o auto-registro completo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "RELATIONSHIPS_HAVE_PHYSICAL_CONSTRAINTS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Relaciones con constraints físicas mínimas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "RELATIONSHIPS_REFERENCE_EXISTING_ENTITIES",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Relaciones referencian entidades existentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "RELATIONSHIP_MIGRATION_REFS_POINT_TO_TABLE_MIGRATIONS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Las relaciones apuntan a la migración de tabla que contiene la FK.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "REQUIRED_DOCS_ARE_SUBSTANTIVE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Documentos canónicos sustantivos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "REQUIRED_PATHS_EXIST",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "El validador documental confirma que las rutas obligatorias del paquete canónico existen.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "RESPONSIVE_BEHAVIOR_EXISTS_FOR_ALL_MVP_SCREENS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Todas las pantallas MVP tienen contrato responsive.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "RESPONSIVE_BREAKPOINTS_ARE_COMPLETE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Contratos responsive declaran mobile, tablet y desktop.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "RESPONSIVE_CRITICAL_ACTIONS_ARE_VISIBLE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Acciones críticas no desaparecen por breakpoint.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "RESPONSIVE_SCHEMA_VALID",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Contrato responsive cumple schema.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "RISKS_MATCH_SCHEMA",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Riesgos cumplen schemas mínimos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "RISK_CONTROL_PARENT_IDS_EXIST",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Los riesgos operativos enlazan a riesgo estratégico existente o declaran parent null justificable.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "RISK_FILES_DECLARE_DISTINCT_CANONICAL_PURPOSES",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "risk_register.json y risks.json declaran propósitos canónicos distintos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "RISK_PHASES_REFERENCE_ROADMAP_GATES",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Los riesgos referencian roadmap_gates mediante phase_ids normalizados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "RISK_PHASE_TEXT_HAS_NORMALIZED_PHASE_ID",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Ningún riesgo conserva únicamente fase en texto libre sin phase_ids.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ROADMAP_ACTIVE_DOCS_ARE_CANONICAL",
+    "type": "consistency",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Los documentos activos de roadmap mantienen autoridad canónica.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ROADMAP_EXCLUDES_NON_CANONICAL_DOCUMENTATION",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "El roadmap operativo no depende de documentación histórica, archivada o no canónica.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ROADMAP_CANONICAL_COMPLEMENTS_DECLARED",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Complementos canónicos de roadmap declaran estado explícito.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ROADMAP_CANONICAL_SOURCES_ARE_UNAMBIGUOUS",
+    "type": "consistency",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Las fuentes canónicas del roadmap no presentan duplicidad activa.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ROADMAP_GATES_MATCH_SCHEMA",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Roadmap gates cumple schema mínimo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ROADMAP_HUMAN_DOCS_MATCH_MACHINE_GATES",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Overview de roadmap coincide con machine/roadmap_gates.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ROADMAP_REFERENCES_USE_CANONICAL_SOURCES",
+    "type": "consistency",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Las referencias del roadmap apuntan a fuentes canónicas autorizadas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ROADMAP_PHASES_HAVE_FULL_GATES",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Roadmap gates completos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ROLES_CANONICALIZED",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "roles_permissions_matrix deriva de roles.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ROLES_MATCH_SCHEMA",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Roles cumplen schema mínimo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ROLE_PERMISSIONS_MATCH_PERMISSION_CATALOG",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "foundation",
+    "description": "roles.json declara exactamente los permisos concedidos por permissions.json.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "ROOT_MARKDOWN_FILES_ARE_CANONICAL",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "foundation",
+    "description": "Los Markdown de raíz son fuentes canónicas autorizadas o índices operativos.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "ROUTE_ALLOWED_ROLES_HAVE_PERMISSION",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "foundation",
+    "description": "Toda ruta solo permite roles que poseen el permiso requerido.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "ROUTE_APPROVAL_FLAGS_MATCH_ACTION_CONTRACTS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Las rutas y action contracts exigen ApprovalRecord de forma coherente.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "ROUTE_PERMISSION_ROLE_MATRIX_VALID",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Matriz ruta-permiso-rol válida.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SCHEMA_MIGRATIONS_LEDGER_EXISTS_AND_MATCHES_CONTRACT",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "schema_migrations existe como ledger físico, cubierto por MIG-000 y database/manifest.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SCHEMA_REGISTRY_COVERS_ACTION_PAYLOAD_SCHEMAS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El registry de schemas cubre machine/action_payloads/*.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SCHEMA_REGISTRY_COVERS_EVENT_PAYLOAD_SCHEMAS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El registry de schemas cubre machine/event_payload_schemas/*.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SCHEMA_REGISTRY_COVERS_MACHINE_SCHEMAS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El registry de schemas cubre machine/schemas/*.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SCHEMA_REGISTRY_REFERENCES_EXISTING_FILES",
+    "type": "structure",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Todas las entradas del schema_registry apuntan a archivos existentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SCREEN_ANALYTICS_REFS_EXIST_IN_ANALYTICS_CATALOG",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "MVP UX Skeleton",
+    "description": "Todos los analytics_refs de pantallas existen en machine/analytics_events.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SCREEN_COMPONENT_CONTRACTS_COVER_MVP_SCREENS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Todas las pantallas MVP tienen contrato de composición.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SCREEN_COMPONENT_CONTRACTS_EXIST",
+    "type": "structure",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Existe contrato machine-readable de pantalla-componentes-datos-acciones.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SCREEN_COMPONENT_CONTRACTS_INCLUDE_ACCESSIBILITY_CONTRACT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Visible UI",
+    "description": "Cada contrato de pantalla incluye accessibility_contract completo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SCREEN_COMPONENT_CONTRACTS_REFERENCE_VALID_SCREENS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Los contratos de pantalla referencian pantallas, módulos, acciones, eventos y componentes válidos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SCRIPTS_BASE_EXIST",
+    "type": "structure",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Scripts base existen y conservan update_script.py como nombre estable para este flujo.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "SECONDARY_FEATURES_INCLUDE_MVP_UX_FEATURES",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Secondary features incluye profile y notifications MVP UX.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SECURITY_BASELINE_SESSION_DECLARED",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "La baseline de sesión MVP está documentada.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SECURITY_HEADERS_BASELINE_DECLARED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Core Runtime",
+    "description": "Cabeceras mínimas de seguridad documentadas para respuestas HTML/JSON.",
+    "source_doc": "docs/06-technical/05-security.md"
+  },
+  {
+    "id": "SEED_SQL_FILES_EXIST_FOR_CORE_RUNTIME",
+    "type": "structure",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Seeds SQL mínimos existen para roles, permisos, módulos, configuración y owner local protegido.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SENSITIVE_COLUMNS_ARE_MARKED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Columnas sensibles están marcadas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SENSITIVE_COLUMNS_NOT_AI_READABLE_RAW",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Columnas sensibles no son IA-readable en bruto.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SENSITIVE_COLUMNS_REQUIRE_REDACTION",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Columnas sensibles requieren redacción.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SESSION_COOKIE_POLICY_DECLARED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La política de cookies de sesión está declarada.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SPRINT0_ADR026_PREFLIGHT_TASK_EXISTS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Sprint 0 incluye preflight S0-000A para ADR-026 antes de cambios protegidos preparados por IA.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SPRINT0_DOCTOR_CHECK_REFERENCES_EXIST",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Cada doctor_check declarado en machine/sprint0_tasks.json referencia un check Doctor catalogado.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "SPRINT0_ENVIRONMENT_CHECK_COVERS_WAMP_STACK",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "S0-000 verifica PHP, Apache/WAMP y MySQL/MariaDB antes de código runtime.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SPRINT0_MARKDOWN_GATE_MATCHES_MACHINE_TASK",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "S0-013 Markdown coincide con sprint0_tasks.json y gate C1.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SPRINT0_MARKDOWN_MATCHES_MACHINE_TASKS",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Sprint 0 humano coincide con machine/sprint0_tasks.json en S0-000, S0-009 y S0-010.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SPRINT0_MIGRATION_PATH_MATCHES_DOMAIN_CONTRACT",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Sprint 0 usa database/migrations/*.sql y no PHP.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SPRINT0_SQL_EXECUTION_TASKS_DECLARED",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Sprint 0 separa validación, ejecución y evidencia para migraciones y seeds SQL.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SPRINT0_TASKS_MATCH_SCHEMA",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Sprint 0 cumple schema mínimo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SPRINT0_TASKS_SCHEMA_VALID",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "machine/sprint0_tasks.json valida contra machine/schemas/sprint0-task.schema.json.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "SPRINT0_TRACEABILITY_GATE_IS_BLOCKING",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "S0-013 es gate bloqueante para cerrar Sprint 0 antes de C1.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SQL_ARTIFACTS_STATE_MATCHES_FILESYSTEM",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "El estado documental de SQL coincide con la existencia real de migraciones, rollbacks y seeds.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SQL_BACKUP_DECLARED_IF_DB_EXISTS",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Sprint 0 declara exportación SQL o justificación sin base previa antes de ejecución local.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "SQL_MANIFEST_HASHES_MATCH_FILES",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "database/manifest.json cubre todos los SQL y los hashes técnicos coinciden.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "STRICT_MACHINE_JSON_SCHEMA_VALIDATION",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Todos los catálogos con schema cumplen JSON Schema Draft 2020-12.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SUBWEB_ACTIVE_OR_STUB_CONTRACTS_ARE_OPERATIONAL",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "future_gate",
+    "description": "Subwebs stub/active tienen contrato operativo mínimo y referencias válidas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SUBWEB_CONTRACTS_MATCH_SCHEMA",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "machine/subweb_contracts.json valida contra el schema de subweb.",
+    "source_doc": "docs/04-architecture/08-subweb-contracts.md"
+  },
+  {
+    "id": "SUBWEB_CONTRACT_SCHEMA_EXISTS",
+    "type": "structure",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Existe schema propio para contratos de subweb.",
+    "source_doc": "docs/04-architecture/08-subweb-contracts.md"
+  },
+  {
+    "id": "SUBWEB_SCHEMA_AND_DOCTOR_RULES_ARE_ALIGNED",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Las reglas de subweb en schema y Doctor están alineadas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SUBWEB_SCHEMA_ENFORCES_ACTIVE_MINIMUMS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El schema no permite subweb active sin permisos, módulo y datos/eventos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SUBWEB_SCHEMA_ENFORCES_STUB_MINIMUMS",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "El schema no permite subweb stub sin permisos y módulo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SUBWEB_TEMPLATE_VALIDATES_AGAINST_SCHEMA",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "templates/subweb-contract.json valida como instancia del schema de subweb.",
+    "source_doc": "docs/04-architecture/08-subweb-contracts.md"
+  },
+  {
+    "id": "SYSTEM_EVENT_READS_REQUIRE_AUDIT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Las lecturas de eventos de sistema quedan auditadas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "SYSTEM_EVENT_UI_ROUTE_IS_ADMIN_SCOPED",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "La ruta UI de eventos de sistema queda bajo /admin.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "TABLE_CONSTRAINTS_REFERENCE_EXISTING_COLUMNS",
+    "type": "semantic",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Constraints e índices solo referencian columnas/tablas existentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "TRACEABILITY_MARKDOWN_INCLUDES_GATES_AND_BACKLOG",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Markdown de trazabilidad incluye gates y backlog.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "TRACEABILITY_MARKDOWN_MATCH_MACHINE",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Markdown contiene referencias de machine/traceability_matrix.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "TRACEABILITY_MATRIX_EXISTS",
+    "type": "structure",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Matriz de trazabilidad existe.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "TRACEABILITY_REFERENCES_BACKLOG_ITEMS",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Trazabilidad referencia backlog post-Sprint 0 existente.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "TRACEABILITY_REFERENCES_DOCTOR_CHECKS",
+    "type": "consistency",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Trazabilidad referencia checks Doctor declarados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "TRACEABILITY_REFERENCES_EXIST",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "Trazabilidad referencia elementos existentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "TRACEABILITY_REFERENCES_ROADMAP_GATES",
+    "type": "consistency",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Trazabilidad referencia gates de roadmap existentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "UC001_HAS_ROUTE_AND_SCREEN",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "UC-001 tiene ruta y pantalla pública trazadas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "UI_SCREENS_DECLARE_BASE_TECHNICAL_STATES",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Todas las pantallas MVP declaran loading, error y empty/blocked/no_permission.",
+    "source_doc": "docs/07-design-ux/03-screens.md"
+  },
+  {
+    "id": "UI_SCREENS_REFERENCE_EXISTING_MODULES_AND_PERMISSIONS",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Pantallas referencian módulos y permisos existentes.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "UI_SCREEN_PRIMARY_PERMISSION_MATCHES_SCREEN_ROUTE",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La primary_permission de cada pantalla coincide con su ruta GET principal.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "UI_STATE_COPY_COVERS_ALL_SCREEN_STATES",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Copy específico cubre todos los estados declarados de pantallas.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "UI_STATE_COPY_MATCH_SCHEMA",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Copy UX por pantalla/estado cumple schema mínimo.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "UI_SUBVIEWS_REFERENCE_EXISTING_PARENT_SCREEN",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Toda subvista UI referencia una pantalla padre existente.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "USER_MODULE_CATALOG_ROUTE_EXISTS",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "module.view tiene ruta de catálogo no administrativa para usuarios registrados.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "UX_COMPONENT_MARKDOWN_MATCHES_DESIGN_TOKENS",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "La tabla humana de componentes cubre component_variants de design_tokens.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "UX_COMPONENT_VARIANTS_REFERENCE_VALID_TOKENS",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Variantes UX referencian tokens válidos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "UX_INTERFACE_STATES_INCLUDE_ALL_UI_SCREENS",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "foundation",
+    "description": "Todas las pantallas machine-readable aparecen en la tabla humana de estados.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "UX_NAVIGATION_MARKDOWN_MATCHES_UI_SCREENS",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La navegación humana coincide con machine/ui_screens.json.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "UX_RESPONSIVE_MARKDOWN_COVERS_MACHINE_SCREENS",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "La matriz responsive humana cubre todas las pantallas machine-readable.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "UX_STATES_MAPPED_TO_SCREENS",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Pantallas con estados y permisos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "VALIDATED_BY_REFERENCES_EXECUTABLE_CHECK",
+    "type": "consistency",
+    "severity": "critical",
+    "phase": "Sprint 0",
+    "description": "validated_by solo referencia checks ejecutables.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "VALIDATION_REFS_HAVE_CORRECT_TYPE",
+    "type": "consistency",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "validated_by/manual_review_ref/evidence_ref mantienen semántica separada.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "VERSION_CONTROL_TRANSITION_TRIGGER_DECLARED",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Transición futura a control de versiones tiene triggers objetivos.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "VERSION_CONTROL_TRIGGERS_MATCH_RISK_REGISTER",
+    "type": "consistency",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Triggers de control de versiones están reflejados en riesgos.",
+    "source_doc": "machine/risks.json"
+  },
+  {
+    "id": "VERSION_CONTROL_TRIGGER_CONSISTENCY",
+    "type": "documentation",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "Triggers Git/WAMP/IA están alineados entre deployment, workflow WAMP, ADR-021, approval policy y runbooks IA.",
+    "source_doc": "docs/06-technical/10-wamp-local-workflow.md"
+  },
+  {
+    "id": "VISIBLE_GET_ROUTES_HAVE_SCREEN_OR_PARENT",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "Toda ruta GET visible tiene pantalla propia o pantalla padre.",
+    "source_doc": "docs/13-quality/06-doctor-checks.md"
+  },
+  {
+    "id": "WAMP_CONFIG_EXISTS",
+    "type": "documentation",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "La configuración WAMP local está documentada sin secretos reales y alineada con el stack vigente.",
+    "source_doc": "scripts/update_script.py"
+  },
+  {
+    "id": "WAMP_RISK_HAS_REINFORCED_GIT_MITIGATION",
+    "type": "semantic",
+    "severity": "high",
+    "phase": "Sprint 0",
+    "description": "R-WAMP-001 incluye mitigación reforzada con Git local.",
+    "source_doc": "docs/06-technical/10-wamp-local-workflow.md"
+  },
+  {
+    "id": "WAMP_RISK_REFERENCES_ADR_026",
+    "type": "semantic",
+    "severity": "medium",
+    "phase": "Sprint 0",
+    "description": "R-WAMP-001 referencia ADR-026.",
+    "source_doc": "docs/06-technical/10-wamp-local-workflow.md"
+  }
+]

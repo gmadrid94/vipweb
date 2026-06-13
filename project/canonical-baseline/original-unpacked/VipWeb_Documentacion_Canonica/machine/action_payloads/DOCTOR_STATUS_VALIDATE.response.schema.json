@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/DOCTOR_STATUS_VALIDATE.response.schema.json",
+  "title": "DOCTOR_STATUS_VALIDATE success response",
+  "type": "object",
+  "required": [
+    "ok",
+    "data",
+    "error",
+    "meta"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "decision_record_id",
+        "validated_status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "decision_record_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "validated_status": {
+          "enum": [
+            "accepted",
+            "rejected",
+            "needs_changes"
+          ]
+        }
+      }
+    },
+    "error": {
+      "type": "null"
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "request_id",
+        "action_id",
+        "emitted_events"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "action_id": {
+          "const": "DOCTOR_STATUS_VALIDATE"
+        },
+        "emitted_events": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

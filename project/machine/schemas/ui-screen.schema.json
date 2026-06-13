@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "module",
+      "route",
+      "states",
+      "primary_permission",
+      "fallback_states",
+      "responsive_required",
+      "source_doc"
+    ],
+    "additionalProperties": true,
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "module": {
+        "type": "string",
+        "minLength": 1
+      },
+      "route": {
+        "type": "string",
+        "pattern": "^/"
+      },
+      "states": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "primary_permission": {
+        "type": "string",
+        "minLength": 1
+      },
+      "fallback_states": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "responsive_required": {
+        "type": "boolean"
+      },
+      "source_doc": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

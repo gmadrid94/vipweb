@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "csrf_token",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "csrf_token": {
+      "type": "string",
+      "minLength": 16
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "event_id",
+        "admin_id",
+        "section",
+        "view_fingerprint",
+        "timestamp"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "admin_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section": {
+          "type": "string",
+          "minLength": 1
+        },
+        "view_fingerprint": {
+          "type": "string",
+          "minLength": 12
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event_id": {
+          "enum": [
+            "admin.panel.viewed"
+          ]
+        }
+      }
+    }
+  }
+}

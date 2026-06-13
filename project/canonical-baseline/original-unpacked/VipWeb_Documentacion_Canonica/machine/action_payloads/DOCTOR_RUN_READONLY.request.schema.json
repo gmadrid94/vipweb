@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/DOCTOR_RUN_READONLY.request.schema.json",
+  "title": "DOCTOR_RUN_READONLY request body",
+  "type": "object",
+  "required": [
+    "request_id",
+    "csrf_token",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 120
+    },
+    "csrf_token": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "payload": {
+      "type": "object",
+      "required": [],
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "include_warnings": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  }
+}

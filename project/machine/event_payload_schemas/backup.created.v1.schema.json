@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/backup.created.v1.schema.json",
+  "title": "backup.created v1 payload",
+  "type": "object",
+  "required": [
+    "backup_id",
+    "scope",
+    "path",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "backup_id": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

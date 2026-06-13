@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "signal_type",
+      "source_screen",
+      "trigger",
+      "purpose",
+      "persistence",
+      "privacy_level",
+      "allowed_payload_fields",
+      "related_metric_ids",
+      "related_domain_event_id",
+      "emission_mode",
+      "requires_action_contract",
+      "idempotency_required",
+      "retention_policy",
+      "owner",
+      "source_doc",
+      "validated_by"
+    ],
+    "additionalProperties": true,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9_.-]+$"
+      },
+      "signal_type": {
+        "enum": [
+          "ui_analytics",
+          "domain_view_event",
+          "domain_action_event",
+          "system_observation"
+        ]
+      },
+      "source_screen": {
+        "type": "string",
+        "minLength": 1
+      },
+      "trigger": {
+        "type": "string",
+        "minLength": 1
+      },
+      "purpose": {
+        "type": "string",
+        "minLength": 1
+      },
+      "persistence": {
+        "enum": [
+          "none",
+          "aggregate",
+          "persistent"
+        ]
+      },
+      "privacy_level": {
+        "type": "string",
+        "minLength": 1
+      },
+      "allowed_payload_fields": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "related_metric_ids": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "related_domain_event_id": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "emission_mode": {
+        "type": "string",
+        "minLength": 1
+      },
+      "requires_action_contract": {
+        "type": "boolean"
+      },
+      "action_contract_refs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "idempotency_required": {
+        "type": "boolean"
+      },
+      "retention_policy": {
+        "type": "string",
+        "minLength": 1
+      },
+      "owner": {
+        "type": "string",
+        "minLength": 1
+      },
+      "source_doc": {
+        "type": "string",
+        "minLength": 1
+      },
+      "validated_by": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "requires_action_contract": {
+              "const": true
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "action_contract_refs"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "persistence": {
+              "const": "persistent"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "related_domain_event_id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,224 @@
+[
+  {
+    "id": "public_entry",
+    "module": "core.identity",
+    "route": "/",
+    "states": [
+      "loading",
+      "empty",
+      "ready",
+      "error"
+    ],
+    "primary_permission": "public.view",
+    "fallback_states": [
+      "empty",
+      "error"
+    ],
+    "responsive_required": true,
+    "source_doc": "docs/07-design-ux/03-screens.md"
+  },
+  {
+    "id": "login",
+    "module": "core.identity",
+    "route": "/login",
+    "states": [
+      "empty",
+      "loading",
+      "error",
+      "success"
+    ],
+    "primary_permission": "auth.login",
+    "fallback_states": [
+      "empty",
+      "error"
+    ],
+    "responsive_required": true,
+    "source_doc": "docs/07-design-ux/03-screens.md"
+  },
+  {
+    "id": "onboarding",
+    "module": "onboarding",
+    "route": "/onboarding",
+    "states": [
+      "loading",
+      "empty",
+      "in_progress",
+      "paused",
+      "completed",
+      "error"
+    ],
+    "primary_permission": "profile.view",
+    "fallback_states": [
+      "empty",
+      "error"
+    ],
+    "responsive_required": true,
+    "source_doc": "docs/07-design-ux/03-screens.md",
+    "action_permissions": [
+      "profile.update"
+    ]
+  },
+  {
+    "id": "dashboard",
+    "module": "dashboard",
+    "route": "/dashboard",
+    "states": [
+      "loading",
+      "empty",
+      "ready",
+      "blocked",
+      "error"
+    ],
+    "primary_permission": "dashboard.view",
+    "fallback_states": [
+      "empty",
+      "blocked",
+      "error"
+    ],
+    "responsive_required": true,
+    "source_doc": "docs/07-design-ux/03-screens.md"
+  },
+  {
+    "id": "profile",
+    "module": "profile",
+    "route": "/profile",
+    "states": [
+      "loading",
+      "view",
+      "edit",
+      "saving",
+      "saved",
+      "blocked",
+      "error"
+    ],
+    "primary_permission": "profile.view",
+    "fallback_states": [
+      "blocked",
+      "error"
+    ],
+    "responsive_required": true,
+    "source_doc": "docs/07-design-ux/03-screens.md"
+  },
+  {
+    "id": "notifications",
+    "module": "notifications",
+    "route": "/notifications",
+    "states": [
+      "loading",
+      "empty",
+      "unread",
+      "read",
+      "blocked",
+      "error"
+    ],
+    "primary_permission": "notification.view",
+    "fallback_states": [
+      "empty",
+      "blocked",
+      "error"
+    ],
+    "responsive_required": true,
+    "source_doc": "docs/07-design-ux/03-screens.md"
+  },
+  {
+    "id": "admin",
+    "module": "admin",
+    "route": "/admin",
+    "states": [
+      "loading",
+      "read_only",
+      "blocked",
+      "no_permission",
+      "error"
+    ],
+    "primary_permission": "admin.access",
+    "fallback_states": [
+      "blocked",
+      "no_permission",
+      "error"
+    ],
+    "responsive_required": true,
+    "source_doc": "docs/07-design-ux/03-screens.md"
+  },
+  {
+    "id": "doctor_evidence",
+    "module": "core.doctor",
+    "route": "/admin/evidence",
+    "states": [
+      "loading",
+      "empty",
+      "passed",
+      "warning",
+      "failed",
+      "error"
+    ],
+    "primary_permission": "admin.view_evidence",
+    "fallback_states": [
+      "empty",
+      "error"
+    ],
+    "responsive_required": true,
+    "source_doc": "docs/07-design-ux/03-screens.md"
+  },
+  {
+    "id": "modules_catalog",
+    "module": "core.modules",
+    "route": "/modules",
+    "states": [
+      "loading",
+      "empty",
+      "ready",
+      "blocked",
+      "error"
+    ],
+    "primary_permission": "module.view",
+    "fallback_states": [
+      "empty",
+      "blocked",
+      "error"
+    ],
+    "responsive_required": true,
+    "source_doc": "docs/07-design-ux/03-screens.md"
+  },
+  {
+    "id": "progress",
+    "module": "gamification",
+    "route": "/progress",
+    "states": [
+      "loading",
+      "empty",
+      "ready",
+      "blocked",
+      "error"
+    ],
+    "primary_permission": "gamification.view",
+    "fallback_states": [
+      "empty",
+      "blocked",
+      "error"
+    ],
+    "responsive_required": true,
+    "source_doc": "docs/07-design-ux/03-screens.md"
+  },
+  {
+    "id": "ai_workspace",
+    "module": "ai_assistant",
+    "route": "/ai",
+    "states": [
+      "loading",
+      "read_only",
+      "draft_available",
+      "blocked",
+      "no_permission",
+      "error"
+    ],
+    "primary_permission": "ai.read_context",
+    "fallback_states": [
+      "blocked",
+      "no_permission",
+      "error"
+    ],
+    "responsive_required": true,
+    "source_doc": "docs/07-design-ux/03-screens.md"
+  }
+]

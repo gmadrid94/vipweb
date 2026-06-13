@@ -1,0 +1,659 @@
+[
+  {
+    "category": "Arquitectura",
+    "description": "Core demasiado amplio",
+    "probability": "Alta",
+    "impact": "Alto",
+    "early_signals": "Los módulos importan clases internas del core; ServiceFactory crece.",
+    "mitigation": "Definir puertos, prohibir dependencias inversas, revisar imports.",
+    "decision": "D-CORE-001",
+    "phase": "MVP",
+    "id": "RR-ARCH-001",
+    "primary_phase_id": "3",
+    "phase_ids": [
+      "3"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP"
+  },
+  {
+    "category": "Técnica",
+    "description": "Stack inicial se vuelve lock-in",
+    "probability": "Media",
+    "impact": "Medio",
+    "early_signals": "Código mezcla PHP/DB en vistas o controllers.",
+    "mitigation": "Repositories, interfaces, adapters y ADRs para dependencias.",
+    "decision": "D-STACK-001",
+    "phase": "Fundación técnica",
+    "id": "RR-TECH-001",
+    "primary_phase_id": "1",
+    "phase_ids": [
+      "1"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Fundación técnica"
+  },
+  {
+    "category": "Funcional",
+    "description": "Features futuras entran antes de permisos",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Subweb privada, API sensible o IA mutable antes de roles.",
+    "mitigation": "Gates y Definition of Ready.",
+    "decision": "D-AUTH-001",
+    "phase": "MVP",
+    "id": "RR-FUNC-001",
+    "primary_phase_id": "3",
+    "phase_ids": [
+      "3"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP"
+  },
+  {
+    "category": "Negocio",
+    "description": "Producto percibido como panel técnico",
+    "probability": "Alta",
+    "impact": "Alto",
+    "early_signals": "Roadmap domina UX; no hay promesa clara al usuario.",
+    "mitigation": "User Home, journeys y métricas de activación.",
+    "decision": "D-ROADMAP-001",
+    "phase": "MVP",
+    "id": "RR-GEN-001",
+    "primary_phase_id": "3",
+    "phase_ids": [
+      "3"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP"
+  },
+  {
+    "category": "UX",
+    "description": "Acompañamiento inconsistente",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Cada módulo usa microcopy y estados distintos.",
+    "mitigation": "Design system, AppShell y estados comunes.",
+    "decision": "D-CORE-001",
+    "phase": "MVP",
+    "id": "RR-UX-001",
+    "primary_phase_id": "3",
+    "phase_ids": [
+      "3"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP"
+  },
+  {
+    "category": "Gamificación",
+    "description": "Sistema infantil o invasivo",
+    "probability": "Media",
+    "impact": "Medio",
+    "early_signals": "Exceso de badges, puntos sin valor, animaciones intrusivas.",
+    "mitigation": "Principios de balance y recompensas funcionales.",
+    "decision": "D-GAM-001",
+    "phase": "MVP",
+    "id": "RR-GAM-001",
+    "primary_phase_id": "3",
+    "phase_ids": [
+      "3"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP"
+  },
+  {
+    "category": "IA",
+    "description": "IA inventa evidencia o estado",
+    "probability": "Alta",
+    "impact": "Alto",
+    "early_signals": "Reportes sin artifact_ref o comandos.",
+    "mitigation": "Allowlist, audit log, no VALIDATED sin evidencia.",
+    "decision": "D-AI-001",
+    "phase": "Fundación",
+    "id": "RR-AI-001",
+    "primary_phase_id": "0",
+    "phase_ids": [
+      "0"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Fundación"
+  },
+  {
+    "category": "Documentación",
+    "description": "Nuevo canon se fragmenta sin autoridad",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Docs contradicen JSON/ADRs.",
+    "mitigation": "Matriz de autoridad y enlaces cruzados.",
+    "decision": "D-DOCS-001",
+    "phase": "Fundación",
+    "id": "RR-DOCS-001",
+    "primary_phase_id": "0",
+    "phase_ids": [
+      "0"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Fundación"
+  },
+  {
+    "category": "Escalabilidad",
+    "description": "Subwebs acopladas entre sí",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Imports entre subwebs o rutas compartidas sin contrato.",
+    "mitigation": "Registry y contratos de módulo.",
+    "decision": "D-CORE-001",
+    "phase": "Post-MVP",
+    "id": "RR-GEN-002",
+    "primary_phase_id": "6",
+    "phase_ids": [
+      "6"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Post-MVP"
+  },
+  {
+    "category": "Seguridad",
+    "description": "Secretos en logs o IA",
+    "probability": "Media",
+    "impact": "Crítico",
+    "early_signals": "APP_KEY, tokens o payloads en evidencia.",
+    "mitigation": "Redacción, fuentes prohibidas y revisión logs.",
+    "decision": "D-AI-001",
+    "phase": "Toda fase",
+    "id": "RR-SEC-001",
+    "primary_phase_id": "0",
+    "phase_ids": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Toda fase"
+  },
+  {
+    "category": "Datos",
+    "description": "Eventos no versionados",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Payloads cambian sin compatibilidad.",
+    "mitigation": "Catálogo de eventos y versionado.",
+    "decision": "D-DATA-001",
+    "phase": "MVP",
+    "id": "RR-DATA-001",
+    "primary_phase_id": "3",
+    "phase_ids": [
+      "3"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP"
+  },
+  {
+    "category": "Integración",
+    "description": "Proveedor externo condiciona UX/core",
+    "probability": "Media",
+    "impact": "Medio",
+    "early_signals": "Lógica específica del proveedor en core.",
+    "mitigation": "Integration Gateway con adaptadores.",
+    "decision": "D-STACK-001",
+    "phase": "Post-MVP",
+    "id": "RR-GEN-003",
+    "primary_phase_id": "6",
+    "phase_ids": [
+      "6"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Post-MVP"
+  },
+  {
+    "category": "Roadmap",
+    "description": "Microfases técnicas sin valor usuario",
+    "probability": "Alta",
+    "impact": "Medio",
+    "early_signals": "Cierres de fase no mueven métricas de usuario.",
+    "mitigation": "Roadmap por outcomes.",
+    "decision": "D-ROADMAP-001",
+    "phase": "Fundación",
+    "id": "RR-ROAD-001",
+    "primary_phase_id": "0",
+    "phase_ids": [
+      "0"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Fundación"
+  },
+  {
+    "category": "Mantenimiento",
+    "description": "Doctor se interpreta como certificación total",
+    "probability": "Media",
+    "impact": "Medio",
+    "early_signals": "Checks objetivos usados para validar UX/seguridad completa.",
+    "mitigation": "Alcance explícito de Doctor y auditorías humanas.",
+    "decision": "D-OBS-001",
+    "phase": "Estable",
+    "id": "RR-GEN-004",
+    "primary_phase_id": "0",
+    "phase_ids": [
+      "0"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Estable"
+  },
+  {
+    "category": "Documentación operativa",
+    "description": "Divergencia entre roadmap, backlog, módulos y documentos humanos",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Una fase aparece como READY_FOR_IMPLEMENTATION en Markdown pero no coincide con machine/roadmap_gates.json; un módulo MVP no tiene feature/backlog/pantalla.",
+    "mitigation": "Declarar machine-readable como fuente canónica, añadir checks Doctor de cobertura cruzada y mantener matriz módulo-feature-backlog-pantalla.",
+    "decision": "D-DOC-ROADMAP-BACKLOG-DRIFT",
+    "phase": "Sprint 0 / Core Runtime",
+    "id": "RR-GEN-005",
+    "primary_phase_id": "0",
+    "phase_ids": [
+      "0",
+      "2"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Sprint 0 / Core Runtime"
+  },
+  {
+    "category": "Funcional",
+    "description": "Acciones mutables implementadas sin contrato operativo",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Aparecen rutas POST/PATCH no reflejadas en action_contracts.json.",
+    "mitigation": "Toda ruta mutable debe tener contrato en machine/action_contracts.json y check Doctor obligatorio.",
+    "decision": "ADR-014",
+    "phase": "Sprint 0",
+    "id": "RR-FUNC-002",
+    "primary_phase_id": "0",
+    "phase_ids": [
+      "0"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Sprint 0"
+  },
+  {
+    "category": "IA",
+    "description": "Acciones IA aprobadas pero no reconstruibles en auditoría",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "AIActionLog sin approval_id, files_changed o evidence_ref.",
+    "mitigation": "Usar ApprovalRecord, ApprovalService y AIActionLog ampliado como contrato persistente; consumir aprobación de forma atómica con scope_hash, idempotency_key y consumed_by_action_id.",
+    "decision": "ADR-005",
+    "phase": "MVP",
+    "id": "RR-AI-002",
+    "primary_phase_id": "3",
+    "phase_ids": [
+      "3"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP"
+  },
+  {
+    "category": "Seguridad",
+    "description": "Duplicidad RBAC por falta de owner de permiso",
+    "probability": "Media",
+    "impact": "Medio",
+    "early_signals": "Varios módulos intentan crear el mismo permiso.",
+    "mitigation": "Cada permiso declara owner_module, consumed_by_modules y aggregated_by_modules.",
+    "decision": "ADR-004",
+    "phase": "Sprint 0",
+    "id": "RR-SEC-002",
+    "primary_phase_id": "0",
+    "phase_ids": [
+      "0"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Sprint 0"
+  },
+  {
+    "category": "Roadmap",
+    "description": "Roadmap paralelo por documentos no canónicos activos",
+    "probability": "Baja",
+    "impact": "Medio",
+    "early_signals": "Documentos de fase fuera del canon con READY_FOR_IMPLEMENTATION.",
+    "mitigation": "Todo documento de roadmap no canónico debe quedar identificado como no autorizado para implementación.",
+    "decision": "ADR-008",
+    "phase": "Sprint 0",
+    "id": "RR-ROAD-002",
+    "primary_phase_id": "0",
+    "phase_ids": [
+      "0"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Sprint 0"
+  },
+  {
+    "category": "UX",
+    "description": "Experiencia acompañante degradada por copy genérico",
+    "probability": "Media",
+    "impact": "Medio",
+    "early_signals": "Estados de pantalla sin copy específico.",
+    "mitigation": "Mantener machine/ui_state_copy.json sincronizado con ui_screens.json.",
+    "decision": "ADR-011",
+    "phase": "MVP",
+    "id": "RR-UX-002",
+    "primary_phase_id": "3",
+    "phase_ids": [
+      "3"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP"
+  },
+  {
+    "category": "IA operativa",
+    "description": "Schemas machine-readable no validados estrictamente",
+    "probability": "Baja",
+    "impact": "Alto",
+    "early_signals": "Doctor pasa pero validadores externos fallan.",
+    "mitigation": "Validación JSON Schema Draft 2020-12 en Doctor.",
+    "decision": "ADR-007",
+    "phase": "Sprint 0",
+    "id": "RR-GEN-006",
+    "primary_phase_id": "0",
+    "phase_ids": [
+      "0"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Sprint 0"
+  },
+  {
+    "category": "Datos",
+    "description": "Aprobación IA sin constraint física",
+    "probability": "Baja",
+    "impact": "Alto",
+    "early_signals": "AIActionLog registra approval_id sin FK, aprobación reutilizable o approval_records no respeta lifecycle/nullability.",
+    "mitigation": "FK física única a ApprovalRecord, orden de migración previo, lifecycle por estados, expires_at NOT NULL y Doctor checks de nullability/consumo.",
+    "decision": "ADR-005",
+    "phase": "Sprint 0",
+    "id": "RR-DATA-002",
+    "primary_phase_id": "0",
+    "phase_ids": [
+      "0"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Sprint 0"
+  },
+  {
+    "category": "Gamificación",
+    "description": "Gamificación con duplicados por usuario",
+    "probability": "Media",
+    "impact": "Medio",
+    "early_signals": "Puntos repetidos por evento o logro desbloqueado múltiples veces.",
+    "mitigation": "UserAchievement y GamificationRuleState con constraints únicas.",
+    "decision": "ADR-010",
+    "phase": "MVP",
+    "id": "RR-GAM-002",
+    "primary_phase_id": "3",
+    "phase_ids": [
+      "3"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP"
+  },
+  {
+    "category": "Arquitectura",
+    "description": "Escritura directa sobre entidades owned por otro módulo",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Acciones mutables listan en writes_entities entidades cuyo owner_module no coincide con el módulo de la acción.",
+    "mitigation": "Separar writes_entities de delegated_write_entities y validar ownership con Doctor.",
+    "decision": "D-MOD-001",
+    "phase": "MVP",
+    "id": "RR-ARCH-002",
+    "primary_phase_id": "3",
+    "phase_ids": [
+      "3"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP"
+  },
+  {
+    "category": "IA",
+    "description": "AI-2 ejecutable sin lifecycle restringido explícito",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Rutas AI-2 mutables sin disabled_by_default o sin ApprovalRecord obligatorio.",
+    "mitigation": "Definir AI-2 como restricted_mvp, disabled_by_default, con ApprovalRecord y owner confirmation.",
+    "decision": "D-AI-001",
+    "phase": "MVP",
+    "id": "RR-AI-003",
+    "primary_phase_id": "3",
+    "phase_ids": [
+      "3"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP"
+  },
+  {
+    "category": "Escalabilidad",
+    "description": "Primera subweb futura definida mediante contrato ad hoc",
+    "probability": "Baja",
+    "impact": "Medio",
+    "early_signals": "Subwebs creadas sin schema, permisos, owner, datos y rollback declarados.",
+    "mitigation": "Crear machine/subweb_contracts.json vacío y schema propio validado por Doctor.",
+    "decision": "D-CORE-001",
+    "phase": "post_mvp",
+    "id": "RR-GEN-007",
+    "primary_phase_id": "6",
+    "phase_ids": [
+      "6"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "post_mvp"
+  },
+  {
+    "id": "RR-FUNC-003",
+    "category": "Producto",
+    "description": "La adopción real de módulos se confunde con activación o configuración administrativa.",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Métricas o logros usan module.activated, module.configured o task.completed para representar uso real.",
+    "mitigation": "Usar module.used como única señal de uso real y validar productor con Doctor.",
+    "decision": "D-MVP-001",
+    "phase": "MVP",
+    "primary_phase_id": "3",
+    "phase_ids": [
+      "3"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP"
+  },
+  {
+    "id": "RR-OPS-001",
+    "category": "Operación local",
+    "description": "El flujo WAMP se usa sin los controles Git/ADR-026 requeridos o se aplican cambios preparados por IA sobre archivos protegidos.",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Cambios IA sobre archivos protegidos, más de 10 archivos afectados, necesidad de diff exacto, líneas paralelas o migraciones aplicadas a modificar.",
+    "mitigation": "Mantener backup/export SQL/Doctor/evidencia/registro de ejecución local como base y activar ADR-026/Git local mínimo ante cualquier trigger.",
+    "decision": "ADR-021 / ADR-026",
+    "phase": "Sprint 0 / Core Runtime",
+    "primary_phase_id": "0",
+    "phase_ids": [
+      "0",
+      "2"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Sprint 0 / Core Runtime"
+  },
+  {
+    "category": "Producto",
+    "description": "Validación MVP no medible por falta de provisionamiento controlado operativo",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "No existe USER_PROVISION_CONTROLLED, no se pueden crear usuarios registered_user auditables o las altas se realizan fuera de contrato.",
+    "mitigation": "Implementar USER_PROVISION_CONTROLLED owner-only con ApprovalRecord, idempotencia, auditoría, UserRole delegado y evento user.registered.",
+    "decision": "ADR-014 / ADR-004",
+    "phase": "Core Runtime",
+    "id": "RR-PROD-USER-PROVISIONING-001",
+    "primary_phase_id": "2",
+    "phase_ids": [
+      "2"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Core Runtime"
+  },
+  {
+    "category": "IA operativa",
+    "description": "Contenido leído por IA contiene instrucciones maliciosas o no autorizadas que intentan saltar gates, aprobaciones o evidencias.",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Frases como ignorar instrucciones anteriores, aprobar cambios, borrar evidencia o exponer secretos dentro de logs, payloads o documentos importados.",
+    "mitigation": "AI_CONTEXT_TRUST_POLICY, fixtures adversariales, ApprovalRecord obligatorio y Doctor checks de contexto IA.",
+    "decision": "ADR-005",
+    "phase": "Sprint 0 / AI-Assisted Operations",
+    "id": "RR-AI-CTX-001",
+    "primary_phase_id": "1",
+    "phase_ids": [
+      "1",
+      "5"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Sprint 0 / AI-Assisted Operations"
+  },
+  {
+    "category": "Arquitectura",
+    "description": "Event bus usado como dependencia implícita entre módulos",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Un módulo emite o consume eventos sin depends_on core.events ni dependency_contracts.kind=event_bus; aparecen imports, callbacks o servicios globales no declarados entre productor y consumidor.",
+    "mitigation": "Formalizar core.events como contrato event_bus para todo productor/consumidor y bloquear con Doctor EVENT_PRODUCERS_AND_CONSUMERS_DECLARE_EVENT_BUS_CONTRACT.",
+    "decision": "ADR-002 / ADR-006",
+    "phase": "Core Runtime",
+    "id": "RR-ARCH-007",
+    "primary_phase_id": "2",
+    "phase_ids": [
+      "2"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Core Runtime"
+  },
+  {
+    "category": "Datos",
+    "description": "Drift entre artefactos SQL físicos, contratos machine-readable y estado documental",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "SQL modificado sin actualizar database/manifest.json, machine/migration_contracts.json o evidencia Doctor.",
+    "mitigation": "Validar SQL físicos con database/manifest.json, hashes técnicos SHA-256 y Doctor antes de ejecutar Sprint 0.",
+    "decision": "ADR-019 / ADR-021 / ADR-026",
+    "phase": "Sprint 0",
+    "id": "RR-DATA-SQL-DRIFT",
+    "primary_phase_id": "0",
+    "phase_ids": [
+      "0"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Sprint 0"
+  },
+  {
+    "category": "Arquitectura",
+    "description": "Primera extensión del ecosistema implementada sin contrato previo",
+    "probability": "Media",
+    "impact": "Medio",
+    "early_signals": "Ruta, proveedor o permiso nuevo aparece antes que contrato planned/stub.",
+    "mitigation": "Gate de contrato planned/stub obligatorio para subwebs e integraciones.",
+    "decision": "ADR-002",
+    "phase": "Integrations Stub",
+    "id": "RR-EXT-001",
+    "primary_phase_id": "6",
+    "phase_ids": [
+      "6"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Integrations Stub"
+  },
+  {
+    "category": "Datos",
+    "description": "Drift entre contrato MVP autenticado y nullability física de contexto/onboarding",
+    "probability": "Baja",
+    "impact": "Alto",
+    "early_signals": "UserContext.user_id u OnboardingSession.user_id vuelven a nullable=true en column_contracts, physical_constraints_matrix o DDL; aparece onboarding persistente anónimo sin ADR propia.",
+    "mitigation": "Mantener DCE-009/DCE-010, user_id NOT NULL, FK users(id), Doctor AUTHENTICATED_USER_CONTEXT_ONBOARDING_CONTRACTS_MATCH_DDL y validación S0-009 antes de ejecutar migraciones.",
+    "decision": "ADR-006 / ADR-017",
+    "phase": "Sprint 0 / Core Runtime",
+    "id": "RR-DATA-AUTH-CONTEXT-001",
+    "primary_phase_id": "1",
+    "phase_ids": [
+      "1",
+      "2"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Sprint 0 / Core Runtime"
+  },
+  {
+    "category": "Datos",
+    "description": "Migraciones aplicadas sin ledger local verificable",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "database/manifest.json existe pero schema_migrations no existe o no registra migration_id/checksum/status.",
+    "mitigation": "Crear 000_create_schema_migrations.sql, registrar MIG-000, actualizar manifest y validar SCHEMA_MIGRATIONS_LEDGER_EXISTS_AND_MATCHES_CONTRACT.",
+    "decision": "ADR-019",
+    "phase": "Sprint 0",
+    "id": "RR-DATA-003",
+    "primary_phase_id": "1",
+    "phase_ids": [
+      "1",
+      "2"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Sprint 0 / Core Runtime"
+  },
+  {
+    "category": "Seguridad",
+    "description": "Seed owner local ejecutado con placeholders",
+    "probability": "Baja",
+    "impact": "Alto",
+    "early_signals": "003_seed_local_owner_template.sql no contiene SIGNAL SQLSTATE ni inserts condicionados por @owner_ready.",
+    "mitigation": "Seed owner fail-closed, Doctor OWNER_SEED_FAILS_CLOSED_ON_PLACEHOLDERS y ejecución solo sobre copia local sustituida.",
+    "decision": "ADR-004 / ADR-021",
+    "phase": "Sprint 0",
+    "id": "RR-SEC-003",
+    "primary_phase_id": "1",
+    "phase_ids": [
+      "1"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "Sprint 0"
+  },
+  {
+    "category": "Gamificación",
+    "description": "Ajustes manuales de progreso introducen duplicados o bypass de antifatiga",
+    "probability": "Baja",
+    "impact": "Medio",
+    "early_signals": "ProgressRecord.source_event_id nullable o acción de ajuste manual sin ApprovalRecord/idempotency_key.",
+    "mitigation": "En MVP ProgressRecord exige source_event_id NOT NULL; ajustes manuales quedan post_mvp hasta contrato explícito.",
+    "decision": "ADR-010",
+    "phase": "MVP",
+    "id": "RR-GAM-003",
+    "primary_phase_id": "3",
+    "phase_ids": [
+      "3"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP"
+  },
+  {
+    "category": "Arquitectura / UX",
+    "description": "Tracking de vistas implementado sin catálogo ni action contract, generando métricas o gamificación no trazables.",
+    "probability": "Media",
+    "impact": "Alto",
+    "early_signals": "Nuevos analytics_refs sin catálogo; vistas GET crean DomainEvent; reglas de gamificación consumen señales UI.",
+    "mitigation": "Catalogar analytics_events, exigir action contract POST para view events persistentes y validar con Doctor.",
+    "decision": "ADR-014 / ADR-016 / ADR-022",
+    "phase": "MVP UX Skeleton",
+    "id": "RR-UX-ANALYTICS-001",
+    "primary_phase_id": "4",
+    "phase_ids": [
+      "4"
+    ],
+    "risk_layer": "strategic",
+    "phase_label": "MVP UX Skeleton"
+  }
+]

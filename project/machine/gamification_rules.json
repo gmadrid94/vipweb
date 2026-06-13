@@ -1,0 +1,320 @@
+{
+  "principle": "La gamificación deriva de eventos canónicos y nunca recompensa loops artificiales.",
+  "rules": [
+    {
+      "id": "GAM-RULE-001",
+      "trigger_event": "onboarding.completed",
+      "effect": "first_step_completed",
+      "points": 10,
+      "cooldown": {
+        "type": "once",
+        "scope": "user"
+      },
+      "achievement_id": "first_step_completed",
+      "requires_user_context": true,
+      "forbidden_if_event_has_critical_doctor_status": true,
+      "eligibility": {
+        "required_payload_fields": [
+          "user_id",
+          "session_id",
+          "completed_steps",
+          "timestamp"
+        ],
+        "user_context_source": "payload.user_id",
+        "required_actor_type": null,
+        "forbidden_actor_types": [],
+        "requires_non_null_user_id": true,
+        "forbidden_status_values": []
+      }
+    },
+    {
+      "id": "GAM-RULE-002",
+      "trigger_event": "dashboard.first_viewed",
+      "effect": "ecosystem_opened",
+      "points": 5,
+      "cooldown": {
+        "type": "once",
+        "scope": "user"
+      },
+      "achievement_id": "ecosystem_opened",
+      "requires_user_context": true,
+      "forbidden_if_event_has_critical_doctor_status": true,
+      "eligibility": {
+        "required_payload_fields": [
+          "user_id",
+          "timestamp"
+        ],
+        "user_context_source": "payload.user_id",
+        "required_actor_type": null,
+        "forbidden_actor_types": [],
+        "requires_non_null_user_id": true,
+        "forbidden_status_values": []
+      }
+    },
+    {
+      "id": "GAM-RULE-003",
+      "trigger_event": "profile.updated",
+      "effect": "profile_ready",
+      "points": 5,
+      "cooldown": {
+        "type": "once_per_day",
+        "scope": "user"
+      },
+      "achievement_id": "profile_ready",
+      "requires_user_context": true,
+      "forbidden_if_event_has_critical_doctor_status": true,
+      "eligibility": {
+        "required_payload_fields": [
+          "user_id",
+          "timestamp"
+        ],
+        "user_context_source": "payload.user_id",
+        "required_actor_type": null,
+        "forbidden_actor_types": [],
+        "requires_non_null_user_id": true,
+        "forbidden_status_values": []
+      }
+    },
+    {
+      "id": "GAM-RULE-004",
+      "trigger_event": "task.completed",
+      "effect": "task_progress",
+      "points": 3,
+      "cooldown": {
+        "type": "per_task",
+        "scope": "user:task_key"
+      },
+      "achievement_id": null,
+      "requires_user_context": true,
+      "forbidden_if_event_has_critical_doctor_status": true,
+      "eligibility": {
+        "required_payload_fields": [
+          "user_id",
+          "task_key",
+          "module_id",
+          "timestamp"
+        ],
+        "user_context_source": "payload.user_id",
+        "required_actor_type": null,
+        "forbidden_actor_types": [],
+        "requires_non_null_user_id": true,
+        "forbidden_status_values": []
+      }
+    },
+    {
+      "id": "GAM-RULE-005",
+      "trigger_event": "system.doctor.executed",
+      "effect": "system_checked",
+      "points": 5,
+      "cooldown": {
+        "type": "once_per_day",
+        "scope": "user"
+      },
+      "achievement_id": "system_checked",
+      "requires_user_context": true,
+      "forbidden_if_event_has_critical_doctor_status": true,
+      "eligibility": {
+        "required_payload_fields": [
+          "run_id",
+          "status",
+          "actor_type",
+          "triggered_by_user_id",
+          "timestamp"
+        ],
+        "user_context_source": "payload.triggered_by_user_id",
+        "required_actor_type": "human",
+        "forbidden_actor_types": [
+          "ai",
+          "system"
+        ],
+        "requires_non_null_user_id": true,
+        "forbidden_status_values": [
+          "critical"
+        ]
+      }
+    },
+    {
+      "id": "GAM-RULE-006",
+      "trigger_event": "ai.suggestion.created",
+      "effect": "guided_by_ai",
+      "points": 2,
+      "cooldown": {
+        "type": "once_per_day",
+        "scope": "user"
+      },
+      "achievement_id": "guided_by_ai",
+      "requires_user_context": true,
+      "forbidden_if_event_has_critical_doctor_status": true,
+      "eligibility": {
+        "required_payload_fields": [
+          "suggestion_id",
+          "ai_level",
+          "requested_by_user_id",
+          "target_user_id",
+          "timestamp"
+        ],
+        "user_context_source": "first_non_null(payload.requested_by_user_id, payload.target_user_id)",
+        "required_actor_type": null,
+        "forbidden_actor_types": [],
+        "requires_non_null_user_id": true,
+        "forbidden_status_values": []
+      }
+    },
+    {
+      "id": "GAM-RULE-007",
+      "trigger_event": "module.used",
+      "effect": "module_adopted",
+      "points": 5,
+      "cooldown": {
+        "type": "per_scope",
+        "scope": "user:module_id"
+      },
+      "achievement_id": "first_module_used",
+      "requires_user_context": true,
+      "forbidden_if_event_has_critical_doctor_status": true,
+      "eligibility": {
+        "required_payload_fields": [
+          "user_id",
+          "module_id",
+          "used_at",
+          "source_route"
+        ],
+        "user_context_source": "payload.user_id",
+        "required_actor_type": null,
+        "forbidden_actor_types": [
+          "ai",
+          "system"
+        ],
+        "requires_non_null_user_id": true,
+        "forbidden_status_values": []
+      }
+    }
+  ],
+  "achievements": [
+    {
+      "id": "first_step_completed",
+      "label": "Primer paso completado",
+      "condition": {
+        "operator": "ALL",
+        "events": [
+          "onboarding.completed"
+        ]
+      },
+      "type": "acompañamiento"
+    },
+    {
+      "id": "ecosystem_opened",
+      "label": "Ecosistema abierto",
+      "condition": {
+        "operator": "ALL",
+        "events": [
+          "dashboard.first_viewed"
+        ]
+      },
+      "type": "continuidad"
+    },
+    {
+      "id": "profile_ready",
+      "label": "Perfil preparado",
+      "condition": {
+        "operator": "ALL",
+        "events": [
+          "profile.updated"
+        ]
+      },
+      "type": "preparación"
+    },
+    {
+      "id": "first_module_used",
+      "label": "Primer módulo usado",
+      "condition": {
+        "operator": "ALL",
+        "events": [
+          "module.used"
+        ]
+      },
+      "type": "adopción"
+    },
+    {
+      "id": "system_checked",
+      "label": "Sistema revisado",
+      "condition": {
+        "operator": "ALL",
+        "events": [
+          "system.doctor.executed"
+        ]
+      },
+      "type": "calidad"
+    },
+    {
+      "id": "guided_by_ai",
+      "label": "Acompañado por IA",
+      "condition": {
+        "operator": "ALL",
+        "events": [
+          "ai.suggestion.created"
+        ]
+      },
+      "type": "asistencia"
+    }
+  ],
+  "anti_fatigue": [
+    {
+      "id": "NO_REFRESH_REWARD",
+      "rule": "No se recompensa ningún renderizado, refresh o page_view repetido sin acción humana de valor."
+    },
+    {
+      "id": "COOLDOWN_REQUIRED_FOR_REPEATABLE_EVENTS",
+      "rule": "Toda regla repetible debe declarar cooldown persistible en GamificationRuleState."
+    },
+    {
+      "id": "NO_DESTRUCTIVE_ACTION_REWARD",
+      "rule": "No se conceden logros ni puntos por acciones destructivas."
+    },
+    {
+      "id": "NO_EMOTIONAL_MANIPULATION",
+      "rule": "La gamificación refuerza continuidad y claridad, no manipulación emocional."
+    },
+    {
+      "id": "NO_COMPETITIVE_RANKING_MVP",
+      "rule": "No hay ranking competitivo en MVP."
+    },
+    {
+      "id": "NO_CRITICAL_DOCTOR_SOURCE",
+      "rule": "No hay progreso si Doctor marca inconsistencia crítica en el evento fuente."
+    }
+  ],
+  "processing_contract": {
+    "handler_module": "gamification",
+    "consumes_events": [
+      "ai.suggestion.created",
+      "dashboard.first_viewed",
+      "onboarding.completed",
+      "profile.updated",
+      "system.doctor.executed",
+      "task.completed",
+      "module.used"
+    ],
+    "writes_entities": [
+      "ProgressRecord",
+      "UserAchievement",
+      "GamificationRuleState"
+    ],
+    "emits_events": [
+      "progress.updated",
+      "achievement.unlocked"
+    ],
+    "idempotency_rule": "unique(user_id NOT NULL, source_event_id NOT NULL, rule_id) + unique(user_id NOT NULL, achievement_id); events without non-null user_id are audit-only and do not persist gamification state; manual/admin progress adjustments are post_mvp until action contract exists",
+    "fallback_if_disabled": "El evento queda registrado en core.events, pero no se genera ProgressRecord, UserAchievement ni GamificationRuleState. Los eventos sin user_id no nulo también son audit-only para gamificación persistente MVP.",
+    "direct_write_from_producer_allowed": false,
+    "reads_entities": [
+      "Achievement",
+      "DomainEvent",
+      "User"
+    ],
+    "catalog_entities": [
+      "Achievement"
+    ],
+    "evaluates_achievement_conditions": true
+  }
+}

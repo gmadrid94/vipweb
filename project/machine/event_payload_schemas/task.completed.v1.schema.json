@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/task.completed.v1.schema.json",
+  "title": "task.completed v1 payload",
+  "type": "object",
+  "required": [
+    "task_key",
+    "module_id",
+    "user_id",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "task_key": {
+      "type": "string"
+    },
+    "module_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

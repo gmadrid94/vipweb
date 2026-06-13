@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "version",
+      "producer_module",
+      "consumers",
+      "payload_summary",
+      "payload_schema_ref",
+      "audit_required",
+      "source_doc"
+    ],
+    "additionalProperties": true,
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "version": {
+        "type": "integer"
+      },
+      "payload_summary": {
+        "type": "object"
+      },
+      "payload_schema_ref": {
+        "type": "string"
+      }
+    }
+  }
+}

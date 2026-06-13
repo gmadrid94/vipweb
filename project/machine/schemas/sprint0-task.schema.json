@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "priority",
+      "phase",
+      "title",
+      "dependencies",
+      "acceptance_criteria",
+      "status",
+      "description",
+      "actions",
+      "files_affected",
+      "doctor_check",
+      "expected_evidence",
+      "risk",
+      "local_rollback",
+      "blocking",
+      "wamp_relevant",
+      "ai_read_required",
+      "source_doc"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^S0-[0-9]{3}[A-Z]?$"
+      },
+      "priority": {
+        "enum": [
+          "P0",
+          "P1",
+          "P2",
+          "P3"
+        ]
+      },
+      "phase": {
+        "const": "Sprint 0"
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "dependencies": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uniqueItems": true
+      },
+      "acceptance_criteria": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "status": {
+        "enum": [
+          "pending",
+          "in_progress",
+          "blocked",
+          "done",
+          "cancelled"
+        ]
+      },
+      "description": {
+        "type": "string",
+        "minLength": 1
+      },
+      "actions": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "files_affected": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uniqueItems": true
+      },
+      "doctor_check": {
+        "type": "string",
+        "minLength": 1
+      },
+      "expected_evidence": {
+        "type": "string",
+        "minLength": 1
+      },
+      "risk": {
+        "type": "string",
+        "minLength": 1
+      },
+      "local_rollback": {
+        "type": "string",
+        "minLength": 1
+      },
+      "blocking": {
+        "type": "boolean"
+      },
+      "wamp_relevant": {
+        "type": "boolean"
+      },
+      "ai_read_required": {
+        "type": "boolean"
+      },
+      "source_doc": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

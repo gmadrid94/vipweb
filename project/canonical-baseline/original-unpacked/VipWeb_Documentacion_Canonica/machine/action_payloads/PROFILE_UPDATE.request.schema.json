@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/PROFILE_UPDATE.request.schema.json",
+  "title": "PROFILE_UPDATE request body",
+  "type": "object",
+  "required": [
+    "request_id",
+    "csrf_token",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 120
+    },
+    "csrf_token": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "payload": {
+      "type": "object",
+      "required": [],
+      "additionalProperties": false,
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "preferences": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ]
+          }
+        },
+        "onboarding_state": {
+          "enum": [
+            "not_started",
+            "in_progress",
+            "completed",
+            "dismissed"
+          ]
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "display_name"
+          ]
+        },
+        {
+          "required": [
+            "preferences"
+          ]
+        },
+        {
+          "required": [
+            "onboarding_state"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "label",
+      "type",
+      "phase",
+      "risk_level",
+      "description",
+      "permissions",
+      "requires_human_approval"
+    ],
+    "additionalProperties": true,
+    "properties": {
+      "activation_status": {
+        "enum": [
+          "active_by_default",
+          "disabled_by_default",
+          "owner_enabled_only",
+          "not_assignable"
+        ]
+      },
+      "seed_policy": {
+        "type": "string"
+      },
+      "max_ai_level": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "requires_approval_record": {
+        "type": "boolean"
+      },
+      "human_owner_required": {
+        "type": "boolean"
+      }
+    }
+  }
+}

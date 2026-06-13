@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/ai.suggestion.created.v1.schema.json",
+  "title": "ai.suggestion.created v1 payload",
+  "type": "object",
+  "required": [
+    "suggestion_id",
+    "ai_level",
+    "docs_read",
+    "risk_level",
+    "requested_by_user_id",
+    "target_user_id",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "suggestion_id": {
+      "type": "string"
+    },
+    "ai_level": {
+      "type": "string"
+    },
+    "docs_read": {
+      "type": "array"
+    },
+    "risk_level": {
+      "type": "string"
+    },
+    "requested_by_user_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "target_user_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,865 @@
+[
+  {
+    "id": "ADR-001",
+    "title": "Definición del núcleo común",
+    "status": "Aceptada",
+    "area": "Arquitectura",
+    "blocking": true,
+    "recommendation": "Core mínimo de ecosistema, no monolito.",
+    "decision": "VipWeb usará un núcleo común mínimo, modular y agnóstico, encargado solo de identidad, sesión, permisos base, navegación global, configuración común, registro de módulos, contratos, eventos, auditoría, observabilidad y documentación operativa para IA.",
+    "rationale": "El core debe conectar módulos, webs y servicios sin absorber lógica específica. Esto maximiza modularidad, escalabilidad y mantenibilidad.",
+    "depends_on": [],
+    "documents": [
+      "docs/00-foundation/03-core-definition.md",
+      "docs/04-architecture/01-ecosystem-core.md"
+    ],
+    "risks": [
+      "Monolito si se permite lógica de módulo dentro del core."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/00-foundation/03-core-definition.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-002",
+    "title": "Modelo modular del ecosistema",
+    "status": "Aceptada",
+    "area": "Arquitectura",
+    "blocking": true,
+    "recommendation": "Módulos autónomos por dominios con manifiesto, contratos, permisos y eventos.",
+    "decision": "VipWeb crecerá por módulos independientes conectados al núcleo mediante manifiestos, contratos, eventos y permisos. Ningún módulo dependerá de la implementación interna de otro.",
+    "rationale": "Evita crecimiento caótico y permite mantenimiento por IA.",
+    "depends_on": [
+      "ADR-001"
+    ],
+    "documents": [
+      "docs/04-architecture/02-modules.md",
+      "docs/04-architecture/03-module-contracts.md"
+    ],
+    "risks": [
+      "Acoplamiento si un módulo accede directamente a tablas o funciones internas de otro."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-003",
+    "title": "Stack inicial reversible",
+    "status": "Aceptada",
+    "area": "Técnica",
+    "blocking": true,
+    "recommendation": "PHP 8.4+, MySQL/MariaDB, PDO, HTML, CSS y JS vanilla sobre WAMP local.",
+    "decision": "VipWeb se implementará inicialmente con PHP 8.4+, MySQL/MariaDB, PDO, HTML, CSS y JavaScript vanilla, pero se documentará como ecosistema modular web con primera implementación en PHP/MySQL, no como producto definido por el stack.",
+    "rationale": "El stack es simple, compatible con WAMP local, fácil de auditar por IA y reversible si se mantienen capas y adaptadores.",
+    "depends_on": [
+      "ADR-001",
+      "ADR-002"
+    ],
+    "documents": [
+      "docs/06-technical/01-stack.md",
+      "docs/06-technical/02-project-structure.md"
+    ],
+    "risks": [
+      "Monolito PHP si no se separan capas."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/06-technical/01-stack.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-004",
+    "title": "Identidad, roles y permisos base",
+    "status": "Aceptada",
+    "area": "Seguridad",
+    "blocking": true,
+    "recommendation": "RBAC inicial con permisos explícitos, guards por módulo y auditoría.",
+    "decision": "VipWeb tendrá autenticación básica, roles, permisos explícitos, guards y auditoría desde el primer desarrollo funcional.",
+    "rationale": "Permite proteger admin, módulos, IA e integraciones desde el inicio.",
+    "depends_on": [
+      "ADR-001",
+      "ADR-002"
+    ],
+    "documents": [
+      "docs/06-technical/05-security.md",
+      "docs/09-ai-operations/02-ai-permissions.md"
+    ],
+    "risks": [
+      "Accesos indebidos si se aplaza."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/06-technical/05-security.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-005",
+    "title": "Modelo de autonomía IA operativa",
+    "status": "Aceptada",
+    "area": "IA",
+    "blocking": true,
+    "recommendation": "Autonomía progresiva IA-0 a IA-3; IA-4 descartada al inicio.",
+    "decision": "VipWeb arrancará con IA-0, preparará IA-1 y permitirá IA-2 solo con permisos, auditoría, tests, rollback local y aprobación. IA-3 queda para escalado futuro e IA-4 no se aprueba para el inicio.",
+    "rationale": "La IA debe ayudar y proponer sin perder control ni trazabilidad.",
+    "depends_on": [
+      "ADR-004",
+      "ADR-007",
+      "ADR-009"
+    ],
+    "documents": [
+      "docs/09-ai-operations/00-ai-operating-model.md",
+      "docs/09-ai-operations/03-ai-guardrails.md"
+    ],
+    "risks": [
+      "Cambios automáticos inseguros."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/09-ai-operations/00-ai-operating-model.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-006",
+    "title": "Modelo de dominio, datos y eventos",
+    "status": "Aceptada",
+    "area": "Datos",
+    "blocking": true,
+    "recommendation": "Domain-first: entidades y eventos antes de tablas.",
+    "decision": "VipWeb diseñará primero entidades, relaciones, eventos y reglas de dominio; después migraciones físicas.",
+    "rationale": "Evita una base de datos improvisada y soporta módulos, IA, gamificación y auditoría.",
+    "depends_on": [
+      "ADR-001",
+      "ADR-002"
+    ],
+    "documents": [
+      "docs/05-domain-data/00-domain-model.md",
+      "docs/05-domain-data/03-domain-events.md"
+    ],
+    "risks": [
+      "Datos acoplados y migraciones costosas si se improvisa."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/05-domain-data/00-domain-model.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-007",
+    "title": "Canon documental y fuente de verdad",
+    "status": "Aceptada",
+    "area": "Documentación",
+    "blocking": true,
+    "recommendation": "Markdown modular + JSON/YAML machine-readable + ADRs.",
+    "decision": "VipWeb usará documentación modular como fuente principal, ADRs como máxima autoridad para decisiones críticas y catálogos machine-readable para IA y scripts.",
+    "rationale": "Evita contradicciones y permite operación por humanos e IA.",
+    "depends_on": [
+      "ADR-001"
+    ],
+    "documents": [
+      "docs/12-decisions/00-decision-log.md",
+      "docs/09-ai-operations/07-machine-readable-docs.md"
+    ],
+    "risks": [
+      "Caos documental si código, backlog y docs divergen."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/12-decisions/00-decision-log.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-008",
+    "title": "Roadmap operativo y orden de construcción",
+    "status": "Aceptada",
+    "area": "Roadmap",
+    "blocking": true,
+    "recommendation": "Construcción por capas: fundación, core, permisos, MVP, estabilidad, expansión.",
+    "decision": "VipWeb se construirá de dentro hacia fuera: documentación, estructura, core, datos, permisos, evidencias, después experiencia y módulos visibles.",
+    "rationale": "Evita empezar por pantallas sin base y protege escalabilidad.",
+    "depends_on": [
+      "ADR-001",
+      "ADR-002",
+      "ADR-006",
+      "ADR-007"
+    ],
+    "documents": [
+      "docs/10-roadmap/00-roadmap-overview.md",
+      "docs/11-backlog/00-backlog-overview.md"
+    ],
+    "risks": [
+      "MVP vistoso pero frágil si se ignora."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/10-roadmap/00-roadmap-overview.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-009",
+    "title": "Sistema Doctor, evidencias y validación real",
+    "status": "Aceptada",
+    "area": "Calidad",
+    "blocking": true,
+    "recommendation": "Doctor + evidencias + estados verificables desde el inicio.",
+    "decision": "VipWeb tendrá Doctor, evidencias y estados estrictos. Ningún bloque se marcará como validated sin pruebas, reporte o evidencia.",
+    "rationale": "Evita documentación falsa, avances no comprobados y acciones IA sin base real.",
+    "depends_on": [
+      "ADR-007"
+    ],
+    "documents": [
+      "docs/13-quality/00-quality-model.md",
+      "docs/13-quality/04-documentation-quality.md"
+    ],
+    "risks": [
+      "Falsa sensación de avance."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/13-quality/00-quality-model.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-010",
+    "title": "Gamificación equilibrada integrada",
+    "status": "Aceptada",
+    "area": "Gamificación",
+    "blocking": false,
+    "recommendation": "Gamificación moderada basada en progreso, logros suaves y feedback útil.",
+    "decision": "VipWeb integrará gamificación equilibrada desde la base, mediante eventos y reglas simples, sin rankings, rachas agresivas ni presión.",
+    "rationale": "Refuerza acompañamiento y progreso sin infantilizar.",
+    "depends_on": [
+      "ADR-006",
+      "ADR-014"
+    ],
+    "documents": [
+      "docs/08-gamification/00-gamification-overview.md",
+      "docs/08-gamification/06-balance-rules.md"
+    ],
+    "risks": [
+      "Gamificación invasiva si se exagera."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/08-gamification/00-gamification-overview.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-011",
+    "title": "Experiencia visual cálida, tecnológica y acompañante",
+    "status": "Aceptada",
+    "area": "UX",
+    "blocking": false,
+    "recommendation": "Opción B confirmada por usuario.",
+    "decision": "VipWeb tendrá una experiencia moderna, clara, cálida y tecnológica, con acompañamiento constante, gamificación discreta e IA útil no invasiva.",
+    "rationale": "Equilibra profesionalidad, comodidad, progreso e identidad de ecosistema.",
+    "depends_on": [
+      "ADR-010",
+      "ADR-014"
+    ],
+    "documents": [
+      "docs/07-design-ux/01-experience-personality.md",
+      "docs/07-design-ux/04-components.md"
+    ],
+    "risks": [
+      "Diseño frío o excesivamente lúdico si no se respetan principios."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/07-design-ux/01-experience-personality.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-012",
+    "title": "Ambición inicial del producto",
+    "status": "Aceptada",
+    "area": "Producto/Negocio",
+    "blocking": true,
+    "recommendation": "Opción B confirmada por usuario.",
+    "decision": "VipWeb será un ecosistema modular escalable, inicialmente controlado, preparado para convertirse en plataforma comercial sin cargar el MVP con SaaS completo.",
+    "rationale": "Equilibra visión ambiciosa y ejecución realista.",
+    "depends_on": [
+      "ADR-001",
+      "ADR-002"
+    ],
+    "documents": [
+      "docs/02-product/00-product-map.md",
+      "docs/01-business/04-business-model.md"
+    ],
+    "risks": [
+      "Roadmap confuso si se tratara como herramienta personal o SaaS completo prematuro."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/02-product/00-product-map.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-013",
+    "title": "Modelo de negocio inicial",
+    "status": "Aceptada",
+    "area": "Negocio",
+    "blocking": false,
+    "recommendation": "Opción B confirmada por usuario.",
+    "decision": "VipWeb usará un modelo freemium modular progresivo: primero base útil y después módulos avanzados, integraciones, IA operativa o capacidades profesionales monetizables.",
+    "rationale": "Encaja con modularidad y permite monetización futura sin sobrecargar el MVP.",
+    "depends_on": [
+      "ADR-012"
+    ],
+    "documents": [
+      "docs/01-business/04-business-model.md",
+      "docs/02-product/05-feature-classification.md"
+    ],
+    "risks": [
+      "Core/premium mal clasificado si se decide tarde."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/01-business/04-business-model.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-014",
+    "title": "Alcance del MVP",
+    "status": "Aceptada",
+    "area": "Producto",
+    "blocking": true,
+    "recommendation": "Opción B confirmada por usuario.",
+    "decision": "VipWeb tendrá un MVP de ecosistema guiado: core, identidad, permisos, dashboard, onboarding, módulos iniciales, progreso ligero, IA básica, admin mínimo, eventos, auditoría y evidencias.",
+    "rationale": "Demuestra la promesa de ecosistema sin sobredimensionar.",
+    "depends_on": [
+      "ADR-012",
+      "ADR-013"
+    ],
+    "documents": [
+      "docs/02-product/04-mvp-definition.md",
+      "CURRENT_STATUS.md"
+    ],
+    "risks": [
+      "MVP demasiado técnico o demasiado grande."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/02-product/04-mvp-definition.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-015",
+    "title": "Estrategia de integraciones externas",
+    "status": "Aceptada",
+    "area": "Integraciones",
+    "blocking": true,
+    "recommendation": "Capa preparada, conectores internos/simulados en MVP.",
+    "decision": "VipWeb tendrá arquitectura de integración desde el inicio, pero el MVP no dependerá de proveedores externos críticos.",
+    "rationale": "Mantiene visión de ecosistema conectado sin bloquear el MVP.",
+    "depends_on": [
+      "ADR-001",
+      "ADR-002",
+      "ADR-006"
+    ],
+    "documents": [
+      "docs/04-architecture/04-integration-architecture.md",
+      "docs/05-domain-data/01-entities.md"
+    ],
+    "risks": [
+      "Vendor lock-in y retrasos por APIs si se integran demasiado pronto."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/04-architecture/04-integration-architecture.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-016",
+    "title": "Dashboard como primer módulo funcional real",
+    "status": "Aceptada",
+    "area": "Producto/UX",
+    "blocking": true,
+    "recommendation": "Dashboard del ecosistema primero.",
+    "decision": "El primer módulo visible será el Dashboard, centro de control del ecosistema, continuidad del usuario, módulos, progreso, estado e IA básica.",
+    "rationale": "Hace visible la promesa de ecosistema.",
+    "depends_on": [
+      "ADR-014",
+      "ADR-023"
+    ],
+    "documents": [
+      "docs/07-design-ux/03-screens.md",
+      "docs/02-product/02-user-journeys.md"
+    ],
+    "risks": [
+      "VipWeb parecería una web aislada si se empieza por otra funcionalidad."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/07-design-ux/03-screens.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-017",
+    "title": "Onboarding guiado progresivo",
+    "status": "Aceptada",
+    "area": "UX/Producto",
+    "blocking": true,
+    "recommendation": "Onboarding breve, accionable y conectado al Dashboard.",
+    "decision": "VipWeb tendrá onboarding progresivo para explicar el ecosistema, captar contexto mínimo, activar módulos iniciales y llevar al Dashboard con progreso.",
+    "rationale": "Activa al usuario y reduce abstracción.",
+    "depends_on": [
+      "ADR-014",
+      "ADR-016"
+    ],
+    "documents": [
+      "docs/02-product/02-user-journeys.md",
+      "docs/07-design-ux/03-screens.md"
+    ],
+    "risks": [
+      "Usuario perdido si el onboarding es pasivo o largo."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/02-product/02-user-journeys.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-018",
+    "title": "Administración mínima del MVP",
+    "status": "Aceptada",
+    "area": "Admin/Seguridad",
+    "blocking": true,
+    "recommendation": "Admin mínimo, no backoffice avanzado.",
+    "decision": "VipWeb incluirá un panel Admin mínimo para usuarios, módulos, permisos, auditoría, evidencias, Doctor y estado del ecosistema.",
+    "rationale": "Un ecosistema con IA, permisos, módulos y evidencias necesita control operativo.",
+    "depends_on": [
+      "ADR-004",
+      "ADR-009",
+      "ADR-023"
+    ],
+    "documents": [
+      "docs/03-functional/01-core-features.md",
+      "docs/06-technical/05-security.md"
+    ],
+    "risks": [
+      "Ecosistema sin control si se aplaza."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/03-functional/01-core-features.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-019",
+    "title": "Schemas físicos y migraciones iniciales",
+    "status": "Aceptada",
+    "area": "Datos/Técnica",
+    "blocking": true,
+    "recommendation": "Migraciones versionadas, mínimas y derivadas del dominio.",
+    "decision": "VipWeb tendrá schemas físicos mínimos mediante migraciones: identidad, permisos, módulos, eventos, auditoría, IA, evidencias, contexto, gamificación básica e integraciones preparadas.",
+    "rationale": "Evita tablas improvisadas y soporta core/MVP.",
+    "depends_on": [
+      "ADR-006",
+      "ADR-004",
+      "ADR-023"
+    ],
+    "documents": [
+      "docs/05-domain-data/01-entities.md",
+      "docs/06-technical/02-project-structure.md"
+    ],
+    "risks": [
+      "Base de datos caótica y difícil de revertir."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/05-domain-data/01-entities.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-020",
+    "title": "Testing y criterios de calidad",
+    "status": "Aceptada",
+    "area": "Calidad",
+    "blocking": true,
+    "recommendation": "Calidad por capas conectada a Doctor y evidencias.",
+    "decision": "VipWeb usará tests unitarios, integración, contratos, permisos, eventos, gamificación, IA guardrails, documentación y UX básica. Lo crítico tendrá cobertura fuerte.",
+    "rationale": "Evita regresiones y falsos avances.",
+    "depends_on": [
+      "ADR-004",
+      "ADR-006",
+      "ADR-009"
+    ],
+    "documents": [
+      "docs/13-quality/01-definition-of-ready.md",
+      "docs/13-quality/02-definition-of-done.md"
+    ],
+    "risks": [
+      "Deuda invisible si se programa sin tests."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/13-quality/01-definition-of-ready.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-021",
+    "title": "Entorno local Windows/WAMP y recuperación manual",
+    "status": "Aceptada corregida",
+    "area": "Operación local",
+    "blocking": true,
+    "recommendation": "WAMP local sin despliegue; backups + SQL + Doctor + registro de ejecución local; ADR-030 añade Git local y tools externas para AI-first.",
+    "decision": "VipWeb se desarrollará inicialmente en local con Windows/WAMP y sin despliegue externo; en modo AI-first el repo oficial usa Git local. La seguridad operativa se basará en backups de carpeta, exportaciones SQL, registro de ejecución local, Doctor y evidencias.",
+    "rationale": "Ajusta el proceso a la realidad actual del proyecto.",
+    "depends_on": [
+      "ADR-003",
+      "ADR-009",
+      "ADR-020"
+    ],
+    "documents": [
+      "docs/06-technical/08-deployment.md",
+      "evidence/sprint-0-local-execution.md"
+    ],
+    "risks": [
+      "Sin controles Git activos es más difícil comparar y revertir cambios parciales. Mitigación: Git local en AI-first, backups nombrados, logs externos y registro operativo local."
+    ],
+    "environment": "Windows/WAMP/local/no-git/no-external-deployment",
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/06-technical/10-wamp-local-workflow.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-022",
+    "title": "Sistema visual y componentes MVP",
+    "status": "Aceptada",
+    "area": "UX/Frontend",
+    "blocking": true,
+    "recommendation": "Mini design system propio con CSS modular.",
+    "decision": "VipWeb usará un sistema visual propio, ligero y modular con HTML semántico, CSS organizado, tokens, componentes reutilizables y JavaScript vanilla.",
+    "rationale": "Mantiene coherencia visual sin sobrecargar el MVP ni depender de frameworks.",
+    "depends_on": [
+      "ADR-003",
+      "ADR-011"
+    ],
+    "documents": [
+      "docs/07-design-ux/04-components.md",
+      "docs/06-technical/01-stack.md"
+    ],
+    "risks": [
+      "Deuda visual si se diseñan pantallas aisladas."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/07-design-ux/04-components.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-023",
+    "title": "Catálogo de módulos del MVP",
+    "status": "Aceptada",
+    "area": "Arquitectura/Producto",
+    "blocking": true,
+    "recommendation": "15 módulos iniciales: 7 core y 8 funcionales.",
+    "decision": "El MVP incluirá core.identity, core.permissions, core.modules, core.events, core.audit, core.config, core.doctor, dashboard, onboarding, profile, notifications, admin, gamification, ai_assistant e integrations.",
+    "rationale": "Demuestra ecosistema modular sin sobrecargar.",
+    "depends_on": [
+      "ADR-001",
+      "ADR-002",
+      "ADR-014"
+    ],
+    "documents": [
+      "docs/04-architecture/02-modules.md",
+      "machine/modules.json"
+    ],
+    "risks": [
+      "MVP pobre si hay menos módulos o demasiado grande si entran módulos futuros."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/04-architecture/02-modules.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-024",
+    "title": "Backlog ejecutable y Sprint 0",
+    "status": "Aceptada",
+    "area": "Roadmap/Backlog",
+    "blocking": true,
+    "recommendation": "Sprint 0 antes de funcionalidades visibles.",
+    "decision": "VipWeb ejecutará Sprint 0 para estructura, documentación mínima, ADRs, catálogos JSON, scripts, configuración WAMP, migraciones, seeds, Doctor, evidencias, registro operativo local y backups.",
+    "rationale": "Convierte la base fundacional en una base real de trabajo.",
+    "depends_on": [
+      "ADR-007",
+      "ADR-008",
+      "ADR-019",
+      "ADR-020",
+      "ADR-021",
+      "ADR-023"
+    ],
+    "documents": [
+      "docs/11-backlog/00-backlog-overview.md",
+      "CURRENT_STATUS.md"
+    ],
+    "risks": [
+      "Documentación no ejecutable si no se baja a Sprint 0."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/11-backlog/00-backlog-overview.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-025",
+    "title": "Orden final de implementación técnica",
+    "status": "Aceptada",
+    "area": "Implementación",
+    "blocking": true,
+    "recommendation": "Implementar en local por capas.",
+    "decision": "VipWeb se implementará en local WAMP siguiendo este orden: backup, estructura, documentación, catálogos, scripts, configuración, migraciones, seeds, core, identidad/permisos, admin, dashboard, onboarding, perfil/notificaciones, gamificación, IA, integraciones, validación.",
+    "rationale": "Reduce riesgo, protege el trabajo mediante backups/Git según el gate vigente y evita empezar por pantallas sin base.",
+    "depends_on": [
+      "ADR-024"
+    ],
+    "documents": [
+      "docs/10-roadmap/00-roadmap-overview.md",
+      "docs/11-backlog/03-technical-tasks.md"
+    ],
+    "risks": [
+      "Pérdida de trabajo o deuda temprana si se altera el orden sin motivo."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "DECISION_ADR_COVERAGE_COMPLETE",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/10-roadmap/00-roadmap-overview.md",
+    "manual_review_ref": "ADR review + coherence audit"
+  },
+  {
+    "id": "ADR-027",
+    "title": "Contratos de lectura cross-module",
+    "status": "Aceptada",
+    "area": "Arquitectura/Datos",
+    "blocking": true,
+    "recommendation": "Toda lectura de entidades ajenas requiere contrato data_read validable.",
+    "decision": "VipWeb exigirá contratos data_read para cualquier lectura cross-module declarada en data.read_entities, con owner, campos permitidos, permiso, redacción, fallback, evidencia y check Doctor.",
+    "rationale": "Las lecturas implícitas pueden crear acoplamiento, exposición de datos e interpretación insegura por IA aunque no sean mutaciones.",
+    "depends_on": [
+      "ADR-002",
+      "ADR-006",
+      "ADR-009"
+    ],
+    "documents": [
+      "docs/04-architecture/03-module-contracts.md",
+      "docs/05-domain-data/07-cross-module-read-contracts.md"
+    ],
+    "risks": [
+      "Acoplamiento silencioso entre módulos.",
+      "Lectura por IA fuera del contexto permitido."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "MODULE_READ_ENTITIES_HAVE_DATA_READ_CONTRACT",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/12-decisions/adr/adr-027-contratos-de-lectura-cross-module.md",
+    "manual_review_ref": "post-audit solution application"
+  },
+  {
+    "id": "ADR-028",
+    "title": "Runbooks IA machine-readable",
+    "status": "Aceptada",
+    "area": "IA/Documentación",
+    "blocking": false,
+    "recommendation": "Crear catálogo machine-readable de runbooks IA validado por schema y Doctor.",
+    "decision": "VipWeb mantendrá runbooks IA en Markdown para humanos y en machine/ai_runbooks.json como fuente validable para IA, Doctor, permisos, acciones prohibidas, tests y evidencias.",
+    "rationale": "Reduce interpretación libre y aumenta trazabilidad de operación IA sin conceder permisos nuevos.",
+    "depends_on": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-009",
+      "ADR-020"
+    ],
+    "documents": [
+      "docs/09-ai-operations/04-ai-runbooks.md",
+      "docs/09-ai-operations/07-machine-readable-docs.md"
+    ],
+    "risks": [
+      "Ejecución IA dependiente de Markdown no estructurado.",
+      "Runbooks sin relación verificable con runtime tests."
+    ],
+    "environment": null,
+    "phase": "foundation",
+    "validated_by": "AI_RUNBOOKS_SCHEMA_VALID",
+    "evidence_required": true,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/12-decisions/adr/adr-028-runbooks-ia-machine-readable.md",
+    "manual_review_ref": "post-audit solution application"
+  },
+  {
+    "id": "ADR-029",
+    "title": "Raíz limpia y separación entre runtime root y project control root",
+    "status": "Aceptada",
+    "area": "Operación local/Documentación",
+    "blocking": true,
+    "recommendation": "Separar APP_ROOT de PROJECT_CONTROL_ROOT para mantener raíz limpia sin romper rutas internas relativas.",
+    "decision": "VipWeb usa APP_ROOT=C:/wamp64/www/vipweb para runtime local y PROJECT_CONTROL_ROOT=C:/wamp64/www/vipweb/project para documentación canónica, machine-readable, database specs, scripts, templates, evidence, changelog y canonical-baseline.",
+    "rationale": "Concentra el control documental en project/, mantiene public/ como único punto visible y evita repartir el contenido canónico por la raíz runtime.",
+    "depends_on": [
+      "ADR-007",
+      "ADR-021",
+      "ADR-024"
+    ],
+    "documents": [
+      "docs/06-technical/02-project-structure.md",
+      "docs/06-technical/10-wamp-local-workflow.md",
+      "docs/12-decisions/adr/adr-029-raiz-limpia-y-project-control-root.md"
+    ],
+    "risks": [
+      "Duplicar docs/machine/database fuera de project/ y crear contradicciones de ruta."
+    ],
+    "environment": "Windows/WAMP local",
+    "phase": "foundation",
+    "validated_by": "PROJECT_CLEAN_ROOT_LAYOUT_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/12-decisions/adr/adr-029-raiz-limpia-y-project-control-root.md",
+    "manual_review_ref": "ADR review + clean root layout audit"
+  },
+  {
+    "id": "ADR-030",
+    "title": "Modelo de ejecución AI-first con tools externas locales",
+    "status": "Aceptada",
+    "area": "IA/Operación local/Roadmap",
+    "blocking": true,
+    "recommendation": "Ejecutar el roadmap mediante GPT, Codex y tools externas locales con Git obligatorio en el repo oficial, backups externos y logs revisables.",
+    "decision": "VipWeb adopta un modelo de ejecución local AI-first donde GPT analiza y revisa, Codex prepara cambios dentro del repo cuando el gate lo permita, tools externas ejecutan operaciones locales mediante .bat/.cmd y el owner humano ejecuta, aprueba y registra evidencia.",
+    "rationale": "Permite convertir tareas que la IA no puede ejecutar directamente en herramientas independientes, trazables y revisables sin perder control humano, logs, backups ni gates.",
+    "depends_on": [
+      "ADR-003",
+      "ADR-005",
+      "ADR-007",
+      "ADR-009",
+      "ADR-021",
+      "ADR-024",
+      "ADR-026",
+      "ADR-029"
+    ],
+    "documents": [
+      "docs/06-technical/12-external-roadmap-tools.md",
+      "docs/09-ai-operations/11-ai-first-execution-model.md",
+      "docs/10-roadmap/09-ai-first-roadmap-execution.md",
+      "docs/12-decisions/adr/adr-030-modelo-de-ejecucion-ai-first-con-tools-externas.md"
+    ],
+    "risks": [
+      "Confundir tools internas del proyecto con tools externas del roadmap.",
+      "Declarar como validado un log no revisado por owner/GPT.",
+      "Filtrar secretos en logs externos."
+    ],
+    "environment": "Windows/WAMP local",
+    "phase": "foundation",
+    "validated_by": "EXTERNAL_ROADMAP_TOOL_CONTRACTS_DECLARED",
+    "evidence_required": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/12-decisions/adr/adr-030-modelo-de-ejecucion-ai-first-con-tools-externas.md",
+    "manual_review_ref": "owner AI-first roadmap adjustment"
+  }
+]

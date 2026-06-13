@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/module.activated.v1.schema.json",
+  "title": "module.activated v1 payload",
+  "type": "object",
+  "required": [
+    "module_id",
+    "actor_type",
+    "actor_id",
+    "user_id",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "module_id": {
+      "type": "string"
+    },
+    "actor_type": {
+      "type": "string",
+      "enum": [
+        "human",
+        "ai",
+        "system"
+      ]
+    },
+    "actor_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "user_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

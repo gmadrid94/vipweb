@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "order",
+      "entity",
+      "up_ref",
+      "rollback_ref",
+      "checksum_required",
+      "checksum_algorithm",
+      "applies_to",
+      "reversible",
+      "rollback_mode",
+      "ledger_required",
+      "source_doc",
+      "artifact_state",
+      "manifest_ref"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^MIG-[0-9]{3}$"
+      },
+      "order": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "entity": {
+        "type": "string",
+        "minLength": 1
+      },
+      "up_ref": {
+        "type": "string",
+        "pattern": "^database/migrations/.+\\.sql$"
+      },
+      "rollback_ref": {
+        "type": "string",
+        "pattern": "^database/rollbacks/.+\\.sql$"
+      },
+      "checksum_required": {
+        "type": "boolean"
+      },
+      "applies_to": {
+        "type": "string",
+        "minLength": 1
+      },
+      "reversible": {
+        "type": "boolean"
+      },
+      "rollback_mode": {
+        "type": "string",
+        "minLength": 1
+      },
+      "ledger_required": {
+        "type": "boolean"
+      },
+      "source_doc": {
+        "type": "string",
+        "minLength": 1
+      },
+      "checksum_algorithm": {
+        "const": "sha256"
+      },
+      "artifact_state": {
+        "type": "string",
+        "enum": [
+          "generated_not_executed",
+          "validated_not_executed",
+          "executed_locally"
+        ]
+      },
+      "manifest_ref": {
+        "type": "string",
+        "const": "database/manifest.json"
+      }
+    }
+  }
+}

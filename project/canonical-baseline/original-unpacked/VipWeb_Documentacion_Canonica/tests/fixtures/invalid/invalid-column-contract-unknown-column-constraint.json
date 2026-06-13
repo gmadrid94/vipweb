@@ -1,0 +1,319 @@
+[
+  {
+    "entity": "AIDraft",
+    "table": "ai_drafts",
+    "module": "ai_assistant",
+    "migration_ref": "database/migrations/025_create_ai_drafts.sql",
+    "migration_order": 25,
+    "id_strategy": "uuid_v4_char36",
+    "columns": [
+      {
+        "name": "id",
+        "logical_type": "id",
+        "wamp_sql_type": "CHAR(36)",
+        "nullable": false,
+        "sensitive": false,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": false,
+        "requires_redaction": false,
+        "redaction_strategy": "none",
+        "non_export_reason": "operational_or_system_data",
+        "primary_key": true,
+        "default": "generated_by_application",
+        "index": "primary"
+      },
+      {
+        "name": "approval_id",
+        "logical_type": "id",
+        "wamp_sql_type": "CHAR(36)",
+        "nullable": false,
+        "sensitive": false,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": false,
+        "requires_redaction": false,
+        "redaction_strategy": "none",
+        "non_export_reason": "operational_or_system_data",
+        "index": "foreign_key_or_lookup"
+      },
+      {
+        "name": "ai_action_log_id",
+        "logical_type": "id",
+        "wamp_sql_type": "CHAR(36)",
+        "nullable": false,
+        "sensitive": false,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": false,
+        "requires_redaction": false,
+        "redaction_strategy": "none",
+        "non_export_reason": "operational_or_system_data",
+        "index": "foreign_key_or_lookup"
+      },
+      {
+        "name": "target_doc",
+        "logical_type": "path",
+        "wamp_sql_type": "VARCHAR(500)",
+        "nullable": false,
+        "sensitive": true,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": true,
+        "requires_redaction": true,
+        "redaction_strategy": "paths_only_or_summary",
+        "non_export_reason": "operational_audit_data"
+      },
+      {
+        "name": "draft_type",
+        "logical_type": "enum",
+        "wamp_sql_type": "VARCHAR(60)",
+        "nullable": false,
+        "sensitive": false,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": false,
+        "requires_redaction": false,
+        "redaction_strategy": "none",
+        "non_export_reason": "operational_or_system_data",
+        "allowed_values_source": "documented_enum_or_application_check",
+        "index": "secondary"
+      },
+      {
+        "name": "instructions_summary",
+        "logical_type": "text",
+        "wamp_sql_type": "TEXT",
+        "nullable": false,
+        "sensitive": true,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": true,
+        "requires_redaction": true,
+        "redaction_strategy": "summary_only",
+        "non_export_reason": "operational_audit_data"
+      },
+      {
+        "name": "content_markdown",
+        "logical_type": "text",
+        "wamp_sql_type": "MEDIUMTEXT",
+        "nullable": false,
+        "sensitive": true,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": true,
+        "requires_redaction": true,
+        "redaction_strategy": "summary_only",
+        "non_export_reason": "operational_audit_data"
+      },
+      {
+        "name": "files_read_json",
+        "logical_type": "json",
+        "wamp_sql_type": "JSON",
+        "nullable": false,
+        "sensitive": true,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": true,
+        "requires_redaction": true,
+        "redaction_strategy": "paths_only_or_summary",
+        "non_export_reason": "operational_audit_data",
+        "validation": "application_json_schema_required"
+      },
+      {
+        "name": "proposed_files_changed_json",
+        "logical_type": "json",
+        "wamp_sql_type": "JSON",
+        "nullable": false,
+        "sensitive": true,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": true,
+        "requires_redaction": true,
+        "redaction_strategy": "paths_only_or_summary",
+        "non_export_reason": "operational_audit_data",
+        "validation": "application_json_schema_required"
+      },
+      {
+        "name": "risk_level",
+        "logical_type": "enum",
+        "wamp_sql_type": "VARCHAR(40)",
+        "nullable": false,
+        "sensitive": false,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": false,
+        "requires_redaction": false,
+        "redaction_strategy": "none",
+        "non_export_reason": "operational_or_system_data",
+        "allowed_values_source": "documented_enum_or_application_check",
+        "index": "secondary"
+      },
+      {
+        "name": "status",
+        "logical_type": "enum",
+        "wamp_sql_type": "VARCHAR(60)",
+        "nullable": false,
+        "sensitive": false,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": false,
+        "requires_redaction": false,
+        "redaction_strategy": "none",
+        "non_export_reason": "operational_or_system_data",
+        "allowed_values_source": "documented_enum_or_application_check",
+        "index": "secondary"
+      },
+      {
+        "name": "created_at",
+        "logical_type": "datetime",
+        "wamp_sql_type": "DATETIME(3)",
+        "nullable": false,
+        "sensitive": false,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": false,
+        "requires_redaction": false,
+        "redaction_strategy": "none",
+        "non_export_reason": "operational_or_system_data",
+        "index": "secondary"
+      },
+      {
+        "name": "reviewed_at",
+        "logical_type": "datetime",
+        "wamp_sql_type": "DATETIME(3)",
+        "nullable": true,
+        "sensitive": false,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": false,
+        "requires_redaction": false,
+        "redaction_strategy": "none",
+        "non_export_reason": "operational_or_system_data"
+      },
+      {
+        "name": "discarded_at",
+        "logical_type": "datetime",
+        "wamp_sql_type": "DATETIME(3)",
+        "nullable": true,
+        "sensitive": false,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": false,
+        "requires_redaction": false,
+        "redaction_strategy": "none",
+        "non_export_reason": "operational_or_system_data"
+      },
+      {
+        "name": "approved_for_manual_apply_at",
+        "logical_type": "datetime",
+        "wamp_sql_type": "DATETIME(3)",
+        "nullable": true,
+        "sensitive": false,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": false,
+        "requires_redaction": false,
+        "redaction_strategy": "none",
+        "non_export_reason": "operational_or_system_data"
+      },
+      {
+        "name": "applied_at",
+        "logical_type": "datetime",
+        "wamp_sql_type": "DATETIME(3)",
+        "nullable": true,
+        "sensitive": false,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": false,
+        "requires_redaction": false,
+        "redaction_strategy": "none",
+        "non_export_reason": "operational_or_system_data"
+      },
+      {
+        "name": "applied_by",
+        "logical_type": "string",
+        "wamp_sql_type": "VARCHAR(255)",
+        "nullable": true,
+        "sensitive": false,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": false,
+        "evidence_allowed": false,
+        "requires_redaction": false,
+        "redaction_strategy": "none",
+        "non_export_reason": "operational_or_system_data",
+        "index": "secondary"
+      }
+    ],
+    "table_constraints": [
+      {
+        "kind": "unsupported_constraint",
+        "expression": "ghost_column required"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_ai_drafts_id",
+        "columns": [
+          "id"
+        ],
+        "unique": false
+      },
+      {
+        "name": "ux_ai_drafts_approval_id",
+        "columns": [
+          "approval_id"
+        ],
+        "unique": true
+      },
+      {
+        "name": "ux_ai_drafts_ai_action_log_id",
+        "columns": [
+          "ai_action_log_id"
+        ],
+        "unique": true
+      },
+      {
+        "name": "idx_ai_drafts_status",
+        "columns": [
+          "status"
+        ],
+        "unique": false
+      },
+      {
+        "name": "idx_ai_drafts_target_doc",
+        "columns": [
+          "target_doc"
+        ],
+        "unique": false
+      },
+      {
+        "name": "idx_ai_drafts_created_at",
+        "columns": [
+          "created_at"
+        ],
+        "unique": false
+      }
+    ],
+    "delete_policy": "append_only",
+    "timestamp_policy": "created_at_plus_review_lifecycle_timestamps",
+    "json_validation_required": true,
+    "source_doc": "docs/05-domain-data/01-entities.md"
+  }
+]

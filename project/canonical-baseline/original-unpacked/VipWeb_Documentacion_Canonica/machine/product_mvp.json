@@ -1,0 +1,62 @@
+{
+  "id": "VIPWEB-MVP-001",
+  "definition": "Centro modular de acompañamiento para que un usuario pueda entrar, entender el ecosistema, activar módulos iniciales, ver continuidad/progreso, recibir orientación básica de IA y operar servicios conectados sin sentirse ante un panel técnico aislado.",
+  "included_modules": [
+    "core.identity",
+    "core.permissions",
+    "core.modules",
+    "core.events",
+    "core.audit",
+    "core.config",
+    "core.doctor",
+    "dashboard",
+    "onboarding",
+    "profile",
+    "notifications",
+    "admin",
+    "gamification",
+    "ai_assistant",
+    "integrations"
+  ],
+  "excluded_from_mvp": [
+    "pagos reales",
+    "proveedores externos reales",
+    "marketplace de módulos",
+    "AI-3 operativo",
+    "AI-4",
+    "automatización destructiva",
+    "multi-tenant avanzado"
+  ],
+  "mvp_principles": [
+    "dashboard como primer módulo funcional real",
+    "onboarding progresivo y retomable",
+    "gamificación ligera derivada de eventos; el runtime mínimo de progreso es bloqueante y la capa visual completa es enriquecimiento no bloqueante",
+    "IA asistente no autónoma",
+    "administración MVP read-only salvo acciones seguras",
+    "integraciones como stub sin credenciales reales"
+  ],
+  "source_adrs": [
+    "ADR-012",
+    "ADR-014",
+    "ADR-016",
+    "ADR-017",
+    "ADR-018",
+    "ADR-023"
+  ],
+  "initial_validation_segment": {
+    "icp": "Owner-operador de ecosistema web modular en fase inicial",
+    "context": "Gestiona o prepara módulos, servicios, webs, automatizaciones o áreas conectadas",
+    "primary_pain": "Fragmentación operativa y falta de continuidad entre piezas",
+    "main_need": "Punto común para estado, módulos, progreso, evidencias e IA asistida",
+    "mvp_user_policy": "controlled_provisioning_mvp_no_public_signup",
+    "success_signal": "Completa onboarding, llega al dashboard, entiende el siguiente paso y usa al menos un módulo inicial",
+    "anti_icp": [
+      "usuario final masivo sin cuenta provisionada",
+      "cliente que solo necesita una landing aislada",
+      "organización que requiere multi-tenant avanzado",
+      "usuario que necesita pagos o marketplace desde el inicio",
+      "usuario que espera IA autónoma",
+      "proyecto que depende de integraciones externas reales inmediatas"
+    ]
+  }
+}

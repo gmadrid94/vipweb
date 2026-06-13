@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "name",
+      "module",
+      "priority",
+      "phase",
+      "acceptance",
+      "commercial_tier_candidate",
+      "commercial_surface"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "module": {
+        "type": "string"
+      },
+      "priority": {
+        "type": "string"
+      },
+      "phase": {
+        "type": "string"
+      },
+      "acceptance": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "commercial_tier_candidate": {
+        "enum": [
+          "core_included",
+          "free_mvp",
+          "future_premium_candidate",
+          "internal_only",
+          "not_monetizable"
+        ]
+      },
+      "commercial_surface": {
+        "enum": [
+          "core_internal",
+          "user_facing",
+          "admin_internal",
+          "integration_surface",
+          "ai_operations"
+        ]
+      }
+    }
+  }
+}

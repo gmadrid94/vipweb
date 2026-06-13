@@ -1,0 +1,28 @@
+[
+  {
+    "id": "C1-999",
+    "priority": "P3",
+    "phase": "2",
+    "title": "Fixture válida mínima de backlog",
+    "module": "core.foundation",
+    "dependencies": [],
+    "acceptance_criteria": [
+      "Debe validar contra schema."
+    ],
+    "evidence": "tests/fixtures/valid/backlog-item.valid.json",
+    "status": "pending",
+    "description": "Caso positivo mínimo para backlog-item.schema.json.",
+    "actions": [
+      "Validar fixture positiva."
+    ],
+    "files_affected": [],
+    "doctor_check": "POSITIVE_SCHEMA_FIXTURES_PASS",
+    "expected_evidence": "Doctor acepta fixture positiva.",
+    "risk": "Regresión de schema no detectada.",
+    "local_rollback": "Eliminar fixture.",
+    "blocking": false,
+    "wamp_relevant": false,
+    "ai_read_required": true,
+    "source_doc": "docs/06-technical/06-testing.md"
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "id": "integration.example",
+  "name": "Example Integration",
+  "owner_module": "integrations",
+  "phase": "future",
+  "lifecycle_status": "planned",
+  "provider": {
+    "code": "example",
+    "display_name": "Example Provider",
+    "provider_type": "api",
+    "vendor_lock_in_risk": "medium"
+  },
+  "scopes": [],
+  "permissions": [],
+  "credentials": {
+    "required_secret_keys": [],
+    "real_values_forbidden": true,
+    "storage_policy": "env_or_secret_store_only"
+  },
+  "data_exchange": {
+    "incoming": [],
+    "outgoing": [],
+    "personal_data": false,
+    "sensitive_data": false,
+    "retention_policy": "not_applicable_until_active"
+  },
+  "events": {
+    "emitted": [],
+    "consumed": []
+  },
+  "rate_limits": {
+    "declared": false,
+    "policy": null,
+    "retry_strategy": null
+  },
+  "fallback": {
+    "manual_available": true,
+    "strategy": "disable_integration_and_continue_core"
+  },
+  "sandbox": {
+    "required_before_active": true,
+    "evidence_ref": null,
+    "last_verified_at": null
+  },
+  "ai_access": {
+    "ai_read_allowed": false,
+    "ai_write_allowed": false,
+    "max_ai_level": null,
+    "approval_required": true
+  },
+  "rollback": {
+    "strategy": "disable_integration",
+    "config_key": "integration.example.enabled"
+  },
+  "source_doc": "docs/04-architecture/04-integration-architecture.md"
+}

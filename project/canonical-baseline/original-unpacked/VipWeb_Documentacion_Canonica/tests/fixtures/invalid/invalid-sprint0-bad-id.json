@@ -1,0 +1,35 @@
+[
+  {
+    "id": "S-0",
+    "title": "Verificar entorno PHP local",
+    "priority": "P0",
+    "phase": "Sprint 0",
+    "status": "pending",
+    "description": "Registrar versión real de PHP en WAMP local antes de escribir código runtime.",
+    "actions": [
+      "Ejecutar php -v",
+      "Registrar versión en evidencia",
+      "Actualizar runtime_verified_php_version",
+      "Confirmar si se permite sintaxis PHP 8.4"
+    ],
+    "files_affected": [
+      "evidence/sprint-0-local-execution.md",
+      "evidence/sprint-0-local-execution.md"
+    ],
+    "dependencies": [],
+    "acceptance_criteria": [
+      "php -v registrado en evidencia",
+      "runtime_verified_php_version definido",
+      "Doctor valida que la versión mínima no contradice ADR-003",
+      "No se usa sintaxis PHP 8.4 hasta verificar compatibilidad local"
+    ],
+    "doctor_check": "PHP_RUNTIME_VERSION_VERIFIED",
+    "expected_evidence": "php-v-output",
+    "risk": "Código runtime incompatible con el WAMP local real",
+    "local_rollback": "Volver al mínimo verificado y ajustar sintaxis/dependencias",
+    "blocking": true,
+    "wamp_relevant": true,
+    "ai_read_required": true,
+    "source_doc": "docs/06-technical/01-stack.md"
+  }
+]

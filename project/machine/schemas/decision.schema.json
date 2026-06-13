@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "title",
+      "status",
+      "area",
+      "blocking",
+      "recommendation",
+      "decision",
+      "rationale",
+      "depends_on",
+      "documents",
+      "risks",
+      "environment",
+      "phase",
+      "validated_by",
+      "evidence_required",
+      "wamp_relevant",
+      "ai_read_required",
+      "source_doc",
+      "manual_review_ref"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^ADR-[0-9]{3}$"
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "status": {
+        "enum": [
+          "Aceptada",
+          "Aceptada corregida",
+          "Propuesta",
+          "Rechazada",
+          "Deprecada"
+        ]
+      },
+      "area": {
+        "type": "string",
+        "minLength": 1
+      },
+      "blocking": {
+        "type": "boolean"
+      },
+      "recommendation": {
+        "type": "string",
+        "minLength": 1
+      },
+      "decision": {
+        "type": "string",
+        "minLength": 1
+      },
+      "rationale": {
+        "type": "string",
+        "minLength": 1
+      },
+      "depends_on": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^ADR-[0-9]{3}$"
+        },
+        "uniqueItems": true
+      },
+      "documents": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "risks": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uniqueItems": true
+      },
+      "environment": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "phase": {
+        "enum": [
+          "foundation",
+          "mvp",
+          "post_mvp",
+          "future"
+        ]
+      },
+      "validated_by": {
+        "type": "string",
+        "minLength": 1
+      },
+      "evidence_required": {
+        "type": "boolean"
+      },
+      "wamp_relevant": {
+        "type": "boolean"
+      },
+      "ai_read_required": {
+        "type": "boolean"
+      },
+      "source_doc": {
+        "type": "string",
+        "minLength": 1
+      },
+      "manual_review_ref": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

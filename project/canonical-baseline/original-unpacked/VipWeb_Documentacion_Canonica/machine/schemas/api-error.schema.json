@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "code",
+    "message",
+    "user_message",
+    "field_errors",
+    "retryable",
+    "correlation_id"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "type": "string",
+      "enum": [
+        "AUTH_REQUIRED",
+        "PERMISSION_DENIED",
+        "APPROVAL_REQUIRED",
+        "APPROVAL_INVALID_OR_EXPIRED",
+        "APPROVAL_EXPIRED",
+        "APPROVAL_ALREADY_CONSUMED",
+        "VALIDATION_FAILED",
+        "PAYLOAD_SCHEMA_INVALID",
+        "CSRF_INVALID",
+        "AUTH_INVALID_CREDENTIALS",
+        "AUTH_RATE_LIMITED",
+        "SESSION_EXPIRED",
+        "RESOURCE_NOT_FOUND",
+        "RESOURCE_CONFLICT",
+        "CONFLICT_STATE",
+        "ACTION_NOT_ALLOWED",
+        "IDEMPOTENCY_CONFLICT",
+        "RATE_LIMITED",
+        "DOCTOR_FAILED",
+        "INTEGRATION_UNAVAILABLE",
+        "INTERNAL_ERROR"
+      ]
+    },
+    "message": {
+      "type": "string"
+    },
+    "user_message": {
+      "type": "string"
+    },
+    "field_errors": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "retryable": {
+      "type": "boolean"
+    },
+    "correlation_id": {
+      "type": "string"
+    }
+  }
+}

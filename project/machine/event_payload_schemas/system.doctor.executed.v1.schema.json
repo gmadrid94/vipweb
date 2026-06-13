@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/event_payload_schemas/system.doctor.executed.v1.schema.json",
+  "title": "system.doctor.executed v1 payload",
+  "type": "object",
+  "required": [
+    "run_id",
+    "status",
+    "checks_total",
+    "actor_type",
+    "actor_id",
+    "triggered_by_user_id",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "checks_total": {
+      "type": "integer"
+    },
+    "actor_type": {
+      "type": "string",
+      "enum": [
+        "human",
+        "ai",
+        "system"
+      ]
+    },
+    "actor_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "triggered_by_user_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

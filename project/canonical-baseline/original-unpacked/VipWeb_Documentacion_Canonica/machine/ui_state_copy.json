@@ -1,0 +1,592 @@
+[
+  {
+    "screen_id": "public_entry",
+    "state": "loading",
+    "title": "Preparando la entrada a VipWeb.",
+    "body": "Estamos cargando el contexto público mínimo sin acceder a datos privados.",
+    "primary_action": "",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "public_entry",
+    "state": "empty",
+    "title": "VipWeb es un ecosistema modular de acompañamiento.",
+    "body": "Desde aquí puedes entender el propósito del sistema e iniciar sesión con una cuenta provisionada. No hay auto-registro público en el MVP.",
+    "primary_action": "Iniciar sesión",
+    "secondary_action": "Acceso mediante cuenta provisionada",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "public_entry",
+    "state": "ready",
+    "title": "Tu punto de entrada al ecosistema VipWeb.",
+    "body": "Continúa hacia el acceso seguro para retomar módulos, progreso y próximos pasos cuando tengas una cuenta provisionada.",
+    "primary_action": "Iniciar sesión",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "public_entry",
+    "state": "error",
+    "title": "No se ha podido cargar la entrada pública.",
+    "body": "Puedes intentar acceder de nuevo al punto de entrada o ir directamente al inicio de sesión.",
+    "primary_action": "Reintentar",
+    "secondary_action": "Ir a login",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "login",
+    "state": "empty",
+    "title": "Accede para continuar tu espacio.",
+    "body": "Introduce tus datos para retomar tu ecosistema.",
+    "primary_action": "Entrar",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "login",
+    "state": "loading",
+    "title": "Comprobando tus datos de acceso.",
+    "body": "La sesión se preparará si las credenciales son correctas.",
+    "primary_action": "",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "login",
+    "state": "error",
+    "title": "No se ha podido iniciar sesión.",
+    "body": "Revisa los datos e inténtalo de nuevo.",
+    "primary_action": "Reintentar",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "login",
+    "state": "success",
+    "title": "Sesión iniciada.",
+    "body": "Preparando tu panel.",
+    "primary_action": "Continuar",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "onboarding",
+    "state": "loading",
+    "title": "Leyendo tu progreso de configuración.",
+    "body": "Estamos recuperando el último paso disponible para continuar sin perder contexto.",
+    "primary_action": "",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "onboarding",
+    "state": "empty",
+    "title": "Vamos a preparar tu espacio paso a paso.",
+    "body": "Completa la configuración inicial para activar la experiencia guiada.",
+    "primary_action": "Empezar",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "onboarding",
+    "state": "in_progress",
+    "title": "Continúa desde el último punto completado.",
+    "body": "Tu avance se conserva automáticamente cuando guardas cada paso.",
+    "primary_action": "Continuar",
+    "secondary_action": "Guardar y salir",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "onboarding",
+    "state": "paused",
+    "title": "Puedes retomarlo cuando quieras.",
+    "body": "Tu avance se conserva y no bloquea volver al panel básico.",
+    "primary_action": "Retomar",
+    "secondary_action": "Ir al panel",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "onboarding",
+    "state": "completed",
+    "title": "Configuración inicial completada.",
+    "body": "Tu espacio ya tiene la base necesaria para continuar.",
+    "primary_action": "Ir al panel",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "onboarding",
+    "state": "error",
+    "title": "No se ha podido guardar este paso.",
+    "body": "Revisa la información y vuelve a intentarlo.",
+    "primary_action": "Reintentar",
+    "secondary_action": "Guardar más tarde",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "dashboard",
+    "state": "loading",
+    "title": "Preparando el resumen de tu ecosistema.",
+    "body": "Estamos leyendo módulos, progreso y avisos disponibles.",
+    "primary_action": "",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "dashboard",
+    "state": "empty",
+    "title": "Todavía no hay actividad.",
+    "body": "El siguiente paso recomendado es completar la configuración inicial.",
+    "primary_action": "Continuar configuración",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "dashboard",
+    "state": "ready",
+    "title": "Tu espacio está listo para continuar.",
+    "body": "Revisa el siguiente paso sugerido y los módulos disponibles.",
+    "primary_action": "Ver siguiente paso",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "dashboard",
+    "state": "blocked",
+    "title": "Hay una fase previa pendiente.",
+    "body": "Completa la base técnica antes de mostrar este panel completo.",
+    "primary_action": "Ver requisitos",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "dashboard",
+    "state": "error",
+    "title": "No se ha podido cargar el panel.",
+    "body": "Revisa Doctor o inténtalo de nuevo.",
+    "primary_action": "Reintentar",
+    "secondary_action": "Ver Doctor",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "profile",
+    "state": "loading",
+    "title": "Preparando tu perfil.",
+    "body": "Estamos leyendo tus datos y preferencias permitidas.",
+    "primary_action": "",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "profile",
+    "state": "view",
+    "title": "Estos son los datos principales de tu perfil.",
+    "body": "Revísalos antes de actualizar contexto o preferencias.",
+    "primary_action": "Editar",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "profile",
+    "state": "edit",
+    "title": "Actualiza solo lo necesario.",
+    "body": "Podrás cambiarlo más adelante sin perder continuidad.",
+    "primary_action": "Guardar",
+    "secondary_action": "Cancelar",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "profile",
+    "state": "saving",
+    "title": "Guardando cambios.",
+    "body": "No cierres esta pantalla hasta finalizar el guardado.",
+    "primary_action": "",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "profile",
+    "state": "saved",
+    "title": "Perfil actualizado correctamente.",
+    "body": "Los módulos podrán usar el nuevo contexto permitido.",
+    "primary_action": "Volver",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "profile",
+    "state": "blocked",
+    "title": "No se puede mostrar el perfil todavía.",
+    "body": "Falta permiso, sesión válida o una fase previa para acceder a esta pantalla.",
+    "primary_action": "Volver al panel",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "profile",
+    "state": "error",
+    "title": "No se han podido guardar los cambios.",
+    "body": "Revisa los campos marcados y vuelve a intentarlo.",
+    "primary_action": "Reintentar",
+    "secondary_action": "Descartar",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "notifications",
+    "state": "loading",
+    "title": "Cargando tus avisos.",
+    "body": "Estamos revisando si hay notificaciones pendientes o ya leídas.",
+    "primary_action": "",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "notifications",
+    "state": "empty",
+    "title": "No hay avisos pendientes.",
+    "body": "Cuando algo requiera atención aparecerá aquí.",
+    "primary_action": "Volver al panel",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "notifications",
+    "state": "unread",
+    "title": "Tienes avisos por revisar.",
+    "body": "Marca como leídos los que ya no requieran acción.",
+    "primary_action": "Revisar",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "notifications",
+    "state": "read",
+    "title": "Aviso revisado.",
+    "body": "La notificación queda marcada como leída.",
+    "primary_action": "Volver",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "notifications",
+    "state": "blocked",
+    "title": "No tienes permisos para ver estos avisos.",
+    "body": "Solicita acceso si necesitas operar esta sección.",
+    "primary_action": "Volver",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "notifications",
+    "state": "error",
+    "title": "No se han podido cargar las notificaciones.",
+    "body": "Inténtalo de nuevo o revisa el estado del sistema.",
+    "primary_action": "Reintentar",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "admin",
+    "state": "loading",
+    "title": "Cargando vista administrativa.",
+    "body": "Estamos leyendo módulos, evidencias y permisos disponibles.",
+    "primary_action": "",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "admin",
+    "state": "read_only",
+    "title": "Vista administrativa en modo consulta.",
+    "body": "Las acciones sensibles requieren permisos y aprobación cuando aplique.",
+    "primary_action": "Ver módulos",
+    "secondary_action": "Ver evidencias",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "admin",
+    "state": "blocked",
+    "title": "Esta acción requiere una fase previa o aprobación.",
+    "body": "No se ejecutará ningún cambio hasta completar el requisito.",
+    "primary_action": "Ver requisito",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "admin",
+    "state": "no_permission",
+    "title": "No tienes permiso para acceder a esta sección.",
+    "body": "El acceso administrativo está limitado por RBAC.",
+    "primary_action": "Volver",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "admin",
+    "state": "error",
+    "title": "No se ha podido cargar el panel administrativo.",
+    "body": "Revisa permisos, Doctor o registros de auditoría.",
+    "primary_action": "Reintentar",
+    "secondary_action": "Ver auditoría",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "doctor_evidence",
+    "state": "loading",
+    "title": "Leyendo evidencias de validación.",
+    "body": "Se está cargando el último estado disponible.",
+    "primary_action": "",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "doctor_evidence",
+    "state": "empty",
+    "title": "No hay evidencia generada todavía.",
+    "body": "Ejecuta Doctor readonly y registra evidencia cuando corresponda.",
+    "primary_action": "Ver Doctor",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "doctor_evidence",
+    "state": "passed",
+    "title": "Doctor ha pasado los checks disponibles.",
+    "body": "La evidencia queda registrada para revisión.",
+    "primary_action": "Ver evidencia",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "doctor_evidence",
+    "state": "warning",
+    "title": "Hay advertencias que conviene revisar.",
+    "body": "No bloquean necesariamente, pero deben quedar trazadas.",
+    "primary_action": "Revisar advertencias",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "doctor_evidence",
+    "state": "failed",
+    "title": "Hay checks fallidos.",
+    "body": "No avances de fase hasta resolverlos o justificar la excepción.",
+    "primary_action": "Ver fallos",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "doctor_evidence",
+    "state": "error",
+    "title": "No se ha podido leer la evidencia.",
+    "body": "Revisa el archivo de evidencia o vuelve a cargar la vista.",
+    "primary_action": "Reintentar",
+    "secondary_action": "",
+    "tone": "calm_actionable",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "modules_catalog",
+    "state": "loading",
+    "title": "Cargando módulos",
+    "body": "Preparando el catálogo de módulos disponibles para tu cuenta.",
+    "primary_action": "",
+    "secondary_action": "",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "modules_catalog",
+    "state": "empty",
+    "title": "No hay módulos visibles",
+    "body": "Todavía no hay módulos activables para este usuario. Revisa provisioning o permisos.",
+    "primary_action": "Volver al dashboard",
+    "secondary_action": "Contactar con administración",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "modules_catalog",
+    "state": "ready",
+    "title": "Módulos disponibles",
+    "body": "Elige un módulo disponible o continúa desde el siguiente paso recomendado.",
+    "primary_action": "Abrir módulo",
+    "secondary_action": "Volver al dashboard",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "modules_catalog",
+    "state": "blocked",
+    "title": "Catálogo no disponible",
+    "body": "Esta vista requiere una cuenta provisionada con permiso module.view.",
+    "primary_action": "Volver al dashboard",
+    "secondary_action": "Revisar permisos",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "modules_catalog",
+    "state": "error",
+    "title": "No se pudo cargar el catálogo",
+    "body": "Reintenta la carga o revisa la evidencia Doctor si el problema persiste.",
+    "primary_action": "Reintentar",
+    "secondary_action": "Ir al dashboard",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "progress",
+    "state": "loading",
+    "title": "Cargando progreso",
+    "body": "Calculando tu estado actual sin duplicar recompensas ni eventos.",
+    "primary_action": "",
+    "secondary_action": "",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "progress",
+    "state": "empty",
+    "title": "Aún no hay progreso",
+    "body": "Completa onboarding o usa tu primer módulo para empezar a generar progreso.",
+    "primary_action": "Ver siguiente paso",
+    "secondary_action": "Ir al dashboard",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "progress",
+    "state": "ready",
+    "title": "Progreso actualizado",
+    "body": "Tu actividad reciente está reflejada en logros, próximos pasos y estado general.",
+    "primary_action": "Continuar",
+    "secondary_action": "Ver módulos",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "progress",
+    "state": "blocked",
+    "title": "Progreso bloqueado",
+    "body": "El progreso requiere eventos válidos y una cuenta con permiso gamification.view.",
+    "primary_action": "Volver al dashboard",
+    "secondary_action": "Revisar permisos",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "progress",
+    "state": "error",
+    "title": "No se pudo cargar el progreso",
+    "body": "Reintenta o revisa si hay eventos de gamificación pendientes de validar.",
+    "primary_action": "Reintentar",
+    "secondary_action": "Ir al dashboard",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "ai_workspace",
+    "state": "loading",
+    "title": "Cargando contexto IA",
+    "body": "Preparando contexto documental de solo lectura y límites de actuación.",
+    "primary_action": "",
+    "secondary_action": "",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "ai_workspace",
+    "state": "read_only",
+    "title": "IA en modo lectura",
+    "body": "La IA puede leer contexto y proponer sugerencias, pero no valida estado ni aplica cambios sin aprobación.",
+    "primary_action": "Revisar sugerencias",
+    "secondary_action": "Ver política IA",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "ai_workspace",
+    "state": "draft_available",
+    "title": "Borrador IA disponible",
+    "body": "Existe una propuesta generada por IA pendiente de revisión humana antes de cualquier aplicación.",
+    "primary_action": "Revisar borrador",
+    "secondary_action": "Ver ApprovalRecord",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "ai_workspace",
+    "state": "blocked",
+    "title": "Acción IA bloqueada",
+    "body": "Esta acción requiere gate, permiso o aprobación humana antes de continuar.",
+    "primary_action": "Ver límites IA",
+    "secondary_action": "Volver a admin",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "ai_workspace",
+    "state": "no_permission",
+    "title": "Sin permiso IA",
+    "body": "Esta sección está limitada a owner con permiso ai.read_context.",
+    "primary_action": "Volver al dashboard",
+    "secondary_action": "",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  },
+  {
+    "screen_id": "ai_workspace",
+    "state": "error",
+    "title": "No se pudo cargar IA",
+    "body": "Reintenta o revisa Doctor antes de ampliar acciones asistidas.",
+    "primary_action": "Reintentar",
+    "secondary_action": "Ver Doctor",
+    "tone": "calm",
+    "source_doc": "docs/07-design-ux/09-screen-state-copy.md"
+  }
+]

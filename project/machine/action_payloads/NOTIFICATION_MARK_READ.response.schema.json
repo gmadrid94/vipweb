@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "machine/action_payloads/NOTIFICATION_MARK_READ.response.schema.json",
+  "title": "NOTIFICATION_MARK_READ success response",
+  "type": "object",
+  "required": [
+    "ok",
+    "data",
+    "error",
+    "meta"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "ok": {
+      "const": true
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "notification_id",
+        "read_at",
+        "already_read"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "notification_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "read_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "already_read": {
+          "type": "boolean"
+        }
+      }
+    },
+    "error": {
+      "type": "null"
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "request_id",
+        "action_id",
+        "emitted_events"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "request_id": {
+          "type": "string"
+        },
+        "action_id": {
+          "const": "NOTIFICATION_MARK_READ"
+        },
+        "emitted_events": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1294 @@
+[
+  {
+    "id": "AUTH_LOGIN_SUBMIT",
+    "module": "core.identity",
+    "route": "/login",
+    "method": "POST",
+    "permission": "auth.login",
+    "allowed_roles": [
+      "visitor"
+    ],
+    "mutable": true,
+    "mutation_scope": "session",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "user.logged_in"
+    ],
+    "writes_entities": [
+      "AuthAttempt"
+    ],
+    "rollback": "invalidate_session",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": false,
+    "approval_record_required": false,
+    "request_contract": {
+      "path_params_schema_ref": null,
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/AUTH_LOGIN_SUBMIT.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/AUTH_LOGIN_SUBMIT.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "AUTH_INVALID_CREDENTIALS",
+      "AUTH_RATE_LIMITED",
+      "AUTH_REQUIRED",
+      "CSRF_INVALID",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "payload_valid",
+      "csrf_valid"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "user.logged_in_event_emitted",
+      "state_changed_with_rollback_path",
+      "session_regenerated"
+    ],
+    "idempotency": {
+      "required": false,
+      "key_source": null
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "foundation_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  },
+  {
+    "id": "AUTH_LOGOUT",
+    "module": "core.identity",
+    "route": "/logout",
+    "method": "POST",
+    "permission": "auth.logout",
+    "allowed_roles": [
+      "registered_user",
+      "admin",
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "session",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "user.logged_out"
+    ],
+    "writes_entities": [],
+    "rollback": "session_already_invalidated_safe_retry",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": false,
+    "approval_record_required": false,
+    "request_contract": {
+      "path_params_schema_ref": null,
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/AUTH_LOGOUT.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/AUTH_LOGOUT.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "AUTH_REQUIRED",
+      "CSRF_INVALID",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "payload_valid",
+      "csrf_valid"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "user.logged_out_event_emitted",
+      "state_changed_with_rollback_path"
+    ],
+    "idempotency": {
+      "required": false,
+      "key_source": null
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "foundation_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  },
+  {
+    "id": "ONBOARDING_START",
+    "module": "onboarding",
+    "route": "/onboarding/start",
+    "method": "POST",
+    "permission": "profile.update",
+    "allowed_roles": [
+      "registered_user",
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "user_profile",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "onboarding.started"
+    ],
+    "writes_entities": [
+      "OnboardingSession"
+    ],
+    "rollback": "set_onboarding_step_previous_state",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": false,
+    "approval_record_required": false,
+    "request_contract": {
+      "path_params_schema_ref": null,
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/ONBOARDING_START.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/ONBOARDING_START.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "AUTH_REQUIRED",
+      "CSRF_INVALID",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "RESOURCE_CONFLICT",
+      "RESOURCE_NOT_FOUND",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "payload_valid"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "onboarding.started_event_emitted",
+      "state_changed_with_rollback_path"
+    ],
+    "idempotency": {
+      "required": false,
+      "key_source": null
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "mvp_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  },
+  {
+    "id": "ONBOARDING_COMPLETE",
+    "module": "onboarding",
+    "route": "/onboarding/complete",
+    "method": "POST",
+    "permission": "profile.update",
+    "allowed_roles": [
+      "registered_user",
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "user_profile",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "onboarding.completed"
+    ],
+    "writes_entities": [
+      "OnboardingSession"
+    ],
+    "rollback": "reopen_onboarding_session_with_previous_step",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": false,
+    "approval_record_required": false,
+    "request_contract": {
+      "path_params_schema_ref": null,
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/ONBOARDING_COMPLETE.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/ONBOARDING_COMPLETE.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "AUTH_REQUIRED",
+      "CSRF_INVALID",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "RESOURCE_CONFLICT",
+      "RESOURCE_NOT_FOUND",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "payload_valid"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "onboarding.completed_event_emitted",
+      "state_changed_with_rollback_path",
+      "no_cross_module_entity_written",
+      "progress_is_derived_by_gamification_event_consumer"
+    ],
+    "idempotency": {
+      "required": false,
+      "key_source": null
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "mvp_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  },
+  {
+    "id": "PROFILE_UPDATE",
+    "module": "profile",
+    "route": "/profile",
+    "method": "PATCH",
+    "permission": "profile.update",
+    "allowed_roles": [
+      "registered_user",
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "user_context",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "profile.updated"
+    ],
+    "writes_entities": [
+      "UserContext"
+    ],
+    "rollback": "restore_previous_profile_snapshot",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": false,
+    "approval_record_required": false,
+    "request_contract": {
+      "path_params_schema_ref": null,
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/PROFILE_UPDATE.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/PROFILE_UPDATE.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "AUTH_REQUIRED",
+      "CSRF_INVALID",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "RESOURCE_CONFLICT",
+      "RESOURCE_NOT_FOUND",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "payload_valid"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "profile.updated_event_emitted",
+      "state_changed_with_rollback_path"
+    ],
+    "idempotency": {
+      "required": false,
+      "key_source": null
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "mvp_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  },
+  {
+    "id": "NOTIFICATION_MARK_READ",
+    "module": "notifications",
+    "route": "/notifications/{id}/read",
+    "method": "POST",
+    "permission": "notification.mark_read",
+    "allowed_roles": [
+      "registered_user",
+      "admin",
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "notification_status",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "notification.read"
+    ],
+    "writes_entities": [
+      "Notification"
+    ],
+    "rollback": "restore_unread_status_if_needed",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": false,
+    "approval_record_required": false,
+    "request_contract": {
+      "path_params_schema_ref": "machine/action_payloads/NOTIFICATION_MARK_READ.path.schema.json",
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/NOTIFICATION_MARK_READ.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/NOTIFICATION_MARK_READ.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "AUTH_REQUIRED",
+      "CSRF_INVALID",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "RESOURCE_CONFLICT",
+      "RESOURCE_NOT_FOUND",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "payload_valid"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "notification.read_event_emitted",
+      "state_changed_with_rollback_path"
+    ],
+    "idempotency": {
+      "required": false,
+      "key_source": null
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "mvp_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  },
+  {
+    "id": "MODULE_ACTIVATE",
+    "module": "core.modules",
+    "route": "/admin/modules/{id}/activate",
+    "method": "POST",
+    "permission": "admin.manage_modules",
+    "allowed_roles": [
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "module_lifecycle",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "module.activated"
+    ],
+    "writes_entities": [
+      "Module"
+    ],
+    "rollback": "disable_module_and_restore_previous_lifecycle_status",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": true,
+    "approval_record_required": true,
+    "request_contract": {
+      "path_params_schema_ref": "machine/action_payloads/MODULE_ACTIVATE.path.schema.json",
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/MODULE_ACTIVATE.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/MODULE_ACTIVATE.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "ACTION_NOT_ALLOWED",
+      "APPROVAL_ALREADY_CONSUMED",
+      "APPROVAL_EXPIRED",
+      "APPROVAL_INVALID_OR_EXPIRED",
+      "APPROVAL_REQUIRED",
+      "AUTH_REQUIRED",
+      "CONFLICT_STATE",
+      "CSRF_INVALID",
+      "IDEMPOTENCY_CONFLICT",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "RESOURCE_NOT_FOUND",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "approval_record_valid",
+      "payload_valid"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "module.activated_event_emitted",
+      "state_changed_with_rollback_path"
+    ],
+    "idempotency": {
+      "required": true,
+      "key_source": "idempotency_key"
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "foundation_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  },
+  {
+    "id": "MODULE_CONFIGURE",
+    "module": "core.modules",
+    "route": "/admin/modules/{id}/configure",
+    "method": "PATCH",
+    "permission": "admin.manage_modules",
+    "allowed_roles": [
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "module_manifest",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "module.configured"
+    ],
+    "writes_entities": [
+      "ModuleManifest"
+    ],
+    "rollback": "restore_previous_manifest_version",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": true,
+    "approval_record_required": true,
+    "request_contract": {
+      "path_params_schema_ref": "machine/action_payloads/MODULE_CONFIGURE.path.schema.json",
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/MODULE_CONFIGURE.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/MODULE_CONFIGURE.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "ACTION_NOT_ALLOWED",
+      "APPROVAL_ALREADY_CONSUMED",
+      "APPROVAL_EXPIRED",
+      "APPROVAL_INVALID_OR_EXPIRED",
+      "APPROVAL_REQUIRED",
+      "AUTH_REQUIRED",
+      "CONFLICT_STATE",
+      "CSRF_INVALID",
+      "IDEMPOTENCY_CONFLICT",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "RESOURCE_NOT_FOUND",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "approval_record_valid",
+      "payload_valid"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "module.configured_event_emitted",
+      "state_changed_with_rollback_path"
+    ],
+    "idempotency": {
+      "required": true,
+      "key_source": "idempotency_key"
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "foundation_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  },
+  {
+    "id": "INTEGRATION_CONFIGURE_STUB",
+    "module": "integrations",
+    "route": "/admin/integrations/{id}/configure-stub",
+    "method": "POST",
+    "permission": "integration.configure",
+    "allowed_roles": [
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "integration_stub_config",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "integration.configured"
+    ],
+    "writes_entities": [
+      "Integration"
+    ],
+    "rollback": "restore_previous_stub_config",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": true,
+    "approval_record_required": true,
+    "request_contract": {
+      "path_params_schema_ref": "machine/action_payloads/INTEGRATION_CONFIGURE_STUB.path.schema.json",
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/INTEGRATION_CONFIGURE_STUB.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/INTEGRATION_CONFIGURE_STUB.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "ACTION_NOT_ALLOWED",
+      "APPROVAL_ALREADY_CONSUMED",
+      "APPROVAL_EXPIRED",
+      "APPROVAL_INVALID_OR_EXPIRED",
+      "APPROVAL_REQUIRED",
+      "AUTH_REQUIRED",
+      "CONFLICT_STATE",
+      "CSRF_INVALID",
+      "IDEMPOTENCY_CONFLICT",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "RESOURCE_NOT_FOUND",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "approval_record_valid",
+      "payload_valid"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "integration.configured_event_emitted",
+      "state_changed_with_rollback_path"
+    ],
+    "idempotency": {
+      "required": true,
+      "key_source": "idempotency_key"
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "mvp_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  },
+  {
+    "id": "DOCTOR_RUN_READONLY",
+    "module": "core.doctor",
+    "route": "/admin/doctor/run-readonly",
+    "method": "POST",
+    "permission": "system.run_doctor.readonly",
+    "allowed_roles": [
+      "admin",
+      "owner"
+    ],
+    "mutable": false,
+    "mutation_scope": "business_readonly_operational_audit",
+    "audit_required": true,
+    "ai_allowed": true,
+    "ai_level_max": "AI-1",
+    "emits_events": [
+      "system.doctor.executed"
+    ],
+    "writes_entities": [],
+    "rollback": "not_required_readonly",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": false,
+    "approval_record_required": false,
+    "request_contract": {
+      "path_params_schema_ref": null,
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/DOCTOR_RUN_READONLY.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/DOCTOR_RUN_READONLY.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "AUTH_REQUIRED",
+      "CSRF_INVALID",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "system.doctor.executed_event_emitted",
+      "no_business_state_changed"
+    ],
+    "idempotency": {
+      "required": false,
+      "key_source": null
+    },
+    "ux_states": {
+      "on_success": "ready",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [
+      {
+        "entity": "AuditLog",
+        "owner_module": "core.audit",
+        "contract_ref": "core.audit.record_action",
+        "mode": "public_contract",
+        "required": true,
+        "rollback_owner": "core.audit",
+        "rollback": "append_correction_audit_log"
+      },
+      {
+        "entity": "DomainEvent",
+        "owner_module": "core.events",
+        "contract_ref": "core.events.emit_system_event",
+        "mode": "public_contract",
+        "required": true,
+        "rollback_owner": "core.events",
+        "rollback": "append_superseding_event_if_needed"
+      }
+    ],
+    "implementation_status": "foundation_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": [
+      "ai_assistant"
+    ]
+  },
+  {
+    "id": "EVIDENCE_WRITE",
+    "module": "core.doctor",
+    "route": "/admin/doctor/evidence/write",
+    "method": "POST",
+    "permission": "evidence.write",
+    "allowed_roles": [
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "evidence_append_only",
+    "audit_required": true,
+    "ai_allowed": true,
+    "ai_level_max": "AI-2",
+    "emits_events": [
+      "evidence.recorded"
+    ],
+    "writes_entities": [
+      "EvidenceReport"
+    ],
+    "rollback": "append_correction_evidence_no_destructive_delete",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": true,
+    "approval_record_required": true,
+    "request_contract": {
+      "path_params_schema_ref": null,
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/EVIDENCE_WRITE.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/EVIDENCE_WRITE.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "ACTION_NOT_ALLOWED",
+      "APPROVAL_ALREADY_CONSUMED",
+      "APPROVAL_EXPIRED",
+      "APPROVAL_INVALID_OR_EXPIRED",
+      "APPROVAL_REQUIRED",
+      "AUTH_REQUIRED",
+      "CSRF_INVALID",
+      "IDEMPOTENCY_CONFLICT",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "RESOURCE_NOT_FOUND",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "approval_record_valid",
+      "payload_valid"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "evidence.recorded_event_emitted",
+      "state_changed_with_rollback_path",
+      "approval_record_consumed",
+      "restricted_mvp_action_disabled_by_default",
+      "append_only_evidence_written",
+      "no_status_validation_performed"
+    ],
+    "idempotency": {
+      "required": true,
+      "key_source": "idempotency_key"
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "restricted_mvp",
+    "activation_status": "disabled_by_default",
+    "ai_roles": [
+      "ai_admin"
+    ]
+  },
+  {
+    "id": "DOCTOR_STATUS_VALIDATE",
+    "module": "core.doctor",
+    "route": "/admin/doctor/status/validate",
+    "method": "POST",
+    "permission": "doctor.status.validate",
+    "allowed_roles": [
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "decision_status",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "decision.recorded"
+    ],
+    "writes_entities": [],
+    "rollback": "append_superseding_decision_record",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": true,
+    "approval_record_required": true,
+    "request_contract": {
+      "path_params_schema_ref": null,
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/DOCTOR_STATUS_VALIDATE.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/DOCTOR_STATUS_VALIDATE.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "ACTION_NOT_ALLOWED",
+      "APPROVAL_ALREADY_CONSUMED",
+      "APPROVAL_EXPIRED",
+      "APPROVAL_INVALID_OR_EXPIRED",
+      "APPROVAL_REQUIRED",
+      "AUTH_REQUIRED",
+      "CONFLICT_STATE",
+      "CSRF_INVALID",
+      "IDEMPOTENCY_CONFLICT",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "RESOURCE_NOT_FOUND",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "approval_record_valid",
+      "payload_valid"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "decision.recorded_event_emitted",
+      "state_changed_with_rollback_path",
+      "decision_record_written_by_core_events_contract",
+      "no_cross_module_entity_written"
+    ],
+    "idempotency": {
+      "required": true,
+      "key_source": "idempotency_key"
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [
+      {
+        "entity": "DecisionRecord",
+        "owner_module": "core.events",
+        "contract_ref": "core.events.record_decision",
+        "mode": "public_contract",
+        "required": true,
+        "rollback_owner": "core.events",
+        "rollback": "append_superseding_decision_record"
+      }
+    ],
+    "implementation_status": "foundation_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  },
+  {
+    "id": "AI_WRITE_DRAFT",
+    "module": "ai_assistant",
+    "route": "/ai/drafts",
+    "method": "POST",
+    "permission": "ai.write_draft",
+    "allowed_roles": [
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "draft_append_only",
+    "audit_required": true,
+    "ai_allowed": true,
+    "ai_level_max": "AI-2",
+    "emits_events": [
+      "ai.suggestion.created"
+    ],
+    "writes_entities": [
+      "AIDraft",
+      "AIActionLog"
+    ],
+    "rollback": "discard_draft_before_application",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": true,
+    "approval_record_required": true,
+    "request_contract": {
+      "path_params_schema_ref": null,
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/AI_WRITE_DRAFT.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/AI_WRITE_DRAFT.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "ACTION_NOT_ALLOWED",
+      "APPROVAL_ALREADY_CONSUMED",
+      "APPROVAL_EXPIRED",
+      "APPROVAL_INVALID_OR_EXPIRED",
+      "APPROVAL_REQUIRED",
+      "AUTH_REQUIRED",
+      "CSRF_INVALID",
+      "IDEMPOTENCY_CONFLICT",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "RESOURCE_NOT_FOUND",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "approval_record_valid",
+      "payload_valid"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "ai.suggestion.created_event_emitted",
+      "state_changed_with_rollback_path",
+      "draft_record_created",
+      "approval_record_consumed",
+      "no_files_modified",
+      "restricted_mvp_action_disabled_by_default",
+      "no_runtime_execution"
+    ],
+    "idempotency": {
+      "required": true,
+      "key_source": "idempotency_key"
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "restricted_mvp",
+    "activation_status": "disabled_by_default",
+    "ai_roles": [
+      "ai_admin"
+    ]
+  },
+  {
+    "id": "MODULE_USE_TRACK",
+    "module": "core.modules",
+    "route": "/modules/{id}/use",
+    "method": "POST",
+    "permission": "module.use",
+    "allowed_roles": [
+      "registered_user",
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "module_usage_event",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "module.used"
+    ],
+    "writes_entities": [],
+    "rollback": "append_compensating_usage_correction_or_ignore_duplicate_event",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": false,
+    "approval_record_required": false,
+    "request_contract": {
+      "path_params_schema_ref": "machine/action_payloads/MODULE_USE_TRACK.path.schema.json",
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/MODULE_USE_TRACK.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/MODULE_USE_TRACK.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "AUTH_REQUIRED",
+      "CSRF_INVALID",
+      "IDEMPOTENCY_CONFLICT",
+      "INTERNAL_ERROR",
+      "MODULE_NOT_ACTIVE",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "RESOURCE_NOT_FOUND",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "module_exists",
+      "module_active_or_stub_allowed",
+      "payload_valid",
+      "csrf_valid"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "module.used_event_emitted",
+      "usage_event_is_idempotent_for_user_module_source",
+      "no_admin_activation_counted_as_usage",
+      "no_cross_module_entity_written"
+    ],
+    "idempotency": {
+      "required": true,
+      "key_source": "user_id:module_id:source_route:usage_window"
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "mvp_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  },
+  {
+    "id": "USER_PROVISION_CONTROLLED",
+    "module": "core.identity",
+    "route": "/admin/users/provision",
+    "method": "POST",
+    "permission": "admin.manage_users",
+    "allowed_roles": [
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "controlled_user_provisioning",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "user.registered"
+    ],
+    "writes_entities": [
+      "User"
+    ],
+    "rollback": "disable_provisioned_user_and_append_audit_record",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": true,
+    "approval_record_required": true,
+    "request_contract": {
+      "path_params_schema_ref": null,
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/USER_PROVISION_CONTROLLED.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/USER_PROVISION_CONTROLLED.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "APPROVAL_REQUIRED",
+      "APPROVAL_ALREADY_CONSUMED",
+      "APPROVAL_EXPIRED",
+      "APPROVAL_INVALID_OR_EXPIRED",
+      "AUTH_REQUIRED",
+      "CSRF_INVALID",
+      "IDEMPOTENCY_CONFLICT",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "RESOURCE_CONFLICT",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "approval_record_valid",
+      "approval_scope_matches",
+      "payload_valid",
+      "csrf_valid",
+      "idempotency_key_valid",
+      "email_not_existing",
+      "initial_role_registered_user"
+    ],
+    "postconditions": [
+      "user_created",
+      "user_role_assigned",
+      "audit_record_created",
+      "user.registered_event_emitted",
+      "approval_record_consumed",
+      "state_changed_with_rollback_path"
+    ],
+    "idempotency": {
+      "required": true,
+      "key_source": "body.idempotency_key"
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [
+      {
+        "entity": "UserRole",
+        "owner_module": "core.permissions",
+        "contract_ref": "core.permissions.assign_role",
+        "mode": "public_contract",
+        "required": true,
+        "rollback_owner": "core.permissions",
+        "rollback": "remove_assigned_registered_user_role_append_audit"
+      }
+    ],
+    "implementation_status": "foundation_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  },
+  {
+    "id": "DASHBOARD_VIEW_TRACK",
+    "module": "dashboard",
+    "route": "/dashboard/view-track",
+    "method": "POST",
+    "permission": "dashboard.track_view",
+    "allowed_roles": [
+      "registered_user",
+      "admin",
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "domain_view_event_append_only",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "dashboard.viewed",
+      "dashboard.first_viewed"
+    ],
+    "writes_entities": [],
+    "rollback": "append_compensating_view_event_or_ignore_duplicate_first_view",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": false,
+    "approval_record_required": false,
+    "request_contract": {
+      "path_params_schema_ref": null,
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/DASHBOARD_VIEW_TRACK.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/DASHBOARD_VIEW_TRACK.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "AUTH_REQUIRED",
+      "CSRF_INVALID",
+      "IDEMPOTENCY_CONFLICT",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "payload_valid",
+      "csrf_valid",
+      "screen_render_completed"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "dashboard.viewed_event_emitted_when_event_id_matches",
+      "dashboard.first_viewed_event_emitted_once_per_user",
+      "no_state_change_from_GET_render"
+    ],
+    "idempotency": {
+      "required": true,
+      "key_source": "user_id:event_id:view_fingerprint"
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "mvp_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  },
+  {
+    "id": "ADMIN_PANEL_VIEW_TRACK",
+    "module": "admin",
+    "route": "/admin/panel-view-track",
+    "method": "POST",
+    "permission": "admin.track_panel_view",
+    "allowed_roles": [
+      "admin",
+      "owner"
+    ],
+    "mutable": true,
+    "mutation_scope": "admin_domain_view_event_append_only",
+    "audit_required": true,
+    "ai_allowed": false,
+    "ai_level_max": null,
+    "emits_events": [
+      "admin.panel.viewed"
+    ],
+    "writes_entities": [],
+    "rollback": "append_compensating_admin_view_event_if_needed",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "runtime_approval_required": false,
+    "approval_record_required": false,
+    "request_contract": {
+      "path_params_schema_ref": null,
+      "query_schema_ref": null,
+      "body_schema_ref": "machine/action_payloads/ADMIN_PANEL_VIEW_TRACK.request.schema.json"
+    },
+    "response_contract": {
+      "success_schema_ref": "machine/action_payloads/ADMIN_PANEL_VIEW_TRACK.response.schema.json",
+      "error_schema_ref": "machine/schemas/api-error.schema.json"
+    },
+    "error_codes": [
+      "AUTH_REQUIRED",
+      "CSRF_INVALID",
+      "INTERNAL_ERROR",
+      "PAYLOAD_SCHEMA_INVALID",
+      "PERMISSION_DENIED",
+      "SESSION_EXPIRED",
+      "VALIDATION_FAILED"
+    ],
+    "preconditions": [
+      "route_exists",
+      "permission_granted",
+      "payload_valid",
+      "csrf_valid",
+      "admin_panel_render_completed"
+    ],
+    "postconditions": [
+      "audit_record_created",
+      "admin.panel.viewed_event_emitted",
+      "no_state_change_from_GET_render"
+    ],
+    "idempotency": {
+      "required": false,
+      "key_source": null
+    },
+    "ux_states": {
+      "on_success": "success",
+      "on_validation_error": "error",
+      "on_permission_error": "blocked",
+      "on_conflict": "warning"
+    },
+    "delegated_write_entities": [],
+    "implementation_status": "mvp_ready",
+    "activation_status": "active_by_default",
+    "ai_roles": []
+  }
+]

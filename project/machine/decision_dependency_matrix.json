@@ -1,0 +1,255 @@
+{
+  "status": "coherent",
+  "open_contradictions": 0,
+  "critical_correction": "ADR-021 replaces deployment/staging/production assumptions with local Windows/WAMP, Git local for AI-first, manual backups and SQL export.",
+  "dependencies": {
+    "ADR-001": [],
+    "ADR-002": [
+      "ADR-001"
+    ],
+    "ADR-003": [
+      "ADR-001",
+      "ADR-002"
+    ],
+    "ADR-004": [
+      "ADR-001",
+      "ADR-002"
+    ],
+    "ADR-005": [
+      "ADR-004",
+      "ADR-007",
+      "ADR-009"
+    ],
+    "ADR-006": [
+      "ADR-001",
+      "ADR-002"
+    ],
+    "ADR-007": [
+      "ADR-001"
+    ],
+    "ADR-008": [
+      "ADR-001",
+      "ADR-002",
+      "ADR-006",
+      "ADR-007"
+    ],
+    "ADR-009": [
+      "ADR-007"
+    ],
+    "ADR-010": [
+      "ADR-006",
+      "ADR-014"
+    ],
+    "ADR-011": [
+      "ADR-010",
+      "ADR-014"
+    ],
+    "ADR-012": [
+      "ADR-001",
+      "ADR-002"
+    ],
+    "ADR-013": [
+      "ADR-012"
+    ],
+    "ADR-014": [
+      "ADR-012",
+      "ADR-013"
+    ],
+    "ADR-015": [
+      "ADR-001",
+      "ADR-002",
+      "ADR-006"
+    ],
+    "ADR-016": [
+      "ADR-014",
+      "ADR-023"
+    ],
+    "ADR-017": [
+      "ADR-014",
+      "ADR-016"
+    ],
+    "ADR-018": [
+      "ADR-004",
+      "ADR-009",
+      "ADR-023"
+    ],
+    "ADR-019": [
+      "ADR-006",
+      "ADR-004",
+      "ADR-023"
+    ],
+    "ADR-020": [
+      "ADR-004",
+      "ADR-006",
+      "ADR-009"
+    ],
+    "ADR-021": [
+      "ADR-003",
+      "ADR-009",
+      "ADR-020"
+    ],
+    "ADR-022": [
+      "ADR-003",
+      "ADR-011"
+    ],
+    "ADR-023": [
+      "ADR-001",
+      "ADR-002",
+      "ADR-014"
+    ],
+    "ADR-024": [
+      "ADR-007",
+      "ADR-008",
+      "ADR-019",
+      "ADR-020",
+      "ADR-021",
+      "ADR-023"
+    ],
+    "ADR-025": [
+      "ADR-024"
+    ],
+    "ADR-027": [
+      "ADR-002",
+      "ADR-006",
+      "ADR-009"
+    ],
+    "ADR-028": [
+      "ADR-005",
+      "ADR-007",
+      "ADR-009",
+      "ADR-020"
+    ],
+    "ADR-029": [
+      "ADR-007",
+      "ADR-021",
+      "ADR-024"
+    ],
+    "ADR-030": [
+      "ADR-003",
+      "ADR-005",
+      "ADR-007",
+      "ADR-009",
+      "ADR-021",
+      "ADR-024",
+      "ADR-026",
+      "ADR-029"
+    ]
+  },
+  "impacts": [
+    {
+      "source": "ADR-021",
+      "target": "ADR-003",
+      "result": "Compatible: WAMP local es una implementación concreta del stack PHP/MySQL/PDO."
+    },
+    {
+      "source": "ADR-021",
+      "target": "ADR-008",
+      "result": "Ajuste aplicado: roadmap no debe hablar de staging/producción en fase actual; se sustituye por entorno local y backup manual."
+    },
+    {
+      "source": "ADR-021",
+      "target": "ADR-020",
+      "result": "Compatible: testing y Doctor se ejecutan localmente."
+    },
+    {
+      "source": "ADR-021",
+      "target": "ADR-024",
+      "result": "Compatible: Sprint 0 incluye backup local, registro de ejecución local y configuración WAMP."
+    },
+    {
+      "source": "ADR-021",
+      "target": "ADR-025",
+      "result": "Compatible: la primera fase técnica es protección local."
+    },
+    {
+      "source": "ADR-010",
+      "target": "ADR-006",
+      "result": "Compatible: gamificación consume eventos, no lógica interna."
+    },
+    {
+      "source": "ADR-010",
+      "target": "ADR-016",
+      "result": "Compatible: Dashboard muestra progreso, pero no contiene reglas de gamificación."
+    },
+    {
+      "source": "ADR-005",
+      "target": "ADR-004",
+      "result": "Compatible: IA tiene rol y permisos propios, no privilegios admin."
+    },
+    {
+      "source": "ADR-005",
+      "target": "ADR-009",
+      "result": "Compatible: IA no puede marcar validated sin evidencia."
+    },
+    {
+      "source": "ADR-015",
+      "target": "ADR-014",
+      "result": "Compatible: integraciones entran como capa/catálogo, no como dependencia externa real del MVP."
+    },
+    {
+      "source": "ADR-022",
+      "target": "ADR-003",
+      "result": "Compatible: UI inicial con HTML/CSS/JS vanilla."
+    },
+    {
+      "source": "ADR-023",
+      "target": "ADR-014",
+      "result": "Compatible: el catálogo de 15 módulos materializa el MVP guiado."
+    },
+    {
+      "source": "ADR-019",
+      "target": "ADR-006",
+      "result": "Compatible: migraciones físicas derivan del dominio."
+    },
+    {
+      "source": "ADR-007",
+      "target": "ADR-009",
+      "result": "Compatible: docs y machine-readable se validan con Doctor."
+    },
+    {
+      "source": "ADR-012",
+      "target": "ADR-013",
+      "result": "Compatible: ecosistema modular escalable encaja con freemium modular progresivo."
+    },
+    {
+      "source": "ADR-027",
+      "target": "ADR-002",
+      "result": "Refuerza el modelo modular al exigir contratos también para lecturas, no solo para escrituras y eventos."
+    },
+    {
+      "source": "ADR-027",
+      "target": "ADR-006",
+      "result": "Compatible: ownership de datos y campos permitidos se derivan del modelo de dominio y entidades."
+    },
+    {
+      "source": "ADR-028",
+      "target": "ADR-005",
+      "result": "Refuerza la autonomía IA operativa mediante runbooks validables y guardrails estructurados."
+    },
+    {
+      "source": "ADR-028",
+      "target": "ADR-020",
+      "result": "Compatible: cada runbook IA se vincula a runtime tests y evidencias."
+    },
+    {
+      "source": "ADR-030",
+      "target": "ADR-021",
+      "result": "Refuerza WAMP local con Git local, backups externos y tools externas sin introducir despliegue externo."
+    },
+    {
+      "source": "ADR-030",
+      "target": "ADR-024",
+      "result": "Sprint 0 incorpora ejecución mediante tools externas y logs revisables por GPT cuando la IA no puede operar directamente."
+    },
+    {
+      "source": "ADR-030",
+      "target": "ADR-026",
+      "result": "No sustituye ADR-026; exige activation_record real para cambios protegidos preparados por IA."
+    },
+    {
+      "source": "ADR-030",
+      "target": "ADR-029",
+      "result": "Extiende el layout limpio con carpetas hermanas externas vipweb_backups y vipweb_tools."
+    }
+  ]
+}

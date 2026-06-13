@@ -1,0 +1,37 @@
+[
+  {
+    "entity": "FixtureEntity",
+    "table": "fixture_entities",
+    "module": "core.data",
+    "migration_ref": "database/migrations/999_fixture_entities.sql",
+    "migration_order": 999,
+    "id_strategy": "uuid_v4_char36",
+    "columns": [
+      {
+        "name": "id",
+        "logical_type": "id",
+        "wamp_sql_type": "CHAR(36)",
+        "nullable": false,
+        "sensitive": false,
+        "exportable": false,
+        "user_exportable": false,
+        "ai_readable": true,
+        "evidence_allowed": true,
+        "requires_redaction": false,
+        "redaction_strategy": "none",
+        "non_export_reason": null
+      }
+    ],
+    "table_constraints": [
+      {
+        "kind": "minimum_constraint",
+        "expression": "id required"
+      }
+    ],
+    "indexes": [],
+    "delete_policy": "append_only",
+    "timestamp_policy": "created_only",
+    "json_validation_required": false,
+    "source_doc": "docs/06-technical/06-testing.md"
+  }
+]

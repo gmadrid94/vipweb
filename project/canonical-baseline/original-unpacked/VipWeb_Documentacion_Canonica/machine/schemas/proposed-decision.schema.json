@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "title",
+      "status",
+      "activation_state",
+      "area",
+      "blocking",
+      "extends",
+      "counts_as_foundational_pending",
+      "counts_as_accepted_adr",
+      "activation_triggers",
+      "protected_file_categories",
+      "not_triggered_by",
+      "required_before_apply",
+      "source_doc",
+      "activation_contract"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^ADR-[0-9]{3}$"
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "status": {
+        "enum": [
+          "proposed_conditional",
+          "proposed",
+          "future_candidate",
+          "rejected"
+        ]
+      },
+      "activation_state": {
+        "enum": [
+          "inactive",
+          "active",
+          "rejected"
+        ]
+      },
+      "area": {
+        "type": "string",
+        "minLength": 1
+      },
+      "blocking": {
+        "enum": [
+          "conditional",
+          "yes",
+          "no"
+        ]
+      },
+      "extends": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "counts_as_foundational_pending": {
+        "type": "boolean"
+      },
+      "counts_as_accepted_adr": {
+        "type": "boolean"
+      },
+      "activation_triggers": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "protected_file_categories": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "not_triggered_by": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "required_before_apply": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "source_doc": {
+        "type": "string",
+        "minLength": 1
+      },
+      "activation_contract": {
+        "type": "object",
+        "required": [
+          "state_source",
+          "activation_record_location",
+          "valid_states",
+          "required_when_active",
+          "activation_record_template",
+          "machine_verification_rule",
+          "ai_permissions"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "state_source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "activation_record_location": {
+            "type": "string",
+            "minLength": 1
+          },
+          "valid_states": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "required_when_active": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "activation_record_template": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "machine_verification_rule": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ai_permissions": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "activation_record": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "additionalProperties": true
+      }
+    }
+  }
+}

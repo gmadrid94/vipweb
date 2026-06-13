@@ -1,0 +1,352 @@
+[
+  {
+    "id": "public_entry.viewed",
+    "signal_type": "ui_analytics",
+    "source_screen": "public_entry",
+    "trigger": "screen_rendered",
+    "purpose": "Medir entrada pública sin generar progreso ni evento de dominio.",
+    "persistence": "aggregate",
+    "privacy_level": "anonymous",
+    "allowed_payload_fields": [
+      "route",
+      "viewport_family",
+      "timestamp"
+    ],
+    "related_metric_ids": [],
+    "related_domain_event_id": null,
+    "emission_mode": "client_or_server_analytics_non_blocking",
+    "requires_action_contract": false,
+    "idempotency_required": false,
+    "retention_policy": "aggregate_only_no_personal_payload",
+    "owner": "design.ux",
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "validated_by": "SCREEN_ANALYTICS_REFS_EXIST_IN_ANALYTICS_CATALOG"
+  },
+  {
+    "id": "auth.login_attempt",
+    "signal_type": "ui_analytics",
+    "source_screen": "login",
+    "trigger": "login_form_submitted",
+    "purpose": "Medir intento de acceso sin sustituir AuthAttempt ni user.logged_in.",
+    "persistence": "aggregate",
+    "privacy_level": "system",
+    "allowed_payload_fields": [
+      "result",
+      "timestamp",
+      "request_id"
+    ],
+    "related_metric_ids": [],
+    "related_domain_event_id": null,
+    "emission_mode": "derived_from_AUTH_LOGIN_SUBMIT_without_domain_event",
+    "requires_action_contract": true,
+    "action_contract_refs": [
+      "AUTH_LOGIN_SUBMIT"
+    ],
+    "idempotency_required": false,
+    "retention_policy": "security_aggregate_no_credentials",
+    "owner": "core.identity",
+    "source_doc": "docs/06-technical/05-security.md",
+    "validated_by": "SCREEN_ANALYTICS_REFS_EXIST_IN_ANALYTICS_CATALOG"
+  },
+  {
+    "id": "onboarding.step_viewed",
+    "signal_type": "ui_analytics",
+    "source_screen": "onboarding",
+    "trigger": "onboarding_step_rendered",
+    "purpose": "Entender fricción por paso sin modificar OnboardingSession.",
+    "persistence": "aggregate",
+    "privacy_level": "system",
+    "allowed_payload_fields": [
+      "step_key",
+      "route",
+      "timestamp"
+    ],
+    "related_metric_ids": [
+      "onboarding_completion_time"
+    ],
+    "related_domain_event_id": null,
+    "emission_mode": "analytics_catalog_only",
+    "requires_action_contract": false,
+    "idempotency_required": false,
+    "retention_policy": "aggregate_until_mvp_validation_close",
+    "owner": "onboarding",
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "validated_by": "SCREEN_ANALYTICS_REFS_EXIST_IN_ANALYTICS_CATALOG"
+  },
+  {
+    "id": "dashboard.viewed",
+    "signal_type": "domain_view_event",
+    "source_screen": "dashboard",
+    "trigger": "dashboard_visible_after_authenticated_load",
+    "purpose": "Fuente persistente para retorno al dashboard y validación cualitativa.",
+    "persistence": "persistent",
+    "privacy_level": "system",
+    "allowed_payload_fields": [
+      "user_id",
+      "context",
+      "view_fingerprint",
+      "timestamp"
+    ],
+    "related_metric_ids": [
+      "dashboard_return_rate",
+      "qualitative_mvp_validation"
+    ],
+    "related_domain_event_id": "dashboard.viewed",
+    "emission_mode": "POST_action_contract_required_after_GET_render",
+    "requires_action_contract": true,
+    "action_contract_refs": [
+      "DASHBOARD_VIEW_TRACK"
+    ],
+    "idempotency_required": false,
+    "retention_policy": "domain_event_retention_policy",
+    "owner": "dashboard",
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "PERSISTENT_VIEW_EVENTS_HAVE_ACTION_CONTRACT"
+  },
+  {
+    "id": "dashboard.first_viewed",
+    "signal_type": "domain_view_event",
+    "source_screen": "dashboard",
+    "trigger": "first_dashboard_visible_after_authenticated_load",
+    "purpose": "Fuente persistente de activación y logro ecosystem_opened.",
+    "persistence": "persistent",
+    "privacy_level": "system",
+    "allowed_payload_fields": [
+      "user_id",
+      "view_fingerprint",
+      "timestamp"
+    ],
+    "related_metric_ids": [
+      "activation_rate",
+      "qualitative_mvp_validation"
+    ],
+    "related_domain_event_id": "dashboard.first_viewed",
+    "emission_mode": "POST_action_contract_required_after_GET_render",
+    "requires_action_contract": true,
+    "action_contract_refs": [
+      "DASHBOARD_VIEW_TRACK"
+    ],
+    "idempotency_required": true,
+    "retention_policy": "domain_event_retention_policy",
+    "owner": "dashboard",
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "FIRST_VIEW_EVENTS_DECLARE_IDEMPOTENCY"
+  },
+  {
+    "id": "profile.viewed",
+    "signal_type": "ui_analytics",
+    "source_screen": "profile",
+    "trigger": "profile_screen_rendered",
+    "purpose": "Medir consulta de perfil sin modificar UserContext.",
+    "persistence": "aggregate",
+    "privacy_level": "system",
+    "allowed_payload_fields": [
+      "route",
+      "timestamp"
+    ],
+    "related_metric_ids": [],
+    "related_domain_event_id": null,
+    "emission_mode": "analytics_catalog_only",
+    "requires_action_contract": false,
+    "idempotency_required": false,
+    "retention_policy": "aggregate_until_mvp_validation_close",
+    "owner": "profile",
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "validated_by": "SCREEN_ANALYTICS_REFS_EXIST_IN_ANALYTICS_CATALOG"
+  },
+  {
+    "id": "profile.updated",
+    "signal_type": "domain_action_event",
+    "source_screen": "profile",
+    "trigger": "profile_update_submitted",
+    "purpose": "Relacionar la interacción UI con el evento de dominio profile.updated.",
+    "persistence": "persistent",
+    "privacy_level": "system",
+    "allowed_payload_fields": [
+      "user_id",
+      "fields_changed",
+      "timestamp"
+    ],
+    "related_metric_ids": [],
+    "related_domain_event_id": "profile.updated",
+    "emission_mode": "existing_action_contract",
+    "requires_action_contract": true,
+    "action_contract_refs": [
+      "PROFILE_UPDATE"
+    ],
+    "idempotency_required": false,
+    "retention_policy": "domain_event_retention_policy",
+    "owner": "profile",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "validated_by": "ANALYTICS_RELATED_DOMAIN_EVENTS_EXIST"
+  },
+  {
+    "id": "notifications.viewed",
+    "signal_type": "ui_analytics",
+    "source_screen": "notifications",
+    "trigger": "notifications_screen_rendered",
+    "purpose": "Medir consulta de notificaciones sin marcar elementos como leídos.",
+    "persistence": "aggregate",
+    "privacy_level": "system",
+    "allowed_payload_fields": [
+      "route",
+      "unread_count_bucket",
+      "timestamp"
+    ],
+    "related_metric_ids": [],
+    "related_domain_event_id": null,
+    "emission_mode": "analytics_catalog_only",
+    "requires_action_contract": false,
+    "idempotency_required": false,
+    "retention_policy": "aggregate_until_mvp_validation_close",
+    "owner": "notifications",
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "validated_by": "SCREEN_ANALYTICS_REFS_EXIST_IN_ANALYTICS_CATALOG"
+  },
+  {
+    "id": "admin.panel.viewed",
+    "signal_type": "domain_view_event",
+    "source_screen": "admin",
+    "trigger": "admin_panel_visible_after_authorized_load",
+    "purpose": "Señal persistente de acceso a panel administrativo para auditoría interna.",
+    "persistence": "persistent",
+    "privacy_level": "audit",
+    "allowed_payload_fields": [
+      "admin_id",
+      "section",
+      "view_fingerprint",
+      "timestamp"
+    ],
+    "related_metric_ids": [],
+    "related_domain_event_id": "admin.panel.viewed",
+    "emission_mode": "POST_action_contract_required_after_GET_render",
+    "requires_action_contract": true,
+    "action_contract_refs": [
+      "ADMIN_PANEL_VIEW_TRACK"
+    ],
+    "idempotency_required": false,
+    "retention_policy": "domain_event_retention_policy",
+    "owner": "admin",
+    "source_doc": "docs/05-domain-data/03-domain-events.md",
+    "validated_by": "PERSISTENT_VIEW_EVENTS_HAVE_ACTION_CONTRACT"
+  },
+  {
+    "id": "doctor.evidence.viewed",
+    "signal_type": "system_observation",
+    "source_screen": "doctor_evidence",
+    "trigger": "doctor_evidence_screen_rendered",
+    "purpose": "Observación de consulta de evidencia sin ejecutar Doctor ni escribir evidencia.",
+    "persistence": "aggregate",
+    "privacy_level": "audit",
+    "allowed_payload_fields": [
+      "route",
+      "evidence_id",
+      "timestamp"
+    ],
+    "related_metric_ids": [],
+    "related_domain_event_id": null,
+    "emission_mode": "analytics_catalog_only_no_doctor_execution",
+    "requires_action_contract": false,
+    "idempotency_required": false,
+    "retention_policy": "aggregate_until_quality_review_close",
+    "owner": "core.doctor",
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "validated_by": "SCREEN_ANALYTICS_REFS_EXIST_IN_ANALYTICS_CATALOG"
+  },
+  {
+    "id": "modules_catalog.viewed",
+    "signal_type": "ui_analytics",
+    "source_screen": "modules_catalog",
+    "trigger": "modules_catalog_screen_rendered",
+    "purpose": "Medir descubrimiento de módulos sin contar uso real.",
+    "persistence": "aggregate",
+    "privacy_level": "system",
+    "allowed_payload_fields": [
+      "route",
+      "timestamp"
+    ],
+    "related_metric_ids": [],
+    "related_domain_event_id": null,
+    "emission_mode": "analytics_catalog_only",
+    "requires_action_contract": false,
+    "idempotency_required": false,
+    "retention_policy": "aggregate_until_mvp_validation_close",
+    "owner": "core.modules",
+    "source_doc": "docs/07-design-ux/08-screen-component-contracts.md",
+    "validated_by": "SCREEN_ANALYTICS_REFS_EXIST_IN_ANALYTICS_CATALOG"
+  },
+  {
+    "id": "module.used",
+    "signal_type": "domain_action_event",
+    "source_screen": "modules_catalog",
+    "trigger": "module_use_submitted",
+    "purpose": "Uso real de módulo, separado de simple visualización de catálogo.",
+    "persistence": "persistent",
+    "privacy_level": "system",
+    "allowed_payload_fields": [
+      "user_id",
+      "module_id",
+      "source_route",
+      "used_at"
+    ],
+    "related_metric_ids": [
+      "module_usage_count",
+      "qualitative_mvp_validation"
+    ],
+    "related_domain_event_id": "module.used",
+    "emission_mode": "existing_action_contract",
+    "requires_action_contract": true,
+    "action_contract_refs": [
+      "MODULE_USE_TRACK"
+    ],
+    "idempotency_required": true,
+    "retention_policy": "domain_event_retention_policy",
+    "owner": "core.modules",
+    "source_doc": "docs/03-functional/07-action-contracts.md",
+    "validated_by": "ANALYTICS_RELATED_DOMAIN_EVENTS_EXIST"
+  },
+  {
+    "id": "progress.viewed",
+    "signal_type": "ui_analytics",
+    "source_screen": "progress",
+    "trigger": "progress_screen_rendered",
+    "purpose": "Medir consulta del progreso sin conceder puntos ni logros.",
+    "persistence": "aggregate",
+    "privacy_level": "system",
+    "allowed_payload_fields": [
+      "route",
+      "timestamp"
+    ],
+    "related_metric_ids": [],
+    "related_domain_event_id": null,
+    "emission_mode": "analytics_catalog_only",
+    "requires_action_contract": false,
+    "idempotency_required": false,
+    "retention_policy": "aggregate_until_mvp_validation_close",
+    "owner": "gamification",
+    "source_doc": "docs/08-gamification/00-gamification-overview.md",
+    "validated_by": "SCREEN_ANALYTICS_REFS_EXIST_IN_ANALYTICS_CATALOG"
+  },
+  {
+    "id": "ai.workspace.viewed",
+    "signal_type": "ui_analytics",
+    "source_screen": "ai_workspace",
+    "trigger": "ai_workspace_screen_rendered",
+    "purpose": "Medir acceso al workspace IA sin permitir escritura IA ni acción sensible.",
+    "persistence": "aggregate",
+    "privacy_level": "audit",
+    "allowed_payload_fields": [
+      "route",
+      "timestamp"
+    ],
+    "related_metric_ids": [],
+    "related_domain_event_id": null,
+    "emission_mode": "analytics_catalog_only_no_ai_action",
+    "requires_action_contract": false,
+    "idempotency_required": false,
+    "retention_policy": "aggregate_until_ai_operations_review_close",
+    "owner": "ai_assistant",
+    "source_doc": "docs/09-ai-operations/00-ai-operating-model.md",
+    "validated_by": "SCREEN_ANALYTICS_REFS_EXIST_IN_ANALYTICS_CATALOG"
+  }
+]

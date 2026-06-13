@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "relationship_id",
+      "from_entity",
+      "to_entity",
+      "foreign_key",
+      "index_required",
+      "migration_ref",
+      "db_on_delete",
+      "application_delete_policy"
+    ],
+    "properties": {
+      "relationship_id": {
+        "type": "string"
+      },
+      "from_entity": {
+        "type": "string"
+      },
+      "to_entity": {
+        "type": "string"
+      },
+      "relationship_type": {
+        "type": "string"
+      },
+      "foreign_key": {
+        "type": "string"
+      },
+      "references": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "required": {
+        "type": "boolean"
+      },
+      "unique": {
+        "type": "boolean"
+      },
+      "index_required": {
+        "type": "boolean"
+      },
+      "nullable": {
+        "type": "boolean"
+      },
+      "migration_ref": {
+        "type": "string"
+      },
+      "db_on_delete": {
+        "type": "string",
+        "enum": [
+          "RESTRICT",
+          "CASCADE",
+          "SET NULL",
+          "NO ACTION",
+          "NO_PHYSICAL_FK"
+        ]
+      },
+      "application_delete_policy": {
+        "type": "string",
+        "minLength": 1
+      },
+      "parent_requires_child": {
+        "type": "boolean"
+      },
+      "child_requires_parent": {
+        "type": "boolean"
+      },
+      "fk_nullable": {
+        "type": "boolean"
+      },
+      "anonymous_allowed": {
+        "type": "boolean"
+      },
+      "requires_authenticated_user": {
+        "type": "boolean"
+      },
+      "db_enforced": {
+        "type": "boolean"
+      },
+      "notes": {
+        "type": "string"
+      }
+    }
+  }
+}
