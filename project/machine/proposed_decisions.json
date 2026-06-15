@@ -103,8 +103,8 @@
                               "approval_record_id":  "2026-06-15_230530__C1-000B__activate-adr026-human-gate-recover-v3",
                               "baseline_commit":  "ed2dca8620285048f5fc1916dc3e0e4349e899b3",
                               "scope":  "Enable ADR-026 protected AI changes gate before C1-000B runtime core implementation.",
-                              "evidence_log_id":  "2026-06-15_230530__C1-000B__activate-adr026-human-gate-recover-v3",
-                              "doctor_check":  "passed_in_activation_run"
+                              "evidence_ref":  "external_log_2026-06-15_230645__C1-000B__activate-adr026-human-gate-recover-v4-commit",
+                              "doctor_check_ref":  "doctor_passed_in_2026-06-15_230645__C1-000B__activate-adr026-human-gate-recover-v4-commit"
                           }
 }
 ]
