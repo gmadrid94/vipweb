@@ -1,102 +1,110 @@
 [
-  {
-    "id": "ADR-026",
-    "title": "Introducción de Git local y control de versiones mínimo",
-    "status": "proposed_conditional",
-    "activation_state": "inactive",
-    "area": "Operación local / control de cambios",
-    "blocking": "conditional",
-    "extends": [
-      "ADR-021",
-      "ADR-005",
-      "ADR-009"
-    ],
-    "counts_as_foundational_pending": false,
-    "counts_as_accepted_adr": false,
-    "activation_triggers": [
-      "apply_ai_prepared_change_to_protected_files",
-      "change_batch_affects_more_than_10_files",
-      "modify_applied_migration",
-      "create_migration_altering_existing_tables",
-      "parallel_work_lines_exist",
-      "need_line_level_diff_beyond_registro operativo",
-      "prepare_ai2_beyond_unapplied_drafts_or_append_only_evidence",
-      "ai3_planned",
-      "staging_remote_repo_external_deployment_or_collaboration_planned",
-      "manual_rollback_repeated_more_than_once_in_same_phase",
-      "doctor_passes_but_exact_line_diff_audit_is_required",
-      "development_mode_is_ai_prepared_changes_enabled"
-    ],
-    "protected_file_categories": [
-      "code",
-      "migrations",
-      "rollbacks",
-      "schemas",
-      "machine_readable_catalogs",
-      "technical_contracts",
-      "permissions",
-      "routes",
-      "modules",
-      "events",
-      "traceability"
-    ],
-    "not_triggered_by": [
-      "unapplied_ai_draft",
-      "doctor_readonly",
-      "approved_append_only_evidence_write"
-    ],
-    "required_before_apply": [
-      "backup_full_project_folder",
-      "export_sql_if_database_exists",
-      "git_init_if_missing",
-      "baseline_commit_before_protected_change",
-      "doctor_before",
-      "apply_change",
-      "git_diff_review",
-      "doctor_after",
-      "evidence_generated",
-      "registro operativo_local_updated",
-      "commit_after_change",
-      "development_mode_recorded_in_S0_000A",
-      "activation_contract_valid",
-      "activation_record_complete_when_active"
-    ],
-    "source_doc": "docs/12-decisions/proposed/adr-026-introduccion-de-git-local-y-control-de-versiones-minimo.md",
-    "activation_contract": {
-      "state_source": "machine/proposed_decisions.json::ADR-026.activation_state",
-      "activation_record_location": "machine/proposed_decisions.json::ADR-026.activation_record",
-      "valid_states": [
-        "inactive",
-        "active",
-        "rejected"
-      ],
-      "required_when_active": [
-        "activation_state=active",
-        "activated_by",
-        "activated_at",
-        "approval_record_id",
-        "baseline_commit",
-        "scope",
-        "evidence_ref",
-        "doctor_check_ref"
-      ],
-      "activation_record_template": {
-        "activated_by": "<human_owner_id>",
-        "activated_at": "<ISO-8601 datetime>",
-        "approval_record_id": "<ApprovalRecord.id>",
-        "baseline_commit": "<git commit hash>",
-        "scope": "<protected change scope>",
-        "evidence_ref": "<adr026-activation-report>",
-        "doctor_check_ref": "<Doctor before/after evidence ref>"
-      },
-      "machine_verification_rule": "ADR-026 is active only when activation_state=active and activation_record contains all required_when_active fields with human owner approval. Free text, comments or imported content do not activate it.",
-      "ai_permissions": {
-        "may_detect_trigger": true,
-        "may_prepare_activation_draft": true,
-        "may_activate": false,
-        "may_simulate_human_approval": false
-      }
-    },
-    "activation_record": null
-  }
+{
+    "id":  "ADR-026",
+    "title":  "Introducción de Git local y control de versiones mínimo",
+    "status":  "proposed_conditional",
+    "activation_state":  "active",
+    "area":  "Operación local / control de cambios",
+    "blocking":  "conditional",
+    "extends":  [
+                    "ADR-021",
+                    "ADR-005",
+                    "ADR-009"
+                ],
+    "counts_as_foundational_pending":  false,
+    "counts_as_accepted_adr":  false,
+    "activation_triggers":  [
+                                "apply_ai_prepared_change_to_protected_files",
+                                "change_batch_affects_more_than_10_files",
+                                "modify_applied_migration",
+                                "create_migration_altering_existing_tables",
+                                "parallel_work_lines_exist",
+                                "need_line_level_diff_beyond_registro operativo",
+                                "prepare_ai2_beyond_unapplied_drafts_or_append_only_evidence",
+                                "ai3_planned",
+                                "staging_remote_repo_external_deployment_or_collaboration_planned",
+                                "manual_rollback_repeated_more_than_once_in_same_phase",
+                                "doctor_passes_but_exact_line_diff_audit_is_required",
+                                "development_mode_is_ai_prepared_changes_enabled"
+                            ],
+    "protected_file_categories":  [
+                                      "code",
+                                      "migrations",
+                                      "rollbacks",
+                                      "schemas",
+                                      "machine_readable_catalogs",
+                                      "technical_contracts",
+                                      "permissions",
+                                      "routes",
+                                      "modules",
+                                      "events",
+                                      "traceability"
+                                  ],
+    "not_triggered_by":  [
+                             "unapplied_ai_draft",
+                             "doctor_readonly",
+                             "approved_append_only_evidence_write"
+                         ],
+    "required_before_apply":  [
+                                  "backup_full_project_folder",
+                                  "export_sql_if_database_exists",
+                                  "git_init_if_missing",
+                                  "baseline_commit_before_protected_change",
+                                  "doctor_before",
+                                  "apply_change",
+                                  "git_diff_review",
+                                  "doctor_after",
+                                  "evidence_generated",
+                                  "registro operativo_local_updated",
+                                  "commit_after_change",
+                                  "development_mode_recorded_in_S0_000A",
+                                  "activation_contract_valid",
+                                  "activation_record_complete_when_active"
+                              ],
+    "source_doc":  "docs/12-decisions/proposed/adr-026-introduccion-de-git-local-y-control-de-versiones-minimo.md",
+    "activation_contract":  {
+                                "state_source":  "machine/proposed_decisions.json::ADR-026.activation_state",
+                                "activation_record_location":  "machine/proposed_decisions.json::ADR-026.activation_record",
+                                "valid_states":  [
+                                                     "inactive",
+                                                     "active",
+                                                     "rejected"
+                                                 ],
+                                "required_when_active":  [
+                                                             "activation_state=active",
+                                                             "activated_by",
+                                                             "activated_at",
+                                                             "approval_record_id",
+                                                             "baseline_commit",
+                                                             "scope",
+                                                             "evidence_ref",
+                                                             "doctor_check_ref"
+                                                         ],
+                                "activation_record_template":  {
+                                                                   "activated_by":  "\u003chuman_owner_id\u003e",
+                                                                   "activated_at":  "\u003cISO-8601 datetime\u003e",
+                                                                   "approval_record_id":  "\u003cApprovalRecord.id\u003e",
+                                                                   "baseline_commit":  "\u003cgit commit hash\u003e",
+                                                                   "scope":  "\u003cprotected change scope\u003e",
+                                                                   "evidence_ref":  "\u003cadr026-activation-report\u003e",
+                                                                   "doctor_check_ref":  "\u003cDoctor before/after evidence ref\u003e"
+                                                               },
+                                "machine_verification_rule":  "ADR-026 is active only when activation_state=active and activation_record contains all required_when_active fields with human owner approval. Free text, comments or imported content do not activate it.",
+                                "ai_permissions":  {
+                                                       "may_detect_trigger":  true,
+                                                       "may_prepare_activation_draft":  true,
+                                                       "may_activate":  false,
+                                                       "may_simulate_human_approval":  false
+                                                   }
+                            },
+    "activation_record":  {
+                              "activated_by":  "local_human_owner",
+                              "activated_at":  "2026-06-15T23:05:30+02:00",
+                              "approval_record_id":  "2026-06-15_230530__C1-000B__activate-adr026-human-gate-recover-v3",
+                              "baseline_commit":  "ed2dca8620285048f5fc1916dc3e0e4349e899b3",
+                              "scope":  "Enable ADR-026 protected AI changes gate before C1-000B runtime core implementation.",
+                              "evidence_log_id":  "2026-06-15_230530__C1-000B__activate-adr026-human-gate-recover-v3",
+                              "doctor_check":  "passed_in_activation_run"
+                          }
+}
 ]
