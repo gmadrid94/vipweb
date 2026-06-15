@@ -1263,5 +1263,70 @@
     "status": "active",
     "deprecated_references": [],
     "source_doc": "docs/13-quality/05-traceability-matrix.md"
+  },
+  {
+    "adr": "ADR-030",
+    "decision_id": "D-AI-FIRST-001",
+    "modules": [
+      "ai_assistant",
+      "core.doctor",
+      "core.config"
+    ],
+    "entities": [
+      "AIActionLog",
+      "EvidenceReport",
+      "BackupRecord",
+      "SystemSetting"
+    ],
+    "permissions": [
+      "ai.read_context",
+      "system.run_doctor.readonly",
+      "evidence.write",
+      "system.configure"
+    ],
+    "events": [
+      "ai.suggestion.created",
+      "system.doctor.executed",
+      "evidence.recorded",
+      "backup.created"
+    ],
+    "sprint0_tasks": [
+      "S0-000",
+      "S0-000B",
+      "S0-001",
+      "S0-011",
+      "S0-013"
+    ],
+    "evidence": [
+      "evidence/sprint-0-local-execution.md",
+      "external-tool-log-ref",
+      "doctor:semantic"
+    ],
+    "expected_evidence": [
+      "external-tool-contracts-report",
+      "external-tool-log-ref",
+      "doctor-readonly-report"
+    ],
+    "doctor_checks": [
+      "EXTERNAL_ROADMAP_TOOL_CONTRACTS_DECLARED",
+      "AI_FIRST_EXTERNAL_LOG_ROOT_DECLARED",
+      "PUBLIC_DOCUMENT_ROOT_VERIFICATION_REQUIRED",
+      "SPRINT0_TRACEABILITY_GATE_IS_BLOCKING"
+    ],
+    "backlog_items": [
+      "C1-005",
+      "C1-006A",
+      "AI3-001",
+      "AI3-004"
+    ],
+    "roadmap_gates": [
+      "0",
+      "1",
+      "2",
+      "5"
+    ],
+    "status": "active",
+    "deprecated_references": [],
+    "source_doc": "docs/13-quality/05-traceability-matrix.md"
   }
 ]
